@@ -1,19 +1,12 @@
+import Image from "next/image"
 import { Clock } from "lucide-react"
 
 export function HeroSection() {
   return (
     <section className="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden">
-      {/* 3-panel image layout placeholder */}
-      <div className="absolute inset-0 grid grid-cols-3" aria-label="Hero images placeholder">
-        <div className="bg-[#2a3a4a] relative">
-          <div className="absolute inset-0 bg-[#1a2332]/30" />
-        </div>
-        <div className="bg-[#3a4a5a] relative">
-          <div className="absolute inset-0 bg-[#1a2332]/30" />
-        </div>
-        <div className="bg-[#4a5a6a] relative">
-          <div className="absolute inset-0 bg-[#1a2332]/30" />
-        </div>
+      {/* Background image */}
+      <div className="absolute inset-0" aria-label="Hero background image">
+        <Image src="/images/main.png" alt="Hero background" fill className="object-cover" priority />
       </div>
 
       {/* Center overlay */}
