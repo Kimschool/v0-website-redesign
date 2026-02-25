@@ -1,4 +1,5 @@
 import Link from "next/link"
+import Image from "next/image"
 import { ArrowRight } from "lucide-react"
 
 export function EducationSection() {
@@ -18,8 +19,15 @@ export function EducationSection() {
 
       {/* POINT 1 - Full width image with left-aligned text */}
       <div className="relative min-h-[480px] lg:min-h-[560px] overflow-hidden">
-        {/* Image placeholder - full width */}
-        <div className="absolute inset-0 bg-[#3a4a5a]">
+        {/* Image */}
+        <div className="absolute inset-0">
+          <Image
+            src="/images/a.png"
+            alt="コース紹介1"
+            fill
+            className="object-cover"
+            priority
+          />
           <div className="absolute inset-0 bg-[#1a2332]/40" />
         </div>
         {/* Content - left side */}
