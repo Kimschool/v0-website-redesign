@@ -3,13 +3,19 @@ import Link from "next/link"
 
 export function CTASection() {
   return (
-    <section id="admission" className="relative py-24 lg:py-32 overflow-hidden">
-      {/* Background image placeholder */}
-      <div className="absolute inset-0 bg-primary" aria-label="CTA background image placeholder">
-        <div className="absolute inset-0 bg-primary/70" />
+    <section id="admission" className="relative py-0 overflow-hidden">
+      {/* Background - image collage placeholder */}
+      <div className="absolute inset-0 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6" aria-label="CTA background images">
+        <div className="bg-[#2a3a4a]" />
+        <div className="bg-[#3a4a5a]" />
+        <div className="bg-[#4a5a6a]" />
+        <div className="bg-[#3a4a5a] hidden md:block" />
+        <div className="bg-[#2a3a4a] hidden lg:block" />
+        <div className="bg-[#4a5a6a] hidden lg:block" />
       </div>
+      <div className="absolute inset-0 bg-[#1a2332]/30" />
 
-      <div className="relative z-10 mx-auto max-w-5xl px-6">
+      <div className="relative z-10 mx-auto max-w-5xl px-6 py-24 lg:py-32">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Admission Guide */}
           <Link

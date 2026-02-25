@@ -10,12 +10,12 @@ const items = [
 
 export function SchoolLifeSection() {
   return (
-    <section id="school-life" className="py-24 lg:py-32 bg-secondary">
+    <section id="school-life" className="py-24 lg:py-32 bg-background">
       <div className="mx-auto max-w-7xl px-6">
         {/* Section heading */}
         <div className="text-center mb-16">
           <p className="text-xs tracking-[0.3em] uppercase text-accent font-medium mb-4">Campus Life</p>
-          <h2 className="font-serif text-3xl md:text-4xl font-medium text-secondary-foreground tracking-wide text-balance">
+          <h2 className="font-serif text-3xl md:text-4xl font-medium text-foreground tracking-wide text-balance">
             {"学び、つながり、成長する毎日"}
           </h2>
           <p className="mt-4 text-sm font-light text-muted-foreground max-w-lg mx-auto leading-relaxed">
@@ -43,10 +43,10 @@ export function SchoolLifeSection() {
         </div>
 
         {/* CTA */}
-        <div className="text-center mt-12">
+        <div className="text-center mt-14">
           <Link
             href="#school-life-detail"
-            className="inline-flex items-center gap-2 px-10 py-3 border border-foreground text-foreground text-sm font-light tracking-wider hover:bg-foreground hover:text-background transition-colors"
+            className="inline-flex items-center gap-2 px-10 py-3.5 border border-foreground text-foreground text-sm tracking-widest hover:bg-foreground hover:text-background transition-colors"
           >
             {"学校生活"}
           </Link>
