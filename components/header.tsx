@@ -40,10 +40,10 @@ export function Header() {
         {/* Logo */}
         <Link href="/" className="flex flex-col">
           <span className="text-[10px] tracking-widest text-muted-foreground font-light">
-            {t("logoTop")}
+            {"学校法人KCP学園"}
           </span>
           <span className="text-lg font-medium tracking-wide text-foreground">
-            {t("logoBottom")}
+            {"KCP地球市民日本語学校"}
           </span>
         </Link>
 
@@ -64,15 +64,14 @@ export function Header() {
         <div className="flex items-center gap-4">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <button
-                className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
+          <button
+            className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
                 aria-label={t("languageSelector")}
-              >
-                <Globe className="h-4 w-4" />
-                <span className="text-base leading-none">{currentLanguage.flag}</span>
+          >
+            <Globe className="h-4 w-4" />
                 <span className="font-light uppercase">{currentLanguage.code}</span>
-                <ChevronDown className="h-4 w-4" />
-              </button>
+            <ChevronDown className="h-4 w-4" />
+          </button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="min-w-56">
               {languageOptions.map((language) => (
@@ -87,7 +86,7 @@ export function Header() {
           <button
             className="lg:hidden p-2 text-foreground"
             onClick={() => setMobileOpen(!mobileOpen)}
-            aria-label={mobileOpen ? t("mobileMenuClose") : t("mobileMenuOpen")}
+            aria-label={mobileOpen ? "Close menu" : "Open menu"}
           >
             {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
