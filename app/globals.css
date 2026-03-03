@@ -124,3 +124,16 @@
     @apply bg-background text-foreground;
   }
 }
+
+@keyframes about-slider {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.about-slider-track {
+  animation: about-slider 70s linear infinite;
+}

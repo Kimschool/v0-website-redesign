@@ -1,22 +1,33 @@
 import Link from "next/link"
-import { ArrowRight } from "lucide-react"
 
 const features = [
   {
-    title: "多国籍の仲間と喜ぶKCPの\nグローバルなことと出会える学び",
-    description: "",
+    title: "EJU・日本語科目で最高得点者を輩出",
+    image: "https://weavus-group.com/kcp/wp-content/uploads/2025/11/EJU.jpg",
   },
   {
-    title: "独自教材やバラエティ豊富な\n選択パラプログラムも提供",
-    description: "",
+    title: "多国籍の学生が集うKCPで\nグローバルに考える視点を養う",
+    image: "https://weavus-group.com/kcp/wp-content/uploads/2025/07/31e0362326d434d6dbc1d2390aa01eff.jpg",
   },
   {
-    title: "アメリカな人、来自世界にはこに\nプログラムもあり",
-    description: "",
+    title: "日本をより深く知るための\n楽しいプログラムも満載",
+    image: "https://weavus-group.com/kcp/wp-content/uploads/2025/11/2aaf315dd8c8254983b5ed098691efcd-rotated.jpg",
   },
   {
-    title: "充実した教育環境",
-    description: "",
+    title: "経験豊かなベテラン教師が\nきめ細かい指導",
+    image: "https://weavus-group.com/kcp/wp-content/uploads/2025/11/1f9820d2152d8e9bcc962b8600ef019d.jpg",
+  },
+  {
+    title: "アメリカの大学の単位認定\nプログラムもあり",
+    image: "https://weavus-group.com/kcp/wp-content/uploads/2025/11/c6d0b891872831f84c0c747a5da2a261.jpg",
+  },
+  {
+    title: "公共性の高い教育機関として\n公的に認知",
+    image: "https://weavus-group.com/kcp/wp-content/uploads/2025/07/f3680d56ae6dfb979b5be7961e73155c.jpg",
+  },
+  {
+    title: "充実した教育設備",
+    image: "https://weavus-group.com/kcp/wp-content/uploads/2025/07/1c279b72c09a930d753cc9f263d78c88.jpg",
   },
 ]
 
@@ -38,22 +49,49 @@ export function AboutSection() {
           <div className="mt-8 w-12 h-px bg-accent mx-auto" />
         </div>
 
-        {/* Feature cards - 4 columns */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {features.map((feature, index) => (
-            <div key={index} className="group">
-              {/* Image placeholder */}
-              <div className="aspect-[4/3] bg-muted relative overflow-hidden">
-                <div className="absolute inset-0 bg-[#1a2332]/5 group-hover:bg-[#1a2332]/10 transition-colors" />
+        {/* Feature slider - left scrolling */}
+        <div className="relative left-1/2 w-screen -translate-x-1/2 overflow-hidden">
+          <div className="about-slider-track flex w-max gap-6">
+            {[...features, ...features].map((feature, index) => (
+              <div key={`${feature.title}-${index}`} className="w-[360px] shrink-0 group">
+                {index % 2 === 0 ? (
+                  <>
+                    <div className="aspect-[3/4] bg-muted relative overflow-hidden rounded-3xl">
+                      <img
+                        src={feature.image}
+                        alt={feature.title.replace(/\n/g, " ")}
+                        loading="lazy"
+                        className="w-full h-full object-cover"
+                      />
+                      <div className="absolute inset-0 bg-[#1a2332]/5 group-hover:bg-[#1a2332]/10 transition-colors" />
+                    </div>
+                    <div className="mt-6 text-center">
+                      <p className="text-sm md:text-base font-light text-foreground leading-relaxed whitespace-pre-line">
+                        {feature.title}
+                      </p>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <div className="mb-6 text-center">
+                      <p className="text-sm md:text-base font-light text-foreground leading-relaxed whitespace-pre-line">
+                        {feature.title}
+                      </p>
+                    </div>
+                    <div className="aspect-[3/4] bg-muted relative overflow-hidden rounded-3xl">
+                      <img
+                        src={feature.image}
+                        alt={feature.title.replace(/\n/g, " ")}
+                        loading="lazy"
+                        className="w-full h-full object-cover"
+                      />
+                      <div className="absolute inset-0 bg-[#1a2332]/5 group-hover:bg-[#1a2332]/10 transition-colors" />
+                    </div>
+                  </>
+                )}
               </div>
-              {/* Text */}
-              <div className="mt-4">
-                <p className="text-sm font-light text-muted-foreground leading-relaxed whitespace-pre-line">
-                  {feature.title}
-                </p>
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
 
         {/* CTA Button */}
