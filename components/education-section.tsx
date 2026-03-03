@@ -1,54 +1,76 @@
+"use client"
+
+import { useEffect, useRef, useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
-import { ArrowRight } from "lucide-react"
 
 export function EducationSection() {
+  const sectionRef = useRef<HTMLElement>(null)
+  const [isVisible, setIsVisible] = useState(false)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true)
+        }
+      },
+      { threshold: 0.15 }
+    )
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current)
+    }
+
+    return () => observer.disconnect()
+  }, [])
+
   return (
-    <section id="education" className="bg-background">
+    <section ref={sectionRef} id="education" className="bg-background">
       {/* Section heading */}
-      <div className="py-20 lg:py-24 text-center">
-        <p className="text-xs tracking-[0.3em] uppercase text-accent font-medium mb-4">Education</p>
-        <h2 className="font-serif text-3xl md:text-4xl font-medium text-foreground tracking-wide text-balance">
+      <div className={`py-28 lg:py-36 text-center ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
+        <p className="text-xs tracking-[0.4em] uppercase text-accent font-medium mb-5">Education</p>
+        <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-medium text-foreground tracking-wider text-balance">
           {"教育内容とサポート体制"}
         </h2>
-        <p className="mt-4 text-sm font-light text-muted-foreground max-w-lg mx-auto leading-relaxed">
+        <p className="mt-6 text-base font-light text-muted-foreground max-w-lg mx-auto leading-loose tracking-wide">
           {"教育方針的なスローガンを入れるが、文章は未定"}
         </p>
-        <div className="mt-6 w-12 h-px bg-accent mx-auto" />
+        <div className="mt-10 elegant-divider w-20 mx-auto" />
       </div>
 
       {/* POINT 1 - Full width image with left-aligned text */}
-      <div className="relative min-h-[480px] lg:min-h-[560px] overflow-hidden">
+      <div className="relative min-h-[540px] lg:min-h-[640px] overflow-hidden group">
         {/* Image */}
         <div className="absolute inset-0">
           <Image
             src="/images/a.png"
             alt="コース紹介1"
             fill
-            className="object-cover"
+            className="object-cover img-zoom"
             priority
           />
-          <div className="absolute inset-0 bg-[#1a2332]/40" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#1a2332]/70 via-[#1a2332]/40 to-transparent" />
         </div>
         {/* Content - left side */}
-        <div className="relative z-10 mx-auto max-w-7xl px-6 py-16 lg:py-24 flex items-center min-h-[480px] lg:min-h-[560px]">
-          <div className="max-w-md">
+        <div className="relative z-10 mx-auto max-w-7xl px-8 py-20 lg:py-32 flex items-center min-h-[540px] lg:min-h-[640px]">
+          <div className="max-w-lg">
             {/* Point badge */}
-            <div className="flex flex-col items-center justify-center w-16 h-16 rounded-full bg-foreground mb-6">
-              <span className="text-[9px] tracking-widest uppercase text-[#faf9f7] font-medium">
+            <div className="flex flex-col items-center justify-center w-20 h-20 rounded-full bg-[#faf9f7] mb-8 shadow-xl">
+              <span className="text-[9px] tracking-[0.2em] uppercase text-primary font-medium">
                 POINT
               </span>
-              <span className="text-xl font-medium text-[#faf9f7] leading-none">1</span>
+              <span className="text-2xl font-semibold text-primary leading-none">1</span>
             </div>
-            <h3 className="text-2xl lg:text-3xl font-medium text-[#faf9f7] tracking-wide mb-3">
+            <h3 className="text-3xl lg:text-4xl font-medium text-[#faf9f7] tracking-wider mb-5 leading-snug">
               {"コース紹介1"}
             </h3>
-            <p className="text-sm font-light text-[#faf9f7]/80 leading-relaxed mb-8">
+            <p className="text-base font-light text-[#faf9f7]/90 leading-loose tracking-wide mb-10">
               {"コース紹介2"}
             </p>
             <Link
               href="#courses"
-              className="inline-flex items-center gap-3 px-8 py-3 border border-[#faf9f7]/50 text-[#faf9f7] text-sm tracking-wider hover:bg-[#faf9f7]/10 transition-all"
+              className="inline-flex items-center gap-3 px-10 py-4 border border-[#faf9f7]/60 text-[#faf9f7] text-sm tracking-[0.15em] hover:bg-[#faf9f7] hover:text-primary transition-all duration-300 rounded-sm"
             >
               {"コース紹介"}
             </Link>
@@ -56,31 +78,37 @@ export function EducationSection() {
         </div>
       </div>
 
-      {/* POINT 2 - Full width image with right-aligned text */}
-      <div className="relative min-h-[480px] lg:min-h-[560px] overflow-hidden">
-        {/* Image placeholder */}
-        <div className="absolute inset-0 bg-[#4a5a6a]">
-          <div className="absolute inset-0 bg-[#1a2332]/40" />
+      {/* POINT 2 - Full width with elegant pattern background */}
+      <div className="relative min-h-[540px] lg:min-h-[640px] overflow-hidden group">
+        {/* Elegant pattern background instead of plain gray */}
+        <div className="absolute inset-0 bg-primary">
+          {/* Decorative pattern */}
+          <div className="absolute inset-0 opacity-10">
+            <div className="absolute top-0 left-0 w-full h-full" style={{
+              backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23faf9f7' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+            }} />
+          </div>
+          <div className="absolute inset-0 bg-gradient-to-l from-primary/90 via-primary/60 to-transparent" />
         </div>
         {/* Content - right side */}
-        <div className="relative z-10 mx-auto max-w-7xl px-6 py-16 lg:py-24 flex items-center justify-end min-h-[480px] lg:min-h-[560px]">
-          <div className="max-w-md text-right">
+        <div className="relative z-10 mx-auto max-w-7xl px-8 py-20 lg:py-32 flex items-center justify-end min-h-[540px] lg:min-h-[640px]">
+          <div className="max-w-lg text-right">
             {/* Point badge */}
-            <div className="flex flex-col items-center justify-center w-16 h-16 rounded-full bg-foreground mb-6 ml-auto">
-              <span className="text-[9px] tracking-widest uppercase text-[#faf9f7] font-medium">
+            <div className="flex flex-col items-center justify-center w-20 h-20 rounded-full bg-[#faf9f7] mb-8 ml-auto shadow-xl">
+              <span className="text-[9px] tracking-[0.2em] uppercase text-primary font-medium">
                 POINT
               </span>
-              <span className="text-xl font-medium text-[#faf9f7] leading-none">2</span>
+              <span className="text-2xl font-semibold text-primary leading-none">2</span>
             </div>
-            <h3 className="text-2xl lg:text-3xl font-medium text-[#faf9f7] tracking-wide mb-3">
+            <h3 className="text-3xl lg:text-4xl font-medium text-[#faf9f7] tracking-wider mb-5 leading-snug">
               {"授業内容1"}
             </h3>
-            <p className="text-sm font-light text-[#faf9f7]/80 leading-relaxed mb-8">
+            <p className="text-base font-light text-[#faf9f7]/90 leading-loose tracking-wide mb-10">
               {"授業内容2"}
             </p>
             <Link
               href="#classes"
-              className="inline-flex items-center gap-3 px-8 py-3 border border-[#faf9f7]/50 text-[#faf9f7] text-sm tracking-wider hover:bg-[#faf9f7]/10 transition-all"
+              className="inline-flex items-center gap-3 px-10 py-4 border border-[#faf9f7]/60 text-[#faf9f7] text-sm tracking-[0.15em] hover:bg-[#faf9f7] hover:text-primary transition-all duration-300 rounded-sm"
             >
               {"授業内容"}
             </Link>

@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { Facebook, Instagram } from "lucide-react"
+import { Facebook, Instagram, Globe, MapPin, Phone, Mail } from "lucide-react"
 
 const links = [
   { label: "KCP日本語教師養成講座", href: "#" },
@@ -10,54 +10,113 @@ const links = [
   { label: "情報公開", href: "#" },
 ]
 
+const socialLinks = [
+  { icon: Globe, label: "Website", href: "#" },
+  { icon: Facebook, label: "Facebook", href: "#" },
+  { icon: Instagram, label: "Instagram", href: "#" },
+]
+
 export function Footer() {
   return (
     <footer className="bg-primary text-primary-foreground">
-      {/* School name bar */}
-      <div className="bg-[#1a2332] py-4">
-        <p className="text-center text-sm font-medium tracking-widest text-[#faf9f7]">
-          {"KCP地球市民日本語学校"}
-        </p>
+      {/* Main footer content */}
+      <div className="bg-primary py-20">
+        <div className="mx-auto max-w-7xl px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-16">
+            {/* School info */}
+            <div className="lg:col-span-1">
+              <p className="text-xs tracking-[0.3em] uppercase text-[#faf9f7]/60 font-light mb-3">
+                学校法人KCP学園
+              </p>
+              <h3 className="text-2xl font-medium tracking-wider text-[#faf9f7] mb-8">
+                KCP地球市民日本語学校
+              </h3>
+              <p className="text-sm font-light text-[#faf9f7]/80 leading-loose tracking-wide">
+                日本語教育を通じて世界をつなぐ。<br />
+                ともにまなび、ともに生きる。
+              </p>
+            </div>
+
+            {/* Contact info */}
+            <div className="lg:col-span-1">
+              <h4 className="text-sm font-medium tracking-[0.2em] uppercase text-[#faf9f7] mb-8">
+                Contact
+              </h4>
+              <div className="space-y-5">
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-full bg-[#faf9f7]/10 flex items-center justify-center shrink-0">
+                    <MapPin className="w-4 h-4 text-accent" strokeWidth={1.5} />
+                  </div>
+                  <div>
+                    <p className="text-sm font-light text-[#faf9f7]/90 leading-relaxed tracking-wide">
+                      〒169-0074<br />
+                      東京都新宿区北新宿3-27-1
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-4">
+                  <div className="w-10 h-10 rounded-full bg-[#faf9f7]/10 flex items-center justify-center shrink-0">
+                    <Phone className="w-4 h-4 text-accent" strokeWidth={1.5} />
+                  </div>
+                  <p className="text-sm font-light text-[#faf9f7]/90 tracking-wide">
+                    03-3367-6789
+                  </p>
+                </div>
+                <div className="flex items-center gap-4">
+                  <div className="w-10 h-10 rounded-full bg-[#faf9f7]/10 flex items-center justify-center shrink-0">
+                    <Mail className="w-4 h-4 text-accent" strokeWidth={1.5} />
+                  </div>
+                  <p className="text-sm font-light text-[#faf9f7]/90 tracking-wide">
+                    info@kcp.ac.jp
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Quick links */}
+            <div className="lg:col-span-1">
+              <h4 className="text-sm font-medium tracking-[0.2em] uppercase text-[#faf9f7] mb-8">
+                Links
+              </h4>
+              <nav className="flex flex-col gap-4" aria-label="Footer navigation">
+                {links.map((link) => (
+                  <Link
+                    key={link.label}
+                    href={link.href}
+                    className="text-sm font-light text-[#faf9f7]/70 hover:text-accent transition-colors duration-300 tracking-wide"
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </nav>
+            </div>
+          </div>
+        </div>
       </div>
 
-      {/* Footer content */}
-      <div className="bg-[#faf9f7] text-foreground">
-        <div className="mx-auto max-w-7xl px-6 py-10">
-          {/* Social icons */}
-          <div className="flex items-center justify-center gap-6 mb-8">
-            <Link href="#" aria-label="KCP Website" className="text-muted-foreground hover:text-accent transition-colors">
-              <svg className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" />
-              </svg>
-            </Link>
-            <Link href="#" aria-label="Facebook" className="text-muted-foreground hover:text-accent transition-colors">
-              <Facebook className="h-5 w-5" strokeWidth={1.5} />
-            </Link>
-            <Link href="#" aria-label="Instagram" className="text-muted-foreground hover:text-accent transition-colors">
-              <Instagram className="h-5 w-5" strokeWidth={1.5} />
-            </Link>
+      {/* Bottom bar */}
+      <div className="bg-[#151d29] py-8">
+        <div className="mx-auto max-w-7xl px-8">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+            {/* Social icons */}
+            <div className="flex items-center gap-4">
+              {socialLinks.map((social) => (
+                <Link 
+                  key={social.label}
+                  href={social.href} 
+                  aria-label={social.label} 
+                  className="w-10 h-10 rounded-full bg-[#faf9f7]/5 flex items-center justify-center text-[#faf9f7]/60 hover:bg-accent hover:text-[#faf9f7] transition-all duration-300"
+                >
+                  <social.icon className="h-4 w-4" strokeWidth={1.5} />
+                </Link>
+              ))}
+            </div>
+
+            {/* Copyright */}
+            <p className="text-xs font-light text-[#faf9f7]/50 tracking-wider">
+              Copyright {"\u00A9"} 2025 KCP地球市民日本語学校. All rights reserved.
+            </p>
           </div>
-
-          {/* Divider */}
-          <div className="w-full h-px bg-border mb-8" />
-
-          {/* Navigation links */}
-          <nav className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 mb-8" aria-label="Footer navigation">
-            {links.map((link) => (
-              <Link
-                key={link.label}
-                href={link.href}
-                className="text-xs font-light text-muted-foreground hover:text-accent transition-colors tracking-wide"
-              >
-                {link.label}
-              </Link>
-            ))}
-          </nav>
-
-          {/* Copyright */}
-          <p className="text-center text-xs font-light text-muted-foreground tracking-wide">
-            {"Copyright \u00A9 2025"}
-          </p>
         </div>
       </div>
     </footer>

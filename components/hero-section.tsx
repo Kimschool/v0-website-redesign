@@ -24,7 +24,7 @@ export function HeroSection() {
       if (index >= fullText.length) {
         window.clearInterval(timer)
       }
-    }, 120)
+    }, 100)
 
     return () => window.clearInterval(timer)
   }, [])
@@ -32,60 +32,70 @@ export function HeroSection() {
   useEffect(() => {
     const timer = window.setInterval(() => {
       setNewsIndex((prev) => (prev + 1) % newsItems.length)
-    }, 2800)
+    }, 3500)
 
     return () => window.clearInterval(timer)
   }, [newsItems.length])
 
   return (
-    <section className="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden">
+    <section className="relative h-screen min-h-[700px] flex items-center justify-center overflow-hidden">
       {/* Background image */}
       <div className="absolute inset-0" aria-label="Hero background image">
         <Image src="/images/main.png" alt="Hero background" fill className="object-cover" priority />
       </div>
 
-      {/* Center overlay */}
-      <div className="absolute inset-0 bg-[#1a2332]/20" />
+      {/* Gradient overlays for depth */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#1a2332]/30 via-transparent to-[#1a2332]/40" />
+      <div className="absolute inset-0 bg-[#1a2332]/15" />
 
       {/* Content */}
-      <div className="relative z-10 text-center px-6">
-        <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-medium text-[#faf9f7] tracking-wider leading-tight text-balance drop-shadow-lg">
+      <div className="relative z-10 text-center px-8">
+        <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-medium text-[#faf9f7] tracking-[0.15em] leading-tight text-balance drop-shadow-2xl">
           {typedText}
+          <span className="animate-pulse">|</span>
         </h1>
-        <div className="mt-8 w-20 h-px bg-accent mx-auto" />
+        <div className="mt-12 elegant-divider w-32 mx-auto" />
+        <p className="mt-8 text-lg md:text-xl font-light text-[#faf9f7]/90 tracking-widest animate-fade-in animation-delay-500">
+          KCP地球市民日本語学校
+        </p>
       </div>
 
       {/* News ticker at bottom */}
-      <div className="absolute bottom-5 left-1/2 z-20 w-[min(72%,780px)] -translate-x-1/2 rounded-[999px] bg-card/95 shadow-lg backdrop-blur-sm">
-        <div className="px-8 py-4 flex items-center gap-5">
-          <div className="flex items-center gap-2 text-muted-foreground shrink-0">
-            <Clock className="h-4 w-4" />
-            <div className="h-6 overflow-hidden">
+      <div className="absolute bottom-8 left-1/2 z-20 w-[min(85%,860px)] -translate-x-1/2">
+        <div className="rounded-2xl bg-card/98 shadow-2xl shadow-primary/10 backdrop-blur-md border border-border/50">
+          <div className="px-8 py-5 flex items-center gap-6">
+            <div className="flex items-center gap-3 text-muted-foreground shrink-0">
+              <div className="w-8 h-8 rounded-full bg-accent/10 flex items-center justify-center">
+                <Clock className="h-4 w-4 text-accent" />
+              </div>
+              <div className="h-6 overflow-hidden">
+                <div
+                  className="transition-transform duration-700 ease-out"
+                  style={{ transform: `translateY(-${newsIndex * 24}px)` }}
+                >
+                  {newsItems.map((item) => (
+                    <p key={`date-${item.date}-${item.text}`} className="h-6 text-sm leading-6 tracking-wider font-medium">
+                      {item.date}
+                    </p>
+                  ))}
+                </div>
+              </div>
+            </div>
+            <div className="w-px h-6 bg-border" />
+            <div className="h-6 overflow-hidden min-w-0 flex-1">
               <div
-                className="transition-transform duration-500 ease-in-out"
+                className="transition-transform duration-700 ease-out"
                 style={{ transform: `translateY(-${newsIndex * 24}px)` }}
               >
                 {newsItems.map((item) => (
-                  <p key={`date-${item.date}-${item.text}`} className="h-6 text-sm leading-6 tracking-wide">
-                    {item.date}
+                  <p
+                    key={`text-${item.date}-${item.text}`}
+                    className="h-6 text-sm md:text-base font-light text-foreground leading-6 truncate tracking-wide"
+                  >
+                    {item.text}
                   </p>
                 ))}
               </div>
-            </div>
-          </div>
-          <div className="h-6 overflow-hidden min-w-0 flex-1">
-            <div
-              className="transition-transform duration-500 ease-in-out"
-              style={{ transform: `translateY(-${newsIndex * 24}px)` }}
-            >
-              {newsItems.map((item) => (
-                <p
-                  key={`text-${item.date}-${item.text}`}
-                  className="h-6 text-sm md:text-base font-light text-foreground leading-6 truncate"
-                >
-                  {item.text}
-                </p>
-              ))}
             </div>
           </div>
         </div>

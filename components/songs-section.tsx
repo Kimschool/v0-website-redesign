@@ -1,45 +1,92 @@
+"use client"
+
+import { useEffect, useRef, useState } from "react"
+import { Music } from "lucide-react"
+
 export function SongsSection() {
+  const sectionRef = useRef<HTMLElement>(null)
+  const [isVisible, setIsVisible] = useState(false)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true)
+        }
+      },
+      { threshold: 0.2 }
+    )
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current)
+    }
+
+    return () => observer.disconnect()
+  }, [])
+
   return (
-    <section className="py-24 lg:py-32 bg-secondary">
-      <div className="mx-auto max-w-7xl px-6">
+    <section ref={sectionRef} className="py-32 lg:py-44 bg-secondary">
+      <div className="mx-auto max-w-7xl px-8">
         {/* Section heading */}
-        <div className="text-center mb-16">
-          <p className="text-xs tracking-[0.3em] uppercase text-accent font-medium mb-4">Songs</p>
-          <h2 className="font-serif text-3xl md:text-4xl font-medium text-foreground tracking-wide text-balance">
+        <div className={`text-center mb-20 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
+          <p className="text-xs tracking-[0.4em] uppercase text-accent font-medium mb-5">Songs</p>
+          <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-medium text-foreground tracking-wider text-balance">
             {"KCP校歌と応援歌"}
           </h2>
-          <div className="mt-6 w-12 h-px bg-accent mx-auto" />
+          <div className="mt-10 elegant-divider w-20 mx-auto" />
         </div>
 
         {/* Two cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-5xl mx-auto">
           {/* School Song */}
-          <div className="group bg-card border border-border overflow-hidden hover:border-accent transition-colors">
-            <div className="px-6 pt-6 pb-4">
-              <h3 className="text-lg font-medium text-foreground tracking-wide">
+          <div className={`group bg-card border border-border overflow-hidden hover:border-accent hover:shadow-xl hover:shadow-accent/5 transition-all duration-300 rounded-xl hover-lift ${
+            isVisible ? "animate-fade-in-up animation-delay-100" : "opacity-0"
+          }`}>
+            <div className="px-8 pt-8 pb-6">
+              <h3 className="text-xl font-medium text-foreground tracking-wider">
                 {"校歌「今ここに」"}
               </h3>
             </div>
-            {/* Image placeholder */}
-            <div className="aspect-[16/10] bg-muted" aria-label="School song image placeholder" />
-            <div className="px-6 py-4">
-              <p className="text-sm font-light text-muted-foreground text-center">
+            {/* Elegant pattern background instead of plain gray */}
+            <div className="aspect-[16/10] bg-gradient-to-br from-accent/20 via-accent/10 to-primary/10 relative flex items-center justify-center">
+              <div className="absolute inset-0 opacity-30">
+                <div className="absolute inset-0" style={{
+                  backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%231a2332' fill-opacity='0.15' fill-rule='evenodd'%3E%3Cpath d='M0 40L40 0H20L0 20M40 40V20L20 40'/%3E%3C/g%3E%3C/svg%3E")`,
+                }} />
+              </div>
+              <div className="relative z-10 w-20 h-20 rounded-full bg-card/90 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                <Music className="w-8 h-8 text-accent" strokeWidth={1.5} />
+              </div>
+            </div>
+            <div className="px-8 py-6">
+              <p className="text-base font-light text-muted-foreground text-center tracking-wide">
                 {"「今ここに」"}
               </p>
             </div>
           </div>
 
           {/* Cheering Song */}
-          <div className="group bg-card border border-border overflow-hidden hover:border-accent transition-colors">
-            <div className="px-6 pt-6 pb-4">
-              <h3 className="text-lg font-medium text-foreground tracking-wide">
+          <div className={`group bg-card border border-border overflow-hidden hover:border-accent hover:shadow-xl hover:shadow-accent/5 transition-all duration-300 rounded-xl hover-lift ${
+            isVisible ? "animate-fade-in-up animation-delay-200" : "opacity-0"
+          }`}>
+            <div className="px-8 pt-8 pb-6">
+              <h3 className="text-xl font-medium text-foreground tracking-wider">
                 {"応援歌「そらとほしと」"}
               </h3>
             </div>
-            {/* Image placeholder */}
-            <div className="aspect-[16/10] bg-muted" aria-label="Cheering song image placeholder" />
-            <div className="px-6 py-4">
-              <p className="text-sm font-light text-muted-foreground text-center">
+            {/* Elegant pattern background instead of plain gray */}
+            <div className="aspect-[16/10] bg-gradient-to-br from-primary/15 via-accent/10 to-secondary relative flex items-center justify-center">
+              <div className="absolute inset-0 opacity-30">
+                <div className="absolute inset-0" style={{
+                  backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%231a2332' fill-opacity='0.15' fill-rule='evenodd'%3E%3Cpath d='M0 40L40 0H20L0 20M40 40V20L20 40'/%3E%3C/g%3E%3C/svg%3E")`,
+                }} />
+              </div>
+              <div className="relative z-10 w-20 h-20 rounded-full bg-card/90 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                <Music className="w-8 h-8 text-accent" strokeWidth={1.5} />
+              </div>
+            </div>
+            <div className="px-8 py-6">
+              <p className="text-base font-light text-muted-foreground text-center tracking-wide">
                 {"「そらとほしと」"}
               </p>
             </div>
