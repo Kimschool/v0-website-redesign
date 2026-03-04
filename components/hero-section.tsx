@@ -117,7 +117,7 @@ export function HeroSection() {
 
       {/* Content */}
       <div className="relative z-10 text-center px-6 py-20 max-w-5xl mx-auto">
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight tracking-wide">
+        <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight tracking-wide">
           <span className="block">
             <TypewriterText text={title1} delay={500} />
           </span>

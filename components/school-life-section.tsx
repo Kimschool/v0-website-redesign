@@ -57,7 +57,7 @@ export function SchoolLifeSection() {
           {/* Right - Content */}
           <div className={isVisible ? "animate-fade-in-up animation-delay-200" : "opacity-0"}>
             <p className="text-sm font-medium text-primary mb-3">{t("schoolLife.label")}</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground leading-tight mb-6">
+            <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground leading-tight mb-6">
               {t("schoolLife.title1")}
               <br />
               {t("schoolLife.title2")}
