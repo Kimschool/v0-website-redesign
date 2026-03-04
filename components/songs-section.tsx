@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react"
 import { Music } from "lucide-react"
+import Image from "next/image"
 
 export function SongsSection() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -47,15 +48,19 @@ export function SongsSection() {
                 {"校歌「今ここに」"}
               </h3>
             </div>
-            {/* Elegant pattern background instead of plain gray */}
-            <div className="aspect-[16/10] bg-gradient-to-br from-accent/20 via-accent/10 to-primary/10 relative flex items-center justify-center">
-              <div className="absolute inset-0 opacity-30">
-                <div className="absolute inset-0" style={{
-                  backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%231a2332' fill-opacity='0.15' fill-rule='evenodd'%3E%3Cpath d='M0 40L40 0H20L0 20M40 40V20L20 40'/%3E%3C/g%3E%3C/svg%3E")`,
-                }} />
-              </div>
-              <div className="relative z-10 w-20 h-20 rounded-full bg-card/90 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
-                <Music className="w-8 h-8 text-accent" strokeWidth={1.5} />
+            {/* School Song Image */}
+            <div className="aspect-[16/10] relative overflow-hidden">
+              <Image
+                src="/images/school-song.jpg"
+                alt="校歌「今ここに」"
+                fill
+                className="object-cover img-zoom"
+              />
+              <div className="absolute inset-0 bg-primary/30 group-hover:bg-primary/10 transition-colors duration-300" />
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="w-20 h-20 rounded-full bg-card/90 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                  <Music className="w-8 h-8 text-accent" strokeWidth={1.5} />
+                </div>
               </div>
             </div>
             <div className="px-8 py-6">
@@ -74,15 +79,19 @@ export function SongsSection() {
                 {"応援歌「そらとほしと」"}
               </h3>
             </div>
-            {/* Elegant pattern background instead of plain gray */}
-            <div className="aspect-[16/10] bg-gradient-to-br from-primary/15 via-accent/10 to-secondary relative flex items-center justify-center">
-              <div className="absolute inset-0 opacity-30">
-                <div className="absolute inset-0" style={{
-                  backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%231a2332' fill-opacity='0.15' fill-rule='evenodd'%3E%3Cpath d='M0 40L40 0H20L0 20M40 40V20L20 40'/%3E%3C/g%3E%3C/svg%3E")`,
-                }} />
-              </div>
-              <div className="relative z-10 w-20 h-20 rounded-full bg-card/90 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
-                <Music className="w-8 h-8 text-accent" strokeWidth={1.5} />
+            {/* Cheering Song Image */}
+            <div className="aspect-[16/10] relative overflow-hidden">
+              <Image
+                src="/images/cheering-song.jpg"
+                alt="応援歌「そらとほしと」"
+                fill
+                className="object-cover img-zoom"
+              />
+              <div className="absolute inset-0 bg-primary/30 group-hover:bg-primary/10 transition-colors duration-300" />
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="w-20 h-20 rounded-full bg-card/90 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                  <Music className="w-8 h-8 text-accent" strokeWidth={1.5} />
+                </div>
               </div>
             </div>
             <div className="px-8 py-6">

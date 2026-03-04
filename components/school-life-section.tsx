@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react"
 import { Calendar, Users, Building2, MapPin } from "lucide-react"
 import Link from "next/link"
+import Image from "next/image"
 
 const items = [
   { icon: Calendar, label: "年間スケジュール", href: "#schedule" },
@@ -33,8 +34,19 @@ export function SchoolLifeSection() {
   }, [])
 
   return (
-    <section ref={sectionRef} id="school-life" className="py-32 lg:py-44 bg-background">
-      <div className="mx-auto max-w-7xl px-8">
+    <section ref={sectionRef} id="school-life" className="relative py-32 lg:py-44 overflow-hidden">
+      {/* Background Image */}
+      <div className="absolute inset-0">
+        <Image
+          src="/images/school-life.jpg"
+          alt="学校生活"
+          fill
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-[#faf9f7]/90" />
+      </div>
+
+      <div className="relative z-10 mx-auto max-w-7xl px-8">
         {/* Section heading */}
         <div className={`text-center mb-20 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
           <p className="text-xs tracking-[0.4em] uppercase text-accent font-medium mb-5">Campus Life</p>

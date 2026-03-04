@@ -44,8 +44,8 @@ export function EducationSection() {
         {/* Image */}
         <div className="absolute inset-0">
           <Image
-            src="/images/a.png"
-            alt="コース紹介1"
+            src="/images/course-intro.jpg"
+            alt="コース紹介"
             fill
             className="object-cover img-zoom"
             priority
@@ -78,17 +78,17 @@ export function EducationSection() {
         </div>
       </div>
 
-      {/* POINT 2 - Full width with elegant pattern background */}
+      {/* POINT 2 - Full width with image background */}
       <div className="relative min-h-[540px] lg:min-h-[640px] overflow-hidden group">
-        {/* Elegant pattern background instead of plain gray */}
-        <div className="absolute inset-0 bg-primary">
-          {/* Decorative pattern */}
-          <div className="absolute inset-0 opacity-10">
-            <div className="absolute top-0 left-0 w-full h-full" style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23faf9f7' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-            }} />
-          </div>
-          <div className="absolute inset-0 bg-gradient-to-l from-primary/90 via-primary/60 to-transparent" />
+        {/* Image */}
+        <div className="absolute inset-0">
+          <Image
+            src="/images/lesson-content.jpg"
+            alt="授業内容"
+            fill
+            className="object-cover img-zoom"
+          />
+          <div className="absolute inset-0 bg-gradient-to-l from-[#1a2332]/70 via-[#1a2332]/40 to-transparent" />
         </div>
         {/* Content - right side */}
         <div className="relative z-10 mx-auto max-w-7xl px-8 py-20 lg:py-32 flex items-center justify-end min-h-[540px] lg:min-h-[640px]">

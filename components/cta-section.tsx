@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react"
 import { ArrowRight, FileText, HelpCircle } from "lucide-react"
 import Link from "next/link"
+import Image from "next/image"
 
 export function CTASection() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -27,16 +28,16 @@ export function CTASection() {
 
   return (
     <section ref={sectionRef} id="admission" className="relative py-0 overflow-hidden">
-      {/* Background - elegant gradient with pattern */}
-      <div className="absolute inset-0 bg-primary">
-        {/* Decorative grid pattern */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0" style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23faf9f7' fill-opacity='0.3'%3E%3Cpath d='M50 50c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c0 5.523-4.477 10-10 10s-10-4.477-10-10 4.477-10 10-10zM10 10c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c0 5.523-4.477 10-10 10S0 25.523 0 20s4.477-10 10-10zm10 8c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8zm40 40c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-          }} />
-        </div>
-        {/* Gradient overlay for depth */}
-        <div className="absolute inset-0 bg-gradient-to-b from-primary/80 via-primary to-primary/90" />
+      {/* Background - Image with overlay */}
+      <div className="absolute inset-0">
+        <Image
+          src="/images/advancement.jpg"
+          alt="入学案内"
+          fill
+          className="object-cover"
+        />
+        {/* Gradient overlay for depth and readability */}
+        <div className="absolute inset-0 bg-gradient-to-b from-primary/85 via-primary/80 to-primary/90" />
       </div>
 
       <div className="relative z-10 mx-auto max-w-6xl px-8 py-32 lg:py-44">

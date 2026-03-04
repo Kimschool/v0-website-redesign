@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react"
 import Link from "next/link"
+import Image from "next/image"
 
 export function AchievementSection() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -25,8 +26,19 @@ export function AchievementSection() {
   }, [])
 
   return (
-    <section ref={sectionRef} className="py-32 lg:py-44 bg-primary text-[#faf9f7]">
-      <div className="mx-auto max-w-7xl px-8">
+    <section ref={sectionRef} className="relative py-32 lg:py-44 text-[#faf9f7] overflow-hidden">
+      {/* Background Image */}
+      <div className="absolute inset-0">
+        <Image
+          src="/images/advancement.jpg"
+          alt="進学実績"
+          fill
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-primary/85" />
+      </div>
+      
+      <div className="relative z-10 mx-auto max-w-7xl px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
           {/* Left side - text content */}
           <div className={isVisible ? "animate-fade-in-up" : "opacity-0"}>
