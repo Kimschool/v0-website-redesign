@@ -43,7 +43,7 @@ export function AboutSection() {
         {/* Section heading */}
         <div className={`text-center mb-16 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
           <p className="text-sm font-medium text-primary mb-3">{t("about.label")}</p>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground leading-tight">
+          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-foreground leading-tight">
             {t("about.title1")}
             <br />
             {t("about.title2")}
