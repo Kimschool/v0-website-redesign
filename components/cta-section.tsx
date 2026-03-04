@@ -1,64 +1,82 @@
+"use client"
+
+import { useEffect, useRef, useState } from "react"
 import { ArrowRight, FileText, HelpCircle } from "lucide-react"
 import Link from "next/link"
 
 export function CTASection() {
-  return (
-    <section id="admission" className="relative py-0 overflow-hidden">
-      {/* Background - image collage placeholder */}
-      <div className="absolute inset-0 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6" aria-label="CTA background images">
-        <div className="bg-[#2a3a4a]" />
-        <div className="bg-[#3a4a5a]" />
-        <div className="bg-[#4a5a6a]" />
-        <div className="bg-[#3a4a5a] hidden md:block" />
-        <div className="bg-[#2a3a4a] hidden lg:block" />
-        <div className="bg-[#4a5a6a] hidden lg:block" />
-      </div>
-      <div className="absolute inset-0 bg-[#1a2332]/30" />
+  const sectionRef = useRef<HTMLElement>(null)
+  const [isVisible, setIsVisible] = useState(false)
 
-      <div className="relative z-10 mx-auto max-w-5xl px-6 py-24 lg:py-32">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true)
+        }
+      },
+      { threshold: 0.2 }
+    )
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current)
+    }
+
+    return () => observer.disconnect()
+  }, [])
+
+  return (
+    <section ref={sectionRef} id="admission" className="py-24 lg:py-32 bg-gradient-cyan">
+      <div className="mx-auto max-w-5xl px-6">
+        {/* Section header */}
+        <div className={`text-center mb-12 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
+          <p className="text-sm font-medium text-cyan-200 mb-3">{"Get Started"}</p>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight">
+            {"KCPで学びを始めよう"}
+          </h2>
+          <p className="mt-4 text-base text-white/80 max-w-xl mx-auto">
+            {"資料請求やお問い合わせはこちらから"}
+          </p>
+        </div>
+
+        {/* CTA cards */}
+        <div className={`grid grid-cols-1 md:grid-cols-2 gap-6 ${isVisible ? "animate-fade-in-up animation-delay-200" : "opacity-0"}`}>
           {/* Admission Guide */}
           <Link
             href="#admission-detail"
-            className="group flex items-start gap-6 p-8 bg-card/95 backdrop-blur-sm border border-border hover:border-accent transition-all"
+            className="group flex items-center gap-6 p-8 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover-lift"
           >
-            <div className="shrink-0 w-14 h-14 flex items-center justify-center rounded-full border border-accent text-accent">
-              <FileText className="h-5 w-5" strokeWidth={1.5} />
+            <div className="shrink-0 w-16 h-16 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary transition-colors duration-300">
+              <FileText className="h-7 w-7 text-primary group-hover:text-white" strokeWidth={1.5} />
             </div>
             <div className="flex-1">
-              <h3 className="text-lg font-medium text-foreground tracking-wide">
-                {"入学案内"}
+              <h3 className="text-lg font-bold text-foreground mb-1">
+                {"入学案内・資料請求"}
               </h3>
-              <p className="mt-2 text-sm font-light text-muted-foreground leading-relaxed">
-                {"入学手続きに関する詳細情報を確認いただけます。ご不明な点は、いつでもご相談ください。"}
+              <p className="text-sm text-muted-foreground">
+                {"入学手続きに関する詳細情報"}
               </p>
-              <div className="mt-4 flex items-center gap-2 text-accent text-sm font-light">
-                <span>{"詳しく見る"}</span>
-                <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-1 transition-transform" />
-              </div>
             </div>
+            <ArrowRight className="w-5 h-5 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all duration-200" />
           </Link>
 
           {/* Contact */}
           <Link
             href="#contact"
-            className="group flex items-start gap-6 p-8 bg-card/95 backdrop-blur-sm border border-border hover:border-accent transition-all"
+            className="group flex items-center gap-6 p-8 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover-lift"
           >
-            <div className="shrink-0 w-14 h-14 flex items-center justify-center rounded-full border border-accent text-accent">
-              <HelpCircle className="h-5 w-5" strokeWidth={1.5} />
+            <div className="shrink-0 w-16 h-16 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary transition-colors duration-300">
+              <HelpCircle className="h-7 w-7 text-primary group-hover:text-white" strokeWidth={1.5} />
             </div>
             <div className="flex-1">
-              <h3 className="text-lg font-medium text-foreground tracking-wide">
+              <h3 className="text-lg font-bold text-foreground mb-1">
                 {"お問い合わせ"}
               </h3>
-              <p className="mt-2 text-sm font-light text-muted-foreground leading-relaxed">
-                {"証明書の発行、その他のお問い合わせ、よくある質問はこちらをクリックしてください。"}
+              <p className="text-sm text-muted-foreground">
+                {"ご質問・ご相談はこちら"}
               </p>
-              <div className="mt-4 flex items-center gap-2 text-accent text-sm font-light">
-                <span>{"お問い合わせ"}</span>
-                <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-1 transition-transform" />
-              </div>
             </div>
+            <ArrowRight className="w-5 h-5 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all duration-200" />
           </Link>
         </div>
       </div>

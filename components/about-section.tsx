@@ -1,106 +1,107 @@
+"use client"
+
+import { useEffect, useRef, useState } from "react"
 import Link from "next/link"
+import { ArrowRight } from "lucide-react"
 
 const features = [
   {
-    title: "EJU・日本語科目で最高得点者を輩出",
+    title: "実践的な日本語教育",
+    description: "ビジネスでも使える実践的な日本語力を身につける",
     image: "https://weavus-group.com/kcp/wp-content/uploads/2025/11/EJU.jpg",
   },
   {
-    title: "多国籍の学生が集うKCPで\nグローバルに考える視点を養う",
+    title: "多国籍の仲間たち",
+    description: "世界中から集まった仲間と切磋琢磨",
     image: "https://weavus-group.com/kcp/wp-content/uploads/2025/07/31e0362326d434d6dbc1d2390aa01eff.jpg",
   },
   {
-    title: "日本をより深く知るための\n楽しいプログラムも満載",
+    title: "充実のサポート体制",
+    description: "進学・就職まで一貫したサポート",
     image: "https://weavus-group.com/kcp/wp-content/uploads/2025/11/2aaf315dd8c8254983b5ed098691efcd-rotated.jpg",
   },
   {
-    title: "経験豊かなベテラン教師が\nきめ細かい指導",
+    title: "経験豊かな講師陣",
+    description: "ベテラン講師によるきめ細かい指導",
     image: "https://weavus-group.com/kcp/wp-content/uploads/2025/11/1f9820d2152d8e9bcc962b8600ef019d.jpg",
   },
   {
-    title: "アメリカの大学の単位認定\nプログラムもあり",
+    title: "グローバルな視点",
+    description: "国際社会で活躍する力を養う",
     image: "https://weavus-group.com/kcp/wp-content/uploads/2025/11/c6d0b891872831f84c0c747a5da2a261.jpg",
-  },
-  {
-    title: "公共性の高い教育機関として\n公的に認知",
-    image: "https://weavus-group.com/kcp/wp-content/uploads/2025/07/f3680d56ae6dfb979b5be7961e73155c.jpg",
-  },
-  {
-    title: "充実した教育設備",
-    image: "https://weavus-group.com/kcp/wp-content/uploads/2025/07/1c279b72c09a930d753cc9f263d78c88.jpg",
   },
 ]
 
 export function AboutSection() {
+  const sectionRef = useRef<HTMLElement>(null)
+  const [isVisible, setIsVisible] = useState(false)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true)
+        }
+      },
+      { threshold: 0.2 }
+    )
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current)
+    }
+
+    return () => observer.disconnect()
+  }, [])
+
   return (
-    <section id="about" className="py-24 lg:py-32 bg-background">
+    <section ref={sectionRef} id="about" className="py-24 lg:py-32 bg-white">
       <div className="mx-auto max-w-7xl px-6">
         {/* Section heading */}
-        <div className="text-center mb-20">
-          <p className="text-xs tracking-[0.3em] uppercase text-accent font-medium mb-4">About KCP</p>
-          <h2 className="font-serif text-3xl md:text-4xl font-medium text-foreground tracking-wide leading-relaxed">
-            {"日本語だけじゃない"}
+        <div className={`text-center mb-16 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
+          <p className="text-sm font-medium text-primary mb-3">{"About KCP"}</p>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground leading-tight">
+            {"あなたの「好き」を仕事に"}
             <br />
-            {"「進む力」を育てる"}
+            {"今すぐスタート"}
           </h2>
-          <p className="mt-6 text-sm font-light text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            {"KCPには、世界中から集まっている「次の学び」と、それを支える豊かな環境がある。"}
+          <p className="mt-6 text-base text-muted-foreground max-w-2xl mx-auto">
+            {"日本語スクールを一から始めるために、KCPでは質の高い学びを提供します。"}
+            <br />
+            {"まずは本校のコース一覧を「見る」ことから始めてみましょう。"}
           </p>
-          <div className="mt-8 w-12 h-px bg-accent mx-auto" />
         </div>
 
-        {/* Feature slider - left scrolling */}
-        <div className="relative left-1/2 w-screen -translate-x-1/2 overflow-hidden">
-          <div className="about-slider-track flex w-max gap-6">
-            {[...features, ...features].map((feature, index) => (
-              <div key={`${feature.title}-${index}`} className="w-[360px] shrink-0 group">
-                {index % 2 === 0 ? (
-                  <>
-                    <div className="aspect-[3/4] bg-muted relative overflow-hidden rounded-3xl">
-                      <img
-                        src={feature.image}
-                        alt={feature.title.replace(/\n/g, " ")}
-                        loading="lazy"
-                        className="w-full h-full object-cover"
-                      />
-                      <div className="absolute inset-0 bg-[#1a2332]/5 group-hover:bg-[#1a2332]/10 transition-colors" />
-                    </div>
-                    <div className="mt-6 text-center">
-                      <p className="text-sm md:text-base font-light text-foreground leading-relaxed whitespace-pre-line">
-                        {feature.title}
-                      </p>
-                    </div>
-                  </>
-                ) : (
-                  <>
-                    <div className="mb-6 text-center">
-                      <p className="text-sm md:text-base font-light text-foreground leading-relaxed whitespace-pre-line">
-                        {feature.title}
-                      </p>
-                    </div>
-                    <div className="aspect-[3/4] bg-muted relative overflow-hidden rounded-3xl">
-                      <img
-                        src={feature.image}
-                        alt={feature.title.replace(/\n/g, " ")}
-                        loading="lazy"
-                        className="w-full h-full object-cover"
-                      />
-                      <div className="absolute inset-0 bg-[#1a2332]/5 group-hover:bg-[#1a2332]/10 transition-colors" />
-                    </div>
-                  </>
-                )}
+        {/* Feature cards grid - 5 columns */}
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+          {features.map((feature, index) => (
+            <div
+              key={feature.title}
+              className={`group relative overflow-hidden rounded-2xl aspect-[3/4] cursor-pointer ${
+                isVisible ? `animate-fade-in-up animation-delay-${(index + 1) * 100}` : "opacity-0"
+              }`}
+            >
+              <img
+                src={feature.image}
+                alt={feature.title}
+                className="absolute inset-0 w-full h-full object-cover img-zoom"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 p-4">
+                <h3 className="text-sm font-bold text-white mb-1">{feature.title}</h3>
+                <p className="text-xs text-white/70">{feature.description}</p>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
 
         {/* CTA Button */}
-        <div className="text-center mt-14">
+        <div className={`text-center mt-12 ${isVisible ? "animate-fade-in-up animation-delay-600" : "opacity-0"}`}>
           <Link
             href="#about-detail"
-            className="inline-flex items-center gap-3 px-10 py-3.5 border border-foreground text-foreground text-sm tracking-widest hover:bg-foreground hover:text-background transition-all"
+            className="inline-flex items-center gap-2 px-8 py-3 border-2 border-foreground text-foreground text-sm font-medium rounded-full hover:bg-foreground hover:text-white transition-all duration-200"
           >
-            {"KCPとは"}
+            {"コース一覧を見る"}
+            <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
       </div>

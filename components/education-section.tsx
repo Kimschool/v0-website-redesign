@@ -1,90 +1,109 @@
+"use client"
+
+import { useEffect, useRef, useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { ArrowRight } from "lucide-react"
 
+const courses = [
+  {
+    id: 1,
+    title: "コース紹介",
+    subtitle: "Course Introduction",
+    description: "初級から上級まで、レベルに合わせた最適なコースをご用意しています。",
+    image: "/images/course-intro.jpg",
+    link: "#courses",
+  },
+  {
+    id: 2,
+    title: "授業内容",
+    subtitle: "Curriculum",
+    description: "実践的な日本語能力を身につける、充実したカリキュラム。",
+    image: "/images/lesson-content.jpg",
+    link: "#classes",
+  },
+  {
+    id: 3,
+    title: "進学実績",
+    subtitle: "Achievements",
+    description: "東大、早稲田、慶應など、有名大学への進学実績多数。",
+    image: "/images/advancement.jpg",
+    link: "#results",
+  },
+]
+
 export function EducationSection() {
+  const sectionRef = useRef<HTMLElement>(null)
+  const [isVisible, setIsVisible] = useState(false)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true)
+        }
+      },
+      { threshold: 0.15 }
+    )
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current)
+    }
+
+    return () => observer.disconnect()
+  }, [])
+
   return (
-    <section id="education" className="bg-background">
-      {/* Section heading */}
-      <div className="py-20 lg:py-24 text-center">
-        <p className="text-xs tracking-[0.3em] uppercase text-accent font-medium mb-4">Education</p>
-        <h2 className="font-serif text-3xl md:text-4xl font-medium text-foreground tracking-wide text-balance">
-          {"教育内容とサポート体制"}
-        </h2>
-        <p className="mt-4 text-sm font-light text-muted-foreground max-w-lg mx-auto leading-relaxed">
-          {"教育方針的なスローガンを入れるが、文章は未定"}
-        </p>
-        <div className="mt-6 w-12 h-px bg-accent mx-auto" />
-      </div>
+    <section ref={sectionRef} id="education" className="py-24 lg:py-32 bg-muted">
+      <div className="mx-auto max-w-7xl px-6">
+        {/* Section heading */}
+        <div className={`text-center mb-16 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
+          <p className="text-sm font-medium text-primary mb-3">{"Education"}</p>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground leading-tight">
+            {"教育内容とサポート体制"}
+          </h2>
+          <p className="mt-4 text-base text-muted-foreground max-w-2xl mx-auto">
+            {"KCPでは、質の高い教育と充実したサポート体制であなたの夢を応援します。"}
+          </p>
+        </div>
 
-      {/* POINT 1 - Full width image with left-aligned text */}
-      <div className="relative min-h-[480px] lg:min-h-[560px] overflow-hidden">
-        {/* Image */}
-        <div className="absolute inset-0">
-          <Image
-            src="/images/a.png"
-            alt="コース紹介1"
-            fill
-            className="object-cover"
-            priority
-          />
-          <div className="absolute inset-0 bg-[#1a2332]/40" />
-        </div>
-        {/* Content - left side */}
-        <div className="relative z-10 mx-auto max-w-7xl px-6 py-16 lg:py-24 flex items-center min-h-[480px] lg:min-h-[560px]">
-          <div className="max-w-md">
-            {/* Point badge */}
-            <div className="flex flex-col items-center justify-center w-16 h-16 rounded-full bg-foreground mb-6">
-              <span className="text-[9px] tracking-widest uppercase text-[#faf9f7] font-medium">
-                POINT
-              </span>
-              <span className="text-xl font-medium text-[#faf9f7] leading-none">1</span>
-            </div>
-            <h3 className="text-2xl lg:text-3xl font-medium text-[#faf9f7] tracking-wide mb-3">
-              {"コース紹介1"}
-            </h3>
-            <p className="text-sm font-light text-[#faf9f7]/80 leading-relaxed mb-8">
-              {"コース紹介2"}
-            </p>
+        {/* Course cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {courses.map((course, index) => (
             <Link
-              href="#courses"
-              className="inline-flex items-center gap-3 px-8 py-3 border border-[#faf9f7]/50 text-[#faf9f7] text-sm tracking-wider hover:bg-[#faf9f7]/10 transition-all"
+              key={course.id}
+              href={course.link}
+              className={`group relative overflow-hidden rounded-2xl bg-white shadow-sm hover:shadow-xl transition-all duration-300 hover-lift ${
+                isVisible ? `animate-fade-in-up animation-delay-${(index + 1) * 100}` : "opacity-0"
+              }`}
             >
-              {"コース紹介"}
-            </Link>
-          </div>
-        </div>
-      </div>
+              {/* Image */}
+              <div className="aspect-[4/3] relative overflow-hidden">
+                <Image
+                  src={course.image}
+                  alt={course.title}
+                  fill
+                  className="object-cover img-zoom"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                <div className="absolute bottom-4 left-4">
+                  <p className="text-xs text-white/70 font-medium mb-1">{course.subtitle}</p>
+                  <h3 className="text-xl font-bold text-white">{course.title}</h3>
+                </div>
+              </div>
 
-      {/* POINT 2 - Full width image with right-aligned text */}
-      <div className="relative min-h-[480px] lg:min-h-[560px] overflow-hidden">
-        {/* Image placeholder */}
-        <div className="absolute inset-0 bg-[#4a5a6a]">
-          <div className="absolute inset-0 bg-[#1a2332]/40" />
-        </div>
-        {/* Content - right side */}
-        <div className="relative z-10 mx-auto max-w-7xl px-6 py-16 lg:py-24 flex items-center justify-end min-h-[480px] lg:min-h-[560px]">
-          <div className="max-w-md text-right">
-            {/* Point badge */}
-            <div className="flex flex-col items-center justify-center w-16 h-16 rounded-full bg-foreground mb-6 ml-auto">
-              <span className="text-[9px] tracking-widest uppercase text-[#faf9f7] font-medium">
-                POINT
-              </span>
-              <span className="text-xl font-medium text-[#faf9f7] leading-none">2</span>
-            </div>
-            <h3 className="text-2xl lg:text-3xl font-medium text-[#faf9f7] tracking-wide mb-3">
-              {"授業内容1"}
-            </h3>
-            <p className="text-sm font-light text-[#faf9f7]/80 leading-relaxed mb-8">
-              {"授業内容2"}
-            </p>
-            <Link
-              href="#classes"
-              className="inline-flex items-center gap-3 px-8 py-3 border border-[#faf9f7]/50 text-[#faf9f7] text-sm tracking-wider hover:bg-[#faf9f7]/10 transition-all"
-            >
-              {"授業内容"}
+              {/* Content */}
+              <div className="p-6">
+                <p className="text-sm text-muted-foreground leading-relaxed mb-4">
+                  {course.description}
+                </p>
+                <div className="flex items-center gap-2 text-primary text-sm font-medium">
+                  <span>{"詳しく見る"}</span>
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" />
+                </div>
+              </div>
             </Link>
-          </div>
+          ))}
         </div>
       </div>
     </section>

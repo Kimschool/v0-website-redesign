@@ -1,63 +1,127 @@
 import Link from "next/link"
-import { Facebook, Instagram } from "lucide-react"
+import { Facebook, Instagram, Globe } from "lucide-react"
 
-const links = [
+const quickLinks = [
+  { label: "KCPについて", href: "#about" },
+  { label: "コース紹介", href: "#education" },
+  { label: "入学案内", href: "#admission" },
+  { label: "学校生活", href: "#school-life" },
+  { label: "お問い合わせ", href: "#contact" },
+]
+
+const relatedLinks = [
   { label: "KCP日本語教師養成講座", href: "#" },
   { label: "KCP US", href: "#" },
   { label: "KCP中国", href: "#" },
-  { label: "KCP韓国", href: "#" },
   { label: "校長ブログ", href: "#" },
   { label: "情報公開", href: "#" },
 ]
 
+const socialLinks = [
+  { icon: Globe, label: "Website", href: "#" },
+  { icon: Facebook, label: "Facebook", href: "#" },
+  { icon: Instagram, label: "Instagram", href: "#" },
+]
+
 export function Footer() {
   return (
-    <footer className="bg-primary text-primary-foreground">
-      {/* School name bar */}
-      <div className="bg-[#1a2332] py-4">
-        <p className="text-center text-sm font-medium tracking-widest text-[#faf9f7]">
-          {"KCP地球市民日本語学校"}
-        </p>
+    <footer className="bg-white border-t border-border">
+      {/* Main footer content */}
+      <div className="py-16">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+            {/* School info */}
+            <div className="lg:col-span-1">
+              <p className="text-xs text-muted-foreground font-medium mb-2">
+                {"学校法人KCP学園"}
+              </p>
+              <h3 className="text-lg font-bold text-foreground mb-4">
+                {"KCP地球市民日本語学校"}
+              </h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                {"〒169-0074"}
+                <br />
+                {"東京都新宿区北新宿3-27-1"}
+              </p>
+              <p className="text-sm text-muted-foreground mt-2">
+                {"TEL: 03-3367-6789"}
+              </p>
+            </div>
+
+            {/* Quick links */}
+            <div>
+              <h4 className="text-sm font-bold text-foreground mb-4">
+                {"メニュー"}
+              </h4>
+              <nav className="flex flex-col gap-3">
+                {quickLinks.map((link) => (
+                  <Link
+                    key={link.label}
+                    href={link.href}
+                    className="text-sm text-muted-foreground hover:text-primary transition-colors duration-200"
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </nav>
+            </div>
+
+            {/* Related links */}
+            <div>
+              <h4 className="text-sm font-bold text-foreground mb-4">
+                {"関連リンク"}
+              </h4>
+              <nav className="flex flex-col gap-3">
+                {relatedLinks.map((link) => (
+                  <Link
+                    key={link.label}
+                    href={link.href}
+                    className="text-sm text-muted-foreground hover:text-primary transition-colors duration-200"
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </nav>
+            </div>
+
+            {/* Social */}
+            <div>
+              <h4 className="text-sm font-bold text-foreground mb-4">
+                {"フォローする"}
+              </h4>
+              <div className="flex items-center gap-3">
+                {socialLinks.map((social) => (
+                  <Link 
+                    key={social.label}
+                    href={social.href} 
+                    aria-label={social.label} 
+                    className="w-10 h-10 rounded-full bg-muted flex items-center justify-center text-muted-foreground hover:bg-primary hover:text-white transition-all duration-200"
+                  >
+                    <social.icon className="h-4 w-4" strokeWidth={1.5} />
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
-      {/* Footer content */}
-      <div className="bg-[#faf9f7] text-foreground">
-        <div className="mx-auto max-w-7xl px-6 py-10">
-          {/* Social icons */}
-          <div className="flex items-center justify-center gap-6 mb-8">
-            <Link href="#" aria-label="KCP Website" className="text-muted-foreground hover:text-accent transition-colors">
-              <svg className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" />
-              </svg>
-            </Link>
-            <Link href="#" aria-label="Facebook" className="text-muted-foreground hover:text-accent transition-colors">
-              <Facebook className="h-5 w-5" strokeWidth={1.5} />
-            </Link>
-            <Link href="#" aria-label="Instagram" className="text-muted-foreground hover:text-accent transition-colors">
-              <Instagram className="h-5 w-5" strokeWidth={1.5} />
-            </Link>
-          </div>
-
-          {/* Divider */}
-          <div className="w-full h-px bg-border mb-8" />
-
-          {/* Navigation links */}
-          <nav className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 mb-8" aria-label="Footer navigation">
-            {links.map((link) => (
-              <Link
-                key={link.label}
-                href={link.href}
-                className="text-xs font-light text-muted-foreground hover:text-accent transition-colors tracking-wide"
-              >
-                {link.label}
+      {/* Bottom bar */}
+      <div className="border-t border-border py-6">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+            <p className="text-xs text-muted-foreground">
+              {"Copyright"} {"\u00A9"} {"2025 KCP地球市民日本語学校. All rights reserved."}
+            </p>
+            <div className="flex items-center gap-6">
+              <Link href="#" className="text-xs text-muted-foreground hover:text-primary transition-colors">
+                {"プライバシーポリシー"}
               </Link>
-            ))}
-          </nav>
-
-          {/* Copyright */}
-          <p className="text-center text-xs font-light text-muted-foreground tracking-wide">
-            {"Copyright \u00A9 2025"}
-          </p>
+              <Link href="#" className="text-xs text-muted-foreground hover:text-primary transition-colors">
+                {"利用規約"}
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
     </footer>
