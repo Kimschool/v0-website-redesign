@@ -1,21 +1,11 @@
+"use client"
+
 import Link from "next/link"
 import { Facebook, Instagram, Globe } from "lucide-react"
+import { useTranslation } from "react-i18next"
 
-const quickLinks = [
-  { label: "KCPについて", href: "#about" },
-  { label: "コース紹介", href: "#education" },
-  { label: "入学案内", href: "#admission" },
-  { label: "学校生活", href: "#school-life" },
-  { label: "お問い合わせ", href: "#contact" },
-]
-
-const relatedLinks = [
-  { label: "KCP日本語教師養成講座", href: "#" },
-  { label: "KCP US", href: "#" },
-  { label: "KCP中国", href: "#" },
-  { label: "校長ブログ", href: "#" },
-  { label: "情報公開", href: "#" },
-]
+const quickLinkHrefs = ["#about", "#education", "#admission", "#school-life", "#contact"]
+const relatedLinkHrefs = ["#", "#", "#", "#", "#"]
 
 const socialLinks = [
   { icon: Globe, label: "Website", href: "#" },
@@ -24,6 +14,11 @@ const socialLinks = [
 ]
 
 export function Footer() {
+  const { t } = useTranslation()
+
+  const quickLinks = t("footer.quickLinks", { returnObjects: true }) as { label: string }[]
+  const relatedLinks = t("footer.related", { returnObjects: true }) as { label: string }[]
+
   return (
     <footer className="bg-white border-t border-border">
       {/* Main footer content */}
@@ -33,31 +28,31 @@ export function Footer() {
             {/* School info */}
             <div className="lg:col-span-1">
               <p className="text-xs text-muted-foreground font-medium mb-2">
-                {"学校法人KCP学園"}
+                {t("logoTop")}
               </p>
               <h3 className="text-lg font-bold text-foreground mb-4">
-                {"KCP地球市民日本語学校"}
+                {t("logoBottom")}
               </h3>
               <p className="text-sm text-muted-foreground leading-relaxed">
-                {"〒169-0074"}
+                {t("footer.address.postalCode")}
                 <br />
-                {"東京都新宿区北新宿3-27-1"}
+                {t("footer.address.address")}
               </p>
               <p className="text-sm text-muted-foreground mt-2">
-                {"TEL: 03-3367-6789"}
+                {t("footer.address.tel")}
               </p>
             </div>
 
             {/* Quick links */}
             <div>
               <h4 className="text-sm font-bold text-foreground mb-4">
-                {"メニュー"}
+                {t("footer.menu")}
               </h4>
               <nav className="flex flex-col gap-3">
-                {quickLinks.map((link) => (
+                {quickLinks.map((link, index) => (
                   <Link
                     key={link.label}
-                    href={link.href}
+                    href={quickLinkHrefs[index]}
                     className="text-sm text-muted-foreground hover:text-primary transition-colors duration-200"
                   >
                     {link.label}
@@ -69,13 +64,13 @@ export function Footer() {
             {/* Related links */}
             <div>
               <h4 className="text-sm font-bold text-foreground mb-4">
-                {"関連リンク"}
+                {t("footer.relatedLinks")}
               </h4>
               <nav className="flex flex-col gap-3">
-                {relatedLinks.map((link) => (
+                {relatedLinks.map((link, index) => (
                   <Link
                     key={link.label}
-                    href={link.href}
+                    href={relatedLinkHrefs[index]}
                     className="text-sm text-muted-foreground hover:text-primary transition-colors duration-200"
                   >
                     {link.label}
@@ -87,7 +82,7 @@ export function Footer() {
             {/* Social */}
             <div>
               <h4 className="text-sm font-bold text-foreground mb-4">
-                {"フォローする"}
+                {t("footer.follow")}
               </h4>
               <div className="flex items-center gap-3">
                 {socialLinks.map((social) => (
@@ -111,14 +106,14 @@ export function Footer() {
         <div className="mx-auto max-w-7xl px-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-xs text-muted-foreground">
-              {"Copyright"} {"\u00A9"} {"2025 KCP地球市民日本語学校. All rights reserved."}
+              {t("footer.copyright")}
             </p>
             <div className="flex items-center gap-6">
               <Link href="#" className="text-xs text-muted-foreground hover:text-primary transition-colors">
-                {"プライバシーポリシー"}
+                {t("footer.privacy")}
               </Link>
               <Link href="#" className="text-xs text-muted-foreground hover:text-primary transition-colors">
-                {"利用規約"}
+                {t("footer.terms")}
               </Link>
             </div>
           </div>

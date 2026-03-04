@@ -3,25 +3,16 @@
 import { useEffect, useRef, useState } from "react"
 import { Play } from "lucide-react"
 import Image from "next/image"
+import { useTranslation } from "react-i18next"
 
-const songs = [
-  {
-    id: 1,
-    title: "校歌「今ここに」",
-    subtitle: "School Song",
-    image: "/images/school-song.jpg",
-  },
-  {
-    id: 2,
-    title: "応援歌「そらとほしと」",
-    subtitle: "Cheering Song",
-    image: "/images/cheering-song.jpg",
-  },
-]
+const songImages = ["/images/school-song.jpg", "/images/cheering-song.jpg"]
 
 export function SongsSection() {
   const sectionRef = useRef<HTMLElement>(null)
   const [isVisible, setIsVisible] = useState(false)
+  const { t } = useTranslation()
+
+  const songs = t("songs.items", { returnObjects: true }) as { title: string; subtitle: string }[]
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -45,9 +36,9 @@ export function SongsSection() {
       <div className="mx-auto max-w-7xl px-6">
         {/* Section heading */}
         <div className={`text-center mb-12 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
-          <p className="text-sm font-medium text-primary mb-3">{"Songs"}</p>
+          <p className="text-sm font-medium text-primary mb-3">{t("songs.label")}</p>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground leading-tight">
-            {"KCP校歌と応援歌"}
+            {t("songs.title")}
           </h2>
         </div>
 
@@ -55,7 +46,7 @@ export function SongsSection() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
           {songs.map((song, index) => (
             <div
-              key={song.id}
+              key={song.title}
               className={`group relative overflow-hidden rounded-2xl cursor-pointer ${
                 isVisible ? `animate-fade-in-up animation-delay-${(index + 1) * 100}` : "opacity-0"
               }`}
@@ -63,7 +54,7 @@ export function SongsSection() {
               {/* Image */}
               <div className="aspect-video relative overflow-hidden">
                 <Image
-                  src={song.image}
+                  src={songImages[index]}
                   alt={song.title}
                   fill
                   className="object-cover img-zoom"
