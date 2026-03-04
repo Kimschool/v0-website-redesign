@@ -46,9 +46,66 @@ function AnimatedCounter({ target, duration = 2000 }: { target: number; duration
   return <span ref={countRef}>{count.toLocaleString()}</span>
 }
 
+function TypewriterText({ text, delay = 0 }: { text: string; delay?: number }) {
+  const [displayedText, setDisplayedText] = useState("")
+  const [showCursor, setShowCursor] = useState(false)
+  const [hasStarted, setHasStarted] = useState(false)
+  const [isComplete, setIsComplete] = useState(false)
+
+  useEffect(() => {
+    setDisplayedText("")
+    setShowCursor(false)
+    setHasStarted(false)
+    setIsComplete(false)
+    
+    const startTimer = setTimeout(() => {
+      setHasStarted(true)
+      setShowCursor(true)
+    }, delay)
+
+    return () => clearTimeout(startTimer)
+  }, [text, delay])
+
+  useEffect(() => {
+    if (!hasStarted) return
+
+    let currentIndex = 0
+    const typingInterval = setInterval(() => {
+      if (currentIndex < text.length) {
+        setDisplayedText(text.slice(0, currentIndex + 1))
+        currentIndex++
+      } else {
+        setIsComplete(true)
+        clearInterval(typingInterval)
+        // 타이핑 완료 후 커서 깜빡임 유지 후 사라짐
+        setTimeout(() => setShowCursor(false), 1500)
+      }
+    }, 200) // 2배 느리게 (100ms -> 200ms)
+
+    return () => clearInterval(typingInterval)
+  }, [text, hasStarted])
+
+  return (
+    <span className="relative">
+      {displayedText}
+      {showCursor && (
+        <span 
+          className={`inline-block w-[3px] h-[1em] bg-white ml-1 align-middle ${
+            isComplete ? "animate-blink" : "animate-blink-fast"
+          }`}
+          style={{ verticalAlign: "baseline", marginBottom: "0.1em" }}
+        />
+      )}
+    </span>
+  )
+}
+
 export function HeroSection() {
   const { t } = useTranslation()
   const partners = t("hero.partnerList", { returnObjects: true }) as string[]
+  
+  const title1 = t("hero.title1")
+  const title2 = t("hero.title2")
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
@@ -60,10 +117,13 @@ export function HeroSection() {
 
       {/* Content */}
       <div className="relative z-10 text-center px-6 py-20 max-w-5xl mx-auto">
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight tracking-wide text-balance">
-          {t("hero.title1")}
-          <span className="text-cyan-300">{t("hero.titleHighlight")}</span>
-          {t("hero.title2")}
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight tracking-wide">
+          <span className="block">
+            <TypewriterText text={title1} delay={500} />
+          </span>
+          <span className="block mt-2">
+            <TypewriterText text={title2} delay={500 + title1.length * 200 + 600} />
+          </span>
         </h1>
         
         <p className="mt-6 text-lg text-white/90 max-w-2xl mx-auto">

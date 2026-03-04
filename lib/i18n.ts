@@ -21,9 +21,9 @@ const resources = {
 
       // Hero
       hero: {
-        title1: "さあ、始めよう。あなたの",
-        titleHighlight: "スクール",
-        title2: "。",
+        title1: "ともにまなび",
+        titleHighlight: " ",
+        title2: "ともに生きる",
         subtitle: "日本語教育を通じて、夢への第一歩を踏み出そう",
         cta1: "まずは資料請求",
         cta2: "KCPを知る",
@@ -210,9 +210,9 @@ const resources = {
 
       // Hero
       hero: {
-        title1: "Start Your ",
-        titleHighlight: "School",
-        title2: " Journey Today.",
+        title1: "Learn Together",
+        titleHighlight: " ",
+        title2: "Live Together",
         subtitle: "Take the first step toward your dreams through Japanese language education",
         cta1: "Request Information",
         cta2: "Learn About KCP",
@@ -399,9 +399,9 @@ const resources = {
 
       // Hero
       hero: {
-        title1: "자, 시작해요. 당신의 ",
-        titleHighlight: "스쿨",
-        title2: ".",
+        title1: "함께 배우고",
+        titleHighlight: " ",
+        title2: "함께 살아가다",
         subtitle: "일본어 교육을 통해 꿈을 향한 첫걸음을 내딛어요",
         cta1: "자료 요청하기",
         cta2: "KCP 알아보기",
@@ -516,7 +516,7 @@ const resources = {
 
       // Songs
       songs: {
-        label: "노래",
+        label: "���래",
         title: "KCP 교가와 응원가",
         items: [
           { title: "교가 「지금 여기에」", subtitle: "School Song" },
@@ -588,9 +588,9 @@ const resources = {
 
       // Hero
       hero: {
-        title1: "开始吧，你的",
-        titleHighlight: "学校",
-        title2: "。",
+        title1: "共同学习",
+        titleHighlight: " ",
+        title2: "共同生活",
         subtitle: "通过日语教育，迈出实现梦想的第一步",
         cta1: "请求资料",
         cta2: "了解KCP",
@@ -777,9 +777,9 @@ const resources = {
 
       // Hero
       hero: {
-        title1: "Начните свою ",
-        titleHighlight: "школу",
-        title2: " сегодня.",
+        title1: "Учимся вместе",
+        titleHighlight: " ",
+        title2: "Живем вместе",
         subtitle: "Сделайте первый шаг к своей мечте через изучение японского языка",
         cta1: "Запросить информацию",
         cta2: "Узнать о KCP",
@@ -930,7 +930,7 @@ const resources = {
         quickLinks: [
           { label: "О KCP" },
           { label: "Курсы" },
-          { label: "Поступление" },
+          { label: "��оступление" },
           { label: "Жизнь в школе" },
           { label: "Контакты" },
         ],
@@ -966,9 +966,9 @@ const resources = {
 
       // Hero
       hero: {
-        title1: "Hãy bắt đầu ",
-        titleHighlight: "trường học",
-        title2: " của bạn.",
+        title1: "Cùng học",
+        titleHighlight: " ",
+        title2: "Cùng sống",
         subtitle: "Bước đi đầu tiên hướng tới ước mơ thông qua giáo dục tiếng Nhật",
         cta1: "Yêu cầu tài liệu",
         cta2: "Tìm hiểu về KCP",
