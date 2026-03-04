@@ -48,17 +48,19 @@ function AnimatedCounter({ target, duration = 2000 }: { target: number; duration
 
 function TypewriterText({ text, delay = 0 }: { text: string; delay?: number }) {
   const [displayedText, setDisplayedText] = useState("")
-  const [isTyping, setIsTyping] = useState(false)
+  const [showCursor, setShowCursor] = useState(false)
   const [hasStarted, setHasStarted] = useState(false)
+  const [isComplete, setIsComplete] = useState(false)
 
   useEffect(() => {
     setDisplayedText("")
-    setIsTyping(false)
+    setShowCursor(false)
     setHasStarted(false)
+    setIsComplete(false)
     
     const startTimer = setTimeout(() => {
       setHasStarted(true)
-      setIsTyping(true)
+      setShowCursor(true)
     }, delay)
 
     return () => clearTimeout(startTimer)
@@ -73,18 +75,27 @@ function TypewriterText({ text, delay = 0 }: { text: string; delay?: number }) {
         setDisplayedText(text.slice(0, currentIndex + 1))
         currentIndex++
       } else {
-        setIsTyping(false)
+        setIsComplete(true)
         clearInterval(typingInterval)
+        // 타이핑 완료 후 커서 깜빡임 유지 후 사라짐
+        setTimeout(() => setShowCursor(false), 1500)
       }
-    }, 100)
+    }, 200) // 2배 느리게 (100ms -> 200ms)
 
     return () => clearInterval(typingInterval)
   }, [text, hasStarted])
 
   return (
-    <span>
+    <span className="relative">
       {displayedText}
-      {isTyping && <span className="animate-pulse">|</span>}
+      {showCursor && (
+        <span 
+          className={`inline-block w-[3px] h-[1em] bg-white ml-1 align-middle ${
+            isComplete ? "animate-blink" : "animate-blink-fast"
+          }`}
+          style={{ verticalAlign: "baseline", marginBottom: "0.1em" }}
+        />
+      )}
     </span>
   )
 }
@@ -111,7 +122,7 @@ export function HeroSection() {
             <TypewriterText text={title1} delay={500} />
           </span>
           <span className="block mt-2">
-            <TypewriterText text={title2} delay={500 + title1.length * 100 + 300} />
+            <TypewriterText text={title2} delay={500 + title1.length * 200 + 600} />
           </span>
         </h1>
         

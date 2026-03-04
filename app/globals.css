@@ -262,3 +262,30 @@
   width: 24px;
   border-radius: 5px;
 }
+
+/* Typewriter cursor blink animations */
+@keyframes blink {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0;
+  }
+}
+
+@keyframes blink-fast {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+.animate-blink {
+  animation: blink 1s step-end infinite;
+}
+
+.animate-blink-fast {
+  animation: blink-fast 0.6s step-end infinite;
+}
