@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from "react"
 import { ArrowRight, FileText, HelpCircle } from "lucide-react"
 import Link from "next/link"
-import Image from "next/image"
 
 export function CTASection() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -27,76 +26,57 @@ export function CTASection() {
   }, [])
 
   return (
-    <section ref={sectionRef} id="admission" className="relative py-0 overflow-hidden">
-      {/* Background - Image with overlay */}
-      <div className="absolute inset-0">
-        <Image
-          src="/images/advancement.jpg"
-          alt="入学案内"
-          fill
-          className="object-cover"
-        />
-        {/* Gradient overlay for depth and readability */}
-        <div className="absolute inset-0 bg-gradient-to-b from-primary/85 via-primary/80 to-primary/90" />
-      </div>
-
-      <div className="relative z-10 mx-auto max-w-6xl px-8 py-32 lg:py-44">
+    <section ref={sectionRef} id="admission" className="py-24 lg:py-32 bg-gradient-cyan">
+      <div className="mx-auto max-w-5xl px-6">
         {/* Section header */}
-        <div className={`text-center mb-16 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
-          <p className="text-xs tracking-[0.4em] uppercase text-accent font-medium mb-5">Get Started</p>
-          <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-medium text-[#faf9f7] tracking-wider text-balance">
+        <div className={`text-center mb-12 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
+          <p className="text-sm font-medium text-cyan-200 mb-3">{"Get Started"}</p>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight">
             {"KCPで学びを始めよう"}
           </h2>
-          <div className="mt-10 elegant-divider w-20 mx-auto" />
+          <p className="mt-4 text-base text-white/80 max-w-xl mx-auto">
+            {"資料請求やお問い合わせはこちらから"}
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {/* CTA cards */}
+        <div className={`grid grid-cols-1 md:grid-cols-2 gap-6 ${isVisible ? "animate-fade-in-up animation-delay-200" : "opacity-0"}`}>
           {/* Admission Guide */}
           <Link
             href="#admission-detail"
-            className={`group flex items-start gap-7 p-10 bg-card/98 backdrop-blur-md border border-border/50 hover:border-accent hover:shadow-2xl hover:shadow-accent/10 transition-all duration-300 rounded-xl hover-lift ${
-              isVisible ? "animate-fade-in-up animation-delay-100" : "opacity-0"
-            }`}
+            className="group flex items-center gap-6 p-8 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover-lift"
           >
-            <div className="shrink-0 w-16 h-16 flex items-center justify-center rounded-full bg-accent/10 text-accent group-hover:bg-accent group-hover:text-[#faf9f7] transition-all duration-300">
-              <FileText className="h-6 w-6" strokeWidth={1.5} />
+            <div className="shrink-0 w-16 h-16 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary transition-colors duration-300">
+              <FileText className="h-7 w-7 text-primary group-hover:text-white" strokeWidth={1.5} />
             </div>
             <div className="flex-1">
-              <h3 className="text-xl font-medium text-foreground tracking-wider">
-                {"入学案内"}
+              <h3 className="text-lg font-bold text-foreground mb-1">
+                {"入学案内・資料請求"}
               </h3>
-              <p className="mt-4 text-base font-light text-muted-foreground leading-loose tracking-wide">
-                {"入学手続きに関する詳細情報を確認いただけます。ご不明な点は、いつでもご相談ください。"}
+              <p className="text-sm text-muted-foreground">
+                {"入学手続きに関する詳細情報"}
               </p>
-              <div className="mt-6 flex items-center gap-2 text-accent text-sm font-medium tracking-wide">
-                <span>{"詳しく見る"}</span>
-                <ArrowRight className="h-4 w-4 group-hover:translate-x-2 transition-transform duration-300" />
-              </div>
             </div>
+            <ArrowRight className="w-5 h-5 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all duration-200" />
           </Link>
 
           {/* Contact */}
           <Link
             href="#contact"
-            className={`group flex items-start gap-7 p-10 bg-card/98 backdrop-blur-md border border-border/50 hover:border-accent hover:shadow-2xl hover:shadow-accent/10 transition-all duration-300 rounded-xl hover-lift ${
-              isVisible ? "animate-fade-in-up animation-delay-200" : "opacity-0"
-            }`}
+            className="group flex items-center gap-6 p-8 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover-lift"
           >
-            <div className="shrink-0 w-16 h-16 flex items-center justify-center rounded-full bg-accent/10 text-accent group-hover:bg-accent group-hover:text-[#faf9f7] transition-all duration-300">
-              <HelpCircle className="h-6 w-6" strokeWidth={1.5} />
+            <div className="shrink-0 w-16 h-16 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary transition-colors duration-300">
+              <HelpCircle className="h-7 w-7 text-primary group-hover:text-white" strokeWidth={1.5} />
             </div>
             <div className="flex-1">
-              <h3 className="text-xl font-medium text-foreground tracking-wider">
+              <h3 className="text-lg font-bold text-foreground mb-1">
                 {"お問い合わせ"}
               </h3>
-              <p className="mt-4 text-base font-light text-muted-foreground leading-loose tracking-wide">
-                {"証明書の発行、その他のお問い合わせ、よくある質問はこちらをクリックしてください。"}
+              <p className="text-sm text-muted-foreground">
+                {"ご質問・ご相談はこちら"}
               </p>
-              <div className="mt-6 flex items-center gap-2 text-accent text-sm font-medium tracking-wide">
-                <span>{"お問い合わせ"}</span>
-                <ArrowRight className="h-4 w-4 group-hover:translate-x-2 transition-transform duration-300" />
-              </div>
             </div>
+            <ArrowRight className="w-5 h-5 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all duration-200" />
           </Link>
         </div>
       </div>
