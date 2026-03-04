@@ -3,38 +3,22 @@
 import { useEffect, useRef, useState } from "react"
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
+import { useTranslation } from "react-i18next"
 
-const features = [
-  {
-    title: "実践的な日本語教育",
-    description: "ビジネスでも使える実践的な日本語力を身につける",
-    image: "https://weavus-group.com/kcp/wp-content/uploads/2025/11/EJU.jpg",
-  },
-  {
-    title: "多国籍の仲間たち",
-    description: "世界中から集まった仲間と切磋琢磨",
-    image: "https://weavus-group.com/kcp/wp-content/uploads/2025/07/31e0362326d434d6dbc1d2390aa01eff.jpg",
-  },
-  {
-    title: "充実のサポート体制",
-    description: "進学・就職まで一貫したサポート",
-    image: "https://weavus-group.com/kcp/wp-content/uploads/2025/11/2aaf315dd8c8254983b5ed098691efcd-rotated.jpg",
-  },
-  {
-    title: "経験豊かな講師陣",
-    description: "ベテラン講師によるきめ細かい指導",
-    image: "https://weavus-group.com/kcp/wp-content/uploads/2025/11/1f9820d2152d8e9bcc962b8600ef019d.jpg",
-  },
-  {
-    title: "グローバルな視点",
-    description: "国際社会で活躍する力を養う",
-    image: "https://weavus-group.com/kcp/wp-content/uploads/2025/11/c6d0b891872831f84c0c747a5da2a261.jpg",
-  },
+const featureImages = [
+  "https://weavus-group.com/kcp/wp-content/uploads/2025/11/EJU.jpg",
+  "https://weavus-group.com/kcp/wp-content/uploads/2025/07/31e0362326d434d6dbc1d2390aa01eff.jpg",
+  "https://weavus-group.com/kcp/wp-content/uploads/2025/11/2aaf315dd8c8254983b5ed098691efcd-rotated.jpg",
+  "https://weavus-group.com/kcp/wp-content/uploads/2025/11/1f9820d2152d8e9bcc962b8600ef019d.jpg",
+  "https://weavus-group.com/kcp/wp-content/uploads/2025/11/c6d0b891872831f84c0c747a5da2a261.jpg",
 ]
 
 export function AboutSection() {
   const sectionRef = useRef<HTMLElement>(null)
   const [isVisible, setIsVisible] = useState(false)
+  const { t } = useTranslation()
+
+  const features = t("about.features", { returnObjects: true }) as { title: string; description: string }[]
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -58,16 +42,16 @@ export function AboutSection() {
       <div className="mx-auto max-w-7xl px-6">
         {/* Section heading */}
         <div className={`text-center mb-16 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
-          <p className="text-sm font-medium text-primary mb-3">{"About KCP"}</p>
+          <p className="text-sm font-medium text-primary mb-3">{t("about.label")}</p>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground leading-tight">
-            {"あなたの「好き」を仕事に"}
+            {t("about.title1")}
             <br />
-            {"今すぐスタート"}
+            {t("about.title2")}
           </h2>
           <p className="mt-6 text-base text-muted-foreground max-w-2xl mx-auto">
-            {"日本語スクールを一から始めるために、KCPでは質の高い学びを提供します。"}
+            {t("about.description1")}
             <br />
-            {"まずは本校のコース一覧を「見る」ことから始めてみましょう。"}
+            {t("about.description2")}
           </p>
         </div>
 
@@ -81,7 +65,7 @@ export function AboutSection() {
               }`}
             >
               <img
-                src={feature.image}
+                src={featureImages[index]}
                 alt={feature.title}
                 className="absolute inset-0 w-full h-full object-cover img-zoom"
               />
@@ -100,7 +84,7 @@ export function AboutSection() {
             href="#about-detail"
             className="inline-flex items-center gap-2 px-8 py-3 border-2 border-foreground text-foreground text-sm font-medium rounded-full hover:bg-foreground hover:text-white transition-all duration-200"
           >
-            {"コース一覧を見る"}
+            {t("about.cta")}
             <ArrowRight className="w-4 h-4" />
           </Link>
         </div>

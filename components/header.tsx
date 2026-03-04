@@ -55,10 +55,10 @@ export function Header() {
         {/* Logo */}
         <Link href="/" className="flex flex-col group">
           <span className="text-[10px] tracking-[0.2em] uppercase text-muted-foreground font-medium">
-            {"学校法人KCP学園"}
+            {t("logoTop")}
           </span>
           <span className="text-lg font-bold tracking-wide text-foreground">
-            {"KCP地球市民日本語学校"}
+            {t("logoBottom")}
           </span>
         </Link>
 
@@ -107,13 +107,13 @@ export function Header() {
             href="#admission"
             className="hidden md:inline-flex items-center px-6 py-2.5 bg-primary text-white text-sm font-medium rounded-full hover:bg-primary/90 transition-colors duration-200"
           >
-            {"資料請求"}
+            {t("requestInfo")}
           </Link>
 
           <button
             className="lg:hidden p-2 text-foreground hover:bg-muted rounded-lg transition-colors"
             onClick={() => setMobileOpen(!mobileOpen)}
-            aria-label={mobileOpen ? "Close menu" : "Open menu"}
+            aria-label={mobileOpen ? t("mobileMenuClose") : t("mobileMenuOpen")}
           >
             {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
@@ -139,7 +139,7 @@ export function Header() {
               className="mt-4 text-center py-3 bg-primary text-white font-medium rounded-full"
               onClick={() => setMobileOpen(false)}
             >
-              {"資料請求"}
+              {t("requestInfo")}
             </Link>
           </div>
         </nav>

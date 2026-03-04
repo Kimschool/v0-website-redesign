@@ -3,10 +3,12 @@
 import { useEffect, useRef, useState } from "react"
 import { ArrowRight, FileText, HelpCircle } from "lucide-react"
 import Link from "next/link"
+import { useTranslation } from "react-i18next"
 
 export function CTASection() {
   const sectionRef = useRef<HTMLElement>(null)
   const [isVisible, setIsVisible] = useState(false)
+  const { t } = useTranslation()
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -30,12 +32,12 @@ export function CTASection() {
       <div className="mx-auto max-w-5xl px-6">
         {/* Section header */}
         <div className={`text-center mb-12 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
-          <p className="text-sm font-medium text-cyan-200 mb-3">{"Get Started"}</p>
+          <p className="text-sm font-medium text-cyan-200 mb-3">{t("cta.label")}</p>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight">
-            {"KCPで学びを始めよう"}
+            {t("cta.title")}
           </h2>
           <p className="mt-4 text-base text-white/80 max-w-xl mx-auto">
-            {"資料請求やお問い合わせはこちらから"}
+            {t("cta.description")}
           </p>
         </div>
 
@@ -51,10 +53,10 @@ export function CTASection() {
             </div>
             <div className="flex-1">
               <h3 className="text-lg font-bold text-foreground mb-1">
-                {"入学案内・資料請求"}
+                {t("cta.admission.title")}
               </h3>
               <p className="text-sm text-muted-foreground">
-                {"入学手続きに関する詳細情報"}
+                {t("cta.admission.description")}
               </p>
             </div>
             <ArrowRight className="w-5 h-5 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all duration-200" />
@@ -70,10 +72,10 @@ export function CTASection() {
             </div>
             <div className="flex-1">
               <h3 className="text-lg font-bold text-foreground mb-1">
-                {"お問い合わせ"}
+                {t("cta.contact.title")}
               </h3>
               <p className="text-sm text-muted-foreground">
-                {"ご質問・ご相談はこちら"}
+                {t("cta.contact.description")}
               </p>
             </div>
             <ArrowRight className="w-5 h-5 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all duration-200" />

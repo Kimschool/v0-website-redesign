@@ -2,36 +2,22 @@
 
 import { useEffect, useRef, useState } from "react"
 import { ChevronLeft, ChevronRight, Sparkles, Users, Briefcase } from "lucide-react"
-import Image from "next/image"
+import { useTranslation } from "react-i18next"
 
-const reasons = [
-  {
-    id: 1,
-    icon: Sparkles,
-    title: "あなたの「好き」を大切に、\n今すぐオンラインでスタートできる。",
-    description: "KCPでは、オンラインでも対面でも、あなたのペースで学習を進められます。忙しい方も、遠方の方も、どこからでも質の高い日本語教育を受けられます。",
-    image: "https://weavus-group.com/kcp/wp-content/uploads/2025/11/EJU.jpg",
-  },
-  {
-    id: 2,
-    icon: Users,
-    title: "好きなことを「手に職」にする\n使いやすいツールがあなたをサポート",
-    description: "最新のeラーニングシステムと、経験豊富な講師陣があなたの学習をサポート。進捗管理から質問対応まで、充実したサポート体制を整えています。",
-    image: "https://weavus-group.com/kcp/wp-content/uploads/2025/07/31e0362326d434d6dbc1d2390aa01eff.jpg",
-  },
-  {
-    id: 3,
-    icon: Briefcase,
-    title: "オンラインの力を最大化\n機能を活かしてサービスの幅が広がる！",
-    description: "日本語能力だけでなく、日本でのキャリア形成もサポート。就職支援から進学相談まで、あなたの未来を全力でバックアップします。",
-    image: "https://weavus-group.com/kcp/wp-content/uploads/2025/11/c6d0b891872831f84c0c747a5da2a261.jpg",
-  },
+const reasonIcons = [Sparkles, Users, Briefcase]
+const reasonImages = [
+  "https://weavus-group.com/kcp/wp-content/uploads/2025/11/EJU.jpg",
+  "https://weavus-group.com/kcp/wp-content/uploads/2025/07/31e0362326d434d6dbc1d2390aa01eff.jpg",
+  "https://weavus-group.com/kcp/wp-content/uploads/2025/11/c6d0b891872831f84c0c747a5da2a261.jpg",
 ]
 
 export function ReasonsSection() {
   const sectionRef = useRef<HTMLElement>(null)
   const [isVisible, setIsVisible] = useState(false)
   const [currentSlide, setCurrentSlide] = useState(0)
+  const { t } = useTranslation()
+
+  const reasons = t("reasons.items", { returnObjects: true }) as { title: string; description: string }[]
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -63,12 +49,12 @@ export function ReasonsSection() {
       <div className="mx-auto max-w-7xl px-6">
         {/* Section heading */}
         <div className={`text-center mb-12 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
-          <p className="text-sm font-medium text-cyan-200 mb-3">{"Why KCP"}</p>
+          <p className="text-sm font-medium text-cyan-200 mb-3">{t("reasons.label")}</p>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
-            {"選ばれる3つの理由"}
+            {t("reasons.title")}
           </h2>
           <p className="mt-4 text-base text-white/80 max-w-xl mx-auto">
-            {"理由1、理由2、理由3、理由4を入れて説明。KCPが「ユーザー」にとって何がいいのかを説明します。"}
+            {t("reasons.description")}
           </p>
         </div>
 
@@ -79,8 +65,8 @@ export function ReasonsSection() {
             <div className="hidden lg:block w-1/2 relative">
               <div className="aspect-[4/3] rounded-2xl overflow-hidden">
                 <img
-                  src={reasons[currentSlide].image}
-                  alt={reasons[currentSlide].title}
+                  src={reasonImages[currentSlide]}
+                  alt={reasons[currentSlide]?.title || ""}
                   className="w-full h-full object-cover transition-all duration-500"
                 />
               </div>
@@ -92,16 +78,16 @@ export function ReasonsSection() {
                 {/* Icon */}
                 <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-6">
                   {(() => {
-                    const IconComponent = reasons[currentSlide].icon
+                    const IconComponent = reasonIcons[currentSlide]
                     return <IconComponent className="w-8 h-8 text-primary" />
                   })()}
                 </div>
 
                 <h3 className="text-xl lg:text-2xl font-bold text-foreground leading-snug whitespace-pre-line mb-4">
-                  {reasons[currentSlide].title}
+                  {reasons[currentSlide]?.title}
                 </h3>
                 <p className="text-muted-foreground leading-relaxed">
-                  {reasons[currentSlide].description}
+                  {reasons[currentSlide]?.description}
                 </p>
               </div>
             </div>
@@ -111,14 +97,14 @@ export function ReasonsSection() {
           <button
             onClick={prevSlide}
             className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 lg:-translate-x-12 w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/30 transition-colors"
-            aria-label="Previous slide"
+            aria-label={t("reasons.prev")}
           >
             <ChevronLeft className="w-6 h-6" />
           </button>
           <button
             onClick={nextSlide}
             className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 lg:translate-x-12 w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/30 transition-colors"
-            aria-label="Next slide"
+            aria-label={t("reasons.next")}
           >
             <ChevronRight className="w-6 h-6" />
           </button>
