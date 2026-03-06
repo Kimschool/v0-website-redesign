@@ -37,18 +37,18 @@ const resources = {
 
       // About
       about: {
-        label: "About KCP",
-        title1: "あなたの「好き」を仕事に",
-        title2: "今すぐスタート",
-        description1: "日本語スクールを一から始めるために、KCPでは質の高い学びを提供します。",
-        description2: "まずは本校のコース一覧を「見る」ことから始めてみましょう。",
-        cta: "コース一覧を見る",
+        label: "KCPとは",
+        title1: "KCPの理念",
+        title2: "学校法人 KCP学園",
+        description1: "Knowledge（知識）、Coexistence（共生）、Peace（平和）を理念とし",
+        description2: "グローバル社会で活躍する人材の育成を目指しています",
+        cta: "詳しく見る",
         features: [
-          { title: "実践的な日本語教育", description: "ビジネスでも使える実践的な日本語力を身につける" },
-          { title: "多国籍の仲間たち", description: "世界中から集まった仲間と切磋琢磨" },
-          { title: "充実のサポート体制", description: "進学・就職まで一貫したサポート" },
-          { title: "経験豊かな講師陣", description: "ベテラン講師によるきめ細かい指導" },
-          { title: "グローバルな視点", description: "国際社会で活躍する力を養う" },
+          { title: "Knowledge", description: "高度な日本語と日本文化に関する知識" },
+          { title: "Coexistence", description: "多国籍の仲間との共生と相互理解" },
+          { title: "Peace", description: "地球市民として平和な社会の構築に貢献" },
+          { title: "ベテラン講師陣", description: "経験豊かで献身的な教育スタッフ" },
+          { title: "充実のサポート", description: "学習から生活相談まで多言語対応" },
         ],
       },
 
@@ -130,7 +130,7 @@ const resources = {
         items: [
           { label: "年間スケジュール" },
           { label: "クラブ活動" },
-          { label: "施設案内" },
+          { label: "施���案内" },
           { label: "アクセス" },
         ],
         cta: "学校生活をもっと見る",
