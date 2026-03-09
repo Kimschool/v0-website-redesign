@@ -80,18 +80,89 @@ export function AboutSection() {
   return (
     <section ref={sectionRef} id="about" className="py-20 bg-white">
       <div className="container mx-auto px-4 md:px-6">
+        {/* KCP 철학 섹션 */}
+        <div className={`mb-20 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
+          <div className="text-center mb-16">
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-12">
+              ともにまなび ともに生きる
+            </h2>
+            
+            {/* K C P 철학 */}
+            <div className="mb-12">
+              <div className="flex justify-center items-center gap-8 md:gap-16 mb-4">
+                <div className="text-center">
+                  <div className="text-6xl md:text-7xl font-bold text-[#0085b2] mb-2">K</div>
+                  <div className="text-lg font-semibold">知識</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-6xl md:text-7xl font-bold text-[#0085b2] mb-2">C</div>
+                  <div className="text-lg font-semibold">共生</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-6xl md:text-7xl font-bold text-[#0085b2] mb-2">P</div>
+                  <div className="text-lg font-semibold">平和</div>
+                </div>
+              </div>
+            </div>
+
+            {/* 철학 설명 */}
+            <div className="max-w-3xl mx-auto mb-12 text-gray-700 space-y-3 text-sm md:text-base leading-relaxed">
+              <p>
+                KCPでは、日本語教育を通じて広く知識を備えるとともに、
+              </p>
+              <p>
+                世界中の様々な文化・活動を通して、人間的成長を促すことを目指しています。
+              </p>
+              <p>
+                とともず、ともに生きる――それぞれがKCPの教育理念です。
+              </p>
+            </div>
+
+            {/* 学生写真 */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-12">
+              <div className="aspect-[3/4] bg-gray-100 rounded-2xl overflow-hidden">
+                <img
+                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-6GUU6UrNwnaTTSQhe0JLrBmSvvOdW5.png"
+                  alt="Student 1"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="aspect-[3/4] bg-gray-100 rounded-2xl overflow-hidden">
+                <img
+                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-6GUU6UrNwnaTTSQhe0JLrBmSvvOdW5.png"
+                  alt="Student 2"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="aspect-[3/4] bg-gray-100 rounded-2xl overflow-hidden">
+                <img
+                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-6GUU6UrNwnaTTSQhe0JLrBmSvvOdW5.png"
+                  alt="Student 3"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
+
+            <div className="border-b-2 border-gray-300 mb-12"></div>
+          </div>
+
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+            学校長挨拶
+          </h2>
+        </div>
+
         {/* 학교장 인사말 */}
         <div className={`mb-20 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
             学校長挨拶
           </h2>
-          
+
           <div className="grid md:grid-cols-2 gap-12 items-start max-w-5xl mx-auto">
             {/* 학교장 이미지 및 정보 */}
             <div className="space-y-6">
               <div className="aspect-[4/3] bg-gray-100 rounded-lg overflow-hidden">
                 <img
-                  src="/images/principal.jpg"
+                  src="https://weavus-group.com/kcp/wp-content/uploads/2026/01/%E6%A0%A1%E9%95%B7%E5%85%88%E7%94%9F-768x512.jpg"
                   alt="学校長"
                   className="w-full h-full object-cover"
                 />
@@ -138,12 +209,12 @@ export function AboutSection() {
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
             沿革
           </h2>
-          
+
           <div className="max-w-3xl mx-auto">
             <div className="relative">
               {/* 타임라인 선 */}
               <div className="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 h-full w-0.5 bg-[#0085b2]/20"></div>
-              
+
               {/* 타임라인 아이템들 */}
               <div className="space-y-8">
                 {history.map((item, index) => (
@@ -152,10 +223,10 @@ export function AboutSection() {
                     <div className="hidden md:block md:w-1/2 md:pr-8 md:text-right">
                       <span className="text-xl font-bold text-[#0085b2]">{item.year}</span>
                     </div>
-                    
+
                     {/* 중앙 점 */}
                     <div className="absolute left-4 md:left-1/2 transform -translate-x-1/2 w-4 h-4 bg-[#0085b2] rounded-full border-4 border-white shadow"></div>
-                    
+
                     {/* 내용 */}
                     <div className="md:w-1/2 md:pl-8 pl-12">
                       <span className="md:hidden text-lg font-bold text-[#0085b2] block mb-1">{item.year}</span>
@@ -179,7 +250,7 @@ export function AboutSection() {
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
             安心のサポート体制
           </h2>
-          
+
           <div className="max-w-4xl mx-auto text-center">
             <div className="space-y-6 text-gray-700 leading-relaxed">
               <p>
@@ -195,12 +266,12 @@ export function AboutSection() {
                 スタッフがいますから、心配しなくても大丈夫です。
               </p>
             </div>
-            
+
             {/* 교직원 단체 사진 */}
             <div className="mt-10">
               <div className="aspect-[21/9] bg-gray-100 rounded-lg overflow-hidden">
                 <img
-                  src="/images/staff-group.jpg"
+                  src="https://weavus-group.com/kcp/wp-content/uploads/2026/01/KCP%E3%81%A8%E3%81%AF%E3%80%8C%E9%9B%86%E5%90%88%E5%86%99%E7%9C%9F%E3%80%8D-1024x471.jpg"
                   alt="KCP地球市民日本語学校の教職員"
                   className="w-full h-full object-cover"
                 />
