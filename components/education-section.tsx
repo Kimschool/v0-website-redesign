@@ -37,9 +37,14 @@ function YearResultsTable({ year }: { year: string }) {
               <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-bold">{item.count}名</span>
             </div>
           ))}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
+  )
+}
   )
 }
 
@@ -380,7 +385,7 @@ export function EducationSection() {
               <div>
                 <pre className="mb-2"><span className="font-bold">【日本語強化クラス】</span>※レベル1・2対象</pre>
                 <p className="text-gray-700 leading-relaxed">
-                  日本語ゼロから「漢字/聴解/読解」スキル別に基礎を強化。これに続く日本語プラスの授業が受けられるだけの日本語の基礎力をつける。
+                  日本語ゼロから「漢字/聴解/読解」スキ���別に基礎を強化。これに続く日本語プラスの授業が受けられるだけの日本語の基礎力をつける。
                 </p>
               </div>
 
