@@ -1,9 +1,9 @@
 'use client'
 
-import { useTranslation } from '@/lib/i18n'
+import { useTranslation } from 'react-i18next'
 
 export function NewsTickerSection() {
-  const t = useTranslation()
+  const { t } = useTranslation()
 
   const news = [
     {

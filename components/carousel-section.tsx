@@ -1,6 +1,6 @@
 'use client'
 
-import { useTranslation } from '@/lib/i18n'
+import { useTranslation } from 'react-i18next'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay, EffectFade } from 'swiper/modules'
 import 'swiper/css'
@@ -8,7 +8,7 @@ import 'swiper/css/effect-fade'
 import Link from 'next/link'
 
 export function CarouselSection() {
-  const t = useTranslation()
+  const { t } = useTranslation()
 
   const carouselItems = [
     {
