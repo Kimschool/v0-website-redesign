@@ -584,7 +584,7 @@ export function EducationSection() {
               KCPでは、これまでの安定した進学実績と教育内容が評価され、以下の大学より指定校推薦枠をいただいています。
             </p>
 
-            <div className="grid md:grid-cols-2 gap-4 mb-8">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
               {[
                 "法政大学",
                 "東洋大学",
@@ -603,7 +603,7 @@ export function EducationSection() {
                 "明海大学",
                 "文化学園大学"
               ].map((uni, index) => (
-                <div key={index} className="p-4 bg-blue-50 rounded-lg text-center text-gray-800 font-semibold border border-blue-200">
+                <div key={index} className="p-4 bg-blue-50 rounded-lg text-center text-gray-800 font-semibold border border-blue-200 hover:bg-blue-100 transition">
                   {uni}
                 </div>
               ))}
@@ -620,41 +620,73 @@ export function EducationSection() {
           <div>
             <h2 className="text-2xl md:text-3xl font-bold mb-8 text-gray-900">直近5年間の進学実績</h2>
 
-            <div className="grid md:grid-cols-2 gap-8 mb-8">
-              <div>
-                <h3 className="text-lg font-bold mb-4 text-blue-900 border-b-2 border-blue-600 pb-2">
+            <div className="space-y-8">
+              {/* 国公立大学/大学院 */}
+              <div className="bg-blue-50 p-8 rounded-lg border border-blue-200">
+                <h3 className="text-lg font-bold mb-6 text-blue-900 text-center border-b-2 border-blue-600 pb-4">
                   国公立大学/大学院
                 </h3>
-                <div className="text-gray-700 text-sm leading-relaxed">
-                  <p className="mb-2">東京大学、京都大学、大阪大学、名古屋大学、東北大学、九州大学、北海道大学、一橋大学、東京工業大学、筑波大学、神戸大学、横浜国立大学、千葉大学、東京外国語大学、東京学芸大学、東京都立大学、広島大学、金沢大学、電気通信大学、熊本大学、長崎大学、山口大学、埼玉大学、信州大学、群馬大学、茨城大学、弘前大学、富山大学、山梨大学、宇都宮大学、滋賀大学、上越教育大学、兵庫県立大学、兵庫教育大学、横浜市立大学、大阪公立大学、広島市立大学、名古屋市立大学</p>
-                  <p className="text-center text-gray-500">等</p>
+                <div className="text-gray-700 text-sm leading-loose text-center space-y-2">
+                  <p>
+                    東京大学、京都大学、大阪大学、名古屋大学、東北大学、九州大学、<br />
+                    北海道大学、一橋大学、東京工業大学、筑波大学、神戸大学、<br />
+                    横浜国立大学、千葉大学、東京外国語大学、東京学芸大学、<br />
+                    東京都立大学、広島大学、金沢大学、電気通信大学、熊本大学、<br />
+                    長崎大学、山口大学、埼玉大学、信州大学、群馬大学、<br />
+                    茨城大学、弘前大学、富山大学、山梨大学、宇都宮大学、<br />
+                    滋賀大学、上越教育大学、兵庫県立大学、兵庫教育大学、<br />
+                    横浜市立大学、大阪公立大学、広島市立大学、名古屋市立大学
+                  </p>
+                  <p className="text-gray-400 italic">等</p>
                 </div>
               </div>
 
-              <div>
-                <h3 className="text-lg font-bold mb-4 text-purple-900 border-b-2 border-purple-600 pb-2">
+              {/* 私立大学/大学院 */}
+              <div className="bg-purple-50 p-8 rounded-lg border border-purple-200">
+                <h3 className="text-lg font-bold mb-6 text-purple-900 text-center border-b-2 border-purple-600 pb-4">
                   私立大学/大学院
                 </h3>
-                <div className="text-gray-700 text-sm leading-relaxed">
-                  <p className="mb-2">早稲田大学、慶應義塾大学、上智大学、明治大学、青山学院大学、立教大学、中央大学、法政大学、立命館大学、関西学院大学、同志社大学、関西大学、東京理科大学、芝浦工業大学、学習院大学、明治学院大学、日本大学、専修大学、東洋大学、駒澤大学、神奈川大学、工学院大学、東京農業大学、東京電機大学、東京工科大学、東京都市大学、帝京大学、国士舘大学、昭和女子大学、武蔵野大学、文教大学、二松学舎大学、拓殖大学、大東文化大学、東海大学、城西大学、国際医療福祉大学、産業医科大学</p>
-                  <p className="text-center text-gray-500">等</p>
+                <div className="text-gray-700 text-sm leading-loose text-center space-y-2">
+                  <p>
+                    早稲田大学、慶應義塾大学、上智大学、明治大学、青山学院大学、<br />
+                    立教大学、中央大学、法政大学、立命館大学、関西学院大学、<br />
+                    同志社大学、関西大学、東京理科大学、芝浦工業大学、<br />
+                    学習院大学、明治学院大学、日本大学、専修大学、東洋大学、<br />
+                    駒澤大学、神奈川大学、工学院大学、東京農業大学、<br />
+                    東京電機大学、東京工科大学、東京都市大学、帝京大学、<br />
+                    国士舘大学、昭和女子大学、武蔵野大学、文教大学、<br />
+                    二松学舎大学、拓殖大学、大東文化大学、東海大学、<br />
+                    城西大学、国際医療福祉大学、産業医科大学
+                  </p>
+                  <p className="text-gray-400 italic">等</p>
                 </div>
               </div>
 
-              <div className="md:col-span-2">
-                <h3 className="text-lg font-bold mb-4 text-red-900 border-b-2 border-red-600 pb-2">
+              {/* 芸術系・音楽系大学/大学院 */}
+              <div className="bg-red-50 p-8 rounded-lg border border-red-200">
+                <h3 className="text-lg font-bold mb-6 text-red-900 text-center border-b-2 border-red-600 pb-4">
                   芸術系・音楽系大学/大学院
                 </h3>
-                <div className="text-gray-700 text-sm leading-relaxed">
-                  <p className="mb-2">東京藝術大学、多摩美術大学、女子美術大学、武蔵野美術大学、東京造形大学、京都芸術大学、京都精華大学、京都市立芸術大学、名古屋芸術大学、名古屋造形大学、大阪芸術大学、愛知県立芸術大学、神戸芸術工科大学、東北芸術工科大学、秋田公立美術大学、成安造形大学、横浜美術大学、金沢美術工芸大学、武蔵野音楽大学、洗足学園音楽大学、昭和音楽大学、東邦音楽大学、尚美学園大学、文化学園大学、東京工芸大学、日本映画大学</p>
-                  <p className="text-center text-gray-500">等</p>
+                <div className="text-gray-700 text-sm leading-loose text-center space-y-2">
+                  <p>
+                    東京藝術大学、多摩美術大学、女子美術大学、武蔵野美術大学、<br />
+                    東京造形大学、京都芸術大学、京都精華大学、京都市立芸術大学、<br />
+                    名古屋芸術大学、名古屋造形大学、大阪芸術大学、<br />
+                    愛知県立芸術大学、神戸芸術工科大学、東北芸術工科大学、<br />
+                    秋田公立美術大学、成安造形大学、横浜美術大学、<br />
+                    金沢美術工芸大学、武蔵野音楽大学、洗足学園音楽大学、<br />
+                    昭和音楽大学、東邦音楽大学、尚美学園大学、文化学園大学、<br />
+                    東京工芸大学、日本映画大学
+                  </p>
+                  <p className="text-gray-400 italic">等</p>
                 </div>
               </div>
             </div>
 
-            <div className="bg-blue-50 p-6 rounded-lg border border-blue-200">
-              <p className="text-gray-700 text-sm leading-relaxed">
-                <strong>多くの卒業生が難関大学・専門学校への進学を実現。</strong>KCPは確かな進学実績と、指定校推薦枠を通じて、学びの先の未来を支えています。
+            <div className="bg-blue-50 p-6 rounded-lg border border-blue-200 mt-8">
+              <p className="text-gray-700 text-sm leading-relaxed text-center">
+                <strong>多くの卒業生が難関大学・専門学校への進学を実現。</strong><br />
+                KCPは確かな進学実績と、指定校推薦枠を通じて、学びの先の未来を支えています。
               </p>
             </div>
           </div>
