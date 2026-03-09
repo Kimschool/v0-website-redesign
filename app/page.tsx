@@ -5,6 +5,7 @@ import { CarouselSection } from "@/components/carousel-section"
 import { SellingPointsSection } from "@/components/selling-points-section"
 import { SchoolLifeCardsSection } from "@/components/school-life-cards-section"
 import { SongsSection } from "@/components/songs-section"
+import { FooterContactSection } from "@/components/footer-contact-section"
 import { ContactSection } from "@/components/contact-section"
 import { Footer } from "@/components/footer"
 import { ScrollToTop } from "@/components/scroll-to-top"
@@ -20,6 +21,7 @@ export default function Home() {
         <SellingPointsSection />
         <SchoolLifeCardsSection />
         <SongsSection />
+        <FooterContactSection />
         <ContactSection />
       </main>
       <Footer />
@@ -27,3 +29,4 @@ export default function Home() {
     </>
   )
 }
+

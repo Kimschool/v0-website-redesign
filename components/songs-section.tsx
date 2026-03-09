@@ -1,79 +1,43 @@
-"use client"
-
-import { useEffect, useRef, useState } from "react"
-import { Play } from "lucide-react"
-import Image from "next/image"
-import { useTranslation } from "react-i18next"
-
-const songImages = ["/images/school-song.jpg", "/images/cheering-song.jpg"]
+'use client'
 
 export function SongsSection() {
-  const sectionRef = useRef<HTMLElement>(null)
-  const [isVisible, setIsVisible] = useState(false)
-  const { t } = useTranslation()
-
-  const songs = t("songs.items", { returnObjects: true }) as { title: string; subtitle: string }[]
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true)
-        }
-      },
-      { threshold: 0.2 }
-    )
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current)
+  const songs = [
+    {
+      title: "KCP校歌",
+      videoUrl: "https://weavus-group.com/kcp/wp-content/uploads/2025/08/校歌字幕.webm",
+    },
+    {
+      title: "応援歌",
+      videoUrl: "https://weavus-group.com/kcp/wp-content/uploads/2025/08/応援歌字幕明るいバージョン.webm",
     }
-
-    return () => observer.disconnect()
-  }, [])
+  ]
 
   return (
-    <section ref={sectionRef} className="py-24 lg:py-32 bg-muted">
-      <div className="mx-auto max-w-7xl px-6">
-        {/* Section heading */}
-        <div className={`text-center mb-12 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
-          <p className="text-sm font-medium text-primary mb-3">{t("songs.label")}</p>
-          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-foreground leading-tight">
-            {t("songs.title")}
+    <section className="bg-white py-16 md:py-24">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
+            KCP校歌と応援歌
           </h2>
         </div>
 
-        {/* Song cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
           {songs.map((song, index) => (
-            <div
-              key={song.title}
-              className={`group relative overflow-hidden rounded-2xl cursor-pointer ${
-                isVisible ? `animate-fade-in-up animation-delay-${(index + 1) * 100}` : "opacity-0"
-              }`}
-            >
-              {/* Image */}
-              <div className="aspect-video relative overflow-hidden">
-                <Image
-                  src={songImages[index]}
-                  alt={song.title}
-                  fill
-                  className="object-cover img-zoom"
-                />
-                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-colors duration-300" />
-                
-                {/* Play button */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-20 h-20 rounded-full bg-white/90 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-xl">
-                    <Play className="w-8 h-8 text-primary ml-1" fill="currentColor" />
-                  </div>
-                </div>
-
-                {/* Title overlay */}
-                <div className="absolute bottom-0 left-0 right-0 p-6">
-                  <p className="text-xs text-white/70 font-medium mb-1">{song.subtitle}</p>
-                  <h3 className="text-xl font-bold text-white">{song.title}</h3>
-                </div>
+            <div key={index} className="space-y-4">
+              <div className="relative w-full bg-gray-200 rounded-lg overflow-hidden">
+                <video
+                  width="100%"
+                  height="300"
+                  controls
+                  className="w-full h-auto bg-black"
+                >
+                  <source src={song.videoUrl} type="video/webm" />
+                  Your browser does not support the video tag.
+                </video>
               </div>
+              <h3 className="text-lg font-semibold text-center text-gray-800">
+                {song.title}
+              </h3>
             </div>
           ))}
         </div>
@@ -81,3 +45,4 @@ export function SongsSection() {
     </section>
   )
 }
+
