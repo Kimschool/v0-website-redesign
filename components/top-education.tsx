@@ -1,6 +1,6 @@
 'use client'
 
-import { useTranslation } from '@/components/i18n-provider'
+import { useTranslation } from 'react-i18next'
 
 export const TopEducation = () => {
   const { t } = useTranslation()
