@@ -1,5 +1,5 @@
 import { Header } from "@/components/header"
-import { TopEducation } from "@/components/top-education"
+import { EducationSection } from "@/components/education-section"
 import { Footer } from "@/components/footer"
 import { ScrollToTop } from "@/components/scroll-to-top"
 
@@ -13,7 +13,7 @@ export default function EducationPage() {
     <>
       <Header />
       <main>
-        <TopEducation />
+        <EducationSection />
       </main>
       <Footer />
       <ScrollToTop />
