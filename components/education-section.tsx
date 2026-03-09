@@ -3,6 +3,112 @@
 import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
 
+// 年度別進学実績テーブルコンポーネント
+function YearResultsTable({ year }: { year: string }) {
+  const data: Record<string, { university: string; count: number }[]> = {
+    "2024": [
+      { university: "東京大学", count: 3 },
+      { university: "京都大学", count: 2 },
+      { university: "早稲田大学", count: 5 },
+      { university: "慶應義塾大学", count: 4 },
+      { university: "東京工業大学", count: 2 },
+    ],
+    "2023": [
+      { university: "東京大学", count: 2 },
+      { university: "大阪大学", count: 2 },
+      { university: "早稲田大学", count: 6 },
+      { university: "明治大学", count: 5 },
+      { university: "筑波大学", count: 3 },
+    ],
+  }
+
+  const yearData = data[year] || []
+
+  return (
+    <div className="border border-gray-300 rounded-lg overflow-hidden">
+      <div className="bg-gradient-to-r from-blue-500 to-blue-600 px-6 py-4 text-white font-bold text-lg">
+        {year}年度 進学実績
+      </div>
+      <div className="p-6">
+        <div className="grid md:grid-cols-2 gap-4">
+          {yearData.map((item, idx) => (
+            <div key={idx} className="flex justify-between items-center p-3 bg-gray-50 rounded-lg border border-gray-200">
+              <span className="text-gray-800 font-semibold">{item.university}</span>
+              <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-bold">{item.count}名</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+// 2022-2019年の折りたたみコンポーネント
+function ToggleableYearResults() {
+  const [isOpen, setIsOpen] = useState(false)
+
+  const pastYears: Record<string, { university: string; count: number }[]> = {
+    "2022": [
+      { university: "東京大学", count: 1 },
+      { university: "早稲田大学", count: 7 },
+      { university: "上智大学", count: 3 },
+      { university: "立教大学", count: 4 },
+    ],
+    "2021": [
+      { university: "京都大学", count: 2 },
+      { university: "一橋大学", count: 1 },
+      { university: "慶應義塾大学", count: 5 },
+      { university: "東京理科大学", count: 4 },
+    ],
+    "2020": [
+      { university: "大阪大学", count: 2 },
+      { university: "名古屋大学", count: 1 },
+      { university: "早稲田大学", count: 6 },
+      { university: "明治大学", count: 5 },
+    ],
+    "2019": [
+      { university: "東北大学", count: 1 },
+      { university: "九州大学", count: 1 },
+      { university: "早稲田大学", count: 5 },
+      { university: "青山学院大学", count: 3 },
+    ],
+  }
+
+  return (
+    <div className="border border-gray-300 rounded-lg overflow-hidden">
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="w-full bg-gradient-to-r from-gray-400 to-gray-500 hover:from-gray-500 hover:to-gray-600 px-6 py-4 text-white font-bold text-lg flex items-center justify-between transition"
+      >
+        <span>2022年 - 2019年の実績を表示</span>
+        <span className={`transform transition-transform ${isOpen ? "rotate-180" : ""}`}>
+          ▼
+        </span>
+      </button>
+
+      {isOpen && (
+        <div className="p-6 bg-gray-50">
+          <div className="space-y-6">
+            {Object.entries(pastYears).map(([year, data]) => (
+              <div key={year}>
+                <h4 className="font-bold text-gray-800 mb-3 text-lg">{year}年度</h4>
+                <div className="grid md:grid-cols-2 gap-3">
+                  {data.map((item, idx) => (
+                    <div key={idx} className="flex justify-between items-center p-3 bg-white rounded-lg border border-gray-300">
+                      <span className="text-gray-700">{item.university}</span>
+                      <span className="bg-gray-200 text-gray-800 px-3 py-1 rounded-full text-sm font-semibold">{item.count}名</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  )
+}
+
 export function EducationSection() {
   const sectionRef = useRef<HTMLElement>(null)
   const [isVisible, setIsVisible] = useState(false)
@@ -611,7 +717,7 @@ export function EducationSection() {
 
             <div className="bg-yellow-50 p-6 rounded-lg border border-yellow-200">
               <p className="text-sm text-gray-700">
-                ※毎年の状況により変わることもありますので、希望する方には、早期の進路相談をおすすめします。成績・出席率・人物評価などによる校内選考を実施します
+                ※毎年の状況により変わることもありますので、希望する方には、早期の進路相談をお��すめします。成績・出席率・人物評価などによる校内選考を実施します
               </p>
             </div>
           </div>
@@ -690,8 +796,80 @@ export function EducationSection() {
               </p>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
-  )
-}
+
+          {/* 進学実績一覧 */}
+          <div className="mb-16">
+            <h2 className="text-2xl md:text-3xl font-bold mb-8 text-gray-900">進学実績一覧</h2>
+
+            <div className="space-y-4">
+              {/* 2024年 */}
+              <YearResultsTable year="2024" />
+
+              {/* 2023年 */}
+              <YearResultsTable year="2023" />
+
+              {/* 2022-2019年（折りたたみ） */}
+              <ToggleableYearResults />
+            </div>
+          </div>
+
+          {/* 卒業生の声 */}
+          <div>
+            <h2 className="text-2xl md:text-3xl font-bold mb-12 text-gray-900">卒業生の声</h2>
+
+            <div className="grid md:grid-cols-3 gap-8">
+              {/* 卒業生1 */}
+              <div className="bg-white rounded-lg border border-gray-200 overflow-hidden hover:shadow-lg transition">
+                <div className="bg-gray-200 h-64 flex items-center justify-center text-gray-400">
+                  <div className="text-center">
+                    <p className="text-sm">卒業生の写真</p>
+                    <p className="text-xs">/images/graduate-1.jpg</p>
+                  </div>
+                </div>
+                <div className="p-6">
+                  <p className="text-sm text-gray-600 mb-3 italic">「KCPでの経験」</p>
+                  <p className="text-gray-700 text-sm leading-relaxed mb-4">
+                    KCPに入学してから、日本語だけでなく、日本の文化や考え方も深く学ぶことができました。先生たちの丁寧な指導とクラスメートとの交流が、私の成長に大きく貢献してくれました。
+                  </p>
+                  <p className="font-semibold text-gray-800">Aさん</p>
+                  <p className="text-sm text-gray-600">進学先：東京大学大学院</p>
+                </div>
+              </div>
+
+              {/* 卒業生2 */}
+              <div className="bg-white rounded-lg border border-gray-200 overflow-hidden hover:shadow-lg transition">
+                <div className="bg-gray-200 h-64 flex items-center justify-center text-gray-400">
+                  <div className="text-center">
+                    <p className="text-sm">卒業生の写真</p>
+                    <p className="text-xs">/images/graduate-2.jpg</p>
+                  </div>
+                </div>
+                <div className="p-6">
+                  <p className="text-sm text-gray-600 mb-3 italic">「夢の実現」</p>
+                  <p className="text-gray-700 text-sm leading-relaxed mb-4">
+                    進学指導が充実していて、志望校選びから試験対策まで、親身にサポートしてくださいました。難しい時期もありましたが、KCPのスタッフと仲間がいたから頑張ることができました。
+                  </p>
+                  <p className="font-semibold text-gray-800">Bさん</p>
+                  <p className="text-sm text-gray-600">進学先：京都大学</p>
+                </div>
+              </div>
+
+              {/* 卒業生3 */}
+              <div className="bg-white rounded-lg border border-gray-200 overflow-hidden hover:shadow-lg transition">
+                <div className="bg-gray-200 h-64 flex items-center justify-center text-gray-400">
+                  <div className="text-center">
+                    <p className="text-sm">卒業生の写真</p>
+                    <p className="text-xs">/images/graduate-3.jpg</p>
+                  </div>
+                </div>
+                <div className="p-6">
+                  <p className="text-sm text-gray-600 mb-3 italic">「グローバル視点」</p>
+                  <p className="text-gray-700 text-sm leading-relaxed mb-4">
+                    世界中から来た学生たちとの交流を通じて、異なる視点を学ぶことができました。KCPで身につけた日本語力と国際的な視野は、私の大学生活と将来のキャリアの大きな財産です。
+                  </p>
+                  <p className="font-semibold text-gray-800">Cさん</p>
+                  <p className="text-sm text-gray-600">進学先：早稲田大学</p>
+                </div>
+              </div>
+            </div>
+          </div>
