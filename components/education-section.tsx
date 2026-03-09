@@ -5,20 +5,33 @@ import Image from "next/image"
 
 // 年度別進学実績テーブルコンポーネント
 function YearResultsTable({ year }: { year: string }) {
-  const data: Record<string, { university: string; count: number }[]> = {
+  const data: Record<string, string[]> = {
     "2024": [
-      { university: "東京大学", count: 3 },
-      { university: "京都大学", count: 2 },
-      { university: "早稲田大学", count: 5 },
-      { university: "慶應義塾大学", count: 4 },
-      { university: "東京工業大学", count: 2 },
+      "東京大学",
+      "京都大学",
+      "大阪大学",
+      "名古屋大学",
+      "東北大学",
+      "早稲田大学",
+      "慶應義塾大学",
+      "上智大学",
+      "明治大学",
+      "青山学院大学",
     ],
     "2023": [
-      { university: "東京大学", count: 2 },
-      { university: "大阪大学", count: 2 },
-      { university: "早稲田大学", count: 6 },
-      { university: "明治大学", count: 5 },
-      { university: "筑波大学", count: 3 },
+      "東京大学",
+      "京都大学",
+      "大阪大学",
+      "一橋大学",
+      "東京工業大学",
+      "筑波大学",
+      "神戸大学",
+      "横浜国立大学",
+      "早稲田大学",
+      "慶應義塾大学",
+      "明治大学",
+      "立教大学",
+      "法政大学",
     ],
   }
 
@@ -30,11 +43,10 @@ function YearResultsTable({ year }: { year: string }) {
         {year}年度 進学実績
       </div>
       <div className="p-6">
-        <div className="grid md:grid-cols-2 gap-4">
-          {yearData.map((item, idx) => (
-            <div key={idx} className="flex justify-between items-center p-3 bg-gray-50 rounded-lg border border-gray-200">
-              <span className="text-gray-800 font-semibold">{item.university}</span>
-              <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-bold">{item.count}名</span>
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+          {yearData.map((university, idx) => (
+            <div key={idx} className="p-3 bg-blue-50 rounded-lg border border-blue-200 text-center hover:bg-blue-100 transition">
+              <p className="text-gray-800 font-semibold text-sm">{university}</p>
             </div>
           ))}
         </div>
@@ -47,30 +59,56 @@ function YearResultsTable({ year }: { year: string }) {
 function ToggleableYearResults() {
   const [isOpen, setIsOpen] = useState(false)
 
-  const pastYears: Record<string, { university: string; count: number }[]> = {
+  const pastYears: Record<string, string[]> = {
     "2022": [
-      { university: "東京大学", count: 1 },
-      { university: "早稲田大学", count: 7 },
-      { university: "上智大学", count: 3 },
-      { university: "立教大学", count: 4 },
+      "東京大学",
+      "京都大学",
+      "大阪大学",
+      "東北大学",
+      "九州大学",
+      "北海道大学",
+      "一橋大学",
+      "早稲田大学",
+      "慶應義塾大学",
+      "上智大学",
+      "明治大学",
     ],
     "2021": [
-      { university: "京都大学", count: 2 },
-      { university: "一橋大学", count: 1 },
-      { university: "慶應義塾大学", count: 5 },
-      { university: "東京理科大学", count: 4 },
+      "京都大学",
+      "大阪大学",
+      "名古屋大学",
+      "筑波大学",
+      "神戸大学",
+      "横浜国立大学",
+      "千葉大学",
+      "早稲田大学",
+      "慶應義塾大学",
+      "立教大学",
+      "中央大学",
     ],
     "2020": [
-      { university: "大阪大学", count: 2 },
-      { university: "名古屋大学", count: 1 },
-      { university: "早稲田大学", count: 6 },
-      { university: "明治大学", count: 5 },
+      "東京大学",
+      "大阪大学",
+      "名古屋大学",
+      "広島大学",
+      "金沢大学",
+      "東京工業大学",
+      "早稲田大学",
+      "青山学院大学",
+      "立命館大学",
+      "同志社大学",
     ],
     "2019": [
-      { university: "東北大学", count: 1 },
-      { university: "九州大学", count: 1 },
-      { university: "早稲田大学", count: 5 },
-      { university: "青山学院大学", count: 3 },
+      "東北大学",
+      "九州大学",
+      "北海道大学",
+      "筑波大学",
+      "神戸大学",
+      "早稲田大学",
+      "慶應義塾大学",
+      "明治大学",
+      "東京理科大学",
+      "芝浦工業大学",
     ],
   }
 
@@ -88,15 +126,14 @@ function ToggleableYearResults() {
 
       {isOpen && (
         <div className="p-6 bg-gray-50">
-          <div className="space-y-6">
-            {Object.entries(pastYears).map(([year, data]) => (
+          <div className="space-y-8">
+            {Object.entries(pastYears).map(([year, universities]) => (
               <div key={year}>
-                <h4 className="font-bold text-gray-800 mb-3 text-lg">{year}年度</h4>
-                <div className="grid md:grid-cols-2 gap-3">
-                  {data.map((item, idx) => (
-                    <div key={idx} className="flex justify-between items-center p-3 bg-white rounded-lg border border-gray-300">
-                      <span className="text-gray-700">{item.university}</span>
-                      <span className="bg-gray-200 text-gray-800 px-3 py-1 rounded-full text-sm font-semibold">{item.count}名</span>
+                <h4 className="font-bold text-gray-800 mb-4 text-lg">{year}年度</h4>
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+                  {universities.map((university, idx) => (
+                    <div key={idx} className="p-3 bg-white rounded-lg border border-gray-300 text-center hover:bg-gray-100 transition">
+                      <p className="text-gray-800 font-semibold text-sm">{university}</p>
                     </div>
                   ))}
                 </div>
