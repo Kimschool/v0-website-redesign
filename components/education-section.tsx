@@ -94,7 +94,19 @@ function YearResultsTable({ year }: { year: string }) {
 
 // 2022-2019年の折りたたみコンポーネント
 function ToggleableYearResults() {
-  const [isOpen, setIsOpen] = useState(false)
+  const [expandedYears, setExpandedYears] = useState<Record<string, boolean>>({
+    "2022": false,
+    "2021": false,
+    "2020": false,
+    "2019": false,
+  })
+
+  const toggleYear = (year: string) => {
+    setExpandedYears(prev => ({
+      ...prev,
+      [year]: !prev[year]
+    }))
+  }
 
   const pastYears: Record<string, { 国公立: string[]; 私立: string[] }> = {
     "2022": {
@@ -166,19 +178,67 @@ function ToggleableYearResults() {
       ],
       私立: [
         "東京大学医科歯科大学", "慶應義塾大学", "早稲田大学", "上智大学", "東京理科大学", "明治大学",
-        "立教大学", "同志社大学", "中央大学", "法政大学", "関西学院大学", "関西大学", "学習院大学",
-        "青山学院大学", "芝浦工業大学", "小樽商科大学", "日本女子大学", "東京農業大学", "東京海洋大学",
-        "京都産業大学", "中京大学", "成蹊大学", "武蔵野美術大学", "多摩美術大学", "女子美術大学",
-        "京都造形芸術大学", "名古屋美術大学", "神戸芸術工科大学", "京都精華大学", "専修大学", "東洋大学",
-        "駒澤大学", "日本大学", "明治学院大学", "東京経済大学", "文教大学", "フェリス女学院大学",
-        "昭和女子大学", "工学院大学", "東京工科大学", "武蔵野大学", "拓殖大学", "大東文化大学",
-        "帝京大学", "城西大学", "麻布大学", "東洋学園大学", "横浜商科大学", "山口東京理科大学",
-        "京都情報大学", "尚美学園大学", "文化学園大学", "文化女子大学", "東京造形大学", "東京工芸大学",
-        "東邦音楽大学", "日本映画大学", "明海大学", "国士舘大学", "札幌学院大学", "松陰大学",
-        "平成帝京科学大学", "東京福祉大学", "日本経済大学", "宝塚大学", "城西短期大学", "産業技術大学院大学",
-        "慶応ビジネススクール", "北陸先端技術大学院"
+        "立教大学", "同志社大学", "中央大学", "法政大学", "関西学院大学", "関西大学", "立命館アジア太平洋大学",
+        "西南学院大学", "学習院大学", "青山学院大学", "芝浦工業大学", "小樽商科大学", "日本女子大学",
+        "東京農業大学", "東京海洋大学", "京都産業大学", "中京大学", "成蹊大学", "武蔵野美術大学",
+        "多摩美術大学", "女子美術大学", "京都造形芸術大学", "名古屋美術大学", "神戸芸術工科大学",
+        "京都精華大学", "専修大学", "東洋大学", "駒澤大学", "日本大学", "明治学院大学", "東京経済大学",
+        "文教大学", "フェリス女学院大学", "昭和女子大学", "工学院大学", "東京工科大学", "武蔵野大学",
+        "拓殖大学", "大東文化大学", "帝京大学", "城西大学", "麻布大学", "東洋学園大学", "横浜商科大学",
+        "山口東京理科大学", "京都情報大学", "尚美学園大学", "文化学園大学", "文化女子大学", "東京造形大学",
+        "東京工芸大学", "東邦音楽大学", "日本映画大学", "明海大学", "国士舘大学", "札幌学院大学",
+        "松陰大学", "平成帝京科学大学", "東京福祉大学", "日本経済大学", "宝塚大学", "城西短期大学",
+        "産業技術大学院大学", "慶応ビジネススクール", "北陸先端技術大学院"
       ]
     }
+  }
+
+  const yearOrder = ["2022", "2021", "2020", "2019"]
+
+  return (
+    <div className="space-y-4">
+      {yearOrder.map((year) => (
+        <div key={year} className="border border-gray-300 rounded-lg overflow-hidden">
+          <button
+            onClick={() => toggleYear(year)}
+            className="w-full bg-gradient-to-r from-gray-400 to-gray-500 hover:from-gray-500 hover:to-gray-600 px-6 py-4 text-white font-bold text-lg flex items-center justify-between transition"
+          >
+            <span>{year}年度 進学実績</span>
+            <span className={`transform transition-transform ${expandedYears[year] ? "rotate-180" : ""}`}>
+              ▼
+            </span>
+          </button>
+
+          {expandedYears[year] && (
+            <div className="p-6 bg-gray-50 space-y-6">
+              <div>
+                <h5 className="font-bold text-blue-900 mb-3">【国公立大学/大学院】</h5>
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
+                  {pastYears[year].国公立.map((uni, idx) => (
+                    <div key={idx} className="p-2 bg-white rounded-lg border border-blue-300 text-center hover:bg-blue-50 transition">
+                      <p className="text-gray-800 font-semibold text-xs md:text-sm">{uni}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <h5 className="font-bold text-purple-900 mb-3">【私立大学/大学院】</h5>
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
+                  {pastYears[year].私立.map((uni, idx) => (
+                    <div key={idx} className="p-2 bg-white rounded-lg border border-purple-300 text-center hover:bg-purple-50 transition">
+                      <p className="text-gray-800 font-semibold text-xs md:text-sm">{uni}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+  )
+}
   }
 
   return (
@@ -465,7 +525,7 @@ export function EducationSection() {
             <div className="grid md:grid-cols-3 gap-6 mb-6">
               {[
                 { title: "進学準備（進学準備教育課程限定科目）", content: "自分で得た情報から、志望校を決め、大学入学までの計画を立て、出願書類を作成する。志望理由書や面接において自己表現をしたり、大学において日本人学生と対等に議論したりできるようになることを目指す。" },
-                { title: "大学入試対策（進学準備教育課程限定科目）", content: "主に問題演習を通して、大学進学に合わせ、ＥＪＵ対策、入試対策等、合格に必要なスキルを身につけ、国公立を含め自分の希望する大学を目指す力をつけることを目指す。" },
+                { title: "大学入試対策（進学準備教育課程限定科目）", content: "主に問題演習を通して、大学進学に���わせ、ＥＪＵ対策、入試対策等、合格に必要なスキルを身につけ、国公立を含め自分の希望する大学を目指す力をつけることを目指す。" },
                 { title: "中間/期末タスク", content: "その学期の学習内容を応用し、ロールプレイ、スピーチ、プレゼンテーション、ディベートなどを行う。相手の考えを受け入れ、仲間と協働しながら発表を準備したり、わかりやすく発表することを目指す。" },
               ].map((item, index) => (
                 <div key={index} className="space-y-2 p-4 bg-gray-50 rounded-lg">
@@ -838,7 +898,7 @@ export function EducationSection() {
 
             <div className="bg-yellow-50 p-6 rounded-lg border border-yellow-200">
               <p className="text-sm text-gray-700">
-                ※毎年の状況により変わることもありますので、希望する方には、早期の進路相談をお��すめします。成績・出席率・人物評価などによる校内選考を実施します
+                ※毎年の状況により変��ることもありますので、希望する方には、早期の進路相談をお��すめします。成績・出席率・人物評価などによる校内選考を実施します
               </p>
             </div>
           </div>
