@@ -1,15 +1,11 @@
 'use client'
 
-import { useTranslation } from 'react-i18next'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { Autoplay, EffectFade } from 'swiper/modules'
+import { Autoplay } from 'swiper/modules'
 import 'swiper/css'
-import 'swiper/css/effect-fade'
 import Link from 'next/link'
 
 export function CarouselSection() {
-  const { t } = useTranslation()
-
   const carouselItems = [
     {
       image: "https://weavus-group.com/kcp/wp-content/uploads/2025/11/EJU.jpg",
@@ -38,40 +34,43 @@ export function CarouselSection() {
     {
       image: "https://weavus-group.com/kcp/wp-content/uploads/2025/07/1c279b72c09a930d753cc9f263d78c88.jpg",
       title: "充実した教育設備"
+    },
+    {
+      image: "https://weavus-group.com/kcp/wp-content/uploads/2026/03/08_認定日本語教育機関に認定-3.jpg",
+      title: "認定日本語教育機関に認定"
     }
   ]
 
   return (
-    <section className="bg-white py-20">
+    <section className="bg-white py-16 md:py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
             日本語だけじゃない<br />
             「進む力」を育てる
           </h2>
-          <p className="text-gray-600 text-lg">
+          <p className="text-gray-600 text-base md:text-lg max-w-2xl mx-auto">
             KCPには、世界中から集まっている「本気の学び」と、それを支える確かな指導がある。
           </p>
         </div>
 
         <Swiper
-          modules={[Autoplay, EffectFade]}
-          effect="fade"
-          autoplay={{ delay: 2000 }}
+          modules={[Autoplay]}
+          autoplay={{ delay: 2000, disableOnInteraction: false }}
           loop
-          className="mb-8"
+          className="mb-12"
         >
           {carouselItems.map((item, index) => (
             <SwiperSlide key={index}>
-              <div className="relative w-full h-96 rounded-xl overflow-hidden">
+              <div className="relative w-full h-80 md:h-96 rounded-lg overflow-hidden">
                 <img 
                   src={item.image} 
                   alt={item.title}
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-black/30"></div>
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <p className="text-white text-center text-2xl font-bold px-6">
+                <div className="absolute inset-0 flex items-center justify-center p-6">
+                  <p className="text-white text-center text-xl md:text-2xl font-bold whitespace-pre-line">
                     {item.title}
                   </p>
                 </div>
@@ -83,7 +82,7 @@ export function CarouselSection() {
         <div className="text-center">
           <Link 
             href="/about"
-            className="inline-block px-8 py-3 bg-blue-600 text-white font-semibold rounded-full hover:bg-blue-700 transition-colors"
+            className="inline-block px-8 py-3 bg-cyan-500 hover:bg-cyan-600 text-white font-semibold rounded-full transition-colors"
           >
             KCPとは
           </Link>
