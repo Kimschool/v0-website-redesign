@@ -37,7 +37,7 @@ export function Header() {
 
   const navItems = [
     { label: t("nav.about"), href: "/about" },
-    { label: t("nav.education"), href: "#education" },
+    { label: t("nav.education"), href: "/education" },
     { label: t("nav.schoolLife"), href: "#school-life" },
     { label: t("nav.admission"), href: "#admission" },
     { label: t("nav.contact"), href: "#contact" },
