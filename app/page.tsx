@@ -1,12 +1,10 @@
 import { Header } from "@/components/header"
 import { HeroSection } from "@/components/hero-section"
-import { ReasonsSection } from "@/components/reasons-section"
-import { FeaturesSection } from "@/components/features-section"
-import { EducationSection } from "@/components/education-section"
-import { TestimonialsSection } from "@/components/testimonials-section"
-import { SchoolLifeSection } from "@/components/school-life-section"
+import { NewsTickerSection } from "@/components/news-ticker-section"
+import { CarouselSection } from "@/components/carousel-section"
+import { SellingPointsSection } from "@/components/selling-points-section"
+import { SchoolLifeCardsSection } from "@/components/school-life-cards-section"
 import { SongsSection } from "@/components/songs-section"
-import { CTASection } from "@/components/cta-section"
 import { ContactSection } from "@/components/contact-section"
 import { Footer } from "@/components/footer"
 import { ScrollToTop } from "@/components/scroll-to-top"
@@ -17,13 +15,11 @@ export default function Home() {
       <Header />
       <main>
         <HeroSection />
-        <ReasonsSection />
-        <FeaturesSection />
-        <EducationSection />
-        <TestimonialsSection />
-        <SchoolLifeSection />
+        <NewsTickerSection />
+        <CarouselSection />
+        <SellingPointsSection />
+        <SchoolLifeCardsSection />
         <SongsSection />
-        <CTASection />
         <ContactSection />
       </main>
       <Footer />
