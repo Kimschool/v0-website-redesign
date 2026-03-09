@@ -36,11 +36,11 @@ export function Header() {
   }, [])
 
   const navItems = [
-    { label: t("nav.about"), href: "#about" },
-    { label: t("nav.education"), href: "#education" },
-    { label: t("nav.schoolLife"), href: "#school-life" },
-    { label: t("nav.admission"), href: "#admission" },
-    { label: t("nav.contact"), href: "#contact" },
+    { label: t("nav.about"), href: "/about" },
+    { label: t("nav.education"), href: "/education" },
+    { label: t("nav.schoolLife"), href: "/school-life" },
+    { label: t("nav.admission"), href: "/admission" },
+    { label: t("nav.contact"), href: "/contact" },
   ]
 
   return (
@@ -104,7 +104,7 @@ export function Header() {
 
           {/* CTA Button */}
           <Link
-            href="#admission"
+            href="/admission"
             className="hidden md:inline-flex items-center px-6 py-2.5 bg-primary text-white text-sm font-medium rounded-full hover:bg-primary/90 transition-colors duration-200"
           >
             {t("requestInfo")}
@@ -135,7 +135,7 @@ export function Header() {
               </Link>
             ))}
             <Link
-              href="#admission"
+              href="/admission"
               className="mt-4 text-center py-3 bg-primary text-white font-medium rounded-full"
               onClick={() => setMobileOpen(false)}
             >
