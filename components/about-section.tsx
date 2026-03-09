@@ -42,8 +42,38 @@ export function AboutSection() {
     },
     {
       year: "1993年",
-      title: "日本語教育振興協会認定校となる",
+      title: "新宿キャンパス移転",
       description: ""
+    },
+    {
+      year: "2001年",
+      title: "【KCP日本語教師養成講座】開講",
+      description: ""
+    },
+    {
+      year: "2006年",
+      title: "【学校法人KCP学園】認可",
+      description: ""
+    },
+    {
+      year: "2007年",
+      title: "【KCP地球市民日本語学校】設置（校名変更）",
+      description: "文部科学大臣より【大学入学のための準備教育課程】の指定（翌年運営開始）"
+    },
+    {
+      year: "2008年",
+      title: "姉妹校の校名を【ジャパンフジ共生日本語学校】から【KCP共生日本語学校】に変更",
+      description: ""
+    },
+    {
+      year: "2014年",
+      title: "新校舎竣工 【KCP地球市民日本語学校】と姉妹校【KCP共生日本語学校】を統合",
+      description: ""
+    },
+    {
+      year: "2017年",
+      title: "法務省東京入国管理局に【日本語教育機関の告示基準に係る誓約書】提出",
+      description: "告示校として官報公示"
     },
   ]
 
