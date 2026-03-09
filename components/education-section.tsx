@@ -69,18 +69,18 @@ export function EducationSection() {
           {/* コース紹介 */}
           <div className="mb-16" id="course1">
             <h2 className="text-2xl md:text-3xl font-bold mb-8 text-gray-900">コース紹介</h2>
-            
+
             {/* 進学準備教育 */}
             <div className="mb-12">
               <h3 className="text-lg font-bold mb-6 text-gray-900">
                 ◆ 進学準備教育　2年課程 / 1年6か月課程
               </h3>
-              
+
               <div className="grid md:grid-cols-2 gap-8 mb-8">
                 <div>
                   <div className="relative w-full aspect-[4/3] mb-4 overflow-hidden rounded-lg">
                     <Image
-                      src="/images/education-course-1.jpg"
+                      src="https://weavus-group.com/kcp/wp-content/uploads/2026/02/%E3%82%B3%E3%83%BC%E3%82%B9%E7%B4%B9%E4%BB%8B-1024x683.jpg"
                       alt="進学準備教育コース"
                       fill
                       className="object-cover"
@@ -95,7 +95,7 @@ export function EducationSection() {
                     </p>
                   </div>
                 </div>
-                
+
                 <div className="space-y-6">
                   <div className="bg-gray-50 p-6 rounded-lg border border-gray-200">
                     <h4 className="font-bold text-gray-900 mb-3">※文部科学省認定準備教育課程とは</h4>
@@ -103,7 +103,7 @@ export function EducationSection() {
                       本課程は文部科学省認定の準備教育課程に指定されていますので、自国での初等中等教育の期間が、日本の大学の受験資格である12年に満たない方も、本課程を修了すれば大学入試を受験し、進学することができます。
                     </p>
                   </div>
-                  
+
                   <div>
                     <h4 className="font-bold text-gray-900 mb-4">レベル別コース概要</h4>
                     <div className="space-y-3 text-gray-700 leading-relaxed text-sm">
@@ -122,22 +122,22 @@ export function EducationSection() {
               <h3 className="text-lg font-bold mb-6 text-gray-900">
                 ◆ 進学高度日本語（学びと探求）　2年課程 / 1年9か月課程 / 1年6か月課程 / 1年3か月課程
               </h3>
-              
+
               <div className="grid md:grid-cols-2 gap-8 mb-8">
                 <div>
                   <div className="relative w-full aspect-[4/3] mb-4 overflow-hidden rounded-lg">
                     <Image
-                      src="/images/education-course-2.jpg"
+                      src="https://weavus-group.com/kcp/wp-content/uploads/2026/02/%E3%82%B3%E3%83%BC%E3%82%B9%E7%B4%B9%E4%BB%8B_2-768x512.jpg"
                       alt="進学高度日本語コース"
                       fill
                       className="object-cover"
                     />
                   </div>
                   <p className="text-gray-700 leading-relaxed">
-                    本課程は、高度な日本語を身に付けるための課程です。高度な日本語とは、単に各種日本語試験において好成績を収めるにとどまらず、大学や大学院等で、学習や研究を円滑に遂行していけるだけの情報発信力と情報収集力をも含みます。
+                    本課程は、高度な日本語を身に付けるための課程です。高度な日本語とは、単に各種日本語試験において好成績を収めるにとどま���ず、大学や大学院等で、学習や研究を円滑に遂行していけるだけの情報発信力と情報収集力をも含みます。
                   </p>
                 </div>
-                
+
                 <div>
                   <h4 className="font-bold text-gray-900 mb-4">レベル別コース概要</h4>
                   <div className="space-y-3 text-gray-700 leading-relaxed text-sm">
@@ -163,34 +163,34 @@ export function EducationSection() {
                     </thead>
                     <tbody className="text-gray-700">
                       <tr>
-                        <td className="border border-gray-300 p-3">A1</td>
+                        <td className="border border-gray-300 p-3">🟢A1</td>
                         <td className="border border-gray-300 p-3">Lv.1</td>
                         <td className="border border-gray-300 p-3">日常生活の基本的な場面において、情報の受信・発信ができる。</td>
                       </tr>
                       <tr>
-                        <td className="border border-gray-300 p-3">A2</td>
+                        <td className="border border-gray-300 p-3">🟢A2</td>
                         <td className="border border-gray-300 p-3">Lv.2</td>
                         <td className="border border-gray-300 p-3">身近な話題について、ある程度のまとまりのある内容の読み書きや情報交換ができる。</td>
                       </tr>
                       <tr>
-                        <td className="border border-gray-300 p-3">B1</td>
-                        <td className="border border-gray-300 p-3">Lv.3<br/>Lv.4</td>
+                        <td className="border border-gray-300 p-3">🟡B1</td>
+                        <td className="border border-gray-300 p-3">Lv.3<br />Lv.4</td>
                         <td className="border border-gray-300 p-3">
                           <p>自分の意見や考えを理由や根拠とともに発信したり、周囲から必要な情報を得たりすることができる。</p>
                           <p className="mt-2">社会的な事柄に関して、必要なデータを入手し、整理したうえで説明・発表ができる。</p>
                         </td>
                       </tr>
                       <tr>
-                        <td className="border border-gray-300 p-3">B2</td>
-                        <td className="border border-gray-300 p-3">Lv.5<br/>Lv.6</td>
+                        <td className="border border-gray-300 p-3">🟠B2</td>
+                        <td className="border border-gray-300 p-3">Lv.5<br />Lv.6</td>
                         <td className="border border-gray-300 p-3">
                           <p>社会性を帯びた文章を理解したり、構成力のある文章を書いたり発表をしたりすることができる。</p>
                           <p className="mt-2">自分の専門分野について、自分で調べて論理的な文章が書ける。</p>
                         </td>
                       </tr>
                       <tr>
-                        <td className="border border-gray-300 p-3">B2</td>
-                        <td className="border border-gray-300 p-3">Lv.7<br/>Lv.8</td>
+                        <td className="border border-gray-300 p-3">🟣B2</td>
+                        <td className="border border-gray-300 p-3">Lv.7<br />Lv.8</td>
                         <td className="border border-gray-300 p-3">
                           <p>新聞記事をはじめとする社会的な内容の文章を読みこなし、それについての議論ができる。</p>
                           <p className="mt-2">新聞記事をはじめとする論説文を自由に読みこなし、関連する情報も加味して自分の意見を構成し議論できる。</p>
@@ -208,7 +208,7 @@ export function EducationSection() {
           {/* 授業内容 */}
           <div className="mb-16" id="course2">
             <h2 className="text-2xl md:text-3xl font-bold mb-8 text-gray-900">授業内容</h2>
-            
+
             <div className="grid md:grid-cols-3 gap-6 mb-6">
               {[
                 { title: "文字・表記・漢字・語彙", content: "ひらがな・カタカナの手書きから始め、漢字の意味を把握することから、専門書に使われる語彙を理解し、日本独特の日本の文化に根ざした言い回し、慣用表現、コロケーションを使い、自分の言いたいことが表現できるようになることを目指す。" },
@@ -266,13 +266,13 @@ export function EducationSection() {
           {/* 特別クラス・進路サポート */}
           <div className="mb-16">
             <h2 className="text-2xl md:text-3xl font-bold mb-8 text-gray-900">特別クラス・進路サポート</h2>
-            
+
             <p className="text-gray-700 mb-8 font-semibold">必要に応じて選択することができ、通常クラス以外の時間に行います。</p>
 
             <div className="space-y-8">
               {/* 日本語強化クラス */}
               <div>
-                <p className="mb-2"><span className="font-bold">【日本語強化クラス】</span>※レベル1・2対象</p>
+                <pre className="mb-2"><span className="font-bold">【日本語強化クラス】</span>※レベル1・2対象</pre>
                 <p className="text-gray-700 leading-relaxed">
                   日本語ゼロから「漢字/聴解/読解」スキル別に基礎を強化。これに続く日本語プラスの授業が受けられるだけの日本語の基礎力をつける。
                 </p>
@@ -280,9 +280,9 @@ export function EducationSection() {
 
               {/* 日本語プラス */}
               <div>
-                <p className="mb-4"><span className="font-bold">【日本語プラス】</span>※レベル3～対象</p>
+                <pre className="mb-4"><span className="font-bold">【日本語プラス】</span>※レベル3～対象</pre>
                 <p className="font-semibold text-gray-900 mb-4">各種試験対策</p>
-                
+
                 <div className="space-y-3 text-gray-700 leading-relaxed">
                   <div>
                     <p><strong>EJU対策：</strong>EJUの読解、聴解・聴読解、記述に対応した授業</p>
@@ -314,21 +314,21 @@ export function EducationSection() {
                     <p><strong>大学院HR：</strong>入試の最新情報とともに、研究計画書の書き方、指導教官との面談の受け方を指導</p>
                   </div>
                 </div>
-                
+
                 <div>
                   <h4 className="font-bold text-gray-900 mb-2">美術指導</h4>
                   <p className="text-gray-700 leading-relaxed text-sm">
                     「日本の美術系大学」に照準を合わせて実技指導を行います。さらに、各大学・大学院で要求されるデッサン・色彩構成・平面構成などの美術の基礎力を身につけます。一人一人の目的に合わせた受験指導を行っていきます。
                   </p>
                 </div>
-                
+
                 <div>
                   <h4 className="font-bold text-gray-900 mb-2">個別指導</h4>
                   <p className="text-gray-700 leading-relaxed text-sm">
-                    KCPを卒業した後の進路に合わせて、試験対策科目や個別指導が受けられます。大学進学、大学院進学、美術系学校への進学、就職などそれぞれの進路に必要な試験科目や面接・実技の練習指導を行っています。進路に迷っている場合は、個別相談を通してキャリア設計をしていきます。
+                    KCPを卒業した後の進路に合わせて、試験対策科目���個別指導が受けられます。大学進学、大学院進学、美術系学校への進学、就職などそれぞれの進路に必要な試験科目や面接・実技の練習指導を行っています。進路に迷っている場合は、個別相談を通してキャリア設計をしていきます。
                   </p>
                 </div>
-                
+
                 <div>
                   <h4 className="font-bold text-gray-900 mb-2">就職支援</h4>
                   <p className="text-gray-700 leading-relaxed text-sm">
@@ -344,9 +344,9 @@ export function EducationSection() {
           {/* 時間割例 */}
           <div className="mb-16">
             <h2 className="text-2xl md:text-3xl font-bold mb-8 text-gray-900">時間割例</h2>
-            
+
             <p className="text-gray-700 mb-4 font-semibold">※時間割は学期ごとに変更します。</p>
-            
+
             <p className="text-sm text-gray-600 mb-6 flex flex-wrap gap-4">
               <span><span className="inline-block w-4 h-4 bg-blue-400 mr-1 align-middle"></span> 漢字</span>
               <span><span className="inline-block w-4 h-4 bg-yellow-400 mr-1 align-middle"></span> 聴解</span>
@@ -469,10 +469,117 @@ export function EducationSection() {
             </div>
           </div>
 
-          {/* 指定校推薦 */}
+          <div className="w-full h-px bg-gray-300 mb-16" />
+
+          {/* 合格までのスケジュール */}
+          <div className="mb-16">
+            <h2 className="text-2xl md:text-3xl font-bold mb-8 text-gray-900">合格までのスケジュール</h2>
+
+            {/* 1年目 */}
+            <div className="mb-10">
+              <h3 className="text-xl font-bold mb-4 text-gray-800">1年目（基礎固め期間）</h3>
+              <div className="overflow-x-auto">
+                <table className="w-full border-collapse text-sm bg-white">
+                  <thead>
+                    <tr className="bg-blue-100">
+                      <th className="border border-gray-300 p-3 font-bold text-left">区分</th>
+                      <th className="border border-gray-300 p-3 font-bold text-left">大学進学</th>
+                      <th className="border border-gray-300 p-3 font-bold text-left">大学院進学</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr className="hover:bg-gray-50">
+                      <td className="border border-gray-300 p-3 font-semibold">4月〜12月</td>
+                      <td className="border border-gray-300 p-3 text-gray-700">
+                        日本語基礎力強化<br />
+                        EJU / JLPT対策<br />
+                        聴解・読解・語彙力向上
+                      </td>
+                      <td className="border border-gray-300 p-3 text-gray-700">
+                        日本語力強化<br />
+                        EJU / JLPT対策<br />
+                        日本の大学事情理解<br />
+                        キャリアデザイン
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            {/* 2年目 前半 */}
+            <div className="mb-10">
+              <h3 className="text-xl font-bold mb-4 text-gray-800">2年目 前半（応用力強化期間）</h3>
+              <div className="overflow-x-auto">
+                <table className="w-full border-collapse text-sm bg-white">
+                  <thead>
+                    <tr className="bg-green-100">
+                      <th className="border border-gray-300 p-3 font-bold text-left">区分</th>
+                      <th className="border border-gray-300 p-3 font-bold text-left">大学進学</th>
+                      <th className="border border-gray-300 p-3 font-bold text-left">大学院進学</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr className="hover:bg-gray-50">
+                      <td className="border border-gray-300 p-3 font-semibold">12月〜9月</td>
+                      <td className="border border-gray-300 p-3 text-gray-700">
+                        受験スケジュール作成<br />
+                        日本の大学情報収集<br />
+                        6月 第1回EJU受験<br />
+                        私立大学出願
+                      </td>
+                      <td className="border border-gray-300 p-3 text-gray-700">
+                        研究テーマ決定<br />
+                        研究室探し<br />
+                        教授面談<br />
+                        研究計画書作成<br />
+                        試験内容確認<br />
+                        出願開始
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            {/* 2年目 後半 */}
+            <div>
+              <h3 className="text-xl font-bold mb-4 text-gray-800">2年目 後半（ラストスパート）</h3>
+              <div className="overflow-x-auto">
+                <table className="w-full border-collapse text-sm bg-white">
+                  <thead>
+                    <tr className="bg-purple-100">
+                      <th className="border border-gray-300 p-3 font-bold text-left">区分</th>
+                      <th className="border border-gray-300 p-3 font-bold text-left">大学進学</th>
+                      <th className="border border-gray-300 p-3 font-bold text-left">大学院進学</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr className="hover:bg-gray-50">
+                      <td className="border border-gray-300 p-3 font-semibold">9月〜3月</td>
+                      <td className="border border-gray-300 p-3 text-gray-700">
+                        私立大学受験<br />
+                        11月 第2回EJU受験<br />
+                        国立大学出願<br />
+                        二次試験対策<br />
+                        国立大学受験
+                      </td>
+                      <td className="border border-gray-300 p-3 text-gray-700">
+                        II期試験出願<br />
+                        面接対策<br />
+                        II期試験受験
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div className="w-full h-px bg-gray-300 mb-16" />
           <div className="mb-16">
             <h2 className="text-2xl md:text-3xl font-bold mb-8 text-gray-900">指定校推薦</h2>
-            
+
             <p className="text-gray-700 mb-8">
               KCPでは、これまでの安定した進学実績と教育内容が評価され、以下の大学より指定校推薦枠をいただいています。
             </p>
