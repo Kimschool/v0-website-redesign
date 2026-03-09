@@ -37,14 +37,9 @@ function YearResultsTable({ year }: { year: string }) {
               <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-bold">{item.count}名</span>
             </div>
           ))}
-              </div>
-            </div>
-          </div>
         </div>
       </div>
-    </section>
-  )
-}
+    </div>
   )
 }
 
@@ -780,7 +775,7 @@ export function EducationSection() {
                 </h3>
                 <div className="text-gray-700 text-sm leading-loose text-center space-y-2">
                   <p>
-                    東京藝術大学、多摩美術大学、女子美術大学、武蔵野美術大学、<br />
+                    東京藝術大学、多摩美術��学、女子美術大学、武蔵野美術大学、<br />
                     東京造形大学、京都芸術大学、京都精華大学、京都市立芸術大学、<br />
                     名古屋芸術大学、名古屋造形大学、大阪芸術大学、<br />
                     愛知県立芸術大学、神戸芸術工科大学、東北芸術工科大学、<br />
@@ -878,3 +873,8 @@ export function EducationSection() {
               </div>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+  )
+}
