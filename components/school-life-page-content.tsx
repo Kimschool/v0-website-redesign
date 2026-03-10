@@ -424,11 +424,10 @@ export function SchoolLifePageContent() {
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`px-6 py-3 font-semibold text-sm md:text-base border-b-2 transition-all ${
-                    activeTab === tab.id
+                  className={`px-6 py-3 font-semibold text-sm md:text-base border-b-2 transition-all ${activeTab === tab.id
                       ? "text-blue-600 border-blue-600"
                       : "text-gray-600 border-transparent hover:text-gray-900"
-                  }`}
+                    }`}
                 >
                   {tab.name}
                 </button>
@@ -509,7 +508,6 @@ export function SchoolLifePageContent() {
 
         {/* Divider */}
         <div className="w-full h-px bg-gray-300 mb-16" />
-        </div>
       </div>
     </section>
   )
