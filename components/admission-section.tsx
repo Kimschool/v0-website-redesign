@@ -2,6 +2,7 @@
 
 import Image from "next/image"
 import Link from "next/link"
+import { ArrowRight, MessageCircle } from "lucide-react"
 
 export function AdmissionSection() {
   return (
@@ -37,10 +38,45 @@ export function AdmissionSection() {
           </div>
 
           {/* Contact Section */}
-          <Link href="/contact">
-            <div className="bg-blue-50 p-8 rounded-lg border border-blue-200 mb-16 cursor-pointer hover:shadow-lg hover:bg-blue-100 transition-all duration-300">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">お問い合わせ</h2>
-              <div className="space-y-4 text-gray-700">
+          <Link href="/contact" className="block group mb-16">
+            <div className="relative bg-gradient-to-br from-blue-50 to-blue-100 p-8 md:p-12 rounded-xl border-2 border-blue-200 cursor-pointer overflow-hidden transition-all duration-300 hover:shadow-2xl hover:border-blue-400 hover:scale-105">
+              {/* Background accent */}
+              <div className="absolute top-0 right-0 w-32 h-32 bg-blue-200 rounded-full opacity-30 -mr-16 -mt-16 group-hover:scale-110 transition-transform duration-300" />
+              
+              {/* Content */}
+              <div className="relative z-10">
+                {/* Header with icon */}
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="p-3 bg-blue-500 rounded-lg">
+                    <MessageCircle className="w-6 h-6 text-white" />
+                  </div>
+                  <h2 className="text-2xl md:text-3xl font-bold text-gray-900">お問い合わせ</h2>
+                </div>
+
+                {/* Description */}
+                <p className="text-lg text-gray-700 mb-6 leading-relaxed">
+                  入学に関するご質問やご相談がございましたら、お気軽にお問い合わせください。
+                </p>
+
+                {/* Info cards */}
+                <div className="grid md:grid-cols-2 gap-4 mb-8">
+                  <div className="bg-white/70 backdrop-blur-sm p-4 rounded-lg border border-blue-300/30">
+                    <p className="text-sm font-semibold text-gray-600 mb-1">メール</p>
+                    <p className="text-gray-800 font-medium">info@kcp.ac.jp</p>
+                  </div>
+                  <div className="bg-white/70 backdrop-blur-sm p-4 rounded-lg border border-blue-300/30">
+                    <p className="text-sm font-semibold text-gray-600 mb-1">営業時間</p>
+                    <p className="text-gray-800 font-medium">月～金 9:00～18:00 JST</p>
+                  </div>
+                </div>
+
+                {/* CTA Button */}
+                <div className="flex items-center justify-between">
+                  <p className="text-gray-600 font-medium">お問い合わせページへ移動</p>
+                  <div className="p-2 bg-blue-500 rounded-lg group-hover:bg-blue-600 group-hover:translate-x-1 transition-all duration-300">
+                    <ArrowRight className="w-5 h-5 text-white" />
+                  </div>
+                </div>
               </div>
             </div>
           </Link>
