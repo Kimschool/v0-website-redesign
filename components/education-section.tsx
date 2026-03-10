@@ -371,13 +371,15 @@ export function EducationSection() {
                     />
                   </div>
                   <p className="text-gray-700 leading-relaxed">
-                    本課程は、高度な日本語を身に付けるための課程です。高度な日本語とは、単に各種日本語試験において好成績を収めるにとどま���ず、大学や大学院等で、学習や研究を円滑に遂行していけるだけの情報発信力と情報収集力をも含みます。
+                    本課程は、高度な日本語を身に付けるための課程です。高度な日本語とは、単に各種日本語試験において好成績を収めるにとどまらず、大学や大学院等で、学習や研究を円滑に遂行していけるだけの情報発信力と情報収集力をも含みます。
                   </p>
                 </div>
 
                 <div>
                   <h4 className="font-bold text-gray-900 mb-4">レベル別コース概要</h4>
                   <div className="space-y-3 text-gray-700 leading-relaxed text-sm">
+                    <p></p>
+                    <p></p>
                     <p>初級においては、発話力を中心とした日本語コミュニケーション力を身に付けます。</p>
                     <p>初中級以降は、コミュニケーション力に磨きをかけるとともに、読解力や文章表現力など、日本語力を高度化していくのに必要な要素を身に付けていきます。</p>
                     <p>中級、上級へとレベルが上がるとともに、培ってきた日本語力を用いて、日本文化への造詣を深め、日本のみならず地球規模で活躍できる人材へと成長していきます。</p>
@@ -422,7 +424,7 @@ export function EducationSection() {
                         <td className="border border-gray-300 p-3">Lv.5<br />Lv.6</td>
                         <td className="border border-gray-300 p-3">
                           <p>社会性を帯びた文章を理解したり、構成力のある文章を書いたり発表をしたりすることができる。</p>
-                          <p className="mt-2">自分の専門分野について、���分で調べて論理的な文章が書ける。</p>
+                          <p className="mt-2">自分の専門分野について、自分で調べて論理的な文章が書ける。</p>
                         </td>
                       </tr>
                       <tr>
@@ -475,7 +477,7 @@ export function EducationSection() {
             <div className="grid md:grid-cols-3 gap-6 mb-6">
               {[
                 { title: "進学準備（進学準備教育課程限定科目）", content: "自分で得た情報から、志望校を決め、大学入学までの計画を立て、出願書類を作成する。志望理由書や面接において自己表現をしたり、大学において日本人学生と対等に議論したりできるようになることを目指す。" },
-                { title: "大学入試対策（進学準備教育課程限定科目）", content: "主に問題演習を通して、大学進学に���わせ、ＥＪＵ対策、入試対策等、合格に必要なスキルを身につけ、国公立を含め自分の希望する大学を目指す力をつけることを目指す。" },
+                { title: "大学入試対策（進学準備教育課程限定科目）", content: "主に問題演習を通して、大学進学に合わせ、ＥＪＵ対策、入試対策等、合格に必要なスキルを身につけ、国公立を含め自分の希望する大学を目指す力をつけることを目指す。" },
                 { title: "中間/期末タスク", content: "その学期の学習内容を応用し、ロールプレイ、スピーチ、プレゼンテーション、ディベートなどを行う。相手の考えを受け入れ、仲間と協働しながら発表を準備したり、わかりやすく発表することを目指す。" },
               ].map((item, index) => (
                 <div key={index} className="space-y-2 p-4 bg-gray-50 rounded-lg">
@@ -511,7 +513,7 @@ export function EducationSection() {
               <div>
                 <pre className="mb-2"><span className="font-bold">【日本語強化クラス】</span>※レベル1・2対象</pre>
                 <p className="text-gray-700 leading-relaxed">
-                  日本語ゼロから「漢字/聴解/読解」スキ���別に基礎を強化。これに続く日本語プラスの授業が受けられるだけの日本語の基礎力をつける。
+                  日本語ゼロから「漢字/聴解/読解」スキル別に基礎を強化。これに続く日本語プラスの授業が受けられるだけの日本語の基礎力をつける。
                 </p>
               </div>
 
@@ -562,7 +564,7 @@ export function EducationSection() {
                 <div>
                   <h4 className="font-bold text-gray-900 mb-2">個別指導</h4>
                   <p className="text-gray-700 leading-relaxed text-sm">
-                    KCPを卒業した後の進路に合わせて、試験対策科目���個別指導が受けられます。大学進学、大学院進学、美術系学校への進学、就職などそれぞれの進路に必要な試験科目や面接・実技の練習指導を行っています。進路に迷っている場合は、個別相談を通してキャリア設計をしていきます。
+                    KCPを卒業した後の進路に合わせて、試験対策科目や個別指導が受けられます。大学進学、大学院進学、美術系学校への進学、就職などそれぞれの進路に必要な試験科目や面接・実技の練習指導を行っています。進路に迷っている場合は、個別相談を通してキャリア設計をしていきます。
                   </p>
                 </div>
 
@@ -848,7 +850,7 @@ export function EducationSection() {
 
             <div className="bg-yellow-50 p-6 rounded-lg border border-yellow-200">
               <p className="text-sm text-gray-700">
-                ※毎年の状況により変��ることもありますので、希望する方には、早期の進路相談をお��すめします。成績・出席率・人物評価などによる校内選考を実施します
+                ※毎年の状況により変わることもありますので、希望する方には、早期の進路相談をおすすめします。成績・出席率・人物評価などによる校内選考を実施します
               </p>
             </div>
           </div>
@@ -906,7 +908,7 @@ export function EducationSection() {
                 </h3>
                 <div className="text-gray-700 text-sm leading-loose text-center space-y-2">
                   <p>
-                    東京藝術大学、多摩美術��学、女子美術大学、武蔵野美術大学、<br />
+                    東京藝術大学、多摩美術大学、女子美術大学、武蔵野美術大学、<br />
                     東京造形大学、京都芸術大学、京都精華大学、京都市立芸術大学、<br />
                     名古屋芸術大学、名古屋造形大学、大阪芸術大学、<br />
                     愛知県立芸術大学、神戸芸術工科大学、東北芸術工科大学、<br />
@@ -960,10 +962,33 @@ export function EducationSection() {
                 <div className="p-6">
                   <p className="text-sm text-gray-600 mb-3 italic">「KCPでの経験」</p>
                   <p className="text-gray-700 text-sm leading-relaxed mb-4">
-                    KCPに入学してから、日本語だけでなく、日本の文化や考え方も深く学ぶことができました。先生たちの丁寧な指導とクラスメートとの交流が、私の成長に大きく貢献してくれました。
+                    KCPで過ごした時間は、私にとって日本語学習以上の意味を持つ、大切な経験でした。
+                    勉強だけでなく、人としての姿勢や考え方を学べた場所だと感じています。
                   </p>
-                  <p className="font-semibold text-gray-800">Aさん</p>
-                  <p className="text-sm text-gray-600">進学先：東京大学大学院</p>
+                  <p className="text-gray-700 text-sm leading-relaxed mb-4">
+                    友達と色紙でおせち料理を作ったり、運動会でチーム一丸となって走ったり、ボランティア活動で放課後に子ども食堂を手伝ったり、浴衣の着付け教室に参加したり――その一つひとつが、今でも昨日のことのように思い出されます。
+                  </p>
+                  <p className="text-gray-700 text-sm leading-relaxed mb-4">
+                    先生方も経験豊富で、いつもいろいろな面白い教え方をしてくれました。気がついたら、知識が自然と頭に入ってきていた、そんな感覚です。
+                    KCPは、私にとって堅苦しい学校というより、実家のような場所でした（笑）。
+                  </p>
+                  <p className="text-gray-700 text-sm leading-relaxed mb-4">
+                    KCPで学んだことは、大きく分けて二つあります。
+                    一つは、場面に応じた正しい日本語の使い分け、もう一つは日本のカルチャーです。
+                  </p>
+                  <p className="text-gray-700 text-sm leading-relaxed mb-4">
+                    一つ目の日本語についてですが、特に書き言葉と話し言葉の違いを学びました。
+                    この二つを間違えて使うと、相手にあまりよくない印象を与えてしまうことがあります。
+                    私はこの二つを意識して使い分けてきたことで、学業や仕事、日常生活でも誤解なく自分の考えを伝えられるようになりました。
+                  </p>
+                  <p className="text-gray-700 text-sm leading-relaxed mb-4">
+                    もう一つは、日本のカルチャーです。
+                    日本社会では、ルール以上に「空気を共有できるか」が大切にされますが、KCPでその感覚を学んだことで、日本人の輪にも自然に溶け込めたと感じています。
+                    こうした経験は、大学生活を経て社会に出た今も、私の大きな支えになっています。
+                  </p>
+                  <p className="font-semibold text-gray-800">黄 厦さん / 中国出身</p>
+                  <p className="text-sm text-gray-600">進学先：東京大学大学院　農学生命科学研究科</p>
+                  <p className="text-sm text-gray-600">現  職： P&Gジャパン</p>
                 </div>
               </div>
 
