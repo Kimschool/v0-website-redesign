@@ -956,13 +956,12 @@ export function EducationSection() {
                 <div className="grid md:grid-cols-3 gap-0">
                   {/* 画像 */}
                   <div className="relative h-96 md:col-span-1 overflow-hidden">
-                    <div className="bg-gray-300 h-full flex items-center justify-center text-gray-600 text-center p-4">
-                      <div>
-                        <p className="text-sm font-semibold">卒業生の写真</p>
-                        <p className="text-xs">黄 厦さん</p>
-                        <p className="text-xs">/images/graduate-huang.jpg</p>
-                      </div>
-                    </div>
+                    <Image
+                      src="https://weavus-group.com/kcp/wp-content/uploads/2026/02/huang.jpg"
+                      alt="黄 厦さん"
+                      fill
+                      className="object-cover"
+                    />
                   </div>
                   {/* コンテンツ */}
                   <div className="md:col-span-2 p-8 bg-white">
@@ -977,7 +976,7 @@ export function EducationSection() {
                       <p>先生方も経験豊富で、いつもいろいろな面白い教え方をしてくれました。気がついたら、知識が自然と頭に入ってきていた、そんな感覚です。</p>
                       <p>KCPは、私にとって堅苦しい学校というより、実家のような場所でした（笑）。</p>
                       <p>KCPで学んだことは、大きく分けて二つありま��。一つは、場面に応じた正しい日本語の使い分け、もう一つは日本のカルチャーです。</p>
-                      <p>一つ目の日本語についてですが、特に書き言葉と話し言葉の違いを学びました。この二つを間違えて使うと、相手にあまりよくない印象を与えてしまうことがあります。私はこの二つを意識して使���分�����てきたことで、学業や仕事、日常生活でも誤解なく自分の考えを伝えられるようになりました。</p>
+                      <p>一つ目の日本語についてですが、特に書き言葉と話し言葉の違いを学びました。この二つを間違えて使うと、相手にあまりよくない印象を与えてしまうことがあります。私はこの二つを意識して使�����分�����てきたことで、学業や仕事、日常生活でも誤解なく自分の考えを伝えられるようになりました。</p>
                       <p>もう一つは、日本のカルチャーです。日本社会では、ルール以上に「空気を共有できるか」が大切にされますが、KCPでその感覚を学んだことで、日本人の輪にも自然に溶け込めたと感じています。こうした経験は、大学生活を経て社会に出た今も、私の大きな支えになっています。</p>
                     </div>
                   </div>
@@ -989,13 +988,12 @@ export function EducationSection() {
                 <div className="grid md:grid-cols-3 gap-0">
                   {/* 画像 */}
                   <div className="relative h-96 md:col-span-1 overflow-hidden">
-                    <div className="bg-gray-300 h-full flex items-center justify-center text-gray-600 text-center p-4">
-                      <div>
-                        <p className="text-sm font-semibold">卒業生の写真</p>
-                        <p className="text-xs">Patrick Grainger さん</p>
-                        <p className="text-xs">/images/graduate-patrick.jpg</p>
-                      </div>
-                    </div>
+                    <Image
+                      src="https://weavus-group.com/kcp/wp-content/uploads/2026/02/patrick.jpg"
+                      alt="Patrick Grainger さん"
+                      fill
+                      className="object-cover"
+                    />
                   </div>
                   {/* コンテンツ */}
                   <div className="md:col-span-2 p-8 bg-white">
@@ -1018,13 +1016,12 @@ export function EducationSection() {
                 <div className="grid md:grid-cols-3 gap-0">
                   {/* 画像 */}
                   <div className="relative h-96 md:col-span-1 overflow-hidden">
-                    <div className="bg-gray-300 h-full flex items-center justify-center text-gray-600 text-center p-4">
-                      <div>
-                        <p className="text-sm font-semibold">卒業生の写真</p>
-                        <p className="text-xs">Lee Yit Chang さん</p>
-                        <p className="text-xs">/images/graduate-lee.jpg</p>
-                      </div>
-                    </div>
+                    <Image
+                      src="https://weavus-group.com/kcp/wp-content/uploads/2026/02/lee.jpg"
+                      alt="Lee Yit Chang さん"
+                      fill
+                      className="object-cover"
+                    />
                   </div>
                   {/* コンテンツ */}
                   <div className="md:col-span-2 p-8 bg-white">
@@ -1048,13 +1045,12 @@ export function EducationSection() {
                 <div className="grid md:grid-cols-3 gap-0">
                   {/* 画像 */}
                   <div className="relative h-96 md:col-span-1 overflow-hidden">
-                    <div className="bg-gray-300 h-full flex items-center justify-center text-gray-600 text-center p-4">
-                      <div>
-                        <p className="text-sm font-semibold">卒業生の写真</p>
-                        <p className="text-xs">赵 瑞霄さん</p>
-                        <p className="text-xs">/images/graduate-zhao.jpg</p>
-                      </div>
-                    </div>
+                    <Image
+                      src="https://weavus-group.com/kcp/wp-content/uploads/2026/02/zhao.jpg"
+                      alt="赵 瑞霄さん"
+                      fill
+                      className="object-cover"
+                    />
                   </div>
                   {/* コンテンツ */}
                   <div className="md:col-span-2 p-8 bg-white">
@@ -1076,13 +1072,12 @@ export function EducationSection() {
                 <div className="grid md:grid-cols-3 gap-0">
                   {/* 画像 */}
                   <div className="relative h-96 md:col-span-1 overflow-hidden">
-                    <div className="bg-gray-300 h-full flex items-center justify-center text-gray-600 text-center p-4">
-                      <div>
-                        <p className="text-sm font-semibold">卒業生の写真</p>
-                        <p className="text-xs">昔 聖原さん</p>
-                        <p className="text-xs">/images/graduate-sungwon.jpg</p>
-                      </div>
-                    </div>
+                    <Image
+                      src="https://weavus-group.com/kcp/wp-content/uploads/2026/02/sungwon.jpg"
+                      alt="昔 聖原さん"
+                      fill
+                      className="object-cover"
+                    />
                   </div>
                   {/* コンテンツ */}
                   <div className="md:col-span-2 p-8 bg-white">
@@ -1104,13 +1099,12 @@ export function EducationSection() {
                 <div className="grid md:grid-cols-3 gap-0">
                   {/* 画像 */}
                   <div className="relative h-96 md:col-span-1 overflow-hidden">
-                    <div className="bg-gray-300 h-full flex items-center justify-center text-gray-600 text-center p-4">
-                      <div>
-                        <p className="text-sm font-semibold">卒業生の写真</p>
-                        <p className="text-xs">朱 瑞婷さん</p>
-                        <p className="text-xs">/images/graduate-zhu.jpg</p>
-                      </div>
-                    </div>
+                    <Image
+                      src="https://weavus-group.com/kcp/wp-content/uploads/2026/02/zhu.jpg"
+                      alt="朱 瑞婷さん"
+                      fill
+                      className="object-cover"
+                    />
                   </div>
                   {/* コンテンツ */}
                   <div className="md:col-span-2 p-8 bg-white">
@@ -1132,13 +1126,12 @@ export function EducationSection() {
                 <div className="grid md:grid-cols-3 gap-0">
                   {/* 画像 */}
                   <div className="relative h-96 md:col-span-1 overflow-hidden">
-                    <div className="bg-gray-300 h-full flex items-center justify-center text-gray-600 text-center p-4">
-                      <div>
-                        <p className="text-sm font-semibold">卒業生の写真</p>
-                        <p className="text-xs">戚笑さん</p>
-                        <p className="text-xs">/images/graduate-qixiao.jpg</p>
-                      </div>
-                    </div>
+                    <Image
+                      src="https://weavus-group.com/kcp/wp-content/uploads/2026/02/qixiao.jpg"
+                      alt="戚笑さん"
+                      fill
+                      className="object-cover"
+                    />
                   </div>
                   {/* コンテンツ */}
                   <div className="md:col-span-2 p-8 bg-white">
