@@ -310,7 +310,7 @@ export function ContactSection() {
             {/* Certificate Type */}
             <div>
               <label htmlFor="certificateType" className="block text-sm font-semibold text-gray-800 mb-2">
-                発行受けたい証明書の種類
+                {"発行受けたい証明書の種類"}
               </label>
               <select
                 id="certificateType"
