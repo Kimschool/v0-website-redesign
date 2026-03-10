@@ -340,33 +340,6 @@ export function SchoolLifePageContent() {
             ))}
           </div>
         </div>
-
-        {/* Divider */}
-        <div className="w-full h-px bg-gray-300 mb-16" />
-        <div className="mb-20">
-          <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
-            応援歌
-          </h2>
-
-          <div className="max-w-4xl mx-auto">
-            <video
-              controls
-              preload="none"
-              className="w-full aspect-video rounded-lg shadow-lg"
-              playsInline
-            >
-              <source
-                src="https://weavus-group.com/kcp/wp-content/uploads/2025/08/応援歌字幕明るいバージョン.webm"
-                type="video/webm"
-              />
-              Your browser does not support the video tag.
-            </video>
-          </div>
-        </div>
-
-        {/* Divider */}
-        <div className="w-full h-px bg-gray-300 mb-16" />
-
         {/* Access Section */}
         <div className="mb-20">
           <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
@@ -416,8 +389,8 @@ export function SchoolLifePageContent() {
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
                   className={`flex-1 py-4 px-4 text-center font-medium transition-colors border-b md:border-b-0 md:border-r last:border-r-0 last:border-b-0 ${activeTab === tab.id
-                      ? "bg-[#0085b2] text-white"
-                      : "bg-gray-50 text-gray-700 hover:bg-gray-100"
+                    ? "bg-[#0085b2] text-white"
+                    : "bg-gray-50 text-gray-700 hover:bg-gray-100"
                     }`}
                 >
                   {tab.name}
@@ -437,6 +410,32 @@ export function SchoolLifePageContent() {
                 </div>
               ))}
             </div>
+
+            {/* Divider */}
+            <div className="w-full h-px bg-gray-300 mb-16" />
+            <div className="mb-20">
+              <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
+                応援歌
+              </h2>
+
+              <div className="max-w-4xl mx-auto">
+                <video
+                  controls
+                  preload="none"
+                  className="w-full aspect-video rounded-lg shadow-lg"
+                  playsInline
+                >
+                  <source
+                    src="https://weavus-group.com/kcp/wp-content/uploads/2025/08/応援歌字幕明るいバージョン.webm"
+                    type="video/webm"
+                  />
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            </div>
+
+            {/* Divider */}
+            <div className="w-full h-px bg-gray-300 mb-16" />
           </div>
         </div>
       </div>
