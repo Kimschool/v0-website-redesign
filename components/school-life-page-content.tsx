@@ -91,7 +91,7 @@ const clubActivities = [
   {
     name: "マンガ‧アニメクラブ",
     description: "好きな作品を日本語で熱く語り合いましょう。",
-    image: "https://weavus-group.com/kcp/wp-content/uploads/2026/02/マンガ‧アニメクラブ-1-scaled.jpg"
+    image: "https://weavus-group.com/kcp/wp-content/uploads/2026/02/%E3%83%9E%E3%83%B3%E3%82%AC%E3%83%BB%E3%82%A2%E3%83%8B%E3%83%A1%E3%82%AF%E3%83%A9%E3%83%96-1-scaled.jpg"
   },
   {
     name: "茶道部",
@@ -174,9 +174,8 @@ export function SchoolLifePageContent() {
             {scheduleItems.map((item, index) => (
               <div
                 key={index}
-                className={`relative bg-white overflow-hidden cursor-pointer group ${
-                  item.fullWidth ? "md:col-span-2 h-[400px]" : "h-[300px]"
-                }`}
+                className={`relative bg-white overflow-hidden cursor-pointer group ${item.fullWidth ? "md:col-span-2 h-[400px]" : "h-[300px]"
+                  }`}
               >
                 <Image
                   src={item.image}
@@ -185,12 +184,12 @@ export function SchoolLifePageContent() {
                   className="object-cover transition-transform duration-400 ease-out group-hover:scale-105"
                   unoptimized
                 />
-                
+
                 {/* Top overlay - month */}
                 <div className="absolute top-0 left-0 w-full bg-gray-100/85 text-center py-4 px-4 opacity-0 -translate-y-5 transition-all duration-400 ease-out group-hover:opacity-100 group-hover:translate-y-0 z-10">
                   <span className="text-2xl font-bold text-gray-900">{item.month}</span>
                 </div>
-                
+
                 {/* Bottom overlay - description */}
                 <div className="absolute bottom-0 left-0 w-full bg-gray-100/85 text-center py-4 px-4 opacity-0 translate-y-5 transition-all duration-400 ease-out group-hover:opacity-100 group-hover:translate-y-0 z-10">
                   <span className="text-sm text-gray-700">{item.description}</span>
@@ -227,12 +226,12 @@ export function SchoolLifePageContent() {
                   className="object-cover transition-transform duration-400 ease-out group-hover:scale-105"
                   unoptimized
                 />
-                
+
                 {/* Top overlay - name */}
                 <div className="absolute top-0 left-0 w-full bg-gray-100/85 text-center py-4 px-4 opacity-0 -translate-y-5 transition-all duration-400 ease-out group-hover:opacity-100 group-hover:translate-y-0 z-10">
                   <span className="text-2xl font-bold text-gray-900">{club.name}</span>
                 </div>
-                
+
                 {/* Bottom overlay - description */}
                 <div className="absolute bottom-0 left-0 w-full bg-gray-100/85 text-center py-4 px-4 opacity-0 translate-y-5 transition-all duration-400 ease-out group-hover:opacity-100 group-hover:translate-y-0 z-10">
                   <span className="text-sm text-gray-700">{club.description}</span>
@@ -250,7 +249,7 @@ export function SchoolLifePageContent() {
           <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
             応援歌
           </h2>
-          
+
           <div className="max-w-4xl mx-auto">
             <video
               controls
@@ -258,9 +257,9 @@ export function SchoolLifePageContent() {
               className="w-full aspect-video rounded-lg shadow-lg"
               playsInline
             >
-              <source 
-                src="https://weavus-group.com/kcp/wp-content/uploads/2025/08/応援歌字幕明るいバージョン.webm" 
-                type="video/webm" 
+              <source
+                src="https://weavus-group.com/kcp/wp-content/uploads/2025/08/応援歌字幕明るいバージョン.webm"
+                type="video/webm"
               />
               Your browser does not support the video tag.
             </video>
@@ -318,25 +317,23 @@ export function SchoolLifePageContent() {
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`flex-1 py-4 px-4 text-center font-medium transition-colors border-b md:border-b-0 md:border-r last:border-r-0 last:border-b-0 ${
-                    activeTab === tab.id
+                  className={`flex-1 py-4 px-4 text-center font-medium transition-colors border-b md:border-b-0 md:border-r last:border-r-0 last:border-b-0 ${activeTab === tab.id
                       ? "bg-[#0085b2] text-white"
                       : "bg-gray-50 text-gray-700 hover:bg-gray-100"
-                  }`}
+                    }`}
                 >
                   {tab.name}
                 </button>
               ))}
             </div>
-            
+
             {/* Tab Content */}
             <div className="p-8 bg-white border border-t-0 border-gray-300 rounded-b-lg">
               {stationTabs.map((tab) => (
                 <div
                   key={tab.id}
-                  className={`text-center text-gray-700 ${
-                    activeTab === tab.id ? "block" : "hidden"
-                  }`}
+                  className={`text-center text-gray-700 ${activeTab === tab.id ? "block" : "hidden"
+                    }`}
                 >
                   <p className="text-lg">{tab.content}</p>
                 </div>
