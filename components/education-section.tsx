@@ -692,7 +692,7 @@ export function EducationSection() {
                       <td className="border border-gray-300 p-2 bg-purple-100">読解</td>
                       <td className="border border-gray-300 p-2 bg-orange-100">進学準備</td>
                       <td className="border border-gray-300 p-2 bg-purple-100">読解</td>
-                      <td className="border border-gray-300 p-2 bg-orange-100">選択授業</td>
+                      <td className="border border-gray-300 p-2 bg-orange-100">��択授業</td>
                     </tr>
                     <tr>
                       <td className="border border-gray-300 p-2 font-semibold">13:30–14:15</td>
@@ -976,8 +976,8 @@ export function EducationSection() {
                       <p>友達と色紙でおせち料理を作ったり、運動会でチーム一丸となって走ったり、ボランティア活動で放課後に子ども食堂を手伝ったり、浴衣の着付け教室に参加したり――その一つひとつが、今でも昨日のことのように思い出されます。</p>
                       <p>先生方も経験豊富で、いつもいろいろな面白い教え方をしてくれました。気がついたら、知識が自然と頭に入ってきていた、そんな感覚です。</p>
                       <p>KCPは、私にとって堅苦しい学校というより、実家のような場所でした（笑）。</p>
-                      <p>KCPで学んだことは、大きく分けて二つあります。一つは、場面に応じた正しい日本語の使い分け、もう一つは日本のカルチャーです。</p>
-                      <p>一つ目の日本語についてですが、特に書き言葉と話し言葉の違いを学びました。この二つを間違えて使うと、相手にあまりよくない印象を与えてしまうことがあります。私はこの二つを意識して使い分���てきたことで、学業や仕事、日常生活でも誤解なく自分の考えを伝えられるようになりました。</p>
+                      <p>KCPで学んだことは、大きく分けて二つありま��。一つは、場面に応じた正しい日本語の使い分け、もう一つは日本のカルチャーです。</p>
+                      <p>一つ目の日本語についてですが、特に書き言葉と話し言葉の違いを学びました。この二つを間違えて使うと、相手にあまりよくない印象を与えてしまうことがあります。私はこの二つを意識して使い分�����てきたことで、学業や仕事、日常生活でも誤解なく自分の考えを伝えられるようになりました。</p>
                       <p>もう一つは、日本のカルチャーです。日本社会では、ルール以上に「空気を共有できるか」が大切にされますが、KCPでその感覚を学んだことで、日本人の輪にも自然に溶け込めたと感じています。こうした経験は、大学生活を経て社会に出た今も、私の大きな支えになっています。</p>
                     </div>
                   </div>
@@ -1133,7 +1133,7 @@ export function EducationSection() {
                   <p className="text-sm text-gray-600 mb-3 italic">「KCPでの経験」</p>
                   <p className="text-gray-700 text-sm leading-relaxed mb-4">
                     KCPで過ごした時間は、私にとって日本語学習以上の意味を持つ、大切な経験でした。
-                    勉強だけでなく、人としての姿勢や考え方を学べた場所だと感じています。
+                    勉強だけでなく、人としての姿勢や考え方を���べた場所だと感じています。
                   </p>
                   <p className="text-gray-700 text-sm leading-relaxed mb-4">
                     友達と色紙でおせち料理を作ったり、運動会でチーム一丸となって走ったり、ボランティア活動で放課後に子ども食堂を手伝ったり、浴衣の着付け教室に参加したり――その一つひとつが、今でも昨日のことのように思い出されます。
@@ -1193,7 +1193,6 @@ export function EducationSection() {
                   <p className="text-gray-700 text-sm leading-relaxed mb-4">
                     世界中から来た学生たちとの交流を通じて、異なる視点を学ぶことができました。KCPで身につけた日本語力と国際的な視野は、私の大学生活と将来のキャリアの大き���財産です。
                   </p>
-                  <p className="font-semibold text-gray-800">Cさん</p>
                   <p className="text-sm text-gray-600">進学先：早稲田大学</p>
                 </div>
               </div>
