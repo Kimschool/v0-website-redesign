@@ -480,33 +480,35 @@ export function SchoolLifePageContent() {
               </div>
             ))}
           </div>
+        </div>
 
-            {/* Divider */}
-            <div className="w-full h-px bg-gray-300 mb-16" />
-            <div className="mb-20">
-              <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
-                応援歌
-              </h2>
+        {/* Divider */}
+        <div className="w-full h-px bg-gray-300 mb-16" />
 
-              <div className="max-w-4xl mx-auto">
-                <video
-                  controls
-                  preload="none"
-                  className="w-full aspect-video rounded-lg shadow-lg"
-                  playsInline
-                >
-                  <source
-                    src="https://weavus-group.com/kcp/wp-content/uploads/2025/08/応援歌字幕明るいバージョン.webm"
-                    type="video/webm"
-                  />
-                  Your browser does not support the video tag.
-                </video>
-              </div>
-            </div>
+        {/* Video Section */}
+        <div className="mb-20">
+          <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
+            応援歌
+          </h2>
 
-            {/* Divider */}
-            <div className="w-full h-px bg-gray-300 mb-16" />
+          <div className="max-w-4xl mx-auto">
+            <video
+              controls
+              preload="none"
+              className="w-full aspect-video rounded-lg shadow-lg"
+              playsInline
+            >
+              <source
+                src="https://weavus-group.com/kcp/wp-content/uploads/2025/08/応援歌字幕明るいバージョン.webm"
+                type="video/webm"
+              />
+              Your browser does not support the video tag.
+            </video>
           </div>
+        </div>
+
+        {/* Divider */}
+        <div className="w-full h-px bg-gray-300 mb-16" />
         </div>
       </div>
     </section>
