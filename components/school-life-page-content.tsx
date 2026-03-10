@@ -340,6 +340,10 @@ export function SchoolLifePageContent() {
             ))}
           </div>
         </div>
+
+        {/* Divider */}
+        <div className="w-full h-px bg-gray-300 mb-16" />
+
         {/* Access Section */}
         <div className="mb-20">
           <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
