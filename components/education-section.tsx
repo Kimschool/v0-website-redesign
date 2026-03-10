@@ -278,7 +278,7 @@ export function EducationSection() {
             <h2 className="text-2xl md:text-3xl font-bold mb-8 text-gray-900">教育理念・教育方針</h2>
             <div className="space-y-6 text-gray-700 leading-relaxed">
               <p>
-                本学の基本理念は、若者が切磋琢磨しながら学び成長し、21世紀を生き抜く力を身につけて世界の平和と繁栄に貢献することにある。そのためには、科学技術が進展する現代において、自主・自立・自尊と、自省・自制・自戒を併せ持つバランスの取れた精神が不可欠であり、これを基盤とし、自文化と異文化を正しく理解し、普遍的な人類観を育む。
+                本学の基本理念は、若者が切磋琢磨しながら学び成長し、21世紀を生き抜く力を身につけて世界の平和と繁栄に貢献することにある。そのためには、科学技術が進展する現代において、自主・自立・自尊と、自省・自制・自戒を併せ持つバランスの取れた精神が不可欠であり、これを基盤とし、自文化と���文化を正しく理解し、普遍的な人類観を育む。
               </p>
               <p>
                 本学は、生涯にわたって主体的に学び続ける姿勢を重視し、批判力・論理力・明晰性といった学びの基礎力を育成するとともに、大学や企業活動にも通用する高度で実践的な日本語力の養成を教育目標とする。
@@ -363,6 +363,79 @@ export function EducationSection() {
                   <p>自分の目標のために必要な日本語力をより一層高められるよう、種々の選択授業も用意されています。進学や就職のための手厚い指導があることは、言うまでもありません。</p>
                 </div>
               </div>
+            </div>
+          </div>
+
+          <div className="w-full h-px bg-gray-300 mb-20" />
+
+          {/* レベル別到達目標 */}
+          <div className="mb-20">
+            <h2 className="text-2xl md:text-3xl font-bold mb-8 text-gray-900">レベル別到達目標</h2>
+            
+            <div className="overflow-x-auto">
+              <table className="w-full border-collapse">
+                <thead>
+                  <tr className="bg-gray-100">
+                    <th className="border border-gray-300 px-4 py-3 text-left font-bold text-gray-800 w-24">CEFR</th>
+                    <th className="border border-gray-300 px-4 py-3 text-left font-bold text-gray-800 w-24">KCP</th>
+                    <th className="border border-gray-300 px-4 py-3 text-left font-bold text-gray-800">到達目標</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {/* A1 */}
+                  <tr>
+                    <td className="border border-gray-300 px-4 py-3 font-semibold text-lg">🟢A1</td>
+                    <td className="border border-gray-300 px-4 py-3 font-semibold">Lv.1</td>
+                    <td className="border border-gray-300 px-4 py-3 text-gray-700">日常生活の基本的な場面において、情報の受信・発信ができる。</td>
+                  </tr>
+                  
+                  {/* A2 */}
+                  <tr>
+                    <td className="border border-gray-300 px-4 py-3 font-semibold text-lg">🟢A2</td>
+                    <td className="border border-gray-300 px-4 py-3 font-semibold">Lv.2</td>
+                    <td className="border border-gray-300 px-4 py-3 text-gray-700">身近な話題について、ある程度のまとまりのある内容の読み書きや情報交換ができる。</td>
+                  </tr>
+                  
+                  {/* B1 */}
+                  <tr>
+                    <td className="border border-gray-300 px-4 py-3 font-semibold text-lg">🟡B1</td>
+                    <td className="border border-gray-300 px-4 py-3">
+                      <div className="font-semibold">Lv.3</div>
+                      <div className="font-semibold">Lv.4</div>
+                    </td>
+                    <td className="border border-gray-300 px-4 py-3 text-gray-700">
+                      <div className="mb-3">自分の意見や考えを理由や根拠とともに発信したり、周囲から必要な情報を得たりすることができる。</div>
+                      <div>社会的な事柄に関して、必要なデータを入手し、整理したうえで説明・発表ができる。</div>
+                    </td>
+                  </tr>
+                  
+                  {/* B2 */}
+                  <tr>
+                    <td className="border border-gray-300 px-4 py-3 font-semibold text-lg">🟠B2</td>
+                    <td className="border border-gray-300 px-4 py-3">
+                      <div className="font-semibold">Lv.5</div>
+                      <div className="font-semibold">Lv.6</div>
+                    </td>
+                    <td className="border border-gray-300 px-4 py-3 text-gray-700">
+                      <div className="mb-3">社会性を帯びた文章を理解したり、構成力のある文章を書いたり発表をしたりすることができる。</div>
+                      <div>自分の専門分野について、自分で調べて論理的な文章が書ける。</div>
+                    </td>
+                  </tr>
+                  
+                  {/* C1 */}
+                  <tr>
+                    <td className="border border-gray-300 px-4 py-3 font-semibold text-lg">🟣C1</td>
+                    <td className="border border-gray-300 px-4 py-3">
+                      <div className="font-semibold">Lv.7</div>
+                      <div className="font-semibold">Lv.8</div>
+                    </td>
+                    <td className="border border-gray-300 px-4 py-3 text-gray-700">
+                      <div className="mb-3">新聞記事をはじめとする社会的な内容の文章を読みこなし、それについての議論ができる。</div>
+                      <div>新聞記事をはじめとする論説文を自由に読みこなし、関連する情報も加味して自分の意見を構成し議論できる。</div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
 
