@@ -1,0 +1,350 @@
+"use client"
+
+import { useState, useEffect, useRef } from "react"
+import Image from "next/image"
+
+const scheduleItems = [
+  {
+    month: "入学式",
+    description: "入学式",
+    image: "https://weavus-group.com/kcp/wp-content/uploads/2025/07/ffda5a2791a8f8bb0124fe176c06c924-scaled.jpg",
+    fullWidth: true
+  },
+  {
+    month: "4月",
+    description: "お花見",
+    image: "https://weavus-group.com/kcp/wp-content/uploads/2025/07/22717db41feca533263134125f8f0633.jpg"
+  },
+  {
+    month: "5月",
+    description: "端午の節句、中間試験、課外授業",
+    image: "https://weavus-group.com/kcp/wp-content/uploads/2025/11/de8141bf959b20d35dc3dbad61c2d58f-edited-1-scaled.jpg"
+  },
+  {
+    month: "6月",
+    description: "防犯講習、大学‧大学院進学フェア、第一回EJU、期末試験",
+    image: "https://weavus-group.com/kcp/wp-content/uploads/2026/02/6月大学進学フェア-3-scaled.png"
+  },
+  {
+    month: "7月",
+    description: "七夕、第一回JLPT、課外授業",
+    image: "https://weavus-group.com/kcp/wp-content/uploads/2026/02/7月コトバデー-1-scaled.jpg"
+  },
+  {
+    month: "8月",
+    description: "中間試験、夏休み、専門学校進学フェア",
+    image: "https://weavus-group.com/kcp/wp-content/uploads/2026/02/8月専門学校進学フェア-rotated.jpeg"
+  },
+  {
+    month: "9月",
+    description: "避難訓練、期末試験",
+    image: "https://weavus-group.com/kcp/wp-content/uploads/2026/02/9月______.jpg"
+  },
+  {
+    month: "10月",
+    description: "健康診断、課外授業",
+    image: "https://weavus-group.com/kcp/wp-content/uploads/2026/02/10月バーベキュー-scaled.jpg"
+  },
+  {
+    month: "11月",
+    description: "第二回EJU、中間試験",
+    image: "https://weavus-group.com/kcp/wp-content/uploads/2026/02/11月.jpg"
+  },
+  {
+    month: "12月",
+    description: "第二回JLPT、期末試験",
+    image: "https://weavus-group.com/kcp/wp-content/uploads/2026/02/12月-scaled.jpg"
+  },
+  {
+    month: "1月",
+    description: "成人を祝う会",
+    image: "https://weavus-group.com/kcp/wp-content/uploads/2026/02/1月課外授業（成人を祝う会に、課外授業を追記してください-scaled-e1772175060300.jpg"
+  },
+  {
+    month: "2月",
+    description: "節分、中間試験、卒業認定試験",
+    image: "https://weavus-group.com/kcp/wp-content/uploads/2026/02/2月節分-e1772175488544.jpg"
+  },
+  {
+    month: "3月",
+    description: "ひな祭り、卒業式、期末試験",
+    image: "https://weavus-group.com/kcp/wp-content/uploads/2026/02/3月卒業式-1-scaled.jpg"
+  }
+]
+
+const clubActivities = [
+  {
+    name: "演劇部",
+    description: "KCPオリジナル劇で、日本語の表現力をアップ!",
+    image: "https://weavus-group.com/kcp/wp-content/uploads/2026/02/演劇部.jpg"
+  },
+  {
+    name: "琴クラブ",
+    description: "伝統楽器を学びながら、音楽を楽しみましょう。",
+    image: "https://weavus-group.com/kcp/wp-content/uploads/2026/02/琴クラブ.jpg"
+  },
+  {
+    name: "新聞部",
+    description: "取材から記事作成‧デザインまで協力し合って作成します。",
+    image: "https://weavus-group.com/kcp/wp-content/uploads/2026/02/新聞部-1-scaled.jpg"
+  },
+  {
+    name: "マンガ‧アニメクラブ",
+    description: "好きな作品を日本語で熱く語り合いましょう。",
+    image: "https://weavus-group.com/kcp/wp-content/uploads/2026/02/マンガ‧アニメクラブ-1-scaled.jpg"
+  },
+  {
+    name: "茶道部",
+    description: "お茶の点て方をお稽古し、日本文化とマナーを学びます。",
+    image: "https://weavus-group.com/kcp/wp-content/uploads/2026/02/茶道クラブ-1-scaled.jpg"
+  },
+  {
+    name: "読書会‧読書クラブ",
+    description: "中上級‧初級に分かれて、レベルにあった本を楽しみます。",
+    image: "https://weavus-group.com/kcp/wp-content/uploads/2026/02/読書クラブ_2-1-scaled.jpg"
+  }
+]
+
+const stationTabs = [
+  {
+    id: "marunouchi",
+    name: "東京メトロ丸ノ内線",
+    content: "②【四谷３丁目駅】（M11）2番出口より徒歩12分"
+  },
+  {
+    id: "fukutoshin",
+    name: "東京メトロ副都心線",
+    content: "②【四谷３丁目駅】（M11）2番出口より徒歩12分"
+  },
+  {
+    id: "shinjuku",
+    name: "都営新宿線",
+    content: "②【曙橋駅】（S03）C4番出口より徒歩11分"
+  }
+]
+
+export function SchoolLifePageContent() {
+  const [activeTab, setActiveTab] = useState("marunouchi")
+  const sectionRef = useRef<HTMLElement>(null)
+  const [isVisible, setIsVisible] = useState(false)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true)
+        }
+      },
+      { threshold: 0.1 }
+    )
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current)
+    }
+
+    return () => observer.disconnect()
+  }, [])
+
+  return (
+    <section ref={sectionRef} className="py-16 bg-white">
+      <div className="container mx-auto px-4 md:px-6 max-w-6xl">
+        {/* Page Header */}
+        <div className={`text-center mb-12 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
+          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">学校生活</h1>
+        </div>
+
+        {/* Introduction Text */}
+        <div className={`text-center mb-16 ${isVisible ? "animate-fade-in-up animation-delay-100" : "opacity-0"}`}>
+          <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
+            KCPでの生活は、教室の中だけにとどまりません。年間を通じてのイベントやクラブ活動一多国籍の仲間とともに過ごす日々の中
+          </p>
+        </div>
+
+        {/* Divider */}
+        <div className="w-full h-px bg-gray-300 mb-16" />
+
+        {/* Annual Schedule Section */}
+        <div className={`mb-20 ${isVisible ? "animate-fade-in-up animation-delay-200" : "opacity-0"}`}>
+          <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
+            年間スケジュール
+          </h2>
+
+          {/* Grid Layout */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-gray-300 border border-gray-300">
+            {scheduleItems.map((item, index) => (
+              <div
+                key={index}
+                className={`relative bg-white overflow-hidden cursor-pointer group ${
+                  item.fullWidth ? "md:col-span-2 h-[400px]" : "h-[300px]"
+                }`}
+              >
+                <Image
+                  src={item.image}
+                  alt={item.month}
+                  fill
+                  className="object-cover transition-transform duration-400 ease-out group-hover:scale-105"
+                  unoptimized
+                />
+                
+                {/* Top overlay - month */}
+                <div className="absolute top-0 left-0 w-full bg-gray-100/85 text-center py-4 px-4 opacity-0 -translate-y-5 transition-all duration-400 ease-out group-hover:opacity-100 group-hover:translate-y-0 z-10">
+                  <span className="text-2xl font-bold text-gray-900">{item.month}</span>
+                </div>
+                
+                {/* Bottom overlay - description */}
+                <div className="absolute bottom-0 left-0 w-full bg-gray-100/85 text-center py-4 px-4 opacity-0 translate-y-5 transition-all duration-400 ease-out group-hover:opacity-100 group-hover:translate-y-0 z-10">
+                  <span className="text-sm text-gray-700">{item.description}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Note */}
+          <p className="mt-8 text-center text-gray-600">
+            <strong>*</strong> 課外授業は、BBQや運動会、コトバデー、バス旅行、小旅行などがあり、学期によって異なります。
+          </p>
+        </div>
+
+        {/* Divider */}
+        <div className="w-full h-px bg-gray-300 mb-16" />
+
+        {/* Club Activities Section */}
+        <div className="mb-20">
+          <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
+            クラブ活動
+          </h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-gray-300 border border-gray-300">
+            {clubActivities.map((club, index) => (
+              <div
+                key={index}
+                className="relative bg-white overflow-hidden cursor-pointer group h-[300px]"
+              >
+                <Image
+                  src={club.image}
+                  alt={club.name}
+                  fill
+                  className="object-cover transition-transform duration-400 ease-out group-hover:scale-105"
+                  unoptimized
+                />
+                
+                {/* Top overlay - name */}
+                <div className="absolute top-0 left-0 w-full bg-gray-100/85 text-center py-4 px-4 opacity-0 -translate-y-5 transition-all duration-400 ease-out group-hover:opacity-100 group-hover:translate-y-0 z-10">
+                  <span className="text-2xl font-bold text-gray-900">{club.name}</span>
+                </div>
+                
+                {/* Bottom overlay - description */}
+                <div className="absolute bottom-0 left-0 w-full bg-gray-100/85 text-center py-4 px-4 opacity-0 translate-y-5 transition-all duration-400 ease-out group-hover:opacity-100 group-hover:translate-y-0 z-10">
+                  <span className="text-sm text-gray-700">{club.description}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Divider */}
+        <div className="w-full h-px bg-gray-300 mb-16" />
+
+        {/* Video Section */}
+        <div className="mb-20">
+          <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
+            応援歌
+          </h2>
+          
+          <div className="max-w-4xl mx-auto">
+            <video
+              controls
+              preload="none"
+              className="w-full aspect-video rounded-lg shadow-lg"
+              playsInline
+            >
+              <source 
+                src="https://weavus-group.com/kcp/wp-content/uploads/2025/08/応援歌字幕明るいバージョン.webm" 
+                type="video/webm" 
+              />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </div>
+
+        {/* Divider */}
+        <div className="w-full h-px bg-gray-300 mb-16" />
+
+        {/* Access Section */}
+        <div className="mb-20">
+          <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
+            アクセス‧周辺環境
+          </h2>
+
+          <p className="text-center text-gray-700 mb-8">
+            <strong>新宿御苑前駅から徒歩3分、通学や買い物にも便利です。</strong><br />
+            <strong>周辺にはコンビニや飲食店だけでなく、新宿御苑や新宿の繁華街も近く、都心生活を満喫できます。</strong>
+          </p>
+
+          {/* Google Map */}
+          <div className="w-full h-[450px] bg-gray-100 rounded-lg overflow-hidden mb-8">
+            <iframe
+              src="https://www.google.com/maps?q=東京都新宿区新宿1-29-12&z=18&output=embed"
+              width="100%"
+              height="450"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="KCP地球市民日本語学校 所在地"
+            />
+          </div>
+
+          <div className="text-center text-gray-700 mb-12">
+            <p>学校法人KCP学園 KCP地球市民日本語学校</p>
+            <p>〒160-0022　東京都新宿区新宿1-29-12</p>
+            <p>連絡先：03-3356-2359 / Fax: 03-3356-2559</p>
+          </div>
+        </div>
+
+        {/* Divider */}
+        <div className="w-full h-px bg-gray-300 mb-16" />
+
+        {/* Nearest Station Section */}
+        <div>
+          <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
+            最寄り駅
+          </h2>
+
+          {/* Tabs */}
+          <div className="max-w-3xl mx-auto">
+            <div className="flex flex-col md:flex-row border border-gray-300 rounded-t-lg overflow-hidden">
+              {stationTabs.map((tab) => (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id)}
+                  className={`flex-1 py-4 px-4 text-center font-medium transition-colors border-b md:border-b-0 md:border-r last:border-r-0 last:border-b-0 ${
+                    activeTab === tab.id
+                      ? "bg-[#0085b2] text-white"
+                      : "bg-gray-50 text-gray-700 hover:bg-gray-100"
+                  }`}
+                >
+                  {tab.name}
+                </button>
+              ))}
+            </div>
+            
+            {/* Tab Content */}
+            <div className="p-8 bg-white border border-t-0 border-gray-300 rounded-b-lg">
+              {stationTabs.map((tab) => (
+                <div
+                  key={tab.id}
+                  className={`text-center text-gray-700 ${
+                    activeTab === tab.id ? "block" : "hidden"
+                  }`}
+                >
+                  <p className="text-lg">{tab.content}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
