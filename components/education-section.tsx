@@ -239,56 +239,6 @@ function ToggleableYearResults() {
     </div>
   )
 }
-  }
-
-  return (
-    <div className="border border-gray-300 rounded-lg overflow-hidden">
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="w-full bg-gradient-to-r from-gray-400 to-gray-500 hover:from-gray-500 hover:to-gray-600 px-6 py-4 text-white font-bold text-lg flex items-center justify-between transition"
-      >
-        <span>2022年 - 2019年の実績を表示</span>
-        <span className={`transform transition-transform ${isOpen ? "rotate-180" : ""}`}>
-          ▼
-        </span>
-      </button>
-
-      {isOpen && (
-        <div className="p-6 bg-gray-50">
-          <div className="space-y-8">
-            {Object.entries(pastYears).map(([year, data]) => (
-              <div key={year}>
-                <h4 className="font-bold text-gray-800 mb-4 text-lg">{year}年度</h4>
-                
-                <div className="mb-6">
-                  <h5 className="font-bold text-blue-900 mb-3">【国公立大学/大学院】</h5>
-                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
-                    {data.国公立.map((uni, idx) => (
-                      <div key={idx} className="p-2 bg-white rounded-lg border border-blue-300 text-center text-xs md:text-sm">
-                        <p className="text-gray-800 font-semibold">{uni}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <div>
-                  <h5 className="font-bold text-purple-900 mb-3">【私立大学/大学院】</h5>
-                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
-                    {data.私立.map((uni, idx) => (
-                      <div key={idx} className="p-2 bg-white rounded-lg border border-purple-300 text-center text-xs md:text-sm">
-                        <p className="text-gray-800 font-semibold">{uni}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
-    </div>
-  )
-}
 
 export function EducationSection() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -1046,7 +996,7 @@ export function EducationSection() {
                 <div className="p-6">
                   <p className="text-sm text-gray-600 mb-3 italic">「グローバル視点」</p>
                   <p className="text-gray-700 text-sm leading-relaxed mb-4">
-                    世界中から来た学生たちとの交流を通じて、異なる視点を学ぶことができました。KCPで身につけた日本語力と国際的な視野は、私の大学生活と将来のキャリアの大きな財産です。
+                    世界中から来た学生たちとの交流を通じて、異なる視点を学ぶことができました。KCPで身につけた日本語力と国際的な視野は、私の大学生活と将来のキャリアの大き���財産です。
                   </p>
                   <p className="font-semibold text-gray-800">Cさん</p>
                   <p className="text-sm text-gray-600">進学先：早稲田大学</p>
