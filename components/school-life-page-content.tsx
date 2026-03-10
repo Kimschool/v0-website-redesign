@@ -443,12 +443,12 @@ export function SchoolLifePageContent() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
                   {/* Line Logo */}
                   <div className="flex justify-center md:justify-start">
-                    <div className="w-32 h-32 bg-gray-50 rounded-lg p-4 flex items-center justify-center border border-gray-200">
+                    <div className="w-40 h-40 bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl p-6 flex items-center justify-center border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
                       <Image
                         src={tab.logo}
                         alt={tab.name}
-                        width={120}
-                        height={120}
+                        width={140}
+                        height={140}
                         className="object-contain"
                       />
                     </div>
