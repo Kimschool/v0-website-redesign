@@ -98,9 +98,14 @@ export function AdmissionSection() {
                     English・中文简体・中文繁体・한국어・Tiếng Việt
                   </p>
                 </div>
-                <button className="mt-6 w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-4 rounded-lg transition">
+                <a 
+                  href="https://weavus-group.com/kcp/%e9%a1%98%e6%9b%b8%e3%82%bb%e3%83%83%e3%83%88/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-block mt-6 w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-4 rounded-lg transition text-center"
+                >
                   願書をダウンロード
-                </button>
+                </a>
               </div>
 
               {/* Pamphlet */}
@@ -111,13 +116,17 @@ export function AdmissionSection() {
                 </p>
                 <div className="space-y-2">
                   <p className="text-gray-700">
-                    <span className="font-semibold">入手方法:</span><br />
-                    オンライン請求またはお問い合わせください
+                    <span className="font-semibold">ファイル形式:</span><br />
+                    PDF形式 (ダウンロード可能)
                   </p>
                 </div>
-                <button className="mt-6 w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-4 rounded-lg transition">
-                  パンフレットを請求
-                </button>
+                <a 
+                  href="https://weavus-group.com/kcp/wp-content/uploads/2026/02/KCP%E3%83%91%E3%83%B3%E3%83%95%E3%83%AC%E3%83%83%E3%83%88%E7%A2%BA%E5%AE%9A%E7%89%88.pdf" 
+                  download
+                  className="inline-block mt-6 w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-4 rounded-lg transition text-center"
+                >
+                  パンフレットをダウンロード
+                </a>
               </div>
             </div>
           </div>
