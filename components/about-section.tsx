@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from "react"
+import Image from "next/image"
 import { School, User } from "lucide-react"
 
 export function AboutSection() {
@@ -90,10 +91,13 @@ export function AboutSection() {
             {/* K C P Philosophy Image */}
             <div className="mb-12 flex justify-center">
               <div className="w-full max-w-2xl">
-                <img
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-2DeWPThTEcXAVbJS1rKPFzba4QvNFr.png"
+                <Image
+                  src="/images/kcp-philosophy.png"
                   alt="KCP Philosophy - Knowledge, Coexistence, Peace"
+                  width={600}
+                  height={300}
                   className="w-full h-auto"
+                  priority={false}
                 />
               </div>
             </div>
@@ -245,7 +249,7 @@ export function AboutSection() {
               <p>
                 KCPの個性豊かで経験豊富なベテラン教師・事務職員たち、<br />
                 入学した皆さんが充実した留学生活を送り、<br />
-                夢を実現することが、私たちの願いであり喜びでもあります。
+                夢を実現することが、私たちの願いであり喜びでも��ります。
               </p>
               <p>
                 全職員が連携して、ときに優しくときに厳しく将来を見据えた指導を、<br />
