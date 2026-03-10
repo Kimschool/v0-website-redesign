@@ -1148,8 +1148,8 @@ export function EducationSection() {
                 </div>
               </div>
               <h2 className="text-2xl md:text-3xl font-bold mb-12 text-gray-900">2024年8月JPET 日本全国一位</h2>
-              <h2 className="text-2xl md:text-3xl font-bold mb-12 text-gray-900">
-                後藤新平・新渡戸稲造記念 第26回全国高校生・留学生作文コンクール　2024 留学生の部奨励賞</h2>
+              <h6 className="text-2xl md:text-3xl font-bold mb-12 text-gray-900">
+                後藤新平・新渡戸稲造記念 第26回全国高校生・留学生作文コンクール　2024 留学生の部奨励賞</h6>
               {/* 卒業生8 - 张 首馨さん */}
               <div className="border border-gray-300 rounded-lg overflow-hidden">
                 <div className="grid md:grid-cols-3 gap-0">
