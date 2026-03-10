@@ -450,7 +450,7 @@ export function EducationSection() {
 
             <div className="grid md:grid-cols-3 gap-6 mb-6">
               {[
-                { title: "文字・表記・漢字・語彙", content: "ひらがな・カタカナの手書きから始め、漢字の意味を把握することから、専門書に使われる語彙を理解し、日本独特の日本の文化に根ざした言い回し、慣用表現、コロケーションを使い、自分の言いたいことが表現できるようになることを目指す。" },
+                { title: "文字・表記・漢字・語彙", content: "ひらがな・カタカナの手書きから始め、���字の意味を把握することから、専門書に使われる語彙を理解し、日本独特の日本の文化に根ざした言い回し、慣用表現、コロケーションを使い、自分の言いたいことが表現できるようになることを目指す。" },
                 { title: "聴解", content: "短い会話の聞き取りから始め、ラジオドラマや大学生向け講義の要点理解まで練習していく。一般的な話題であれば、あらゆる音声情報を聞いて概要をまとめられ、講義や議論の要点が理解できるようになることを目指す。" },
                 { title: "読解", content: "読解テキストの内容を理解し、筆者の主張や考えに対して自分なりの意見を持ち、グループ内で意見交換する。最終的には、文学、エッセイ、新聞、論説文、専門書など長く複雑な文章でも、慣用表現や略語がまざっていても文脈から理解できるようになることを目指す。" },
               ].map((item, index) => (
@@ -950,14 +950,184 @@ export function EducationSection() {
           <div>
             <h2 className="text-2xl md:text-3xl font-bold mb-12 text-gray-900">卒業生の声</h2>
 
-            <div className="grid md:grid-cols-3 gap-8">
-              {/* 卒業生1 */}
-              <div className="bg-white rounded-lg border border-gray-200 overflow-hidden hover:shadow-lg transition">
-                <div className="bg-gray-200 h-64 flex items-center justify-center text-gray-400">
-                  <div className="text-center">
-                    <p className="text-sm">卒業生の写真</p>
-                    <p className="text-xs">/images/graduate-1.jpg</p>
+            <div className="space-y-16">
+              {/* 卒業生1 - 黄 厦さん */}
+              <div className="border border-gray-300 rounded-lg overflow-hidden">
+                <div className="grid md:grid-cols-3 gap-0">
+                  {/* 画像 */}
+                  <div className="relative h-96 md:col-span-1 overflow-hidden">
+                    <div className="bg-gray-300 h-full flex items-center justify-center text-gray-600 text-center p-4">
+                      <div>
+                        <p className="text-sm font-semibold">卒業生の写真</p>
+                        <p className="text-xs">黄 厦さん</p>
+                        <p className="text-xs">/images/graduate-huang.jpg</p>
+                      </div>
+                    </div>
                   </div>
+                  {/* コンテンツ */}
+                  <div className="md:col-span-2 p-8 bg-white">
+                    <div className="mb-6">
+                      <h3 className="text-xl font-bold text-gray-900 mb-2">黄 厦さん / 中国出身</h3>
+                      <p className="text-gray-700 font-semibold">進学先：東京大学大学院　農学生命科学研究科</p>
+                      <p className="text-gray-700 font-semibold">現  職： P&Gジャパン</p>
+                    </div>
+                    <div className="space-y-4 text-gray-700 leading-relaxed text-sm">
+                      <p>KCPで過ごした時間は、私にとって日本語学習以上の意味を持つ、大切な経験でした。勉強だけでなく、人としての姿勢や考え方を学べた場所だと感じています。</p>
+                      <p>友達と色紙でおせち料理を作ったり、運動会でチーム一丸となって走ったり、ボランティア活動で放課後に子ども食堂を手伝ったり、浴衣の着付け教室に参加したり――その一つひとつが、今でも昨日のことのように思い出されます。</p>
+                      <p>先生方も経験豊富で、いつもいろいろな面白い教え方をしてくれました。気がついたら、知識が自然と頭に入ってきていた、そんな感覚です。</p>
+                      <p>KCPは、私にとって堅苦しい学校というより、実家のような場所でした（笑）。</p>
+                      <p>KCPで学んだことは、大きく分けて二つあります。一つは、場面に応じた正しい日本語の使い分け、もう一つは日本のカルチャーです。</p>
+                      <p>一つ目の日本語についてですが、特に書き言葉と話し言葉の違いを学びました。この二つを間違えて使うと、相手にあまりよくない印象を与えてしまうことがあります。私はこの二つを意識して使い分けてきたことで、学業や仕事、日常生活でも誤解なく自分の考えを伝えられるようになりました。</p>
+                      <p>もう一つは、日本のカルチャーです。日本社会では、ルール以上に「空気を共有できるか」が大切にされますが、KCPでその感覚を学んだことで、日本人の輪にも自然に溶け込めたと感じています。こうした経験は、大学生活を経て社会に出た今も、私の大きな支えになっています。</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* 卒業生2 - Patrick Grainger さん */}
+              <div className="border border-gray-300 rounded-lg overflow-hidden">
+                <div className="grid md:grid-cols-3 gap-0">
+                  {/* 画像 */}
+                  <div className="relative h-96 md:col-span-1 overflow-hidden">
+                    <div className="bg-gray-300 h-full flex items-center justify-center text-gray-600 text-center p-4">
+                      <div>
+                        <p className="text-sm font-semibold">卒業生の写真</p>
+                        <p className="text-xs">Patrick Grainger さん</p>
+                        <p className="text-xs">/images/graduate-patrick.jpg</p>
+                      </div>
+                    </div>
+                  </div>
+                  {/* コンテンツ */}
+                  <div className="md:col-span-2 p-8 bg-white">
+                    <div className="mb-6">
+                      <h3 className="text-xl font-bold text-gray-900 mb-2">Patrick Grainger さん / アメリカ出身</h3>
+                      <p className="text-gray-700 font-semibold">現  職： 東京防災救急協会</p>
+                    </div>
+                    <div className="space-y-4 text-gray-700 leading-relaxed text-sm">
+                      <p>大学を卒業した後、さらに日本語の力をしっかりと伸ばしたいと考え、KCP地球市民日本語学校に入学いたしました。現在は、在日外国人を対象とした防災教育の仕事に携わっています。日本で暮らす外国人の方々が安心して生活できるよう支援するこの仕事は、私にとって大きなやりがいとなっています。</p>
+                      <p>KCPでは、アルバイト先を紹介していただいたことをきっかけに、面接練習や履歴書の作成などを先生方と一緒に進めさせていただきました。また、アルバイト先の複雑な労働条件や契約内容についても、分かりやすく言い換えて丁寧に説明していただき、大変心強く感じました。そのアルバイト先で最終的に正社員として採用されることになりましたので、私の日本でのキャリアはKCPで始まったと言っても過言ではありません。</p>
+                      <p>打ち合わせや会議、ビジネスメールなど、実際のビジネスシーンで求められる敬語表現や言い回しをKCPで徹底的に身につけたことで、社内外を問わず、相手や場面に応じた適切なコミュニケーションが取れるようになりました。特に、日本語には似ているようでニュアンスが大きく異なる表現が多くありますが、それらを正確に識別し、状況に合わせて使い分けられるようになったことは、仕事を進める上で大きな強みになっています。</p>
+                      <p>こうした実践的な日本語力をKCPで基礎からしっかり学べたおかげで、職場でも自信を持ってやり取りができるようになりました。少し細やかな自慢ではありますが、その成果として、周囲から日本育ちだと誤って思われたこともあり、自分自身の成長を実感するきっかけにもなっています。</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* 卒業生3 - Lee Yit Chang さん */}
+              <div className="border border-gray-300 rounded-lg overflow-hidden">
+                <div className="grid md:grid-cols-3 gap-0">
+                  {/* 画像 */}
+                  <div className="relative h-96 md:col-span-1 overflow-hidden">
+                    <div className="bg-gray-300 h-full flex items-center justify-center text-gray-600 text-center p-4">
+                      <div>
+                        <p className="text-sm font-semibold">卒業生の写真</p>
+                        <p className="text-xs">Lee Yit Chang さん</p>
+                        <p className="text-xs">/images/graduate-lee.jpg</p>
+                      </div>
+                    </div>
+                  </div>
+                  {/* コンテンツ */}
+                  <div className="md:col-span-2 p-8 bg-white">
+                    <div className="mb-6">
+                      <h3 className="text-xl font-bold text-gray-900 mb-2">Lee Yit Chang さん / マレーシア出身</h3>
+                      <p className="text-gray-700 font-semibold">進学先：早稲田大学 文化構想学部文化構想学科</p>
+                    </div>
+                    <div className="space-y-4 text-gray-700 leading-relaxed text-sm">
+                      <p>私が来日した理由は、英語圏とは異なる文化に強い興味があったからです。私はオーストラリアで育ったため、日本の価値観や生活スタイル、言語などに惹かれ、「実際に日本で生活しながら学んでみたい」と思い来日しました。現在は、日本で社会人として働いています。</p>
+                      <p>KCPの一番の良さは、先生方がとても親身になってくれるところだと思います。勉強のことだけでなく、悩み事や不安なことも丁寧に聞いてくれて、とても心強かったです。</p>
+                      <p>また、KCPの授業は、先生が教えてくれる内容を一つ一つコツコツ理解していくことで、少しずつ日本語が確実に上達していく点が特徴だと思います。KCPでの日本語学習は、マラソンのようなイメージでした。一瞬で上達するのではなく、正しいペースで続けることで、着実に力がついていく感覚がありました。</p>
+                      <p>KCPで日本語を勉強したおかげで、当初の目標だった大学に合格することができました。また、KCPにはさまざまな国から来た学生がいて、それぞれ異なる背景や価値観を持つ仲間と一緒に学べたことは、自分の視野を大きく広げてくれました。</p>
+                      <p>日本語だけでなく、多様な視点を学べたことも、今の自分にとって非常に大きな財産になっています。</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* 卒業生4 - 赵 瑞霄さん */}
+              <div className="border border-gray-300 rounded-lg overflow-hidden">
+                <div className="grid md:grid-cols-3 gap-0">
+                  {/* 画像 */}
+                  <div className="relative h-96 md:col-span-1 overflow-hidden">
+                    <div className="bg-gray-300 h-full flex items-center justify-center text-gray-600 text-center p-4">
+                      <div>
+                        <p className="text-sm font-semibold">卒業生の写真</p>
+                        <p className="text-xs">赵 瑞霄さん</p>
+                        <p className="text-xs">/images/graduate-zhao.jpg</p>
+                      </div>
+                    </div>
+                  </div>
+                  {/* コンテンツ */}
+                  <div className="md:col-span-2 p-8 bg-white">
+                    <div className="mb-6">
+                      <h3 className="text-xl font-bold text-gray-900 mb-2">赵 瑞霄さん / 中国出身</h3>
+                      <p className="text-gray-700 font-semibold">進学先：東北大学　農学部</p>
+                    </div>
+                    <div className="space-y-4 text-gray-700 leading-relaxed text-sm">
+                      <p>KCPの先生方は個性豊かですが、みんな学生一人ひとりを大切にしてくださっています。学習面だけでなく、生活の相談にものってくださって、安心して勉強できる環境だと感じています。</p>
+                      <p>また、毎学期に課外活動があって、クラス以外の場面で先生やクラスメートの新たな一面を見ることができます。特に印象に残っているのはBBQイベントです。先生と学生が一緒にバーベキューを楽しみ、普段は厳しそうな校長先生も頑張って焼いて、とても和やかな雰囲気でした。</p>
+                      <p>これから留学を考えている方には、目標を持ち、努力を続けること、そして困ったときは一人で抱え込まず、周囲に相談することの大切さを伝えたいです。日本留学は決して簡単ではありませんが、前向きな気持ちがあれば乗り越えられると思います。</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* 卒業生5 - 昔 聖原さん */}
+              <div className="border border-gray-300 rounded-lg overflow-hidden">
+                <div className="grid md:grid-cols-3 gap-0">
+                  {/* 画像 */}
+                  <div className="relative h-96 md:col-span-1 overflow-hidden">
+                    <div className="bg-gray-300 h-full flex items-center justify center text-gray-600 text-center p-4">
+                      <div>
+                        <p className="text-sm font-semibold">卒業生の写真</p>
+                        <p className="text-xs">昔 聖原さん</p>
+                        <p className="text-xs">/images/graduate-sungwon.jpg</p>
+                      </div>
+                    </div>
+                  </div>
+                  {/* コンテンツ */}
+                  <div className="md:col-span-2 p-8 bg-white">
+                    <div className="mb-6">
+                      <h3 className="text-xl font-bold text-gray-900 mb-2">昔 聖原さん / 韓国出身</h3>
+                      <p className="text-gray-700 font-semibold">進学先：法政大学 人間環境学部人間環境学科（指定校推薦）</p>
+                    </div>
+                    <div className="space-y-4 text-gray-700 leading-relaxed text-sm">
+                      <p>「勉強をして大学に入る」という一般的な受験のプロセスであれば、正直どこでも学べると思います。しかしKCPで私が学んだのは、日本語だけではなく、「態度」でした。KCPには、日本語の指導だけでなく、学生一人ひとりを親身になって支えてくださる先生方がいます。在学中はもちろん、卒業後も日本で日本社会の中で活躍できるよう、さまざまなアドバイスをしてくださいました。</p>
+                      <p>そのアドバイスは、ときに小言や説教、あるいは叱られているように感じて、正直「うるさいな……」と思ってしまうこともあったかもしれません。それでも、そうした言葉の一つひとつは、学生を大切に思う先生方の優しい気持ちから生まれたものだったと、今では感じています。こうした学びは、今に至るまで私にとって大きな宝となっています。</p>
+                      <p>正直に言うと、私は語学の才能に恵まれているとは思いません。それでも、思うようにいかない時があっても、KCPで学んだ勤勉で誠実な姿勢を大切にし、日本語はもちろん、大学での授業や就職活動にも生かせる力を磨いてきました。決して胸を張って自慢できるレベルではないかもしれませんが、来日当初の自分を振り返ると、確かな成長を感じます。この経験を原動力に、これからも目の前に立ちはだかる壁を乗り越えていきたいと思います。</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* 卒業生6 - 朱 瑞婷さん */}
+              <div className="border border-gray-300 rounded-lg overflow-hidden">
+                <div className="grid md:grid-cols-3 gap-0">
+                  {/* 画像 */}
+                  <div className="relative h-96 md:col-span-1 overflow-hidden">
+                    <div className="bg-gray-300 h-full flex items-center justify-center text-gray-600 text-center p-4">
+                      <div>
+                        <p className="text-sm font-semibold">卒業生の写真</p>
+                        <p className="text-xs">朱 瑞婷さん</p>
+                        <p className="text-xs">/images/graduate-zhu.jpg</p>
+                      </div>
+                    </div>
+                  </div>
+                  {/* コンテンツ */}
+                  <div className="md:col-span-2 p-8 bg-white">
+                    <div className="mb-6">
+                      <h3 className="text-xl font-bold text-gray-900 mb-2">朱 瑞婷さん / 中国出身</h3>
+                      <p className="text-gray-700 font-semibold">進学先：多摩美術大学 情報デザイン学科情報デザインコース</p>
+                    </div>
+                    <div className="space-y-4 text-gray-700 leading-relaxed text-sm">
+                      <p>KCPでの学習経験は、私にとって非常に実り多いものでした。中でも最も大きく成長したと感じているのは、作文力です。毎週行われる体系的な作文指導と、先生方の丁寧な添削のおかげで、論文を書く力が大きく向上しました。この経験は、その後の大学入試においても大きな助けとなりました。</p>
+                      <p>また、勉強だけでなく、KCPの課外活動にも積極的に参加しました。演劇部の一員として、教科書だけでは学べない日本語表現を数多く身につけることができ、同じ志を持つ仲間とも出会うことができました。卒業後も、私たちは今なお連絡を取り合っています。</p>
+                      <p>こうした経験から、留学生活ではぜひ異なる文化的背景を持つ仲間と積極的に交流することをおすすめします。視野が広がるだけでなく、物事をさまざまな立場や視点から考えられるようになり、何よりもかけがえのない友情を得ることができます。</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
                 </div>
                 <div className="p-6">
                   <p className="text-sm text-gray-600 mb-3 italic">「KCPでの経験」</p>
