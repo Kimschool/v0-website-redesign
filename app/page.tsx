@@ -1,5 +1,6 @@
 import { Header } from "@/components/header"
 import { HeroSection } from "@/components/hero-section"
+import { IntroCarouselSection } from "@/components/intro-carousel-section"
 import { ReasonsSection } from "@/components/reasons-section"
 import { FeaturesSection } from "@/components/features-section"
 import { TestimonialsSection } from "@/components/testimonials-section"
@@ -16,6 +17,7 @@ export default function Home() {
       <Header />
       <main>
         <HeroSection />
+        <IntroCarouselSection />
         <ReasonsSection />
         <FeaturesSection />
         <TestimonialsSection />
