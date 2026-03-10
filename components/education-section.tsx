@@ -977,7 +977,7 @@ export function EducationSection() {
                       <p>先生方も経験豊富で、いつもいろいろな面白い教え方をしてくれました。気がついたら、知識が自然と頭に入ってきていた、そんな感覚です。</p>
                       <p>KCPは、私にとって堅苦しい学校というより、実家のような場所でした（笑）。</p>
                       <p>KCPで学んだことは、大きく分けて二つありま��。一つは、場面に応じた正しい日本語の使い分け、もう一つは日本のカルチャーです。</p>
-                      <p>一つ目の日本語についてですが、特に書き言葉と話し言葉の違いを学びました。この二つを間違えて使うと、相手にあまりよくない印象を与えてしまうことがあります。私はこの二つを意識して使い分�����てきたことで、学業や仕事、日常生活でも誤解なく自分の考えを伝えられるようになりました。</p>
+                      <p>一つ目の日本語についてですが、特に書き言葉と話し言葉の違いを学びました。この二つを間違えて使うと、相手にあまりよくない印象を与えてしまうことがあります。私はこの二つを意識して使���分�����てきたことで、学業や仕事、日常生活でも誤解なく自分の考えを伝えられるようになりました。</p>
                       <p>もう一つは、日本のカルチャーです。日本社会では、ルール以上に「空気を共有できるか」が大切にされますが、KCPでその感覚を学んだことで、日本人の輪にも自然に溶け込めたと感じています。こうした経験は、大学生活を経て社会に出た今も、私の大きな支えになっています。</p>
                     </div>
                   </div>
@@ -1126,74 +1126,32 @@ export function EducationSection() {
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-                </div>
-                <div className="p-6">
-                  <p className="text-sm text-gray-600 mb-3 italic">「KCPでの経験」</p>
-                  <p className="text-gray-700 text-sm leading-relaxed mb-4">
-                    KCPで過ごした時間は、私にとって日本語学習以上の意味を持つ、大切な経験でした。
-                    勉強だけでなく、人としての姿勢や考え方を���べた場所だと感じています。
-                  </p>
-                  <p className="text-gray-700 text-sm leading-relaxed mb-4">
-                    友達と色紙でおせち料理を作ったり、運動会でチーム一丸となって走ったり、ボランティア活動で放課後に子ども食堂を手伝ったり、浴衣の着付け教室に参加したり――その一つひとつが、今でも昨日のことのように思い出されます。
-                  </p>
-                  <p className="text-gray-700 text-sm leading-relaxed mb-4">
-                    先生方も経験豊富で、いつもいろいろな面白い教え方をしてくれました。気がついたら、知識が自然と頭に入ってきていた、そんな感覚です。
-                    KCPは、私にとって堅苦しい学校というより、実家のような場所でした（笑）。
-                  </p>
-                  <p className="text-gray-700 text-sm leading-relaxed mb-4">
-                    KCPで学んだことは、大きく分けて二つあります。
-                    一つは、場面に応じた正しい日本語の使い分け、もう一つは日本のカルチャーです。
-                  </p>
-                  <p className="text-gray-700 text-sm leading-relaxed mb-4">
-                    一つ目の日本語についてですが、特に書き言葉と話し言葉の違いを学びました。
-                    この二つを間違えて使うと、相手にあまりよくない印象を与えてしまうことがあります。
-                    私はこの二つを意識して使い分けてきたことで、学業や仕事、日常生活でも誤解なく自分の考えを伝えられるようになりました。
-                  </p>
-                  <p className="text-gray-700 text-sm leading-relaxed mb-4">
-                    もう一つは、日本のカルチャーです。
-                    日本社会では、ルール以上に「空気を共有できるか」が大切にされますが、KCPでその感覚を学んだことで、日本人の輪にも自然に溶け込めたと感じています。
-                    こうした経験は、大学生活を経て社会に出た今も、私の大きな支えになっています。
-                  </p>
-                  <p className="font-semibold text-gray-800">黄 厦さん / 中国出身</p>
-                  <p className="text-sm text-gray-600">進学先：東京大学大学院　農学生命科学研究科</p>
-                  <p className="text-sm text-gray-600">現  職： P&Gジャパン</p>
-                </div>
-              </div>
 
-              {/* 卒業生2 */}
-              <div className="bg-white rounded-lg border border-gray-200 overflow-hidden hover:shadow-lg transition">
-                <div className="bg-gray-200 h-64 flex items-center justify-center text-gray-400">
-                  <div className="text-center">
-                    <p className="text-sm">卒業生の写真</p>
-                    <p className="text-xs">/images/graduate-2.jpg</p>
+              {/* 卒業生7 - 戚笑さん */}
+              <div className="border border-gray-300 rounded-lg overflow-hidden">
+                <div className="grid md:grid-cols-3 gap-0">
+                  {/* 画像 */}
+                  <div className="relative h-96 md:col-span-1 overflow-hidden">
+                    <div className="bg-gray-300 h-full flex items-center justify-center text-gray-600 text-center p-4">
+                      <div>
+                        <p className="text-sm font-semibold">卒業生の写真</p>
+                        <p className="text-xs">戚笑さん</p>
+                        <p className="text-xs">/images/graduate-qixiao.jpg</p>
+                      </div>
+                    </div>
                   </div>
-                </div>
-                <div className="p-6">
-                  <p className="text-sm text-gray-600 mb-3 italic">「夢の実現」</p>
-                  <p className="text-gray-700 text-sm leading-relaxed mb-4">
-                    進学指導が充実していて、志望校選びから試験対策まで、親身にサポートしてくださいました。難しい時期もありましたが、KCPのスタッフと仲間がいたから頑張ることができました。
-                  </p>
-                  <p className="font-semibold text-gray-800">Bさん</p>
-                  <p className="text-sm text-gray-600">進学先：京都大学</p>
-                </div>
-              </div>
-
-              {/* 卒業生3 */}
-              <div className="bg-white rounded-lg border border-gray-200 overflow-hidden hover:shadow-lg transition">
-                <div className="bg-gray-200 h-64 flex items-center justify-center text-gray-400">
-                  <div className="text-center">
-                    <p className="text-sm">卒業生の写真</p>
-                    <p className="text-xs">/images/graduate-3.jpg</p>
+                  {/* コンテンツ */}
+                  <div className="md:col-span-2 p-8 bg-white">
+                    <div className="mb-6">
+                      <h3 className="text-xl font-bold text-gray-900 mb-2">戚笑さん / 中国出身</h3>
+                      <p className="text-gray-700 font-semibold">進学先：静岡文化芸術大学大学院 デザイン研究科</p>
+                    </div>
+                    <div className="space-y-4 text-gray-700 leading-relaxed text-sm">
+                      <p>KCPでの二年間は、私にとって人生の分岐点でした。入学当初、私の日本語はほとんどゼロに近く、日常会話もままならない状態でした。しかし、先生方の親身な指導と、実践的なカリキュラムのおかげで、卒業時にはN1に合格し、大学院の研究もスムーズに進められるようになりました。</p>
+                      <p>特に印象に残っているのは、少人数制のクラスです。一人ひとりの弱点に合わせた指導をしていただき、発音の矯正から敬語の使い分けまで、細かな部分まで丁寧に教えていただきました。また、課外活動や文化体験を通じて、教科書だけでは学べない日本の文化や習慣を肌で感じることができました。</p>
+                      <p>KCPで出会った仲間たちは、今でも大切な存在です。異なる国から来た学生同士が互いに支え合い、時には競い合いながら成長できたことは、かけがえのない財産です。これから留学を考えている方には、ぜひKCPでの学びをお勧めします。</p>
+                    </div>
                   </div>
-                </div>
-                <div className="p-6">
-                  <p className="text-sm text-gray-600 mb-3 italic">「グローバル視点」</p>
-                  <p className="text-gray-700 text-sm leading-relaxed mb-4">
-                    世界中から来た学生たちとの交流を通じて、異なる視点を学ぶことができました。KCPで身につけた日本語力と国際的な視野は、私の大学生活と将来のキャリアの大き���財産です。
-                  </p>
-                  <p className="text-sm text-gray-600">進学先：早稲田大学</p>
                 </div>
               </div>
             </div>
