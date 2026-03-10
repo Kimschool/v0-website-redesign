@@ -543,22 +543,49 @@ export function SchoolLifePageContent() {
         {/* Video Section */}
         <div className="mb-20">
           <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
-            応援歌
+            校歌・応援歌
           </h2>
 
-          <div className="max-w-4xl mx-auto">
-            <video
-              controls
-              preload="none"
-              className="w-full aspect-video rounded-lg shadow-lg"
-              playsInline
-            >
-              <source
-                src="https://weavus-group.com/kcp/wp-content/uploads/2025/08/応援歌字幕明るいバージョン.webm"
-                type="video/webm"
-              />
-              Your browser does not support the video tag.
-            </video>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+            {/* School Song Video */}
+            <div className="flex flex-col">
+              <h3 className="text-lg font-bold text-gray-900 mb-4 text-center">
+                校歌「今ここに」
+              </h3>
+              <video
+                controls
+                preload="none"
+                className="w-full aspect-video rounded-lg shadow-lg mb-4"
+                playsInline
+              >
+                <source
+                  src="https://weavus-group.com/kcp/wp-content/uploads/2025/08/校歌字幕.webm"
+                  type="video/webm"
+                />
+                Your browser does not support the video tag.
+              </video>
+              <p className="text-center text-gray-600 font-medium">「今ここに」</p>
+            </div>
+
+            {/* Cheering Song Video */}
+            <div className="flex flex-col">
+              <h3 className="text-lg font-bold text-gray-900 mb-4 text-center">
+                応援歌「そらとほしと」
+              </h3>
+              <video
+                controls
+                preload="none"
+                className="w-full aspect-video rounded-lg shadow-lg mb-4"
+                playsInline
+              >
+                <source
+                  src="https://weavus-group.com/kcp/wp-content/uploads/2025/08/応援歌字幕明るいバージョン.webm"
+                  type="video/webm"
+                />
+                Your browser does not support the video tag.
+              </video>
+              <p className="text-center text-gray-600 font-medium">「そらとほしと」</p>
+            </div>
           </div>
         </div>
 
