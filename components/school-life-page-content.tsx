@@ -372,7 +372,7 @@ export function SchoolLifePageContent() {
           <div className="text-center text-gray-700 mb-12">
             <p>学校法人KCP学園 KCP地球市民日本語学校</p>
             <p>〒160-0022　東京都新宿区新宿1-29-12</p>
-            <p>連絡先：03-3356-2359 / Fax: 03-3356-2559</p>
+            <p>連絡先：03-3356-2359 / Fax: 03-3356-2559 / Email：<a href="mailto:info@kcp.ac.jp">info@kcp.ac.jp</a></p>
           </div>
         </div>
 
