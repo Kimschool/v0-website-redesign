@@ -957,7 +957,7 @@ export function EducationSection() {
                   {/* 画像 */}
                   <div className="relative h-96 md:col-span-1 overflow-hidden">
                     <Image
-                      src="https://weavus-group.com/kcp/wp-content/uploads/2026/02/huang.jpg"
+                      src="https://weavus-group.com/kcp/wp-content/uploads/2026/02/%E9%BB%84-%E5%8E%A6%E3%81%95%E3%82%93.jpg"
                       alt="黄 厦さん"
                       fill
                       className="object-cover"
