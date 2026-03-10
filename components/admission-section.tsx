@@ -41,13 +41,6 @@ export function AdmissionSection() {
             <div className="bg-blue-50 p-8 rounded-lg border border-blue-200 mb-16 cursor-pointer hover:shadow-lg hover:bg-blue-100 transition-all duration-300">
               <h2 className="text-2xl font-bold text-gray-900 mb-6">お問い合わせ</h2>
               <div className="space-y-4 text-gray-700">
-                <p>入学に関するご質問やご相談については、下記までお気軽にお問い合わせください。</p>
-                <div className="bg-white p-4 rounded-lg border border-blue-300">
-                  <p className="font-semibold mb-2">学校法人ウィーアス　KCP地球市民日本語学校</p>
-                  <p>電話: +81-3-XXXX-XXXX</p>
-                  <p>Email: info@kcp.ac.jp</p>
-                  <p className="text-sm text-gray-600 mt-2">営業時間: 月～金 9:00～18:00 (日本時間)</p>
-                </div>
               </div>
             </div>
           </Link>
@@ -55,7 +48,7 @@ export function AdmissionSection() {
           {/* Application Documents */}
           <div className="mb-16">
             <h2 className="text-2xl font-bold text-gray-900 mb-8">入学願書・パンフレット</h2>
-            
+
             <div className="grid md:grid-cols-2 gap-8">
               {/* Application Form */}
               <div className="border border-gray-300 rounded-lg p-6 hover:shadow-lg transition">
@@ -98,12 +91,12 @@ export function AdmissionSection() {
           {/* Pre-Placement Test */}
           <div className="mb-16">
             <h2 className="text-2xl font-bold text-gray-900 mb-6">入学前プレメーンテスト</h2>
-            
+
             <div className="bg-gray-50 p-8 rounded-lg border border-gray-300">
               <p className="text-gray-700 leading-relaxed mb-6">
                 KCPでは、入学確定後に日本語プレメーンテストを受けていただきます。
               </p>
-              
+
               <div className="space-y-4 mb-6">
                 <div className="flex gap-4">
                   <div className="text-blue-500 font-bold text-xl">✓</div>
@@ -136,7 +129,7 @@ export function AdmissionSection() {
           {/* Learning Management System */}
           <div className="mb-16">
             <h2 className="text-2xl font-bold text-gray-900 mb-6">学習管理システム「Go KCP」</h2>
-            
+
             <div className="grid md:grid-cols-2 gap-8">
               <div className="space-y-4 text-gray-700 leading-relaxed">
                 <p>
@@ -185,7 +178,7 @@ export function AdmissionSection() {
           {/* Scholarship */}
           <div className="mb-16">
             <h2 className="text-2xl font-bold text-gray-900 mb-6">奨学金</h2>
-            
+
             <p className="text-gray-700 leading-relaxed mb-8">
               KCPでは、学業・出席が優秀な学生を対象とした奨学金制度があります。
             </p>
