@@ -148,30 +148,121 @@ export function ContactSection() {
     <section ref={sectionRef} id="contact" className="py-24 lg:py-32 bg-white">
       <div className="mx-auto max-w-4xl px-6">
         {/* Section heading */}
-        <div className={`text-center mb-12 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+        <div className={`text-center mb-16 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
             お問い合わせ
           </h2>
-          <p className="text-base text-gray-700 max-w-2xl mx-auto leading-relaxed mb-4">
+          <p className="text-lg text-gray-700 max-w-2xl mx-auto">
             証明書発行をご希望される卒業生・修了生の皆様は、下記の申込み用紙をご利用ください。
             <br />
             その他のお問い合わせは、近隣の事務所またはお電話でお問い合わせください。
           </p>
         </div>
 
-        {/* Certificate Application Form Section Title */}
-        <div className={`mb-8 ${isVisible ? "animate-fade-in-up animation-delay-100" : "opacity-0"}`}>
-          <h3 className="text-2xl font-bold text-gray-900 mb-4">卒業生・修了生対象　証明書発行申請書フォーム</h3>
-          <p className="text-gray-700 leading-relaxed space-y-3">
-            <span className="block">遠隔地にお住まいで、直接ご来校して証明書を申し込むのが難しい方は、</span>
-            <span className="block">まず以下のフォームからお申込みください。</span>
-            <span className="block">受付後、こちらから折り返しご連絡いたします。</span>
-            <span className="block text-sm text-gray-600">※発行までには通常3営業日ほどかかります。お急ぎの場合はお知らせください。</span>
-          </p>
+        {/* Contact Information Card */}
+        <div className={`mb-16 bg-blue-50 border-l-4 border-blue-500 rounded-lg p-8 ${isVisible ? "animate-fade-in-up animation-delay-100" : "opacity-0"}`}>
+          <div className="grid md:grid-cols-2 gap-8">
+            <div>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">学校法人ウィーアス</h3>
+              <p className="text-lg font-semibold text-gray-800 mb-4">KCP地球市民日本語学校</p>
+              <div className="space-y-3 text-gray-700">
+                <div>
+                  <p className="font-semibold text-gray-800">電話</p>
+                  <p className="text-base">+81-3-6825-3388</p>
+                </div>
+                <div>
+                  <p className="font-semibold text-gray-800">メール</p>
+                  <p className="text-base">info@kcp.ac.jp</p>
+                </div>
+              </div>
+            </div>
+            <div>
+              <h3 className="text-lg font-bold text-gray-900 mb-4">営業時間</h3>
+              <div className="space-y-2 text-gray-700">
+                <p><span className="font-semibold">月～金:</span> 9:00～18:00</p>
+                <p><span className="font-semibold">土:</span> 10:00～17:00</p>
+                <p><span className="font-semibold">日・祝:</span> 定休日</p>
+                <p className="text-sm text-gray-600 mt-4">
+                  ※日本時間での営業時間です
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Notice Box */}
+        <div className={`mb-12 p-6 bg-yellow-50 border-l-4 border-yellow-500 rounded-lg ${isVisible ? "animate-fade-in-up animation-delay-200" : "opacity-0"}`}>
+          <h3 className="font-semibold text-gray-900 mb-3">申込み用紙のご利用方法</h3>
+          <ul className="text-sm text-gray-700 space-y-2">
+            <li>• 遠方にお住まいで学校へのご来校が困難な方は、下記の用紙で先にお申し込みください。</li>
+            <li>• 受付後、こちらからご連絡いたします。</li>
+            <li>• 発行までは通常3営業日要します。緊急の場合はお知らせください。</li>
+          </ul>
+        </div>
+
+        {/* Overseas Offices Section */}
+        <div className={`mb-16 ${isVisible ? "animate-fade-in-up animation-delay-200" : "opacity-0"}`}>
+          <h3 className="text-2xl font-bold text-gray-900 mb-6">海外事務所</h3>
+          <div className="space-y-3">
+            {overseasOffices.map((office, index) => (
+              <details key={index} className="group border border-gray-300 rounded-lg overflow-hidden hover:border-blue-400 transition">
+                <summary className="flex cursor-pointer items-center justify-between bg-gradient-to-r from-blue-50 to-blue-100 px-6 py-4 font-semibold text-gray-800 hover:bg-blue-100 transition">
+                  <span>{office.name}</span>
+                  <span className="text-xl font-bold text-blue-500 group-open:rotate-180 transition-transform duration-300">▼</span>
+                </summary>
+                
+                <div className="px-6 py-4 bg-white space-y-3 border-t border-gray-200">
+                  {office.details.map((detail, idx) => (
+                    <div key={idx} className="flex flex-col">
+                      <p className="text-sm font-semibold text-gray-600 mb-1">{detail.label}</p>
+                      {detail.isLink ? (
+                        <a 
+                          href={detail.value} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="text-blue-500 hover:text-blue-700 hover:underline break-all"
+                        >
+                          {detail.value}
+                        </a>
+                      ) : detail.isEmail ? (
+                        <a 
+                          href={`mailto:${detail.value}`}
+                          className="text-blue-500 hover:text-blue-700 hover:underline"
+                        >
+                          {detail.value}
+                        </a>
+                      ) : (
+                        <p className="text-gray-700">{detail.value}</p>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
+
+        {/* FAQ Section */}
+        <div className={`mb-16 ${isVisible ? "animate-fade-in-up animation-delay-300" : "opacity-0"}`}>
+          <h3 className="text-2xl font-bold text-gray-900 mb-8">よくある質問</h3>
+          <div className="space-y-3">
+            {faqItems.map((item, index) => (
+              <details key={index} className="group border border-gray-300 rounded-lg overflow-hidden hover:border-blue-400 transition">
+                <summary className="flex cursor-pointer items-center justify-between bg-gradient-to-r from-blue-50 to-blue-100 px-6 py-4 font-semibold text-gray-800 hover:bg-blue-100 transition">
+                  <span>{item.question}</span>
+                  <span className="text-xl font-bold text-blue-500 group-open:rotate-180 transition-transform duration-300">▼</span>
+                </summary>
+                
+                <div className="px-6 py-4 bg-white border-t border-gray-200">
+                  <p className="text-gray-700 leading-relaxed">{item.answer}</p>
+                </div>
+              </details>
+            ))}
+          </div>
         </div>
 
         {/* Contact Form */}
-        <form onSubmit={handleSubmit} className={`bg-white rounded-xl p-8 border border-gray-200 shadow-lg mb-20 ${isVisible ? "animate-fade-in-up animation-delay-200" : "opacity-0"}`}>
+        <form onSubmit={handleSubmit} className={`bg-white rounded-xl p-8 border border-gray-200 shadow-lg ${isVisible ? "animate-fade-in-up animation-delay-300" : "opacity-0"}`}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
             {/* Name (Hiragana/Romaji) */}
             <div>
@@ -417,67 +508,6 @@ export function ContactSection() {
             </button>
           </div>
         </form>
-
-        {/* Overseas Offices Section */}
-        <div className={`mb-16 ${isVisible ? "animate-fade-in-up animation-delay-300" : "opacity-0"}`}>
-          <h3 className="text-2xl font-bold text-gray-900 mb-6">海外事務所</h3>
-          <div className="space-y-3">
-            {overseasOffices.map((office, index) => (
-              <details key={index} className="group border border-gray-300 rounded-lg overflow-hidden hover:border-blue-400 transition">
-                <summary className="flex cursor-pointer items-center justify-between bg-gradient-to-r from-blue-50 to-blue-100 px-6 py-4 font-semibold text-gray-800 hover:bg-blue-100 transition">
-                  <span>{office.name}</span>
-                  <span className="text-xl font-bold text-blue-500 group-open:rotate-180 transition-transform duration-300">▼</span>
-                </summary>
-                
-                <div className="px-6 py-4 bg-white space-y-3 border-t border-gray-200">
-                  {office.details.map((detail, idx) => (
-                    <div key={idx} className="flex flex-col">
-                      <p className="text-sm font-semibold text-gray-600 mb-1">{detail.label}</p>
-                      {detail.isLink ? (
-                        <a 
-                          href={detail.value} 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="text-blue-500 hover:text-blue-700 hover:underline break-all"
-                        >
-                          {detail.value}
-                        </a>
-                      ) : detail.isEmail ? (
-                        <a 
-                          href={`mailto:${detail.value}`}
-                          className="text-blue-500 hover:text-blue-700 hover:underline"
-                        >
-                          {detail.value}
-                        </a>
-                      ) : (
-                        <p className="text-gray-700">{detail.value}</p>
-                      )}
-                    </div>
-                  ))}
-                </div>
-              </details>
-            ))}
-          </div>
-        </div>
-
-        {/* FAQ Section */}
-        <div className={`${isVisible ? "animate-fade-in-up animation-delay-400" : "opacity-0"}`}>
-          <h3 className="text-2xl font-bold text-gray-900 mb-8">よくある質問</h3>
-          <div className="space-y-3">
-            {faqItems.map((item, index) => (
-              <details key={index} className="group border border-gray-300 rounded-lg overflow-hidden hover:border-blue-400 transition">
-                <summary className="flex cursor-pointer items-center justify-between bg-gradient-to-r from-blue-50 to-blue-100 px-6 py-4 font-semibold text-gray-800 hover:bg-blue-100 transition">
-                  <span>{item.question}</span>
-                  <span className="text-xl font-bold text-blue-500 group-open:rotate-180 transition-transform duration-300">▼</span>
-                </summary>
-                
-                <div className="px-6 py-4 bg-white border-t border-gray-200">
-                  <p className="text-gray-700 leading-relaxed">{item.answer}</p>
-                </div>
-              </details>
-            ))}
-          </div>
-        </div>
       </div>
     </section>
   )
