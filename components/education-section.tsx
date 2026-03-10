@@ -1130,7 +1130,7 @@ export function EducationSection() {
                       src="https://weavus-group.com/kcp/wp-content/uploads/2026/02/%E6%88%9A%E7%AC%91%E3%81%95%E3%82%93--768x576.jpg"
                       alt="戚笑さん"
                       fill
-                      className="object-cover"
+                      className="object-contain"
                     />
                   </div>
                   {/* コンテンツ */}
