@@ -109,17 +109,48 @@ const stationTabs = [
   {
     id: "marunouchi",
     name: "東京メトロ丸ノ内線",
-    content: "②【四谷３丁目駅】（M11）2番出口より徒歩12分"
+    logo: "https://weavus-group.com/kcp/wp-content/uploads/2025/11/Logo_of_Tokyo_Metro_Marunouchi_Line.svg_.png",
+    stations: [
+      {
+        name: "新宿御苑前駅",
+        code: "M10",
+        access: "2番出口より徒歩5分"
+      },
+      {
+        name: "四谷３丁目駅",
+        code: "M11",
+        access: "2番出口より徒歩12分"
+      }
+    ]
   },
   {
     id: "fukutoshin",
     name: "東京メトロ副都心線",
-    content: "②【四谷３丁目駅】（M11）2番出口より徒歩12分"
+    logo: "https://weavus-group.com/kcp/wp-content/uploads/2025/11/Logo_of_Tokyo_Metro_Fukutoshin_Line.svg_.png",
+    stations: [
+      {
+        name: "新宿3丁目駅",
+        code: "F13",
+        access: "C4出口より徒歩13分"
+      }
+    ]
   },
   {
     id: "shinjuku",
     name: "都営新宿線",
-    content: "②【曙橋駅】（S03）C4番出口より徒歩11分"
+    logo: "https://weavus-group.com/kcp/wp-content/uploads/2025/11/Toei_Shinjuku_line_symbol.svg_.png",
+    stations: [
+      {
+        name: "新宿3丁目駅",
+        code: "S02",
+        access: "C4出口より徒歩13分"
+      },
+      {
+        name: "曙橋駅",
+        code: "S03",
+        access: "C4出口より徒歩11分"
+      }
+    ]
   }
 ]
 
@@ -386,34 +417,69 @@ export function SchoolLifePageContent() {
           </h2>
 
           {/* Tabs */}
-          <div className="max-w-3xl mx-auto">
-            <div className="flex flex-col md:flex-row border border-gray-300 rounded-t-lg overflow-hidden">
+          <div className="space-y-8">
+            {/* Tab Buttons */}
+            <div className="flex flex-wrap justify-center gap-3 border-b border-gray-300 pb-4">
               {stationTabs.map((tab) => (
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`flex-1 py-4 px-4 text-center font-medium transition-colors border-b md:border-b-0 md:border-r last:border-r-0 last:border-b-0 ${activeTab === tab.id
-                    ? "bg-[#0085b2] text-white"
-                    : "bg-gray-50 text-gray-700 hover:bg-gray-100"
-                    }`}
+                  className={`px-6 py-3 font-semibold text-sm md:text-base border-b-2 transition-all ${
+                    activeTab === tab.id
+                      ? "text-blue-600 border-blue-600"
+                      : "text-gray-600 border-transparent hover:text-gray-900"
+                  }`}
                 >
                   {tab.name}
                 </button>
               ))}
             </div>
 
-            {/* Tab Content */}
-            <div className="p-8 bg-white border border-t-0 border-gray-300 rounded-b-lg">
-              {stationTabs.map((tab) => (
-                <div
-                  key={tab.id}
-                  className={`text-center text-gray-700 ${activeTab === tab.id ? "block" : "hidden"
-                    }`}
-                >
-                  <p className="text-lg">{tab.content}</p>
+            {/* Tab Content - Station Cards */}
+            {stationTabs.map((tab) => (
+              <div
+                key={tab.id}
+                className={`${activeTab === tab.id ? "block" : "hidden"}`}
+              >
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+                  {/* Line Logo */}
+                  <div className="flex justify-center md:justify-start">
+                    <div className="w-32 h-32 bg-gray-50 rounded-lg p-4 flex items-center justify-center border border-gray-200">
+                      <Image
+                        src={tab.logo}
+                        alt={tab.name}
+                        width={120}
+                        height={120}
+                        className="object-contain"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Station Information */}
+                  <div className="space-y-4">
+                    {tab.stations.map((station, idx) => (
+                      <div
+                        key={idx}
+                        className="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg p-5 border border-blue-200 hover:shadow-md transition-shadow"
+                      >
+                        <div className="flex items-start justify-between mb-2">
+                          <h4 className="text-lg font-bold text-gray-900">
+                            {station.name}
+                          </h4>
+                          <span className="inline-block bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                            {station.code}
+                          </span>
+                        </div>
+                        <p className="text-gray-700 font-medium">
+                          {station.access}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
+          </div>
 
             {/* Divider */}
             <div className="w-full h-px bg-gray-300 mb-16" />
