@@ -992,7 +992,7 @@ export function EducationSection() {
                       src="https://weavus-group.com/kcp/wp-content/uploads/2026/02/patric.png"
                       alt="Patrick Grainger さん"
                       fill
-                      className="object-cover"
+                      className="object-contain"
                     />
                   </div>
                   {/* コンテンツ */}
