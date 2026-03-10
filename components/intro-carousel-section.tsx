@@ -7,31 +7,31 @@ import { ChevronLeft, ChevronRight } from "lucide-react"
 
 const carouselItems = [
   {
-    image: "https://weavus-group.com/kcp/wp-content/uploads/2026/02/eju-top-score.jpg",
+    image: "https://weavus-group.com/kcp/wp-content/uploads/2025/11/EJU.jpg",
     caption: "EJU・日本語科目で最高得点者を輩出",
   },
   {
-    image: "https://weavus-group.com/kcp/wp-content/uploads/2026/02/multinational-students.jpg",
+    image: "https://weavus-group.com/kcp/wp-content/uploads/2025/07/31e0362326d434d6dbc1d2390aa01eff.jpg",
     caption: "多国籍の学生が集うKCPでグローバルに考える視点を養う",
   },
   {
-    image: "https://weavus-group.com/kcp/wp-content/uploads/2026/02/fun-programs.jpg",
+    image: "https://weavus-group.com/kcp/wp-content/uploads/2025/11/2aaf315dd8c8254983b5ed098691efcd-rotated.jpg",
     caption: "日本をより深く知るための楽しいプログラムも満載",
   },
   {
-    image: "https://weavus-group.com/kcp/wp-content/uploads/2026/02/veteran-teachers.jpg",
+    image: "https://weavus-group.com/kcp/wp-content/uploads/2025/11/1f9820d2152d8e9bcc962b8600ef019d.jpg",
     caption: "経験豊かなベテラン教師がきめ細かい指導",
   },
   {
-    image: "https://weavus-group.com/kcp/wp-content/uploads/2026/02/us-university-credits.jpg",
+    image: "https://weavus-group.com/kcp/wp-content/uploads/2025/11/c6d0b891872831f84c0c747a5da2a261.jpg",
     caption: "アメリカの大学の単位認定プログラムもあり",
   },
   {
-    image: "https://weavus-group.com/kcp/wp-content/uploads/2026/02/public-recognition.jpg",
+    image: "https://weavus-group.com/kcp/wp-content/uploads/2025/07/f3680d56ae6dfb979b5be7961e73155c.jpg",
     caption: "公共性の高い教育機関として公的に認知",
   },
   {
-    image: "https://weavus-group.com/kcp/wp-content/uploads/2026/02/facilities.jpg",
+    image: "https://weavus-group.com/kcp/wp-content/uploads/2025/07/1c279b72c09a930d753cc9f263d78c88.jpg",
     caption: "充実した教育設備",
   },
 ]
@@ -151,11 +151,10 @@ export function IntroCarouselSection() {
               <button
                 key={index}
                 onClick={() => goToSlide(index)}
-                className={`w-3 h-3 rounded-full transition-all ${
-                  index === currentIndex
+                className={`w-3 h-3 rounded-full transition-all ${index === currentIndex
                     ? "bg-blue-600 w-6"
                     : "bg-gray-300 hover:bg-gray-400"
-                }`}
+                  }`}
                 aria-label={`Go to slide ${index + 1}`}
               />
             ))}
