@@ -1017,7 +1017,7 @@ export function EducationSection() {
                   {/* 画像 */}
                   <div className="relative h-96 md:col-span-1 overflow-hidden">
                     <Image
-                      src="https://weavus-group.com/kcp/wp-content/uploads/2026/02/lee.jpg"
+                      src="https://weavus-group.com/kcp/wp-content/uploads/2026/02/leesang.jpg"
                       alt="Lee Yit Chang さん"
                       fill
                       className="object-cover"
@@ -1046,7 +1046,7 @@ export function EducationSection() {
                   {/* 画像 */}
                   <div className="relative h-96 md:col-span-1 overflow-hidden">
                     <Image
-                      src="https://weavus-group.com/kcp/wp-content/uploads/2026/02/zhao.jpg"
+                      src="https://weavus-group.com/kcp/wp-content/uploads/2026/02/%E8%B5%B5-%E7%91%9E%E9%9C%84%E3%81%95%E3%82%93-.png"
                       alt="赵 瑞霄さん"
                       fill
                       className="object-cover"
@@ -1073,7 +1073,7 @@ export function EducationSection() {
                   {/* 画像 */}
                   <div className="relative h-96 md:col-span-1 overflow-hidden">
                     <Image
-                      src="https://weavus-group.com/kcp/wp-content/uploads/2026/02/sungwon.jpg"
+                      src="https://weavus-group.com/kcp/wp-content/uploads/2026/02/%E6%98%94-%E8%81%96%E5%8E%9F-.jpg"
                       alt="昔 聖原さん"
                       fill
                       className="object-cover"
@@ -1100,7 +1100,7 @@ export function EducationSection() {
                   {/* 画像 */}
                   <div className="relative h-96 md:col-span-1 overflow-hidden">
                     <Image
-                      src="https://weavus-group.com/kcp/wp-content/uploads/2026/02/zhu.jpg"
+                      src="https://weavus-group.com/kcp/wp-content/uploads/2026/02/%E6%9C%B1-%E7%91%9E%E5%A9%B7%E3%81%95%E3%82%93-.jpg"
                       alt="朱 瑞婷さん"
                       fill
                       className="object-cover"
@@ -1127,7 +1127,7 @@ export function EducationSection() {
                   {/* 画像 */}
                   <div className="relative h-96 md:col-span-1 overflow-hidden">
                     <Image
-                      src="https://weavus-group.com/kcp/wp-content/uploads/2026/02/qixiao.jpg"
+                      src="https://weavus-group.com/kcp/wp-content/uploads/2026/02/%E6%88%9A%E7%AC%91%E3%81%95%E3%82%93--768x576.jpg"
                       alt="戚笑さん"
                       fill
                       className="object-cover"
