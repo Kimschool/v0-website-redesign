@@ -40,7 +40,7 @@ export function Header() {
     { label: t("nav.education"), href: "/education" },
     { label: t("nav.schoolLife"), href: "#school-life" },
     { label: t("nav.admission"), href: "/admission" },
-    { label: t("nav.contact"), href: "#contact" },
+    { label: t("nav.contact"), href: "/contact" },
   ]
 
   return (
