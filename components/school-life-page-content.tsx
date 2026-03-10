@@ -123,6 +123,69 @@ const stationTabs = [
   }
 ]
 
+const facilityItems = [
+  {
+    title: "全景",
+    caption: "安全で快適な学習環境を提供する地上7階、地下1階の校舎。",
+    image: "https://weavus-group.com/kcp/wp-content/uploads/2026/02/01_校舍全景-1024x655.jpg"
+  },
+  {
+    title: "校庭",
+    caption: "明るい広いスペースで世界中の友達と交流。",
+    image: "https://weavus-group.com/kcp/wp-content/uploads/2026/02/02_校庭-1-1024x655.jpg"
+  },
+  {
+    title: "駐輪場",
+    caption: "自転車通学の人はこちらに駐輪できます。",
+    image: "https://weavus-group.com/kcp/wp-content/uploads/2026/02/03_駐輪場-2-1024x655.jpg"
+  },
+  {
+    title: "BF1美術室",
+    caption: "美術系進学者のための設備を完備。",
+    image: "https://weavus-group.com/kcp/wp-content/uploads/2026/02/04_BF1美術室-1-1024x655.jpg"
+  },
+  {
+    title: "1F職員室",
+    caption: "面談や学習などのサポートにも利用。学生たちが困ったときは、いつでも相談や質問に来られるようにしています。",
+    image: "https://weavus-group.com/kcp/wp-content/uploads/2026/02/05_1F職員室-1-1024x655.jpg"
+  },
+  {
+    title: "2Fラウンジ",
+    caption: "自動販売機や電子レンジ付き、休み時間に一休憩。",
+    image: "https://weavus-group.com/kcp/wp-content/uploads/2026/02/06_2Fラウンジ-1-1024x655.jpg"
+  },
+  {
+    title: "2F図書室",
+    caption: "約5000冊の蔵書があり、自習スペースは最大100席。聴解用教材・パソコンも貸し出しています。",
+    image: "https://weavus-group.com/kcp/wp-content/uploads/2026/02/07_2F図書室-1-1024x655.jpg"
+  },
+  {
+    title: "教室",
+    caption: "防音と音響に配慮した語学に適した教室。",
+    image: "https://weavus-group.com/kcp/wp-content/uploads/2026/02/08_教室明るく調整してください）-1-1024x655.jpg"
+  },
+  {
+    title: "教室",
+    caption: "防音と音響に配慮した語学に適した教室。",
+    image: "https://weavus-group.com/kcp/wp-content/uploads/2026/02/09_教室2-1-1024x655.jpg"
+  },
+  {
+    title: "6F講堂",
+    caption: "式典や進学説明会など多様な目的に利用。",
+    image: "https://weavus-group.com/kcp/wp-content/uploads/2026/02/10_6F講堂-1-1024x655.jpg"
+  },
+  {
+    title: "7F和室",
+    caption: "茶道・琴などのクラブ活動に使用。",
+    image: "https://weavus-group.com/kcp/wp-content/uploads/2026/02/11_7F和室-1024x655.jpg"
+  },
+  {
+    title: "日本庭園",
+    caption: "1年12ヶ月の草花が植えられた庭園。お茶会では園芸クラブが丹精した花々を、床の間に生けます。",
+    image: "https://weavus-group.com/kcp/wp-content/uploads/2026/02/12_日本庭園-1024x655.jpg"
+  }
+]
+
 export function SchoolLifePageContent() {
   const [activeTab, setActiveTab] = useState("marunouchi")
   const sectionRef = useRef<HTMLElement>(null)
@@ -244,7 +307,42 @@ export function SchoolLifePageContent() {
         {/* Divider */}
         <div className="w-full h-px bg-gray-300 mb-16" />
 
-        {/* Video Section */}
+        {/* Facility Guide Section */}
+        <div className="mb-20">
+          <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
+            施設案内
+          </h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {facilityItems.map((facility, index) => (
+              <div key={index} className="group bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow">
+                {/* Image Container */}
+                <div className="relative w-full h-64 bg-gray-100 overflow-hidden">
+                  <Image
+                    src={facility.image}
+                    alt={facility.title}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  />
+                </div>
+
+                {/* Text Content */}
+                <div className="p-5">
+                  <h3 className="text-lg font-bold text-gray-900 mb-2">
+                    {facility.title}
+                  </h3>
+                  <p className="text-sm text-gray-700 leading-relaxed">
+                    {facility.caption}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Divider */}
+        <div className="w-full h-px bg-gray-300 mb-16" />
         <div className="mb-20">
           <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
             応援歌
