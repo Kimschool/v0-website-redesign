@@ -300,7 +300,7 @@ export function EducationSection() {
               <div className="grid md:grid-cols-2 gap-8">
                 <div className="relative h-64 md:h-80 rounded-lg overflow-hidden">
                   <Image
-                    src="/images/course-1.jpg"
+                    src="https://weavus-group.com/kcp/wp-content/uploads/2026/02/%E3%82%B3%E3%83%BC%E3%82%B9%E7%B4%B9%E4%BB%8B-1024x683.jpg"
                     alt="進学準備教育"
                     fill
                     className="object-cover"
@@ -341,7 +341,7 @@ export function EducationSection() {
               <div className="grid md:grid-cols-2 gap-8">
                 <div className="relative h-64 md:h-80 rounded-lg overflow-hidden">
                   <Image
-                    src="/images/course-2.jpg"
+                    src="https://weavus-group.com/kcp/wp-content/uploads/2026/02/%E3%82%B3%E3%83%BC%E3%82%B9%E7%B4%B9%E4%BB%8B_2-768x512.jpg"
                     alt="進学高度日本語"
                     fill
                     className="object-cover"
