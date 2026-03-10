@@ -1,6 +1,7 @@
 "use client"
 
 import Image from "next/image"
+import Link from "next/link"
 
 export function AdmissionSection() {
   return (
@@ -36,18 +37,20 @@ export function AdmissionSection() {
           </div>
 
           {/* Contact Section */}
-          <div className="bg-blue-50 p-8 rounded-lg border border-blue-200 mb-16">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">お問い合わせ</h2>
-            <div className="space-y-4 text-gray-700">
-              <p>入学に関するご質問やご相談については、下記までお気軽にお問い合わせください。</p>
-              <div className="bg-white p-4 rounded-lg border border-blue-300">
-                <p className="font-semibold mb-2">学校法人ウィーアス　KCP地球市民日本語学校</p>
-                <p>電話: +81-3-XXXX-XXXX</p>
-                <p>Email: info@kcp.ac.jp</p>
-                <p className="text-sm text-gray-600 mt-2">営業時間: 月～金 9:00～18:00 (日本時間)</p>
+          <Link href="/contact">
+            <div className="bg-blue-50 p-8 rounded-lg border border-blue-200 mb-16 cursor-pointer hover:shadow-lg hover:bg-blue-100 transition-all duration-300">
+              <h2 className="text-2xl font-bold text-gray-900 mb-6">お問い合わせ</h2>
+              <div className="space-y-4 text-gray-700">
+                <p>入学に関するご質問やご相談については、下記までお気軽にお問い合わせください。</p>
+                <div className="bg-white p-4 rounded-lg border border-blue-300">
+                  <p className="font-semibold mb-2">学校法人ウィーアス　KCP地球市民日本語学校</p>
+                  <p>電話: +81-3-XXXX-XXXX</p>
+                  <p>Email: info@kcp.ac.jp</p>
+                  <p className="text-sm text-gray-600 mt-2">営業時間: 月～金 9:00～18:00 (日本時間)</p>
+                </div>
               </div>
             </div>
-          </div>
+          </Link>
 
           {/* Application Documents */}
           <div className="mb-16">
