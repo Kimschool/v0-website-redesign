@@ -1,7 +1,6 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
-import { useTranslation } from "react-i18next"
 
 export function ContactSection() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -72,6 +71,51 @@ export function ContactSection() {
     })
   }
 
+  const overseasOffices = [
+    {
+      name: "アメリカ事務所",
+      details: [
+        { label: "住所", value: "KCP International USA PO Box 28028　Bellingham, WA 98228-0028" },
+        { label: "電話", value: "360-647-0072" },
+        { label: "ウェブサイト", value: "https://www.kcpinternational.com/", isLink: true }
+      ]
+    },
+    {
+      name: "中国事務所",
+      details: [
+        { label: "住所", value: "天津市东丽区嘉春园17号楼1704" },
+        { label: "電話", value: "15802246626" },
+        { label: "メール", value: "1163052333@qq.com", isEmail: true }
+      ]
+    },
+    {
+      name: "台湾事務所",
+      details: [
+        { label: "住所", value: "台中市北区興進路256号5F-5" },
+        { label: "電話", value: "+886-4-22345622" },
+        { label: "メール", value: "taiwan@kcp.ac.jp", isEmail: true }
+      ]
+    },
+    {
+      name: "韓国事務所",
+      details: [
+        { label: "住所", value: "서울시 종로구 종로 19 (종로1가 24) 르메이에르종로타운 B동 1832호" },
+        { label: "電話", value: "02-735-4422" },
+        { label: "メール", value: "kcp@kcpkorea.com", isEmail: true }
+      ]
+    },
+    {
+      name: "マレーシア事務所",
+      details: [
+        { label: "機関名", value: "BMJ EDUCATION CENTRE SDN. BHD. (Bridge of Malaysia & Japan Education Centre)" },
+        { label: "住所", value: "No.41-01, Jalan Setia 3/5, Taman Setia Indah, 81100 Johor Bahru, Johor, Malaysia" },
+        { label: "電話", value: "+6012-751 6025" },
+        { label: "メール", value: "information@bmj.com.my", isEmail: true },
+        { label: "Facebook", value: "www.facebook.com/www.bmj.com.my", isLink: true }
+      ]
+    }
+  ]
+
   return (
     <section ref={sectionRef} id="contact" className="py-24 lg:py-32 bg-white">
       <div className="mx-auto max-w-4xl px-6">
@@ -126,6 +170,48 @@ export function ContactSection() {
             <li>• 受付後、こちらからご連絡いたします。</li>
             <li>• 発行までは通常3営業日要します。緊急の場合はお知らせください。</li>
           </ul>
+        </div>
+
+        {/* Overseas Offices Section */}
+        <div className={`mb-16 ${isVisible ? "animate-fade-in-up animation-delay-200" : "opacity-0"}`}>
+          <h3 className="text-2xl font-bold text-gray-900 mb-6">海外事務所</h3>
+          <div className="space-y-3">
+            {overseasOffices.map((office, index) => (
+              <details key={index} className="group border border-gray-300 rounded-lg overflow-hidden hover:border-blue-400 transition">
+                <summary className="flex cursor-pointer items-center justify-between bg-gradient-to-r from-blue-50 to-blue-100 px-6 py-4 font-semibold text-gray-800 hover:bg-blue-100 transition">
+                  <span>{office.name}</span>
+                  <span className="text-xl font-bold text-blue-500 group-open:rotate-180 transition-transform duration-300">▼</span>
+                </summary>
+                
+                <div className="px-6 py-4 bg-white space-y-3 border-t border-gray-200">
+                  {office.details.map((detail, idx) => (
+                    <div key={idx} className="flex flex-col">
+                      <p className="text-sm font-semibold text-gray-600 mb-1">{detail.label}</p>
+                      {detail.isLink ? (
+                        <a 
+                          href={detail.value} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="text-blue-500 hover:text-blue-700 hover:underline break-all"
+                        >
+                          {detail.value}
+                        </a>
+                      ) : detail.isEmail ? (
+                        <a 
+                          href={`mailto:${detail.value}`}
+                          className="text-blue-500 hover:text-blue-700 hover:underline"
+                        >
+                          {detail.value}
+                        </a>
+                      ) : (
+                        <p className="text-gray-700">{detail.value}</p>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </details>
+            ))}
+          </div>
         </div>
 
         {/* Contact Form */}
