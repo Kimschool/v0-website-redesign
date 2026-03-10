@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from "react"
+import Image from "next/image"
 import { School, User } from "lucide-react"
 
 export function AboutSection() {
@@ -83,25 +84,17 @@ export function AboutSection() {
         {/* KCP 철학 섹션 */}
         <div className={`mb-20 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
           <div className="text-center mb-16">
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-12">
-              ともにまなび ともに生きる
-            </h2>
-
-            {/* K C P 철학 */}
-            <div className="mb-12">
-              <div className="flex justify-center items-center gap-8 md:gap-16 mb-4">
-                <div className="text-center">
-                  <div className="text-6xl md:text-7xl font-bold text-[#0085b2] mb-2">K</div>
-                  <div className="text-lg font-semibold">知識</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-6xl md:text-7xl font-bold text-[#0085b2] mb-2">C</div>
-                  <div className="text-lg font-semibold">共生</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-6xl md:text-7xl font-bold text-[#0085b2] mb-2">P</div>
-                  <div className="text-lg font-semibold">平和</div>
-                </div>
+            {/* K C P Philosophy Image */}
+            <div className="mb-12 flex justify-center">
+              <div className="w-full max-w-2xl">
+                <Image
+                  src="/images/kcp-philosophy.png"
+                  alt="KCP Philosophy - Knowledge, Coexistence, Peace"
+                  width={600}
+                  height={300}
+                  className="w-full h-auto"
+                  priority={false}
+                />
               </div>
             </div>
 
@@ -252,7 +245,7 @@ export function AboutSection() {
               <p>
                 KCPの個性豊かで経験豊富なベテラン教師・事務職員たち、<br />
                 入学した皆さんが充実した留学生活を送り、<br />
-                夢を実現することが、私たちの願いであり喜びでもあります。
+                夢を実現することが、私たちの願いであり喜びでも��ります。
               </p>
               <p>
                 全職員が連携して、ときに優しくときに厳しく将来を見据えた指導を、<br />

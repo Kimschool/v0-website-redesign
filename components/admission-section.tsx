@@ -1,6 +1,8 @@
 "use client"
 
 import Image from "next/image"
+import Link from "next/link"
+import { ArrowRight, MessageCircle } from "lucide-react"
 
 export function AdmissionSection() {
   return (
@@ -36,23 +38,53 @@ export function AdmissionSection() {
           </div>
 
           {/* Contact Section */}
-          <div className="bg-blue-50 p-8 rounded-lg border border-blue-200 mb-16">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">お問い合わせ</h2>
-            <div className="space-y-4 text-gray-700">
-              <p>入学に関するご質問やご相談については、下記までお気軽にお問い合わせください。</p>
-              <div className="bg-white p-4 rounded-lg border border-blue-300">
-                <p className="font-semibold mb-2">学校法人ウィーアス　KCP地球市民日本語学校</p>
-                <p>電話: +81-3-XXXX-XXXX</p>
-                <p>Email: info@kcp.ac.jp</p>
-                <p className="text-sm text-gray-600 mt-2">営業時間: 月～金 9:00～18:00 (日本時間)</p>
+          <Link href="/contact" className="block group mb-16">
+            <div className="relative bg-gradient-to-br from-blue-50 to-blue-100 p-8 md:p-12 rounded-xl border-2 border-blue-200 cursor-pointer overflow-hidden transition-all duration-300 hover:shadow-2xl hover:border-blue-400 hover:scale-105">
+              {/* Background accent */}
+              <div className="absolute top-0 right-0 w-32 h-32 bg-blue-200 rounded-full opacity-30 -mr-16 -mt-16 group-hover:scale-110 transition-transform duration-300" />
+              
+              {/* Content */}
+              <div className="relative z-10">
+                {/* Header with icon */}
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="p-3 bg-blue-500 rounded-lg">
+                    <MessageCircle className="w-6 h-6 text-white" />
+                  </div>
+                  <h2 className="text-2xl md:text-3xl font-bold text-gray-900">お問い合わせ</h2>
+                </div>
+
+                {/* Description */}
+                <p className="text-lg text-gray-700 mb-6 leading-relaxed">
+                  入学に関するご質問やご相談がございましたら、お気軽にお問い合わせください。
+                </p>
+
+                {/* Info cards */}
+                <div className="grid md:grid-cols-2 gap-4 mb-8">
+                  <div className="bg-white/70 backdrop-blur-sm p-4 rounded-lg border border-blue-300/30">
+                    <p className="text-sm font-semibold text-gray-600 mb-1">メール</p>
+                    <p className="text-gray-800 font-medium">info@kcp.ac.jp</p>
+                  </div>
+                  <div className="bg-white/70 backdrop-blur-sm p-4 rounded-lg border border-blue-300/30">
+                    <p className="text-sm font-semibold text-gray-600 mb-1">営業時間</p>
+                    <p className="text-gray-800 font-medium">月～金 9:00～18:00 JST</p>
+                  </div>
+                </div>
+
+                {/* CTA Button */}
+                <div className="flex items-center justify-between">
+                  <p className="text-gray-600 font-medium">お問い合わせページへ移動</p>
+                  <div className="p-2 bg-blue-500 rounded-lg group-hover:bg-blue-600 group-hover:translate-x-1 transition-all duration-300">
+                    <ArrowRight className="w-5 h-5 text-white" />
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
+          </Link>
 
           {/* Application Documents */}
           <div className="mb-16">
             <h2 className="text-2xl font-bold text-gray-900 mb-8">入学願書・パンフレット</h2>
-            
+
             <div className="grid md:grid-cols-2 gap-8">
               {/* Application Form */}
               <div className="border border-gray-300 rounded-lg p-6 hover:shadow-lg transition">
@@ -66,9 +98,14 @@ export function AdmissionSection() {
                     English・中文简体・中文繁体・한국어・Tiếng Việt
                   </p>
                 </div>
-                <button className="mt-6 w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-4 rounded-lg transition">
+                <a 
+                  href="https://weavus-group.com/kcp/%e9%a1%98%e6%9b%b8%e3%82%bb%e3%83%83%e3%83%88/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-block mt-6 w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-4 rounded-lg transition text-center"
+                >
                   願書をダウンロード
-                </button>
+                </a>
               </div>
 
               {/* Pamphlet */}
@@ -79,13 +116,17 @@ export function AdmissionSection() {
                 </p>
                 <div className="space-y-2">
                   <p className="text-gray-700">
-                    <span className="font-semibold">入手方法:</span><br />
-                    オンライン請求またはお問い合わせください
+                    <span className="font-semibold">ファイル形式:</span><br />
+                    PDF形式 (ダウンロード可能)
                   </p>
                 </div>
-                <button className="mt-6 w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-4 rounded-lg transition">
-                  パンフレットを請求
-                </button>
+                <a 
+                  href="https://weavus-group.com/kcp/wp-content/uploads/2026/02/KCP%E3%83%91%E3%83%B3%E3%83%95%E3%83%AC%E3%83%83%E3%83%88%E7%A2%BA%E5%AE%9A%E7%89%88.pdf" 
+                  download
+                  className="inline-block mt-6 w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-4 rounded-lg transition text-center"
+                >
+                  パンフレットをダウンロード
+                </a>
               </div>
             </div>
           </div>
@@ -95,12 +136,12 @@ export function AdmissionSection() {
           {/* Pre-Placement Test */}
           <div className="mb-16">
             <h2 className="text-2xl font-bold text-gray-900 mb-6">入学前プレメーンテスト</h2>
-            
+
             <div className="bg-gray-50 p-8 rounded-lg border border-gray-300">
               <p className="text-gray-700 leading-relaxed mb-6">
                 KCPでは、入学確定後に日本語プレメーンテストを受けていただきます。
               </p>
-              
+
               <div className="space-y-4 mb-6">
                 <div className="flex gap-4">
                   <div className="text-blue-500 font-bold text-xl">✓</div>
@@ -133,7 +174,7 @@ export function AdmissionSection() {
           {/* Learning Management System */}
           <div className="mb-16">
             <h2 className="text-2xl font-bold text-gray-900 mb-6">学習管理システム「Go KCP」</h2>
-            
+
             <div className="grid md:grid-cols-2 gap-8">
               <div className="space-y-4 text-gray-700 leading-relaxed">
                 <p>
@@ -182,7 +223,7 @@ export function AdmissionSection() {
           {/* Scholarship */}
           <div className="mb-16">
             <h2 className="text-2xl font-bold text-gray-900 mb-6">奨学金</h2>
-            
+
             <p className="text-gray-700 leading-relaxed mb-8">
               KCPでは、学業・出席が優秀な学生を対象とした奨学金制度があります。
             </p>
