@@ -217,6 +217,29 @@ const facilityItems = [
   }
 ]
 
+const surroundingEnvironment = [
+  {
+    title: "新宿御苑前駅（最寄り駅）",
+    image: "https://weavus-group.com/kcp/wp-content/uploads/2025/12/Shinjuku-gyoemmae-station-Exit1-1-2048x1536.jpg"
+  },
+  {
+    title: "花園病院",
+    image: "https://weavus-group.com/kcp/wp-content/uploads/2025/12/rich2s6257899_05-1.jpg"
+  },
+  {
+    title: "郵便局",
+    image: "https://weavus-group.com/kcp/wp-content/uploads/2025/12/unnamed.jpg"
+  },
+  {
+    title: "四谷区民センター",
+    image: "https://weavus-group.com/kcp/wp-content/uploads/2025/12/NRFaHRT38eoY60XESAAPgjV5AOK9ybxJKDsJO9EW-1.jpg"
+  },
+  {
+    title: "富久クロス",
+    image: "https://weavus-group.com/kcp/wp-content/uploads/2025/12/Tomihisa_Cross_Comfort_Tower-1-2048x1536.jpg"
+  }
+]
+
 export function SchoolLifePageContent() {
   const [activeTab, setActiveTab] = useState("marunouchi")
   const sectionRef = useRef<HTMLElement>(null)
@@ -475,6 +498,39 @@ export function SchoolLifePageContent() {
                       </div>
                     ))}
                   </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Divider */}
+        <div className="w-full h-px bg-gray-300 mb-16" />
+
+        {/* Surrounding Environment Section */}
+        <div className="mb-20">
+          <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
+            周辺環境
+          </h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {surroundingEnvironment.map((item, index) => (
+              <div
+                key={index}
+                className="relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow group"
+                style={{ aspectRatio: "16/9" }}
+              >
+                <Image
+                  src={item.image}
+                  alt={item.title}
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-300"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
+                  <h3 className="text-white font-bold text-lg p-4 w-full">
+                    {item.title}
+                  </h3>
                 </div>
               </div>
             ))}
