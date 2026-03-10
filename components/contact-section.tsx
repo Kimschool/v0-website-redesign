@@ -405,9 +405,10 @@ export function ContactSection() {
             </button>
           </div>
         </form>
-        <div>
 
-        </div>
+        {/* Divider */}
+        <div className="w-full h-px bg-gray-300 mb-16" />
+
         {/* Contact Information Card */}
         <div className={`mb-16 bg-blue-50 border-l-4 border-blue-500 rounded-lg p-8 ${isVisible ? "animate-fade-in-up animation-delay-100" : "opacity-0"}`}>
           <div className="grid md:grid-cols-2 gap-8">
