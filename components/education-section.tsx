@@ -3,8 +3,136 @@
 import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
 
-// 年度別進学実績テーブルコンポーネント
+// 년도별 진학실적 테이블 컴포넌트
 function YearResultsTable({ year }: { year: string }) {
+  const data: Record<string, { 国公立: string[]; 私立: string[]; 音楽美術?: string[] }> = {
+    "2024": {
+      国公立: ["東北大学", "東京農工大学", "茨城大学", "山口大学"],
+      私立: [
+        "立教大学", "明治大学", "中央大学", "法政大学", "青山学院大学", "立命館大学", "関西学院大学",
+        "東京理科大学", "東京薬科大学", "明治薬科大学", "東洋大学", "帝京大学", "東海大学",
+        "湘南工科大学", "東京工芸大学", "国士館大学", "昭和女子大学", "二松学舎大学", "文教大学",
+        "武蔵野大学", "中央学院大学", "龍谷大学", "大阪観光大学", "東京国際大学", "関西国際大学",
+        "多摩大学", "西武文理大学", "高千穂大学", "創価大学", "城西大学", "千葉科学大学",
+        "ものつくり大学"
+      ],
+      音楽美術: [
+        "武蔵野音楽大学", "多摩美術大学", "日本大学", "女子美術大学", "洗足学園音楽大学",
+        "昭和音楽大学", "京都精華大学", "京都芸術大学", "文化学園大学", "尚美学園大学",
+        "開志専門職大学"
+      ]
+    },
+    "2023": {
+      国公立: [
+        "東京工業大学", "一橋大学", "京都大学", "九州大学", "名古屋大学", "筑波大学",
+        "東京学芸大学", "神戸大学", "東京外国語大学", "千葉大学", "東京藝術大学",
+        "宇都宮大学", "群馬大学", "長崎大学", "山口大学"
+      ],
+      私立: [
+        "早稲田大学", "東京医科歯科大学", "東京理科大学", "立教大学", "明治大学", "法政大学",
+        "青山学院大学", "立命館大学", "関西学院大学", "龍谷大学", "東京農業大学", "東洋大学",
+        "日本大学", "専修大学", "駒澤大学", "東海大学", "帝京大学", "大東文化大学", "拓殖大学",
+        "二松学舎大学", "神奈川大学", "東京電機大学", "東京工科大学", "武蔵野美術大学",
+        "多摩美術大学", "女子美術大学", "金沢美術工芸大学", "京都芸術大学", "京都精華大学",
+        "大阪芸術大学", "名古屋芸術大学", "名古屋造形大学", "昭和音楽大学", "洗足学園音楽大学",
+        "文化学園大学", "桜美林大学", "山梨学院大学", "大手前大学", "嘉悦大学", "千葉科学大学",
+        "城西大学", "国際大学", "ハリウッド大学院大学"
+      ]
+    }
+  }
+
+  const yearData = data[year]
+
+  return (
+    <div className="border border-gray-300 rounded-lg overflow-hidden">
+      <div className="bg-gradient-to-r from-blue-500 to-blue-600 px-6 py-4 text-white font-bold text-lg">
+        {year}年度 進学実績
+      </div>
+      <div className="p-6 space-y-6">
+        {yearData && (
+          <>
+            <div>
+              <h4 className="font-bold text-blue-900 mb-4">【国公立大学/大学院】</h4>
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
+                {yearData.国公立.map((uni, idx) => (
+                  <div key={idx} className="p-3 bg-blue-50 rounded-lg border border-blue-200 text-center hover:bg-blue-100 transition">
+                    <p className="text-gray-800 font-semibold text-sm">{uni}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <h4 className="font-bold text-purple-900 mb-4">【私立大学/大学院】</h4>
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
+                {yearData.私立.map((uni, idx) => (
+                  <div key={idx} className="p-3 bg-purple-50 rounded-lg border border-purple-200 text-center hover:bg-purple-100 transition">
+                    <p className="text-gray-800 font-semibold text-sm">{uni}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {yearData.音楽美術 && (
+              <div>
+                <h4 className="font-bold text-red-900 mb-4">【音楽系/美術系大学】</h4>
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
+                  {yearData.音楽美術.map((uni, idx) => (
+                    <div key={idx} className="p-3 bg-red-50 rounded-lg border border-red-200 text-center hover:bg-red-100 transition">
+                      <p className="text-gray-800 font-semibold text-sm">{uni}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </>
+        )}
+      </div>
+    </div>
+  )
+}
+
+export function EducationSection() {
+  return (
+    <section id="education" className="bg-white">
+      {/* Page Header */}
+      <div className="relative w-full h-64 md:h-80 overflow-hidden">
+        <Image
+          src="/images/education-header.jpg"
+          alt="教育内容"
+          fill
+          className="object-cover"
+          priority
+        />
+        <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
+          <h1 className="text-4xl md:text-5xl font-bold text-white">教育内容</h1>
+        </div>
+      </div>
+
+      {/* Content Section */}
+      <div className="py-20 px-4 md:px-8 lg:px-16">
+        <div className="max-w-5xl mx-auto">
+          {/* 進学実績 */}
+          <div className="mb-20">
+            <h2 className="text-2xl md:text-3xl font-bold mb-8 text-gray-900">進学実績</h2>
+
+            <div className="space-y-4">
+              <YearResultsTable year="2024" />
+              <YearResultsTable year="2023" />
+            </div>
+
+            <div className="bg-blue-50 p-6 rounded-lg border border-blue-200 mt-8">
+              <p className="text-gray-700 text-sm leading-relaxed text-center">
+                <strong>多くの卒業生が難関大学・専門学校への進学を実現。</strong><br />
+                KCPは確かな進学実績と、指定校推薦枠を通じて、学びの先の未来を支えています。
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
   const data: Record<string, { 国公立: string[]; 私立: string[]; 音楽美術?: string[] }> = {
     "2024": {
       国公立: ["東北大学", "東京農工大学", "茨城大学", "山口大学"],
@@ -278,7 +406,7 @@ export function EducationSection() {
             <h2 className="text-2xl md:text-3xl font-bold mb-8 text-gray-900">教育理念・教育方針</h2>
             <div className="space-y-6 text-gray-700 leading-relaxed">
               <p>
-                本学の基本理念は、若者が切磋琢磨しながら学び成長し、21世紀を生き抜く力を身につけて世界の平和と繁栄に貢献することにある。そのためには、科学技術が進展する現代において、自主・自立・自尊と、自省・自制・自戒を併せ持つバランスの取れた精神が不可欠であり、これを基盤とし、自文化と���文化を正しく理解し、普遍的な人類観を育む。
+                本学の基本理念は、若者が切磋琢磨しながら学び成長し、21世紀を生き抜く力を身につけて世界の平和と繁栄に貢献することにある。そのためには、科学技術が進展する現代において、自主・自立・自尊と、自省・自制・自戒を併せ持つバランスの取れた精神が不可欠であり、これを基盤とし、自文化と�����文化を正しく理解し、普遍的な人類観を育む。
               </p>
               <p>
                 本学は、生涯にわたって主体的に学び続ける姿勢を重視し、批判力・論理力・明晰性といった学びの基礎力を育成するとともに、大学や企業活動にも通用する高度で実践的な日本語力の養成を教育目標とする。
