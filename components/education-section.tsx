@@ -1147,14 +1147,16 @@ export function EducationSection() {
                   </div>
                 </div>
               </div>
-
+              <h2 className="text-2xl md:text-3xl font-bold mb-12 text-gray-900">2024年8月JPET 日本全国一位</h2>
+              <h2 className="text-2xl md:text-3xl font-bold mb-12 text-gray-900">
+                後藤新平・新渡戸稲造記念 第26回全国高校生・留学生作文コンクール　2024 留学生の部奨励賞</h2>
               {/* 卒業生8 - 张 首馨さん */}
               <div className="border border-gray-300 rounded-lg overflow-hidden">
                 <div className="grid md:grid-cols-3 gap-0">
                   {/* 画像 */}
                   <div className="relative h-96 md:col-span-1 overflow-hidden">
                     <Image
-                      src="https://weavus-group.com/kcp/wp-content/uploads/2026/02/zhang-shuoxin.png"
+                      src="https://weavus-group.com/kcp/wp-content/uploads/2026/02/%E5%BC%A0-%E9%A6%96%E9%A6%A8%E3%81%95%E3%82%93--768x571.png"
                       alt="张 首馨さん"
                       fill
                       className="object-cover"
@@ -1182,7 +1184,7 @@ export function EducationSection() {
                   {/* 画像 */}
                   <div className="relative h-96 md:col-span-1 overflow-hidden">
                     <Image
-                      src="https://weavus-group.com/kcp/wp-content/uploads/2026/02/li-daiyu.png"
+                      src="https://weavus-group.com/kcp/wp-content/uploads/2026/02/%E6%9D%8E-%E9%BB%9B%E7%8E%89%E3%81%95%E3%82%93-.png"
                       alt="李 黛玉さん"
                       fill
                       className="object-cover"
