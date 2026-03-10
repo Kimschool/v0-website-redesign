@@ -86,7 +86,7 @@ export function AboutSection() {
             <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-12">
               ともにまなび ともに生きる
             </h2>
-            
+
             {/* K C P 철학 */}
             <div className="mb-12">
               <div className="flex justify-center items-center gap-8 md:gap-16 mb-4">
@@ -122,21 +122,21 @@ export function AboutSection() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-12">
               <div className="aspect-[3/4] bg-gray-100 rounded-2xl overflow-hidden">
                 <img
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-6GUU6UrNwnaTTSQhe0JLrBmSvvOdW5.png"
+                  src="https://weavus-group.com/kcp/wp-content/uploads/2025/11/K.jpg"
                   alt="Student 1"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="aspect-[3/4] bg-gray-100 rounded-2xl overflow-hidden">
                 <img
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-6GUU6UrNwnaTTSQhe0JLrBmSvvOdW5.png"
+                  src="https://weavus-group.com/kcp/wp-content/uploads/2025/11/a0ae7092b982a311a67520869aca4dcb.jpg"
                   alt="Student 2"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="aspect-[3/4] bg-gray-100 rounded-2xl overflow-hidden">
                 <img
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-6GUU6UrNwnaTTSQhe0JLrBmSvvOdW5.png"
+                  src="https://weavus-group.com/kcp/wp-content/uploads/2025/11/818e60bf0c192652f5fe869245e46afb-1-768x1021.jpg"
                   alt="Student 3"
                   className="w-full h-full object-cover"
                 />
@@ -145,10 +145,6 @@ export function AboutSection() {
 
             <div className="border-b-2 border-gray-300 mb-12"></div>
           </div>
-
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-            学校長挨拶
-          </h2>
         </div>
 
         {/* 학교장 인사말 */}
