@@ -7,7 +7,6 @@ import { TestimonialsSection } from "@/components/testimonials-section"
 import { SchoolLifeSection } from "@/components/school-life-section"
 import { SongsSection } from "@/components/songs-section"
 import { CTASection } from "@/components/cta-section"
-import { ContactSection } from "@/components/contact-section"
 import { Footer } from "@/components/footer"
 import { ScrollToTop } from "@/components/scroll-to-top"
 
@@ -24,7 +23,6 @@ export default function Home() {
         <SchoolLifeSection />
         <SongsSection />
         <CTASection />
-        <ContactSection />
       </main>
       <Footer />
       <ScrollToTop />
