@@ -84,10 +84,6 @@ export function AboutSection() {
         {/* KCP 철학 섹션 */}
         <div className={`mb-20 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
           <div className="text-center mb-16">
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-12">
-              ともにまなび ともに生きる
-            </h2>
-
             {/* K C P Philosophy Image */}
             <div className="mb-12 flex justify-center">
               <div className="w-full max-w-2xl">
