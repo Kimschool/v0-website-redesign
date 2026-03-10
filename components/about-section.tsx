@@ -87,21 +87,14 @@ export function AboutSection() {
               ともにまなび ともに生きる
             </h2>
 
-            {/* K C P 철학 */}
-            <div className="mb-12">
-              <div className="flex justify-center items-center gap-8 md:gap-16 mb-4">
-                <div className="text-center">
-                  <div className="text-6xl md:text-7xl font-bold text-[#0085b2] mb-2">K</div>
-                  <div className="text-lg font-semibold">知識</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-6xl md:text-7xl font-bold text-[#0085b2] mb-2">C</div>
-                  <div className="text-lg font-semibold">共生</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-6xl md:text-7xl font-bold text-[#0085b2] mb-2">P</div>
-                  <div className="text-lg font-semibold">平和</div>
-                </div>
+            {/* K C P Philosophy Image */}
+            <div className="mb-12 flex justify-center">
+              <div className="w-full max-w-2xl">
+                <img
+                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-2DeWPThTEcXAVbJS1rKPFzba4QvNFr.png"
+                  alt="KCP Philosophy - Knowledge, Coexistence, Peace"
+                  className="w-full h-auto"
+                />
               </div>
             </div>
 
