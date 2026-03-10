@@ -117,6 +117,33 @@ export function ContactSection() {
     }
   ]
 
+  const faqItems = [
+    {
+      question: "入学手続きはどこから始めればいいですか。",
+      answer: "KCPでは、基本的に海外の提携事務所を通じて出願を受け付けています。日本での長期ビザ（日本国内で有効なビザ）をお持ちの方は、直接ご来校ください。職員がご説明いたします。"
+    },
+    {
+      question: "日本語が初めてでも入学できますか。",
+      answer: "留学ビザの申請には、日本語の学習時間は最低150時間（A1またはN5程度以上）の学習歴が必要です。1月入学を希望の方はA2またはN4合格相当が必要で、300時間の学習歴が必要です。"
+    },
+    {
+      question: "クラス分けはどう行いますか。",
+      answer: "入学前にプレメーンテストを行います。その結果によって午前（中上級）クラスか、午後（初級）クラスが決まりますので、必ず指定日に受けてください。クラス分けに異議がある場合、メールでお知らせした日にちまでにお申し出ください。但し午前・午後クラスの希望はできません。"
+    },
+    {
+      question: "進級の時期や評価方法を教えてください。",
+      answer: "KCPでは3か月ごとの学期になります。中間試験と期末試験、日ごろの小テストの平均点で進級できるかどうか判断します。"
+    },
+    {
+      question: "自転車で通学できますか。",
+      answer: "はい、学校には駐輪場がありますので自転車通学は可能です。まずは1階受付で手続きをしてください（卒業まで一括1000円かかります）。車・バイク・キックボードなどは停められませんので、ご了承ください。"
+    },
+    {
+      question: "クレジットカードやアプリ決済は学校で使えますか。",
+      answer: "いいえ、現金のみになります。学期開始前にあらかじめ日本円を用意することを強くお勧めします。クレジットカードやアプリ決済はできません。授業料などは銀行振り込みになります。教科書や各種証明書などは現金になります。"
+    }
+  ]
+
   return (
     <section ref={sectionRef} id="contact" className="py-24 lg:py-32 bg-white">
       <div className="mx-auto max-w-4xl px-6">
@@ -209,6 +236,25 @@ export function ContactSection() {
                       )}
                     </div>
                   ))}
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
+
+        {/* FAQ Section */}
+        <div className={`mb-16 ${isVisible ? "animate-fade-in-up animation-delay-300" : "opacity-0"}`}>
+          <h3 className="text-2xl font-bold text-gray-900 mb-8">よくある質問</h3>
+          <div className="space-y-3">
+            {faqItems.map((item, index) => (
+              <details key={index} className="group border border-gray-300 rounded-lg overflow-hidden hover:border-blue-400 transition">
+                <summary className="flex cursor-pointer items-center justify-between bg-gradient-to-r from-blue-50 to-blue-100 px-6 py-4 font-semibold text-gray-800 hover:bg-blue-100 transition">
+                  <span>{item.question}</span>
+                  <span className="text-xl font-bold text-blue-500 group-open:rotate-180 transition-transform duration-300">▼</span>
+                </summary>
+                
+                <div className="px-6 py-4 bg-white border-t border-gray-200">
+                  <p className="text-gray-700 leading-relaxed">{item.answer}</p>
                 </div>
               </details>
             ))}
