@@ -256,19 +256,6 @@ export function AdmissionSection() {
               </p>
             </div>
           </div>
-
-          {/* Call to Action */}
-          <div className="bg-gradient-to-r from-blue-500 to-blue-600 text-white p-8 rounded-lg text-center">
-            <h2 className="text-2xl md:text-3xl font-bold mb-4">
-              入学に関するご不明な点はお気軽にお問い合わせください
-            </h2>
-            <p className="text-blue-100 mb-6">
-              出願手続きからビザ申請、渡日後のサポートまで、全力でサポートいたします。
-            </p>
-            <button className="bg-white text-blue-600 font-bold py-3 px-8 rounded-lg hover:bg-gray-100 transition">
-              お問い合わせフォーム
-            </button>
-          </div>
         </div>
       </div>
     </section>
