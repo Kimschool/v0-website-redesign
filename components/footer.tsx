@@ -24,17 +24,13 @@ export function Footer() {
       <div className="elementor-element elementor-element-aac8410 e-flex e-con-boxed e-con e-parent" data-id="aac8410" data-element_type="container">
         <div className="e-con-inner">
           <div className="elementor-element elementor-element-c103459 elementor-widget elementor-widget-text-editor" data-id="c103459" data-element_type="widget" data-widget_type="text-editor.default">
-            <div className="elementor-widget-container"> <h1><strong>関連リンク</strong></h1>
-            </div>
+
           </div>
         </div>
       </div>
       <div className="elementor-element elementor-element-958eaf1 e-flex e-con-boxed e-con e-parent" data-id="958eaf1" data-element_type="container"> <div className="e-con-inner">
         <div className="elementor-element elementor-element-bb99857 elementor-widget elementor-widget-text-editor" data-id="bb99857" data-element_type="widget" data-widget_type="text-editor.default">
-          <div className="elementor-widget-container">
-            <p><a href="https://weavus-group.com/kcp/apply/">入学案内</a>
-              <a href="https://weavus-group.com/kcp/service/">学校生活</a>
-              <a href="https://weavus-group.com/kcp/contact/">お問い合わせ</a></p> </div> </div> </div> </div>
+        </div> </div> </div>
       <footer className="bg-white border-t border-border">
         {/* Main footer content */}
         <div className="py-16">
