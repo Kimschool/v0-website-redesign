@@ -92,6 +92,8 @@ export function AdmissionSection() {
                 <p className="text-gray-600 mb-4">
                   出願に必要な書類一式
                 </p>
+                <br></br>
+                <br></br>
                 <a
                   href="https://weavus-group.com/kcp/%e9%a1%98%e6%9b%b8%e3%82%bb%e3%83%83%e3%83%88/"
                   target="_blank"
