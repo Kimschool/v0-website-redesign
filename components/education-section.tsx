@@ -1212,14 +1212,36 @@ export function EducationSection() {
               </div>
             </div>
           </div>
-          <div style={TextAlignCenter}>
-            <h1><strong className="text-xl font-bold text-gray-900 mb-2">関連リンク</strong></h1>
+          <br></br>
+          <div className="text-center">
+            <h1>
+              <strong className="text-xl font-bold text-gray-900 mb-2">
+                関連リンク
+              </strong>
+            </h1>
           </div>
-          <div>
-            <p style={TextAlignCenter}>
-              <a href="https://weavus-group.com/kcp/apply/" className="text-gray-700 font-semibold">入学案内</a>&emsp;
-              <a href="https://weavus-group.com/kcp/service/" className="text-gray-700 font-semibold">学校生活</a>&emsp;
-              <a href="https://weavus-group.com/kcp/contact/" className="text-gray-700 font-semibold">お問い合わせ</a>
+          <div className="text-center">
+            <p>
+              <a
+                href="https://weavus-group.com/kcp/apply/"
+                className="text-gray-700 font-semibold"
+              >
+                入学案内
+              </a>
+              &emsp;
+              <a
+                href="https://weavus-group.com/kcp/service/"
+                className="text-gray-700 font-semibold"
+              >
+                学校生活
+              </a>
+              &emsp;
+              <a
+                href="https://weavus-group.com/kcp/contact/"
+                className="text-gray-700 font-semibold"
+              >
+                お問い合わせ
+              </a>
             </p>
           </div>
         </div>
