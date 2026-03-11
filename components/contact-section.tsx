@@ -51,25 +51,40 @@ export function ContactSection() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    console.log("Form submitted:", formData)
-    // Add form submission logic here
-    alert("お問い合わせありがとうございます。確認させていただきます。")
-    setFormData({
-      name: "",
-      nameKanji: "",
-      gender: "",
-      nationality: "",
-      birthDate: "",
-      studentId: "",
-      address: "",
-      phone: "",
-      email: "",
-      certificateType: "",
-      purpose: "",
-      submissionPlace: "",
-      receiveMethod: "",
-      notes: "",
-    })
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      })
+
+      if (response.ok) {
+        alert("お問い合わせありがとうございます。確認させていただきます。")
+        setFormData({
+          name: "",
+          nameKanji: "",
+          gender: "",
+          nationality: "",
+          birthDate: "",
+          studentId: "",
+          address: "",
+          phone: "",
+          email: "",
+          certificateType: "",
+          purpose: "",
+          submissionPlace: "",
+          receiveMethod: "",
+          notes: "",
+        })
+      } else {
+        const error = await response.json()
+        alert(`エラーが発生しました: ${error.message || "不明なエラー"}`)
+      }
+    } catch (error) {
+      alert(`送信に失敗しました: ${error instanceof Error ? error.message : "不明なエラー"}`)
+    }
   }
 
   const overseasOffices = [
@@ -132,7 +147,7 @@ export function ContactSection() {
     },
     {
       question: "進級の時期や評価方法を教えてください。",
-      answer: "KCPでは3か月ごとの学期になります。中間試験と期末試験、日ごろの小テストの平均点で進級できるかどうか判断します。"
+      answer: "KCPでは3か月ごとの学期になります。中間試験と期末試験、日ごろの小テストの平均点で進級できる���どうか判断します。"
     },
     {
       question: "自転車で通学できますか。",
