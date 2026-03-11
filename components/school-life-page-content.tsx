@@ -316,7 +316,7 @@ export function SchoolLifePageContent() {
         {/* Annual Schedule Section */}
         <div className={`mb-20 ${isVisible ? "animate-fade-in-up animation-delay-200" : "opacity-0"}`}>
           <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
-            年間スケジ��ール
+            年間スケジュール
           </h2>
 
           {/* Grid Layout */}
