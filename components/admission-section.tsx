@@ -87,7 +87,7 @@ export function AdmissionSection() {
 
             <div className="grid md:grid-cols-2 gap-8">
               {/* Application Form */}
-              <div className="border border-gray-300 rounded-lg p-6 hover:shadow-lg transition">
+              <div className="border border-gray-300 rounded-lg p-6 hover:shadow-lg transition flex flex-col">
                 <h3 className="text-xl font-bold text-gray-800 mb-4">入学願書</h3>
                 <p className="text-gray-600 mb-4">
                   出願に必要な書類一式
@@ -98,14 +98,14 @@ export function AdmissionSection() {
                   href="https://weavus-group.com/kcp/%e9%a1%98%e6%9b%b8%e3%82%bb%e3%83%83%e3%83%88/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block mt-6 w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-4 rounded-lg transition text-center"
+                  className="mt-auto inline-block w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-4 rounded-lg transition text-center"
                 >
                   願書をダウンロード
                 </a>
               </div>
 
               {/* Pamphlet */}
-              <div className="border border-gray-300 rounded-lg p-6 hover:shadow-lg transition">
+              <div className="border border-gray-300 rounded-lg p-6 hover:shadow-lg transition flex flex-col">
                 <h3 className="text-xl font-bold text-gray-800 mb-4">パンフレット</h3>
                 <p className="text-gray-700">
                   <span className="font-semibold">対応言語:</span><br />
@@ -120,7 +120,7 @@ export function AdmissionSection() {
                 <a
                   href="https://weavus-group.com/kcp/wp-content/uploads/2026/02/KCP%E3%83%91%E3%83%B3%E3%83%95%E3%83%AC%E3%83%83%E3%83%88%E7%A2%BA%E5%AE%9A%E7%89%88.pdf"
                   download
-                  className="inline-block mt-6 w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-4 rounded-lg transition text-center"
+                  className="mt-auto inline-block w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-4 rounded-lg transition text-center"
                 >
                   パンフレットをダウンロード
                 </a>
