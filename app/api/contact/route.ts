@@ -80,9 +80,15 @@ ${message}
       message: 'メッセージが正常に送信されました',
     })
   } catch (error) {
-    console.error('Contact form error:', error)
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error'
+    console.error('Contact form error:', errorMessage)
+    console.error('Full error details:', error)
+    
     return NextResponse.json(
-      { success: false, error: 'メール送信に失敗しました' },
+      { 
+        success: false, 
+        error: `メール送信に失敗しました: ${errorMessage}`
+      },
       { status: 500 }
     )
   }

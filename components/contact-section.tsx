@@ -80,7 +80,7 @@ export function ContactSection() {
         })
       } else {
         const error = await response.json()
-        alert(`エラーが発生しました: ${error.message || "不明なエラー"}`)
+        alert(`エラーが発生しました: ${error.error || error.message || "不明なエラー"}`)
       }
     } catch (error) {
       alert(`送信に失敗しました: ${error instanceof Error ? error.message : "不明なエラー"}`)
