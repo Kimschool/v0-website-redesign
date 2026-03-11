@@ -61,9 +61,85 @@ function YearResultsTable({ year }: { year: string }) {
                 ))}
               </div>
             </div>
+          </>
+        )}
+      </div>
+    </div>
+  )
+}
+
+export function EducationSection() {
+  return (
+    <section className="py-20 lg:py-32">
+      <div className="mx-auto max-w-7xl px-6">
+        {/* Heading */}
+        <div className="text-center mb-16">
+          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            教育課程
+          </h1>
+          <p className="text-lg text-gray-700">
+            KCPの教育理念と学習プログラム
+          </p>
+        </div>
+
+        {/* Year Results Section */}
+        <div className="mb-20">
+          <h2 className="text-3xl md:text-4xl font-bold mb-8 text-gray-900">進学実績</h2>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <YearResultsTable year="2024" />
+            <YearResultsTable year="2023" />
+          </div>
+        </div>
+
+        <div className="w-full h-px bg-gray-300 mb-16" />
+
+        {/* 時間割例 */}
+        <div className="mb-16" id="timetable">
+          <h2 className="text-2xl md:text-3xl font-bold mb-8 text-gray-900">時間割例</h2>
+
+          <div className="overflow-x-auto">
+            <table className="w-full border-collapse border border-gray-300">
+              <thead>
+                <tr className="bg-gradient-to-r from-blue-500 to-blue-600 text-white">
+                  <th className="border border-gray-300 p-3 text-left">時間帯</th>
+                  <th className="border border-gray-300 p-3 text-left">月</th>
+                  <th className="border border-gray-300 p-3 text-left">火</th>
+                  <th className="border border-gray-300 p-3 text-left">水</th>
+                  <th className="border border-gray-300 p-3 text-left">木</th>
+                  <th className="border border-gray-300 p-3 text-left">金</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td className="border border-gray-300 p-3 font-semibold">09:00~09:50</td>
+                  <td className="border border-gray-300 p-3">進学日本語①</td>
+                  <td className="border border-gray-300 p-3">進学日本語①</td>
+                  <td className="border border-gray-300 p-3">進学日本語①</td>
+                  <td className="border border-gray-300 p-3">総合学習</td>
+                  <td className="border border-gray-300 p-3">進学日本語①</td>
+                </tr>
+                <tr>
+                  <td className="border border-gray-300 p-3 font-semibold">10:00~10:50</td>
+                  <td className="border border-gray-300 p-3">進学日本語①</td>
+                  <td className="border border-gray-300 p-3">進学日本語①</td>
+                  <td className="border border-gray-300 p-3">進学日本語①</td>
+                  <td className="border border-gray-300 p-3">総合学習</td>
+                  <td className="border border-gray-300 p-3">進学日本語①</td>
+                </tr>
+                <tr>
+                  <td className="border border-gray-300 p-3 font-semibold">11:00~11:50</td>
+                  <td className="border border-gray-300 p-3">聴解</td>
+                  <td className="border border-gray-300 p-3">読解</td>
+                  <td className="border border-gray-300 p-3">聴解</td>
+                  <td className="border border-gray-300 p-3">進学指導</td>
+                  <td className="border border-gray-300 p-3">読解</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
 
           {/* Timetable Notes */}
-          <div className="bg-gray-50 p-6 rounded-lg border border-gray-200 mb-16">
+          <div className="bg-gray-50 p-6 rounded-lg border border-gray-200 mt-6">
             <p className="text-gray-700 leading-relaxed mb-3">
               ※1. <span className="font-bold">【進学日本語】</span>
               <br />
@@ -75,8 +151,11 @@ function YearResultsTable({ year }: { year: string }) {
               EJU対策、JLPT対策、小論文対策等が用意されています。大学・大学院に進学したい人、日本語能力試験に合格したい人、必要に応じて授業を選ぶことができます。
             </p>
           </div>
+        </div>
 
-          {/* コース紹介 */}
+        <div className="w-full h-px bg-gray-300 mb-16" />
+
+        {/* コース紹介 */}
           <div className="mb-16" id="course1">
             <h2 className="text-2xl md:text-3xl font-bold mb-8 text-gray-900">コース紹介</h2>
 
@@ -185,7 +264,7 @@ function YearResultsTable({ year }: { year: string }) {
                         <td className="border border-gray-300 p-3">身近な話題について、ある程度のまとまりのある内容の読み書きや情報交��ができる。</td>
                       </tr>
                       <tr>
-                        <td className="border border-gray-300 p-3">🟡B1</td>
+                        <td className="border border-gray-300 p-3">��B1</td>
                         <td className="border border-gray-300 p-3">Lv.3<br />Lv.4</td>
                         <td className="border border-gray-300 p-3">
                           <p>自分の意見や考えを理由や根拠とともに発信したり、周囲から必要な情報を得たりすることができる。</p>
