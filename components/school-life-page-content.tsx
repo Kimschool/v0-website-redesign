@@ -2,6 +2,11 @@
 
 import { useState, useEffect, useRef } from "react"
 import Image from "next/image"
+import { Swiper, SwiperSlide } from "swiper/react"
+import { Navigation, Pagination, Autoplay } from "swiper/modules"
+import "swiper/css"
+import "swiper/css/navigation"
+import "swiper/css/pagination"
 
 const scheduleItems = [
   {
@@ -240,6 +245,33 @@ const surroundingEnvironment = [
   }
 ]
 
+const annualPhotoCarouselImages = [
+  {
+    image: "https://weavus-group.com/kcp/wp-content/uploads/2025/05/P1320108_low-1-scaled-e1773040878784-2048x1536.jpg",
+    caption: "入学式"
+  },
+  {
+    image: "https://weavus-group.com/kcp/wp-content/uploads/2025/05/DSC_1301_low-1-scaled-e1773040798800-2048x1536.jpg",
+    caption: "4月 : お花見"
+  },
+  {
+    image: "https://weavus-group.com/kcp/wp-content/uploads/2026/03/rsz_upscalemedia-transformed-2048x1536.jpg",
+    caption: "5月 : 端午の節句、中間試験、課外授業"
+  },
+  {
+    image: "https://weavus-group.com/kcp/wp-content/uploads/2025/11/DSC_1168_low-2-edited-2048x1536.jpg",
+    caption: "6月 : 防犯講習、大学・大学院進学フェア、第一回EJU、期末試験"
+  },
+  {
+    image: "https://weavus-group.com/kcp/wp-content/uploads/2025/11/e72a791362a75bb4b4f61b3ba2e9d824-edited-2048x1535.jpg",
+    caption: "7月：七夕、第一回JLPT、課外授業"
+  },
+  {
+    image: "https://weavus-group.com/kcp/wp-content/uploads/2025/11/6e2a97e0becab2a006dbbb37f451034b-2048x1536.jpg",
+    caption: "8月：中間試験、夏休み、専門学校進学フェア"
+  }
+]
+
 export function SchoolLifePageContent() {
   const [activeTab, setActiveTab] = useState("marunouchi")
   const sectionRef = useRef<HTMLElement>(null)
@@ -273,7 +305,8 @@ export function SchoolLifePageContent() {
         {/* Introduction Text */}
         <div className={`text-center mb-16 ${isVisible ? "animate-fade-in-up animation-delay-100" : "opacity-0"}`}>
           <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
-            KCPでの生活は、教室の中だけにとどまりません。年間を通じてのイベントやクラブ活動一多国籍の仲間とともに過ごす日々の中
+            KCPでの生活は、教室の中だけにとどまりません。
+            年間を通じてのイベントやクラブ活動——多国籍の仲間とともに過ごす日々の中で、日本語力だけでなく、人との関わり方や文化理解も自然と深まっていきます。
           </p>
         </div>
 
@@ -315,9 +348,45 @@ export function SchoolLifePageContent() {
             ))}
           </div>
 
+          {/* Photo Carousel Section */}
+          <div className="mt-16 mb-12">
+            <Swiper
+              modules={[Navigation, Pagination, Autoplay]}
+              navigation
+              pagination={{ clickable: true }}
+              autoplay={{ delay: 5000, disableOnInteraction: false }}
+              loop
+              spaceBetween={16}
+              slidesPerView={1}
+              breakpoints={{
+                640: { slidesPerView: 2, spaceBetween: 12 },
+                1024: { slidesPerView: 3, spaceBetween: 16 }
+              }}
+              className="w-full pb-12"
+            >
+              {annualPhotoCarouselImages.map((item, index) => (
+                <SwiperSlide key={index} className="flex flex-col">
+                  <div className="relative w-full h-60 md:h-64 lg:h-72 rounded-lg overflow-hidden bg-gray-200">
+                    <img
+                      src={item.image}
+                      alt={item.caption}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <p className="text-center text-gray-700 font-medium mt-4 text-sm md:text-base">
+                    {item.caption}
+                  </p>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
+
           {/* Note */}
           <p className="mt-8 text-center text-gray-600">
             <strong>*</strong> 課外授業は、BBQや運動会、コトバデー、バス旅行、小旅行などがあり、学期によって異なります。
+          </p>
+          <p className="mt-8 text-center text-gray-600">
+            <strong>*</strong> ほかにも、日本人との交流会や高校見学、町内祭り、野球観戦、和菓子作り体験など、様々なイベントを不定期に行います。
           </p>
         </div>
 
@@ -406,7 +475,7 @@ export function SchoolLifePageContent() {
 
           <p className="text-center text-gray-700 mb-8">
             <strong>新宿御苑前駅から徒歩3分、通学や買い物にも便利です。</strong><br />
-            <strong>周辺にはコンビニや飲食店だけでなく、新宿御苑や新宿の繁華街も近く、都心生活を満喫できます。</strong>
+            <strong>周辺にはコンビニや飲食店だけでなく、緑豊かな新宿御苑、小学校・図書館などの文化施設、オフィスビル、集合住宅が立ち並び、静かで落ち着いた環境です。</strong>
           </p>
 
           {/* Google Map */}
@@ -448,8 +517,8 @@ export function SchoolLifePageContent() {
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
                   className={`px-6 py-3 font-semibold text-sm md:text-base border-b-2 transition-all ${activeTab === tab.id
-                      ? "text-blue-600 border-blue-600"
-                      : "text-gray-600 border-transparent hover:text-gray-900"
+                    ? "text-blue-600 border-blue-600"
+                    : "text-gray-600 border-transparent hover:text-gray-900"
                     }`}
                 >
                   {tab.name}
@@ -513,28 +582,42 @@ export function SchoolLifePageContent() {
             周辺環境
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <Swiper
+            modules={[Navigation, Pagination, Autoplay]}
+            navigation
+            pagination={{ clickable: true }}
+            autoplay={{ delay: 5000, disableOnInteraction: false }}
+            loop
+            spaceBetween={24}
+            slidesPerView={1}
+            breakpoints={{
+              768: { slidesPerView: 2, spaceBetween: 16 },
+              1024: { slidesPerView: 3, spaceBetween: 24 }
+            }}
+            className="w-full pb-12"
+          >
             {surroundingEnvironment.map((item, index) => (
-              <div
-                key={index}
-                className="relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow group"
-                style={{ aspectRatio: "16/9" }}
-              >
-                <Image
-                  src={item.image}
-                  alt={item.title}
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-300"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
-                  <h3 className="text-white font-bold text-lg p-4 w-full">
-                    {item.title}
-                  </h3>
+              <SwiperSlide key={index}>
+                <div
+                  className="relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow group"
+                  style={{ aspectRatio: "16/9" }}
+                >
+                  <Image
+                    src={item.image}
+                    alt={item.title}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
+                    <h3 className="text-white font-bold text-lg p-4 w-full">
+                      {item.title}
+                    </h3>
+                  </div>
                 </div>
-              </div>
+              </SwiperSlide>
             ))}
-          </div>
+          </Swiper>
         </div>
 
         {/* Divider */}
@@ -545,7 +628,11 @@ export function SchoolLifePageContent() {
           <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
             校歌・応援歌
           </h2>
-
+          <br></br>
+          <h2 className="text-3xl md:text-6xl font-bold text-center text-gray-900 mb-12">
+            KCP校歌と応援歌
+          </h2>
+          <br></br>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
             {/* School Song Video */}
             <div className="flex flex-col">

@@ -130,7 +130,7 @@ const resources = {
         items: [
           { label: "年間スケジュール" },
           { label: "クラブ活動" },
-          { label: "施���案内" },
+          { label: "施設案内" },
           { label: "アクセス" },
         ],
         cta: "学校生活をもっと見る",

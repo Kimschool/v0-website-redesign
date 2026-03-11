@@ -33,7 +33,7 @@ export function AdmissionSection() {
               出願からビザ取得、渡日前の準備まで幅広くサポートしていますので、入学をご希望の方は、まずお近くの海外事務所までお問い合わせください。
             </p>
             <p className="text-gray-600 leading-relaxed">
-              なお、在留資格の状況によりビザ取得が不要な方、または特別な事情がある方は、個別にご案内いたしますので、学校まで直接お問い合わせください。
+              ※なお、在留資格の状況によりビザ取得が不要な方、または特別な事情がある方は、個別にご案内いたしますので、学校まで直接お問い合わせください。
             </p>
           </div>
 
@@ -42,7 +42,7 @@ export function AdmissionSection() {
             <div className="relative bg-gradient-to-br from-blue-50 to-blue-100 p-8 md:p-12 rounded-xl border-2 border-blue-200 cursor-pointer overflow-hidden transition-all duration-300 hover:shadow-2xl hover:border-blue-400 hover:scale-105">
               {/* Background accent */}
               <div className="absolute top-0 right-0 w-32 h-32 bg-blue-200 rounded-full opacity-30 -mr-16 -mt-16 group-hover:scale-110 transition-transform duration-300" />
-              
+
               {/* Content */}
               <div className="relative z-10">
                 {/* Header with icon */}
@@ -87,43 +87,34 @@ export function AdmissionSection() {
 
             <div className="grid md:grid-cols-2 gap-8">
               {/* Application Form */}
-              <div className="border border-gray-300 rounded-lg p-6 hover:shadow-lg transition">
+              <div className="border border-gray-300 rounded-lg p-6 hover:shadow-lg transition flex flex-col">
                 <h3 className="text-xl font-bold text-gray-800 mb-4">入学願書</h3>
                 <p className="text-gray-600 mb-4">
-                  以下の言語での入学願書をダウンロードできます。
+                  出願に必要な書類一式
                 </p>
-                <div className="space-y-2">
-                  <p className="text-gray-700">
-                    <span className="font-semibold">対応言語:</span><br />
-                    English・中文简体・中文繁体・한국어・Tiếng Việt
-                  </p>
-                </div>
-                <a 
-                  href="https://weavus-group.com/kcp/%e9%a1%98%e6%9b%b8%e3%82%bb%e3%83%83%e3%83%88/" 
-                  target="_blank" 
+                <br></br>
+                <br></br>
+                <a
+                  href="https://weavus-group.com/kcp/%e9%a1%98%e6%9b%b8%e3%82%bb%e3%83%83%e3%83%88/"
+                  target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block mt-6 w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-4 rounded-lg transition text-center"
+                  className="mt-auto inline-block w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-4 rounded-lg transition text-center"
                 >
                   願書をダウンロード
                 </a>
               </div>
 
               {/* Pamphlet */}
-              <div className="border border-gray-300 rounded-lg p-6 hover:shadow-lg transition">
+              <div className="border border-gray-300 rounded-lg p-6 hover:shadow-lg transition flex flex-col">
                 <h3 className="text-xl font-bold text-gray-800 mb-4">パンフレット</h3>
-                <p className="text-gray-600 mb-4">
-                  KCPの詳しい情報やコース内容については、パンフレットをご覧ください。
+                <p className="text-gray-700">
+                  <span className="font-semibold">対応言語:</span><br />
+                  English・中文简体・中文繁体・한국어・Tiếng Việt
                 </p>
-                <div className="space-y-2">
-                  <p className="text-gray-700">
-                    <span className="font-semibold">ファイル形式:</span><br />
-                    PDF形式 (ダウンロード可能)
-                  </p>
-                </div>
-                <a 
-                  href="https://weavus-group.com/kcp/wp-content/uploads/2026/02/KCP%E3%83%91%E3%83%B3%E3%83%95%E3%83%AC%E3%83%83%E3%83%88%E7%A2%BA%E5%AE%9A%E7%89%88.pdf" 
+                <a
+                  href="https://weavus-group.com/kcp/wp-content/uploads/2026/02/KCP%E3%83%91%E3%83%B3%E3%83%95%E3%83%AC%E3%83%83%E3%83%88%E7%A2%BA%E5%AE%9A%E7%89%88.pdf"
                   download
-                  className="inline-block mt-6 w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-4 rounded-lg transition text-center"
+                  className="mt-auto inline-block w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-4 rounded-lg transition text-center"
                 >
                   パンフレットをダウンロード
                 </a>
@@ -255,19 +246,6 @@ export function AdmissionSection() {
                 <strong className="text-gray-800">※</strong> 詳しい奨学金の条件や申請方法については、入学後にご案内いたします。
               </p>
             </div>
-          </div>
-
-          {/* Call to Action */}
-          <div className="bg-gradient-to-r from-blue-500 to-blue-600 text-white p-8 rounded-lg text-center">
-            <h2 className="text-2xl md:text-3xl font-bold mb-4">
-              入学に関するご不明な点はお気軽にお問い合わせください
-            </h2>
-            <p className="text-blue-100 mb-6">
-              出願手続きからビザ申請、渡日後のサポートまで、全力でサポートいたします。
-            </p>
-            <button className="bg-white text-blue-600 font-bold py-3 px-8 rounded-lg hover:bg-gray-100 transition">
-              お問い合わせフォーム
-            </button>
           </div>
         </div>
       </div>

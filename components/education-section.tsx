@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
+import { TextAlignCenter } from "lucide-react";
 
 // 年度別進学実績テーブルコンポーネント
 function YearResultsTable({ year }: { year: string }) {
@@ -450,7 +451,7 @@ export function EducationSection() {
 
             <div className="grid md:grid-cols-3 gap-6 mb-6">
               {[
-                { title: "文字・表記・漢字・語彙", content: "ひらがな・カタカナの手書きから始め、���字の意味を把握することから、専門書に使われる語彙を理解し、日本独特の日本の文化に根ざした言い回し、慣用表現、コロケーションを使い、自分の言いたいことが表現できるようになることを目指す。" },
+                { title: "文字・表記・漢字・語彙", content: "ひらがな・カタカナの手書きから始め、漢字の意味を把握することから、専門書に使われる語彙を理解し、日本独特の日本の文化に根ざした言い回し、慣用表現、コロケーションを使い、自分の言いたいことが表現できるようになることを目指す。" },
                 { title: "聴解", content: "短い会話の聞き取りから始め、ラジオドラマや大学生向け講義の要点理解まで練習していく。一般的な話題であれば、あらゆる音声情報を聞いて概要をまとめられ、講義や議論の要点が理解できるようになることを目指す。" },
                 { title: "読解", content: "読解テキストの内容を理解し、筆者の主張や考えに対して自分なりの意見を持ち、グループ内で意見交換する。最終的には、文学、エッセイ、新聞、論説文、専門書など長く複雑な文章でも、慣用表現や略語がまざっていても文脈から理解できるようになることを目指す。" },
               ].map((item, index) => (
@@ -674,39 +675,44 @@ export function EducationSection() {
                       <td className="border border-gray-300 p-2 font-semibold">09:00–09:45</td>
                       <td className="border border-gray-300 p-2 bg-blue-100">漢字語彙</td>
                       <td className="border border-gray-300 p-2 bg-yellow-100">聴解</td>
-                      <td className="border border-gray-300 p-2 bg-purple-100">読解</td>
-                      <td className="border border-gray-300 p-2 bg-yellow-100">聴解</td>
+                      <td className="border border-gray-300 p-2 bg-blue-100">漢字語彙</td>
+                      <td className="border border-gray-300 p-2 bg-blue-100">漢字語彙</td>
                       <td className="border border-gray-300 p-2 bg-blue-100">漢字語彙</td>
                     </tr>
                     <tr>
-                      <td className="border border-gray-300 p-2 font-semibold">09:50–10:35</td>
+                      <td className="border border-gray-300 p-2 font-semibold">09:45–10:30</td>
+                      <td className="border border-gray-300 p-2 bg-yellow-100">聴解</td>
                       <td className="border border-gray-300 p-2 bg-green-100">総合学習</td>
+                      <td className="border border-gray-300 p-2 bg-purple-100">読解</td>
                       <td className="border border-gray-300 p-2 bg-green-100">総合学習</td>
-                      <td className="border border-gray-300 p-2 bg-green-100">総合学習</td>
-                      <td className="border border-gray-300 p-2 bg-green-100">総合学習</td>
-                      <td className="border border-gray-300 p-2 bg-green-100">総合学習</td>
+                      <td className="border border-gray-300 p-2 bg-yellow-100">聴解</td>
                     </tr>
                     <tr>
                       <td className="border border-gray-300 p-2 font-semibold">10:45–11:30</td>
-                      <td className="border border-gray-300 p-2 bg-orange-100">進学準備</td>
+                      <td className="border border-gray-300 p-2 bg-red-100">文章読解型小論文</td>
+                      <td className="border border-gray-300 p-2 bg-green-100">総合学習</td>
+                      <td className="border border-gray-300 p-2 bg-green-100">総合学習</td>
+                      <td className="border border-gray-300 p-2 bg-green-100">総合学習</td>
                       <td className="border border-gray-300 p-2 bg-purple-100">読解</td>
-                      <td className="border border-gray-300 p-2 bg-orange-100">進学準備</td>
-                      <td className="border border-gray-300 p-2 bg-purple-100">読解</td>
-                      <td className="border border-gray-300 p-2 bg-orange-100">��択���業</td>
                     </tr>
                     <tr>
-                      <td className="border border-gray-300 p-2 font-semibold">13:30–14:15</td>
-                      <td className="border border-gray-300 p-2 bg-green-100">総合学習</td>
-                      <td className="border border-gray-300 p-2 bg-green-100">総合学習</td>
-                      <td className="border border-gray-300 p-2 bg-green-100">総合学習</td>
-                      <td className="border border-gray-300 p-2 bg-green-100">総合学習</td>
-                      <td className="border border-gray-300 p-2 bg-red-100">小論文</td>
+                      <td className="border border-gray-300 p-2 font-semibold">11:30–12:15</td>
+                      <td className="border border-gray-300 p-2 bg-red-100">文章読解型小論文</td>
+                      <td className="border border-gray-300 p-2 bg-orange-100">選択授業1</td>
+                      <td className="border border-gray-300 p-2 bg-orange-100">選択授業2</td>
+                      <td className="border border-gray-300 p-2 bg-gray-100">★JLPT対策</td>
+                      <td className="border border-gray-300 p-2 bg-purple-100">読解</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
             </div>
           </div>
+          <strong className="text-gray-700 mb-4 font-semibold">※1. 【進学日本語】</strong>
+          <p className="text-gray-700 mb-4 font-semibold">進学準備教育課程での選択授業</p>
+          <br></br>
+          <strong className="text-gray-700 mb-4 font-semibold">※2. 【選択授業】</strong>
+          <p className="text-gray-700 mb-4 font-semibold">EJU対策、JLPT対策、小論文対策等が用意されています。大学・大学院に進学したい人、日本語能力試験に合格したい人、必要に応じて授業を選ぶことができます。</p>
 
           <div className="w-full h-px bg-gray-300 mb-16" />
 
@@ -1003,7 +1009,7 @@ export function EducationSection() {
                     </div>
                     <div className="space-y-4 text-gray-700 leading-relaxed text-sm">
                       <p>大学を卒業した後、さらに日本語の力をしっかりと伸ばしたいと考え、KCP地球市民日本語学校に入学いたしました。現在は、在日外国人を対象とした防災教育の仕事に携わっています。日本で暮らす外国人の方々が安心して生活できるよう支援するこの仕事は、私にとって大きなやりがいとなっています。</p>
-                      <p>KCPでは、アルバイト先を紹介していただいたことをきっかけに、面接練習や履歴書の作成などを先生方と一緒に進めさせていただきました。また、アルバイト先の複雑な労働条件や契約内容についても、分かりやすく言い換えて丁寧に説明していただき、大変心強く感じました。そのアルバイト先で最終的に正社員として採用されることになりましたので、私の日本で��キャリアはKCPで始まったと言っても過言ではありません。</p>
+                      <p>KCPでは、アルバイト先を紹介していただいたことをきっかけに、面接練習や履歴書の作成などを先生方と一緒に進めさせていただきました。また、アルバイト先の複雑な労働条件や契約内容についても、分かりやすく言い換えて丁寧に説明していただき、大変心強く感じました。そのアルバイト先で最終的に正社員として採用されることになりましたので、私の日本でのキャリアはKCPで始まったと言っても過言ではありません。</p>
                       <p>打ち合わせや会議、ビジネスメールなど、実際のビジネスシーンで求められる敬語表現や言い回しをKCPで徹底的に身につけたことで、社内外を問わず、相手や場面に応じた適切なコミュニケーションが取れるようになりました。特に、日本語には似ているようでニュアンスが大きく異なる表現が多くありますが、それらを正確に識別し、状況に合わせて使い分けられるようになったことは、仕事を進める上で大きな強みになっています。</p>
                       <p>こうした実践的な日本語力をKCPで基礎からしっかり学べたおかげで、職場でも自信を持ってやり取りができるようになりました。少し細やかな自慢ではありますが、その成果として、周囲から日本育ちだと誤って思われたこともあり、自分自身の成長を実感するきっかけにもなっています。</p>
                     </div>
@@ -1086,7 +1092,7 @@ export function EducationSection() {
                       <p className="text-gray-700 font-semibold">進学先：法政大学 人間環境学部人間環境学科（指定校推薦）</p>
                     </div>
                     <div className="space-y-4 text-gray-700 leading-relaxed text-sm">
-                      <p>「勉強をして大学に入る」という一般的な受験のプロセスであれば、正直どこでも学べると思います。しかしKCPで私が学んだのは、日本語だけではなく、「態度」でした。KCPには、日本語の指導だけでなく、学生一人ひとりを親身になって支えてくださる先生方がいます。在学中はもちろん、卒業後も日本で日本社会の中で活躍できるよう、さまざまなアドバイスをしてくださいま��た。</p>
+                      <p>「勉強をして大学に入る」という一般的な受験のプロセスであれば、正直どこでも学べると思います。しかしKCPで私が学んだのは、日本語だけではなく、「態度」でした。KCPには、日本語の指導だけでなく、学生一人ひとりを親身になって支えてくださる先生方がいます。在学中はもちろん、卒業後も日本で日本社会の中で活躍できるよう、さまざまなアドバイスをしてくださいました。</p>
                       <p>そのアドバイスは、ときに小言や説教、あるいは叱られているように感じて、正直「うるさいな……」と思ってしまうこともあったかもしれません。それでも、そうした言葉の一つひとつは、学生を大切に思う先生方の優しい気持ちから生まれたものだったと、今では感じています。こうした学びは、今に至るまで私にとって大きな宝となっています。</p>
                       <p>正直に言うと、私は語学の才能に恵まれているとは思いません。それでも、思うようにいかない時があっても、KCPで学んだ勤勉で誠実な姿勢を大切にし、日本語はもちろん、大学での授業や就職活動にも生かせる力を磨いてきました。決して胸を張って自慢できるレベルではないかもしれませんが、来日当初の自分を振り返ると、確かな成長を感じます。この経験を原動力に、これからも目の前に立ちはだかる壁を乗り越えていきたいと思います。</p>
                     </div>
@@ -1140,9 +1146,11 @@ export function EducationSection() {
                       <p className="text-gray-700 font-semibold">進学先：静岡文化芸術大学大学院 デザイン研究科</p>
                     </div>
                     <div className="space-y-4 text-gray-700 leading-relaxed text-sm">
-                      <p>KCPでの二年間は、私にとって人生の分岐点でした。入学当初、私の日本語はほとんどゼロに近く、日常会話もままならない状態でした。しかし、先生方の親身な指導と、実践的なカリキュラムのおかげで、卒業時にはN1に合格し、大学院の研究もスムーズに進められるようになりました。</p>
-                      <p>特に印象に残っているのは、少人数制のクラスです。一人ひとりの弱点に合わせた指導をしていただき、発音の矯正から敬語の使い分けまで、細か��部分まで丁寧に教えていただきました。また、課外活動や文化体験を通じて、教科書だけでは学べない日本の文化や習慣を肌で感じることができました。</p>
-                      <p>KCPで出会った仲間たちは、今でも大切な存在です。異なる国から来た学生同士が互いに支え合い、時には競い合いながら成長できたことは、かけがえのない財産です。これから留学を考えている方には、ぜひKCPでの学びをお勧めします。</p>
+                      <p>私は2020年11月に来日しました。日本の大学院で建築デザインを勉強したいと思い、日本に来ることを決めました。現在、東京にあるディスプレイおよび内装管理の会社に務めています。</p>
+                      <p>私がKCPに通っていた時期はコロナ禍だったため、みんなで参加できるイベントがあまり多くありませんでした。その中でも特に印象に残っているのがスピーチ大会です。私はクラスメートと一緒に応援動画を作成し、クラスメート全員の似顔絵を描きました。</p>
+                      <p>大学院の進学準備は正直言ってとても順調とは言えませんでした。教授との面談で研究テーマを厳しく批判され、モチベーションを完全に失い、何も手につかない状態になったこともありました。そのとき、諸永先生が何度も面接練習をしてくださり、安楽先生が毎回授業後に相談に乗ってくださったおかげで、最終的に気持ちを奮い立たせ、無事に大学院に合格することができました。</p>
+                      <p>KCPで私が得た最大の成果は確実な日本語の基礎力だと思います。学校では宿題や試験が多く大変でしたが、一つ一つを真剣に準備したおかげで、自分の日本語能力が確実に伸びているのを実感できました。</p>
+                      <p>少し自慢話になるかもしれませんが、私は授業外で特別にEJUやJLPTの勉強をすることなく、授業内容をしっかり理解するだけで非常に良い成績を取ることができました。その中でもEJUの高得点は大学院入試でも強みとなり、大きな助けとなりました。会社に入ったばかりの頃、同僚たちは私が日本に来てからまだ4年しか経っていないことに驚いていたのも、KCPでの学びが基盤となっていたからだと思います。</p>
                     </div>
                   </div>
                 </div>
@@ -1167,8 +1175,6 @@ export function EducationSection() {
                     <div className="mb-6">
                       <h3 className="text-xl font-bold text-gray-900 mb-2">张 首馨さん / 中国出身</h3>
                       <p className="text-gray-700 font-semibold">進学先：東京外国語大学大学院 総合国際学研究科</p>
-                      <p className="text-gray-600 text-sm mt-2">2024年8月JPET 日本全国一位</p>
-                      <p className="text-gray-600 text-sm">後藤新平・新渡戸稲造記念 第26回全国高校生・留学生作文コンクール 2024 留学生の部奨励賞</p>
                     </div>
                     <div className="space-y-4 text-gray-700 leading-relaxed text-sm">
                       <p>KCPでの授業では、クラスメートと自由に意見交換ができ、さまざまな国から来た学生たちの考え方や価値観に触れることができました。そのおかげで、各国に対する理解が深まり、日々の会話を通して自然と日本語の口語力も鍛えられました。さらに、新しい知識をたくさん得ることができ、とても充実した時間を過ごしました。</p>
@@ -1205,6 +1211,39 @@ export function EducationSection() {
                 </div>
               </div>
             </div>
+          </div>
+          <br></br>
+          <div className="text-center">
+            <h1>
+              <strong className="text-xl font-bold text-blue-900 mb-2">
+                関連リンク
+              </strong>
+            </h1>
+          </div>
+          <br></br>
+          <div className="text-center">
+            <p>
+              <a
+                href="https://weavus-group.com/kcp/apply/"
+                className="text-blue-700 font-semibold"
+              >
+                入学案内
+              </a>
+              &emsp;
+              <a
+                href="https://weavus-group.com/kcp/service/"
+                className="text-blue-700 font-semibold"
+              >
+                学校生活
+              </a>
+              &emsp;
+              <a
+                href="https://weavus-group.com/kcp/contact/"
+                className="text-blue-700 font-semibold"
+              >
+                お問い合わせ
+              </a>
+            </p>
           </div>
         </div>
       </div>
