@@ -1207,6 +1207,15 @@ export function EducationSection() {
                       <p>上級になれば、先生は毎日授業の冒頭に、10分ほどニュースや時事問題、ことわざなどの話をしてくださいました。その時間で教科書には載っていないような表現や語彙をたくさん学ぶことができました。私はそこで覚えた言葉を、実際に藝大の入試でも使うことができ、とても助けになりました。</p>
                     </div>
                   </div>
+
+                  <div>
+                    <h1><strong>関連リンク</strong></h1>
+                  </div>
+                  <div>
+                    <p><a href="https://weavus-group.com/kcp/apply/">入学案内</a>
+                      <a href="https://weavus-group.com/kcp/service/">学校生活</a>
+                      <a href="https://weavus-group.com/kcp/contact/">お問い合わせ</a></p>
+                  </div>
                 </div>
               </div>
             </div>
