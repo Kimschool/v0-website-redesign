@@ -316,7 +316,7 @@ export function SchoolLifePageContent() {
         {/* Annual Schedule Section */}
         <div className={`mb-20 ${isVisible ? "animate-fade-in-up animation-delay-200" : "opacity-0"}`}>
           <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
-            年間スケジュール
+            年間スケジ��ール
           </h2>
 
           {/* Grid Layout */}
@@ -582,28 +582,42 @@ export function SchoolLifePageContent() {
             周辺環境
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <Swiper
+            modules={[Navigation, Pagination, Autoplay]}
+            navigation
+            pagination={{ clickable: true }}
+            autoplay={{ delay: 5000, disableOnInteraction: false }}
+            loop
+            spaceBetween={24}
+            slidesPerView={1}
+            breakpoints={{
+              768: { slidesPerView: 2, spaceBetween: 16 },
+              1024: { slidesPerView: 3, spaceBetween: 24 }
+            }}
+            className="w-full pb-12"
+          >
             {surroundingEnvironment.map((item, index) => (
-              <div
-                key={index}
-                className="relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow group"
-                style={{ aspectRatio: "16/9" }}
-              >
-                <Image
-                  src={item.image}
-                  alt={item.title}
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-300"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
-                  <h3 className="text-white font-bold text-lg p-4 w-full">
-                    {item.title}
-                  </h3>
+              <SwiperSlide key={index}>
+                <div
+                  className="relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow group"
+                  style={{ aspectRatio: "16/9" }}
+                >
+                  <Image
+                    src={item.image}
+                    alt={item.title}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
+                    <h3 className="text-white font-bold text-lg p-4 w-full">
+                      {item.title}
+                    </h3>
+                  </div>
                 </div>
-              </div>
+              </SwiperSlide>
             ))}
-          </div>
+          </Swiper>
         </div>
 
         {/* Divider */}
