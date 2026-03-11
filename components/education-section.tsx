@@ -674,33 +674,33 @@ export function EducationSection() {
                       <td className="border border-gray-300 p-2 font-semibold">09:00–09:45</td>
                       <td className="border border-gray-300 p-2 bg-blue-100">漢字語彙</td>
                       <td className="border border-gray-300 p-2 bg-yellow-100">聴解</td>
-                      <td className="border border-gray-300 p-2 bg-purple-100">読解</td>
-                      <td className="border border-gray-300 p-2 bg-yellow-100">聴解</td>
+                      <td className="border border-gray-300 p-2 bg-blue-100">漢字語彙</td>
+                      <td className="border border-gray-300 p-2 bg-blue-100">漢字語彙</td>
                       <td className="border border-gray-300 p-2 bg-blue-100">漢字語彙</td>
                     </tr>
                     <tr>
-                      <td className="border border-gray-300 p-2 font-semibold">09:50–10:35</td>
+                      <td className="border border-gray-300 p-2 font-semibold">09:45–10:30</td>
+                      <td className="border border-gray-300 p-2 bg-yellow-100">聴解</td>
                       <td className="border border-gray-300 p-2 bg-green-100">総合学習</td>
+                      <td className="border border-gray-300 p-2 bg-purple-100">読解</td>
                       <td className="border border-gray-300 p-2 bg-green-100">総合学習</td>
-                      <td className="border border-gray-300 p-2 bg-green-100">総合学習</td>
-                      <td className="border border-gray-300 p-2 bg-green-100">総合学習</td>
-                      <td className="border border-gray-300 p-2 bg-green-100">総合学習</td>
+                      <td className="border border-gray-300 p-2 bg-yellow-100">聴解</td>
                     </tr>
                     <tr>
                       <td className="border border-gray-300 p-2 font-semibold">10:45–11:30</td>
-                      <td className="border border-gray-300 p-2 bg-orange-100">進学準備</td>
+                      <td className="border border-gray-300 p-2 bg-red-100">文章読解型小論文</td>
+                      <td className="border border-gray-300 p-2 bg-green-100">総合学習</td>
+                      <td className="border border-gray-300 p-2 bg-green-100">総合学習</td>
+                      <td className="border border-gray-300 p-2 bg-green-100">総合学習</td>
                       <td className="border border-gray-300 p-2 bg-purple-100">読解</td>
-                      <td className="border border-gray-300 p-2 bg-orange-100">進学準備</td>
-                      <td className="border border-gray-300 p-2 bg-purple-100">読解</td>
-                      <td className="border border-gray-300 p-2 bg-orange-100">��択���業</td>
                     </tr>
                     <tr>
                       <td className="border border-gray-300 p-2 font-semibold">13:30–14:15</td>
-                      <td className="border border-gray-300 p-2 bg-green-100">総合学習</td>
-                      <td className="border border-gray-300 p-2 bg-green-100">総合学習</td>
-                      <td className="border border-gray-300 p-2 bg-green-100">総合学習</td>
-                      <td className="border border-gray-300 p-2 bg-green-100">総合学習</td>
-                      <td className="border border-gray-300 p-2 bg-red-100">小論文</td>
+                      <td className="border border-gray-300 p-2 bg-red-100">文章読解型小論文</td>
+                      <td className="border border-gray-300 p-2 bg-orange-100">選択授業1</td>
+                      <td className="border border-gray-300 p-2 bg-orange-100">選択授業2</td>
+                      <td className="border border-gray-300 p-2 bg-gray-100">★JLPT対策</td>
+                      <td className="border border-gray-300 p-2 bg-purple-100">読解</td>
                     </tr>
                   </tbody>
                 </table>
