@@ -475,7 +475,7 @@ export function SchoolLifePageContent() {
 
           <p className="text-center text-gray-700 mb-8">
             <strong>新宿御苑前駅から徒歩3分、通学や買い物にも便利です。</strong><br />
-            <strong>周辺にはコンビニや飲食店だけでなく、新宿御苑や新宿の繁華街も近く、都心生活を満喫できます。</strong>
+            <strong>周辺にはコンビニや飲食店だけでなく、緑豊かな新宿御苑、小学校・図書館などの文化施設、オフィスビル、集合住宅が立ち並び、静かで落ち着いた環境です。</strong>
           </p>
 
           {/* Google Map */}
