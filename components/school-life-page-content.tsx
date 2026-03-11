@@ -273,7 +273,8 @@ export function SchoolLifePageContent() {
         {/* Introduction Text */}
         <div className={`text-center mb-16 ${isVisible ? "animate-fade-in-up animation-delay-100" : "opacity-0"}`}>
           <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
-            KCPでの生活は、教室の中だけにとどまりません。年間を通じてのイベントやクラブ活動一多国籍の仲間とともに過ごす日々の中
+            KCPでの生活は、教室の中だけにとどまりません。
+            年間を通じてのイベントやクラブ活動——多国籍の仲間とともに過ごす日々の中で、日本語力だけでなく、人との関わり方や文化理解も自然と深まっていきます。
           </p>
         </div>
 
@@ -448,8 +449,8 @@ export function SchoolLifePageContent() {
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
                   className={`px-6 py-3 font-semibold text-sm md:text-base border-b-2 transition-all ${activeTab === tab.id
-                      ? "text-blue-600 border-blue-600"
-                      : "text-gray-600 border-transparent hover:text-gray-900"
+                    ? "text-blue-600 border-blue-600"
+                    : "text-gray-600 border-transparent hover:text-gray-900"
                     }`}
                 >
                   {tab.name}
