@@ -2,6 +2,11 @@
 
 import { useState, useEffect, useRef } from "react"
 import Image from "next/image"
+import { Swiper, SwiperSlide } from "swiper/react"
+import { Navigation, Pagination, Autoplay } from "swiper/modules"
+import "swiper/css"
+import "swiper/css/navigation"
+import "swiper/css/pagination"
 
 const scheduleItems = [
   {
@@ -240,6 +245,33 @@ const surroundingEnvironment = [
   }
 ]
 
+const annualPhotoCarouselImages = [
+  {
+    image: "https://weavus-group.com/kcp/wp-content/uploads/2025/05/P1320108_low-1-scaled-e1773040878784-2048x1536.jpg",
+    caption: "入学式"
+  },
+  {
+    image: "https://weavus-group.com/kcp/wp-content/uploads/2025/05/DSC_1301_low-1-scaled-e1773040798800-2048x1536.jpg",
+    caption: "4月 : お花見"
+  },
+  {
+    image: "https://weavus-group.com/kcp/wp-content/uploads/2026/03/rsz_upscalemedia-transformed-2048x1536.jpg",
+    caption: "5月 : 端午の節句、中間試験、課外授業"
+  },
+  {
+    image: "https://weavus-group.com/kcp/wp-content/uploads/2025/11/DSC_1168_low-2-edited-2048x1536.jpg",
+    caption: "6月 : 防犯講習、大学・大学院進学フェア、第一回EJU、期末試験"
+  },
+  {
+    image: "https://weavus-group.com/kcp/wp-content/uploads/2025/11/e72a791362a75bb4b4f61b3ba2e9d824-edited-2048x1535.jpg",
+    caption: "7月：七夕、第一回JLPT、課外授業"
+  },
+  {
+    image: "https://weavus-group.com/kcp/wp-content/uploads/2025/11/6e2a97e0becab2a006dbbb37f451034b-2048x1536.jpg",
+    caption: "8月：中間試験、夏休み、専門学校進学フェア"
+  }
+]
+
 export function SchoolLifePageContent() {
   const [activeTab, setActiveTab] = useState("marunouchi")
   const sectionRef = useRef<HTMLElement>(null)
@@ -314,6 +346,39 @@ export function SchoolLifePageContent() {
                 </div>
               </div>
             ))}
+          </div>
+
+          {/* Photo Carousel Section */}
+          <div className="mt-16 mb-12">
+            <Swiper
+              modules={[Navigation, Pagination, Autoplay]}
+              navigation
+              pagination={{ clickable: true }}
+              autoplay={{ delay: 5000, disableOnInteraction: false }}
+              loop
+              spaceBetween={16}
+              slidesPerView={1}
+              breakpoints={{
+                640: { slidesPerView: 2, spaceBetween: 12 },
+                1024: { slidesPerView: 3, spaceBetween: 16 }
+              }}
+              className="w-full pb-12"
+            >
+              {annualPhotoCarouselImages.map((item, index) => (
+                <SwiperSlide key={index} className="flex flex-col">
+                  <div className="relative w-full h-60 md:h-64 lg:h-72 rounded-lg overflow-hidden bg-gray-200">
+                    <img
+                      src={item.image}
+                      alt={item.caption}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <p className="text-center text-gray-700 font-medium mt-4 text-sm md:text-base">
+                    {item.caption}
+                  </p>
+                </SwiperSlide>
+              ))}
+            </Swiper>
           </div>
 
           {/* Note */}
