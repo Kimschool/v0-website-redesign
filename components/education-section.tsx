@@ -59,249 +59,22 @@ function YearResultsTable({ year }: { year: string }) {
                     <p className="text-gray-800 font-semibold text-sm">{uni}</p>
                   </div>
                 ))}
-              </div>
-            </div>
-
-            <div>
-              <h4 className="font-bold text-purple-900 mb-4">【私立大学/大学院】</h4>
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
-                {yearData.私立.map((uni, idx) => (
-                  <div key={idx} className="p-3 bg-purple-50 rounded-lg border border-purple-200 text-center hover:bg-purple-100 transition">
-                    <p className="text-gray-800 font-semibold text-sm">{uni}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {yearData.音楽美術 && (
-              <div>
-                <h4 className="font-bold text-red-900 mb-4">【音楽系/美術系大学】</h4>
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
-                  {yearData.音楽美術.map((uni, idx) => (
-                    <div key={idx} className="p-3 bg-red-50 rounded-lg border border-red-200 text-center hover:bg-red-100 transition">
-                      <p className="text-gray-800 font-semibold text-sm">{uni}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-          </>
-        )}
-      </div>
-    </div>
-  )
-}
-
-// 2022-2019年の折りたたみコンポーネント
-function ToggleableYearResults() {
-  const [expandedYears, setExpandedYears] = useState<Record<string, boolean>>({
-    "2022": false,
-    "2021": false,
-    "2020": false,
-    "2019": false,
-  })
-
-  const toggleYear = (year: string) => {
-    setExpandedYears(prev => ({
-      ...prev,
-      [year]: !prev[year]
-    }))
-  }
-
-  const pastYears: Record<string, { 国公立: string[]; 私立: string[] }> = {
-    "2022": {
-      国公立: [
-        "京都大学", "大阪大学", "東京工業大学", "北海道大学", "名古屋大学", "九州大学", "神戸大学",
-        "横浜市立大学", "兵庫県立大学", "東京学芸大学", "埼玉大学", "茨城大学", "山梨大学",
-        "長崎大学", "室蘭工業大学", "上越教育大学"
-      ],
-      私立: [
-        "早稲田大学", "上智大学", "東京理科大学", "同志社大学", "明治大学", "立教大学", "青山学院大学",
-        "中央大学", "法政大学", "立命館大学", "関西学院大学", "関西大学", "明治学院大学", "順天堂大学",
-        "学習院大学", "武蔵野大学", "東洋大学", "日本大学", "東海大学", "帝京大学", "神奈川大学工学院",
-        "中京大学", "東京工芸大学", "東京造形大学", "武蔵野美術大学", "多摩美術大学", "女子美術大学",
-        "洗足学園音楽大学", "京都芸術大学", "京都精華大学", "神戸芸術工科大学", "東北芸術工科大学",
-        "名古屋造形大学", "静岡文化芸術大学", "宝塚大学", "拓殖大学", "城西大学", "東京国際大学",
-        "埼玉工業大学", "文化学園大学", "文化ファッション大学院大学", "京都情報大学", "大阪観光大学",
-        "法政大学専門職大学院"
-      ]
-    },
-    "2021": {
-      国公立: [
-        "京都大学", "東京工業大学", "北海道大学", "名古屋大学", "筑波大学", "お茶の水大学",
-        "横浜国立大学", "広島大学", "東京都立大学", "千葉大学", "滋賀大学", "埼玉大学",
-        "兵庫教育大学", "上越教育大学", "近畿大学", "京都市立芸術大学", "愛知県立芸術大学",
-        "広島市立大学"
-      ],
-      私立: [
-        "慶應義塾大学", "早稲田大学", "上智大学", "東京理科大学", "同志社大学", "明治大学", "立命館大学",
-        "青山学院大学", "中央大学", "法政大学", "関西学院大学", "関西大学", "立命館アジア太平洋大学",
-        "西南学院大学", "学習院大学", "明治学院大学", "東京女子大学", "昭和女子大学", "武蔵野大学",
-        "芝浦工業大学", "東京農業大学", "東京電機大学", "工学院大学", "長岡技術科学大学", "産業医科大学",
-        "専修大学", "東洋大学", "日本大学", "東海大学", "帝京大学", "神奈川工科大学", "二松学舎大学",
-        "国士舘大学", "亜細亜大学", "拓殖大学", "大東文化大学", "昭和薬科大学", "多摩美術大学",
-        "武蔵野美術大学", "東京造形大学", "京都芸術大学", "京都精華大学", "大阪芸術大学", "神戸芸術工科大学",
-        "成安造形大学", "静岡文化芸術大学", "倉敷芸術科学大学", "横浜美術大学", "洗足学園音楽大学",
-        "武蔵野音楽大学", "日本映画大学", "東京工芸大学", "文化学園大学", "文化ファッション大学院大学",
-        "京都ノートルダム女子大学", "学習院女子大学", "駒沢女子大学", "麻布大学", "熊本学園大学",
-        "大阪経済法科大学", "明海大学", "横浜商科大学", "埼玉工業大学", "日本工業大学", "北海道科学大学",
-        "山梨学院大学", "愛知産業大学", "筑波学院大学", "新潟産業大学", "至誠館大学", "千葉科学大学",
-        "日本経済大学", "宝塚大学", "テンプル大学ジャパンキャンパス", "青山学院大学専門職大学院",
-        "法政大学専門職大学院", "明治大学専門職大学院", "池坊短期大学"
-      ]
-    },
-    "2020": {
-      国公立: [
-        "東京大学", "京都大学", "東京工業大学", "一橋大学", "大阪大学", "名古屋大学", "九州大学",
-        "北海道大学", "神戸大学", "筑波大学", "東京外国語大学", "横浜国立大学", "広島大学",
-        "金沢大学", "電気通信大学", "東京藝術大学", "熊本大学", "信州大学", "埼玉大学",
-        "東京学芸大学", "首都大学東京", "富山大学", "山梨大学", "茨城大学", "弘前大学",
-        "京都市立芸術大学"
-      ],
-      私立: [
-        "慶應義塾大学", "早稲田大学", "上智大学", "東京理科大学", "明治大学", "立命館大学", "中央大学",
-        "法政大学", "学習院大学", "青山学院大学", "名古屋工業大学", "北陸先端科学技術大学", "日本女子大学",
-        "東京都市大学", "東京農業大学", "東京電機大学", "武蔵野美術大学", "多摩美術大学", "女子美術大学",
-        "日本大学", "東洋大学", "駒澤大学", "獨協大学", "明治学院大学", "国際医療福祉大学", "武蔵野大学",
-        "東海大学", "工学院大学", "都留文科大学", "神奈川大学", "大東文化大学", "帝京大学", "淑徳大学",
-        "東京造形大学", "尚美学園大学", "神戸芸術工科大学", "名古屋芸術大学", "日本工業大学", "桜美林大学",
-        "立正大学", "文化学園大学", "文化ファッション大学院大学", "東邦音楽大学", "大阪体育大学",
-        "千葉科学大学", "京都情報大学", "山梨学院大学", "国士舘大学", "松陰大学", "武蔵野学院大学",
-        "東京福祉大学", "埼玉工業大学", "第一工業大学", "事業創造大学", "デジタルハリウッド大学院"
-      ]
-    },
-    "2019": {
-      国公立: [
-        "東京大学", "一橋大学", "東京工業大学", "大阪大学", "北海道大学", "九州大学", "神戸大学",
-        "筑波大学", "千葉大学", "広島大学", "東京藝術大学", "埼玉大学", "信州大学", "群馬大学",
-        "富山大学", "愛知県立芸術大学", "秋田公立美術大学"
-      ],
-      私立: [
-        "東京大学医科歯科大学", "慶應義塾大学", "早稲田大学", "上智大学", "東京理科大学", "明治大学",
-        "立教大学", "同志社大学", "中央大学", "法政大学", "関西学院大学", "関西大学", "立命館アジア太平洋大学",
-        "西南学院大学", "学習院大学", "青山学院大学", "芝浦工業大学", "小樽商科大学", "日本女子大学",
-        "東京農業大学", "東京海洋大学", "京都産業大学", "中京大学", "成蹊大学", "武蔵野美術大学",
-        "多摩美術大学", "女子美術大学", "京都造形芸術大学", "名古屋美術大学", "神戸芸術工科大学",
-        "京都精華大学", "専修大学", "東洋大学", "駒澤大学", "日本大学", "明治学院大学", "東京経済大学",
-        "文教大学", "フェリス女学院大学", "昭和女子大学", "工学院大学", "東京工科大学", "武蔵野大学",
-        "拓殖大学", "大東文化大学", "帝京大学", "城西大学", "麻布大学", "東洋学園大学", "横浜商科大学",
-        "山口東京理科大学", "京都情報大学", "尚美学園大学", "文化学園大学", "文化女子大学", "東京造形大学",
-        "東京工芸大学", "東邦音楽大学", "日本映画大学", "明海大学", "国士舘大学", "札幌学院大学",
-        "松陰大学", "平成帝京科学大学", "東京福祉大学", "日本経済大学", "宝塚大学", "城西短期大学",
-        "産業技術大学院大学", "慶応ビジネススクール", "北陸先端技術大学院"
-      ]
-    }
-  }
-
-  const yearOrder = ["2022", "2021", "2020", "2019"]
-
-  return (
-    <div className="space-y-4">
-      {yearOrder.map((year) => (
-        <div key={year} className="border border-gray-300 rounded-lg overflow-hidden">
-          <button
-            onClick={() => toggleYear(year)}
-            className="w-full bg-gradient-to-r from-gray-400 to-gray-500 hover:from-gray-500 hover:to-gray-600 px-6 py-4 text-white font-bold text-lg flex items-center justify-between transition"
-          >
-            <span>{year}年度 進学実績</span>
-            <span className={`transform transition-transform ${expandedYears[year] ? "rotate-180" : ""}`}>
-              ▼
-            </span>
-          </button>
-
-          {expandedYears[year] && (
-            <div className="p-6 bg-gray-50 space-y-6">
-              <div>
-                <h5 className="font-bold text-blue-900 mb-3">【国公立大学/大学院】</h5>
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
-                  {pastYears[year].国公立.map((uni, idx) => (
-                    <div key={idx} className="p-2 bg-white rounded-lg border border-blue-300 text-center hover:bg-blue-50 transition">
-                      <p className="text-gray-800 font-semibold text-xs md:text-sm">{uni}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <div>
-                <h5 className="font-bold text-purple-900 mb-3">【私立大学/大学院】</h5>
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
-                  {pastYears[year].私立.map((uni, idx) => (
-                    <div key={idx} className="p-2 bg-white rounded-lg border border-purple-300 text-center hover:bg-purple-50 transition">
-                      <p className="text-gray-800 font-semibold text-xs md:text-sm">{uni}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          )}
-        </div>
-      ))}
-    </div>
-  )
-}
-
-export function EducationSection() {
-  const sectionRef = useRef<HTMLElement>(null)
-  const [isVisible, setIsVisible] = useState(false)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true)
-        }
-      },
-      { threshold: 0.15 }
-    )
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current)
-    }
-
-    return () => observer.disconnect()
-  }, [])
-
-  return (
-    <section ref={sectionRef} id="education" className="bg-white">
-      {/* Page Header */}
-      <div className="relative w-full h-64 md:h-80 overflow-hidden">
-        <Image
-          src="/images/education-header.jpg"
-          alt="教育内容"
-          fill
-          className="object-cover"
-          priority
-        />
-        <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-white">教育内容</h1>
-        </div>
-      </div>
-
-      {/* Content Section */}
-      <div className="py-20 px-4 md:px-8 lg:px-16">
-        <div className="max-w-5xl mx-auto">
-          {/* Page Title */}
-          <div className="text-center mb-16">
-            <h2 className="text-xl md:text-2xl font-semibold mb-8 text-gray-700 leading-relaxed">
-              世界から集う若者に、質の高い日本語教育を。確かな日本語力ときめ細かな進路指導で夢の実現を支えていきます。
-            </h2>
-            <div className="w-full h-px bg-gray-300" />
-          </div>
-
-          {/* 教育理念・教育方針 */}
-          <div className="mb-16">
-            <h2 className="text-2xl md:text-3xl font-bold mb-8 text-gray-900">教育理念・教育方針</h2>
-            <div className="space-y-6 text-gray-700 leading-relaxed">
-              <p>
-                本学の基本理念は、若者が切磋琢磨しながら学び成長し、21世紀を生き抜く力を身につけて世界の平和と繁栄に貢献することにある。そのためには、科学技術が進展する現代において、自主・自立・自尊と、自省・自制・自戒を併せ持つバランスの取れた精神が不可欠であり、これを基盤とし、自文化と異文化を正しく理解し、普遍的な人類観を育む。
-              </p>
-              <p>
-                本学は、生涯にわたって主体的に学び続ける姿勢を重視し、批判力・論理力・明晰性といった学びの基礎力を育成するとともに、大学や企業活動にも通用する高度で実践的な日本語力の養成を教育目標とする。
-              </p>
             </div>
           </div>
 
-          <div className="w-full h-px bg-gray-300 mb-16" />
+          {/* Timetable Notes */}
+          <div className="bg-gray-50 p-6 rounded-lg border border-gray-200 mb-16">
+            <p className="text-gray-700 leading-relaxed mb-3">
+              ※1. <span className="font-bold">【進学日本語】</span>
+              <br />
+              進学準備教育課程での選択授業
+            </p>
+            <p className="text-gray-700 leading-relaxed">
+              ※2. <span className="font-bold">【選択授業】</span>
+              <br />
+              EJU対策、JLPT対策、小論文対策等が用意されています。大学・大学院に進学したい人、日本語能力試験に合格したい人、必要に応じて授業を選ぶことができます。
+            </p>
+          </div>
 
           {/* コース紹介 */}
           <div className="mb-16" id="course1">
@@ -976,7 +749,7 @@ export function EducationSection() {
                       <p>先生方も経験豊富で、いつもいろいろな面白い教え方をしてくれました。気がついたら、知識が自然と頭に入ってきていた、そんな感覚です。</p>
                       <p>KCPは、私にとって堅苦しい学校というより、実家のような場所でした（笑）。</p>
                       <p>KCPで学んだことは、大きく分けて二つありまります。一つは、場面に応じた正しい日本語の使い分け、もう一つは日本のカルチャーです。</p>
-                      <p>一つ目の日本語についてですが、特に書き言葉と話し言葉の違いを学びました。この二つを間違えて使うと、相手にあまりよくない印象を与えてしまうことがあります。私はこの二つを意識して使い分けてきたことで、学業や仕事、日常生活でも誤解なく自分の考えを伝えられるようになりました。</p>
+                      <p>一つ目の日本語についてですが、特に書き言葉と話し言葉の違いを学びました。この二つを間違えて使うと、相手にあまりよくない印象を与えてしまうことがあります。私はこの二つを意識して使い分けてきたことで、学業や仕事、日常生活でも誤解なく自分の考えを伝えられるように��りました。</p>
                       <p>もう一つは、日本のカルチャーです。日本社会では、ルール以上に「空気を共有できるか」が大切にされますが、KCPでその感覚を学んだことで、日本人の輪にも自然に溶け込めたと感じています。こうした経験は、大学生活を経て社会に出た今も、私の大きな支えになっています。</p>
                     </div>
                   </div>
@@ -1141,7 +914,7 @@ export function EducationSection() {
                     </div>
                     <div className="space-y-4 text-gray-700 leading-relaxed text-sm">
                       <p>私は2020年11月に来日しました。日本の大学院で建築デザインを勉強したいと思い、日本に来ることを決めました。現在、東京にあるディスプレイおよび内装管理の会社に務めています。</p>
-                      <p>私がKCPに通っていた時期はコロナ禍だったため、みんなで参加できるイベントがあまり多くありませんでした。その中でも特に印象に残っているのがスピーチ大会です。私はクラスメートと一緒に応援動画を作成し、クラスメート全員の似顔絵を描きました。</p>
+                      <p>私がKCPに通っていた時期はコロナ禍だったため、みんなで参加できるイベントがあまり多くありませんでした。その中でも特に印象に残っているのがスピーチ大会です。私はクラスメートと一緒に応援動画を作成し、クラスメート���員の似顔絵を描きました。</p>
                       <p>大学院の進学準備は正直言ってとても順調とは言えませんでした。教授との面談で研究テーマを厳しく批判され、モチベーションを完全に失い、何も手につかない状態になったこともありました。そのとき、諸永先生が何度も面接練習をしてくださり、安楽先生が毎回授業後に相談に乗ってくださったおかげで、最終的に気持ちを奮い立たせ、無事に大学院に合格することができました。</p>
                       <p>KCPで私が得た最大の成果は確実な日本語の基礎力だと思います。学校では宿題や試験が多く大変でしたが、一つ一つを真剣に準備したおかげで、自分の日本語能力が確実に伸びているのを実感できました。</p>
                       <p>少し自慢話になるかもしれませんが、私は授業外で特別にEJUやJLPTの勉強をすることなく、授業内容をしっかり理解するだけで非常に良い成績を取ることができました。その中でもEJUの高得点は大学院入試でも強みとなり、大きな助けとなりました。会社に入ったばかりの頃、同僚たちは私が日本に来てからまだ4年しか経っていないことに驚いていたのも、KCPでの学びが基盤となっていたからだと思います。</p>
@@ -1171,7 +944,7 @@ export function EducationSection() {
                       <p className="text-gray-700 font-semibold">進学先：東京外国語大学大学院 総合国際学研究科</p>
                     </div>
                     <div className="space-y-4 text-gray-700 leading-relaxed text-sm">
-                      <p>KCPでの授業では、クラスメートと自由に意見交換ができ、さまざまな国から来た学生たちの考え方や価値観に触れることができました。そのおかげで、各国に対する理解が深まり、日々の会話を通して自然と日本語の口語力も鍛えられました。さらに、新しい知識をたくさん得ることができ、とても充実した時間を過ごしました。</p>
+                      <p>KCPでの授業では、クラスメートと自由に意見交換ができ���さまざまな国から来た学生たちの考え方や価値観に触れることができました。そのおかげで、各国に対する理解が深まり、日々の会話を通して自然と日本語の口語力も鍛えられました。さらに、新しい知識をたくさん得ることができ、とても充実した時間を過ごしました。</p>
                       <p>大学院に合格する前は不安でいっぱいでしたが、KCPでの毎日の授業が楽しく、勉強のストレスを感じることなく前向きに取り組むことができました。無事に大学院に合格できたことに加え、JPETや拓殖大学の作文コンテストでも賞をいただくことができ、本当に嬉しく、KCPで学んだ成果を実感しました。</p>
                     </div>
                   </div>
