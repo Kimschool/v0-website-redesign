@@ -82,7 +82,6 @@ export function Header() {
               <button
                 className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 py-2 px-3 rounded-lg hover:bg-muted"
                 aria-label={t("languageSelector")}
-                suppressHydrationWarning
               >
                 <Globe className="h-4 w-4" />
                 <span className="font-medium uppercase">{currentLanguage.code}</span>
