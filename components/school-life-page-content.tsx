@@ -321,7 +321,7 @@ export function SchoolLifePageContent() {
             <strong>*</strong> 課外授業は、BBQや運動会、コトバデー、バス旅行、小旅行などがあり、学期によって異なります。
           </p>
           <p className="mt-8 text-center text-gray-600">
-            <strong>*</strong> 課外授業は、* ほかにも、日本人との交流会や高校見学、町内祭り、野球観戦、和菓子作り体験など、様々なイベントを不定期に行います。
+            <strong>*</strong> * ほかにも、日本人との交流会や高校見学、町内祭り、野球観戦、和菓子作り体験など、様々なイベントを不定期に行います。
           </p>
         </div>
 
