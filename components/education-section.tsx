@@ -1174,8 +1174,6 @@ export function EducationSection() {
                     <div className="mb-6">
                       <h3 className="text-xl font-bold text-gray-900 mb-2">张 首馨さん / 中国出身</h3>
                       <p className="text-gray-700 font-semibold">進学先：東京外国語大学大学院 総合国際学研究科</p>
-                      <p className="text-gray-600 text-sm mt-2">2024年8月JPET 日本全国一位</p>
-                      <p className="text-gray-600 text-sm">後藤新平・新渡戸稲造記念 第26回全国高校生・留学生作文コンクール 2024 留学生の部奨励賞</p>
                     </div>
                     <div className="space-y-4 text-gray-700 leading-relaxed text-sm">
                       <p>KCPでの授業では、クラスメートと自由に意見交換ができ、さまざまな国から来た学生たちの考え方や価値観に触れることができました。そのおかげで、各国に対する理解が深まり、日々の会話を通して自然と日本語の口語力も鍛えられました。さらに、新しい知識をたくさん得ることができ、とても充実した時間を過ごしました。</p>
