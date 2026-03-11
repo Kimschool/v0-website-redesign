@@ -5,10 +5,10 @@ export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
 
-    // Validate required fields
-    const { name, email, subject, message, certificateType, graduationDate } = body
+    // Validate required fields from actual form
+    const { name, email, certificateType } = body
 
-    if (!name || !email || !subject || !message) {
+    if (!name || !email || !certificateType) {
       return NextResponse.json(
         { success: false, error: '必須項目が入力されていません' },
         { status: 400 }
@@ -42,35 +42,37 @@ export async function POST(request: NextRequest) {
       },
     })
 
-    // Build email content
+    // Build email content from form data
     let emailContent = `
 お問い合わせがありました。
 
 【送信者情報】
-名前: ${name}
+名前: ${body.name || 'N/A'}
+名前（漢字）: ${body.nameKanji || 'N/A'}
+性別: ${body.gender || 'N/A'}
+国籍: ${body.nationality || 'N/A'}
+生年月日: ${body.birthDate || 'N/A'}
+学生ID: ${body.studentId || 'N/A'}
+住所: ${body.address || 'N/A'}
+電話番号: ${body.phone || 'N/A'}
 メールアドレス: ${email}
 
-【お問い合わせ内容】
-件名: ${subject}
+【証明書申請情報】
+発行を受けたい証明書の種類: ${certificateType}
+申請目的: ${body.purpose || 'N/A'}
+受け取り場所: ${body.submissionPlace || 'N/A'}
+受け取り方法: ${body.receiveMethod || 'N/A'}
 
-メッセージ:
-${message}
+【備考】
+${body.notes || 'N/A'}
 `
-
-    // Add optional fields if present
-    if (certificateType) {
-      emailContent += `\n発行を受けたい証明書の種類: ${certificateType}`
-    }
-    if (graduationDate) {
-      emailContent += `\n卒業予定日: ${graduationDate}`
-    }
 
     // Send email
     await transporter.sendMail({
       from: smtpUser,
       to: mailTo,
       replyTo: email,
-      subject: `【KCP】お問い合わせ: ${subject}`,
+      subject: `【KCP】証明書申請: ${name}`,
       text: emailContent,
       html: emailContent.replace(/\n/g, '<br>'),
     })
