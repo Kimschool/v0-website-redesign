@@ -709,6 +709,7 @@ export function EducationSection() {
           </div>
           <strong className="text-gray-700 mb-4 font-semibold">※1. 【進学日本語】</strong>
           <p className="text-gray-700 mb-4 font-semibold">進学準備教育課程での選択授業</p>
+          <br></br>
           <strong className="text-gray-700 mb-4 font-semibold">※2. 【選択授業】</strong>
           <p className="text-gray-700 mb-4 font-semibold">EJU対策、JLPT対策、小論文対策等が用意されています。大学・大学院に進学したい人、日本語能力試験に合格したい人、必要に応じて授業を選ぶことができます。</p>
 
