@@ -90,14 +90,8 @@ export function AdmissionSection() {
               <div className="border border-gray-300 rounded-lg p-6 hover:shadow-lg transition">
                 <h3 className="text-xl font-bold text-gray-800 mb-4">入学願書</h3>
                 <p className="text-gray-600 mb-4">
-                  以下の言語での入学願書をダウンロードできます。
+                  出願に必要な書類一式
                 </p>
-                <div className="space-y-2">
-                  <p className="text-gray-700">
-                    <span className="font-semibold">対応言語:</span><br />
-                    English・中文简体・中文繁体・한국어・Tiếng Việt
-                  </p>
-                </div>
                 <a
                   href="https://weavus-group.com/kcp/%e9%a1%98%e6%9b%b8%e3%82%bb%e3%83%83%e3%83%88/"
                   target="_blank"
@@ -111,8 +105,9 @@ export function AdmissionSection() {
               {/* Pamphlet */}
               <div className="border border-gray-300 rounded-lg p-6 hover:shadow-lg transition">
                 <h3 className="text-xl font-bold text-gray-800 mb-4">パンフレット</h3>
-                <p className="text-gray-600 mb-4">
-                  KCPの詳しい情報やコース内容については、パンフレットをご覧ください。
+                <p className="text-gray-700">
+                  <span className="font-semibold">対応言語:</span><br />
+                  English・中文简体・中文繁体・한국어・Tiếng Việt
                 </p>
                 <div className="space-y-2">
                   <p className="text-gray-700">
