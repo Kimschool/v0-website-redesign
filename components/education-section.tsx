@@ -1205,6 +1205,70 @@ export function EducationSection() {
                       <p>私は中級クラスからKCPでの学習を始めました。母国での勉強は主に試験対策中心だったため、実践的な日本語力がまだ身についていなかったのです。中級クラスでは課題が多く、特に作文の宿題を通して、文の構造を意識しながら書く力を身につけました。</p>
                       <p>最初は簡単な文から始まり、徐々に複雑な文型を使えるようになったことが、自信にもつながりました。KCPの授業の良いところは、中級という基礎を築く段階で繰り返し練習を行い、記憶を定着させていくことに重点が置かれている点です。語彙や文法の説明も丁寧で、意味や使い方の広がりについても詳しく教えてくださるので、その後の高度な日本語の学習やN1対策にも非常に役立ちました。</p>
                       <p>上級になれば、先生は毎日授業の冒頭に、10分ほどニュースや時事問題、ことわざなどの話をしてくださいました。その時間で教科書には載っていないような表現や語彙をたくさん学ぶことができました。私はそこで覚えた言葉を、実際に藝大の入試でも使うことができ、とても助けになりました。</p>
+
+                      <div
+                        className="elementor-element elementor-element-aac8410 e-flex e-con-boxed e-con e-parent"
+                        data-id="aac8410"
+                        data-element_type="container"
+                      >
+                        <div className="e-con-inner">
+                          <div
+                            className="elementor-element elementor-element-c103459 elementor-widget elementor-widget-text-editor"
+                            data-id="c103459"
+                            data-element_type="widget"
+                            data-widget_type="text-editor.default"
+                          >
+                            <div className="elementor-widget-container">
+                              <h1>
+                                <strong>関連リンク</strong>
+                              </h1>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div
+                        className="elementor-element elementor-element-958eaf1 e-flex e-con-boxed e-con e-parent"
+                        data-id="958eaf1"
+                        data-element_type="container"
+                      >
+                        <div className="e-con-inner">
+                          <div
+                            className="elementor-element elementor-element-bb99857 elementor-widget elementor-widget-text-editor"
+                            data-id="bb99857"
+                            data-element_type="widget"
+                            data-widget_type="text-editor.default"
+                          >
+                            <div className="elementor-widget-container">
+                              <p>
+                                <a
+                                  href="https://weavus-group.com/kcp/apply/"
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                >
+                                  入学案内
+                                </a>
+                                {"　　　　　"}
+                                <a
+                                  href="https://weavus-group.com/kcp/service/"
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                >
+                                  学校生活
+                                </a>
+                                {"　　　"}
+                                <a
+                                  href="https://weavus-group.com/kcp/contact/"
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                >
+                                  お問い合わせ
+                                </a>
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
