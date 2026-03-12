@@ -3,10 +3,14 @@
 import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
 import { School, User } from "lucide-react"
+import { useTranslation } from "react-i18next"
 
 export function AboutSection() {
+  const { t } = useTranslation()
   const sectionRef = useRef<HTMLElement>(null)
   const [isVisible, setIsVisible] = useState(false)
+  const [visibleItems, setVisibleItems] = useState<Set<number>>(new Set())
+  const timelineRefs = useRef<(HTMLDivElement | null)[]>([])
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -15,7 +19,7 @@ export function AboutSection() {
           setIsVisible(true)
         }
       },
-      { threshold: 0.2 }
+      { threshold: 0 }
     )
 
     if (sectionRef.current) {
@@ -27,60 +31,96 @@ export function AboutSection() {
 
   const history = [
     {
-      year: "1983年",
-      title: "【KCP】設立 駐在員とその家族を対象とした日本語教育開始",
+      year: t("aboutPage.history.0.year"),
+      title: t("aboutPage.history.0.title"),
       description: ""
     },
     {
-      year: "1988年",
-      title: "法務省東京入国管理局より第一号の就学生の受け入れが認可される",
-      description: "校名を【ケーシーピーインターナショナル語学研修院】とする"
+      year: t("aboutPage.history.1.year"),
+      title: t("aboutPage.history.1.title"),
+      description: t("aboutPage.history.1.description")
     },
     {
-      year: "1991年",
-      title: "姉妹校【ジャパンフジ共生日本語学校】運営開始（赤羽キャンパス）",
+      year: t("aboutPage.history.2.year"),
+      title: t("aboutPage.history.2.title"),
       description: ""
     },
     {
-      year: "1993年",
-      title: "新宿キャンパス移転",
+      year: t("aboutPage.history.3.year"),
+      title: t("aboutPage.history.3.title"),
       description: ""
     },
     {
-      year: "2001年",
-      title: "【KCP日本語教師養成講座】開講",
+      year: t("aboutPage.history.4.year"),
+      title: t("aboutPage.history.4.title"),
       description: ""
     },
     {
-      year: "2006年",
-      title: "【学校法人KCP学園】認可",
+      year: t("aboutPage.history.5.year"),
+      title: t("aboutPage.history.5.title"),
       description: ""
     },
     {
-      year: "2007年",
-      title: "【KCP地球市民日本語学校】設置（校名変更）",
-      description: "文部科学大臣より【大学入学のための準備教育課程】の指定（翌年運営開始）"
+      year: t("aboutPage.history.6.year"),
+      title: t("aboutPage.history.6.title"),
+      description: t("aboutPage.history.6.description")
     },
     {
-      year: "2008年",
-      title: "姉妹校の校名を【ジャパンフジ共生日本語学校】から【KCP共生日本語学校】に変更",
+      year: t("aboutPage.history.7.year"),
+      title: t("aboutPage.history.7.title"),
       description: ""
     },
     {
-      year: "2014年",
-      title: "新校舎竣工 【KCP地球市民日本語学校】と姉妹校【KCP共生日本語学校】を統合",
+      year: t("aboutPage.history.8.year"),
+      title: t("aboutPage.history.8.title"),
       description: ""
     },
     {
-      year: "2017年",
-      title: "法務省東京入国管理局に【日本語教育機関の告示基準に係る誓約書】提出",
-      description: "告示校として官報公示"
+      year: t("aboutPage.history.9.year"),
+      title: t("aboutPage.history.9.title"),
+      description: t("aboutPage.history.9.description")
+    },
+    {
+      year: t("aboutPage.history.10.year"),
+      title: t("aboutPage.history.10.title"),
+      description: t("aboutPage.history.10.description")
     },
   ]
 
+  useEffect(() => {
+    const observers: IntersectionObserver[] = []
+    timelineRefs.current.forEach((ref, index) => {
+      if (!ref) return
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setVisibleItems(prev => new Set(prev).add(index))
+          }
+        },
+        { threshold: 0.1 }
+      )
+      observer.observe(ref)
+      observers.push(observer)
+    })
+    return () => observers.forEach(o => o.disconnect())
+  }, [])
+
   return (
-    <section ref={sectionRef} id="about" className="py-20 bg-white">
-      <div className="container mx-auto px-4 md:px-6">
+    <section ref={sectionRef} id="about" className="bg-white">
+      {/* Hero Banner */}
+      <div className="relative w-full h-[250px] md:h-[300px] overflow-hidden">
+        <Image
+          src="/images/original_from_customer/トップ背景/01_KCPとは（拡大して周りの建物があまり見えないように）.jpg"
+          alt="KCPとは"
+          fill
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 to-black/60 flex items-center justify-center">
+          <h1 className="text-4xl md:text-5xl font-bold text-white">{t("aboutPage.bannerTitle")}</h1>
+        </div>
+      </div>
+
+      <div className="container mx-auto px-4 md:px-6 py-20">
         {/* KCP 철학 섹션 */}
         <div className={`mb-20 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
           <div className="text-center mb-16">
@@ -101,13 +141,13 @@ export function AboutSection() {
             {/* 철학 설명 */}
             <div className="max-w-3xl mx-auto mb-12 text-gray-700 space-y-3 text-sm md:text-base leading-relaxed">
               <p>
-                KCPでは、日本語教育を通じて広く知識を備えるとともに、
+                {t("aboutPage.philosophy1")}
               </p>
               <p>
-                世界中の様々な文化・活動を通して、人間的成長を促すことを目指しています。
+                {t("aboutPage.philosophy2")}
               </p>
               <p>
-                とともず、ともに生きる――それぞれがKCPの教育理念です。
+                {t("aboutPage.philosophy3")}
               </p>
             </div>
 
@@ -115,21 +155,21 @@ export function AboutSection() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-12">
               <div className="aspect-[3/4] bg-gray-100 rounded-2xl overflow-hidden">
                 <img
-                  src="https://weavus-group.com/kcp/wp-content/uploads/2025/11/K.jpg"
+                  src="/images/original_from_customer/予備/K.jpg"
                   alt="Student 1"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="aspect-[3/4] bg-gray-100 rounded-2xl overflow-hidden">
                 <img
-                  src="https://weavus-group.com/kcp/wp-content/uploads/2025/11/a0ae7092b982a311a67520869aca4dcb.jpg"
+                  src="/images/original_from_customer/予備/学生2【予備】.jpg"
                   alt="Student 2"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="aspect-[3/4] bg-gray-100 rounded-2xl overflow-hidden">
                 <img
-                  src="https://weavus-group.com/kcp/wp-content/uploads/2025/11/818e60bf0c192652f5fe869245e46afb-1-768x1021.jpg"
+                  src="/images/original_from_customer/818e60bf0c192652f5fe869245e46afb-1-scaled.jpg"
                   alt="Student 3"
                   className="w-full h-full object-cover"
                 />
@@ -143,7 +183,7 @@ export function AboutSection() {
         {/* 학교장 인사말 */}
         <div className={`mb-20 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-            学校長挨拶
+            {t("aboutPage.principalTitle")}
           </h2>
 
           <div className="grid md:grid-cols-2 gap-12 items-start max-w-5xl mx-auto">
@@ -151,7 +191,7 @@ export function AboutSection() {
             <div className="space-y-6">
               <div className="aspect-[4/3] bg-gray-100 rounded-lg overflow-hidden">
                 <img
-                  src="https://weavus-group.com/kcp/wp-content/uploads/2026/01/%E6%A0%A1%E9%95%B7%E5%85%88%E7%94%9F-768x512.jpg"
+                  src="/images/original_from_customer/校長先生.jpg"
                   alt="学校長"
                   className="w-full h-full object-cover"
                 />
@@ -159,15 +199,15 @@ export function AboutSection() {
               <div className="space-y-3">
                 <div className="flex items-center gap-3">
                   <School className="w-5 h-5 text-[#0085b2]" />
-                  <span className="text-lg">学校法人KCP学園</span>
+                  <span className="text-lg">{t("aboutPage.schoolFoundation")}</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <School className="w-5 h-5 text-[#0085b2]" />
-                  <span className="text-lg">KCP地球市民日本語学校</span>
+                  <span className="text-lg">{t("aboutPage.schoolName")}</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <User className="w-5 h-5 text-[#0085b2]" />
-                  <span className="text-lg">学校長　金原 宏</span>
+                  <span className="text-lg">{t("aboutPage.principalName")}</span>
                 </div>
               </div>
             </div>
@@ -175,16 +215,16 @@ export function AboutSection() {
             {/* 학교장 인사말 텍스트 */}
             <div className="space-y-6 text-gray-700 leading-relaxed">
               <p>
-                日本文化への深い理解は、活躍の場を日本に求めるのであれば、欠かすことはできません。同時に、高度な日本語を身に付ける上でも必須のものです。また、日本文化を知ることは、自国の文化の美質を改めて知るきっかけにもなります。
+                {t("aboutPage.principalMessage1")}
               </p>
               <p>
-                KCPのＫは、Knowledge、「知識」を表します。高度日本語や日本文化に関する知識と言ってよいでしょう。Ｃは Coexistence、「共生」を表します。高度日本語を身に付け、日本文化を知った上で日本人や世界の人々と手を携えていくことを意味します。ＰはPeace、「平和」であり、こうしたことができれば平和な社会の建設に貢献でき、そういう人物こそ真の地球市民と言えます。
+                {t("aboutPage.principalMessage2")}
               </p>
               <p>
-                現代社会を生き抜いていくには、いうまでもなく、さまざまな知識が必要です。しかし、それ以上に、その知識をベースにして、世界中の多くの人々と共に生きていこう、共生していこう、そして平和な社会を築こうという精神もまた、求められます。
+                {t("aboutPage.principalMessage3")}
               </p>
               <p>
-                私たちの学校には、毎学期、多くの国からの留学生が入学します。そういう人たちと一緒に学ぶことによって、ＫとＣとＰを自然に身に付け、地球全体を見渡せる視野を持った人材へと成長していってもらいたい、そういう人材を育てていくんだという私たちの希望と決意が込められているのです。
+                {t("aboutPage.principalMessage4")}
               </p>
             </div>
           </div>
@@ -194,38 +234,49 @@ export function AboutSection() {
         <div className="border-t border-gray-200 my-16"></div>
 
         {/* 연혁 */}
-        <div className={`mb-20 ${isVisible ? "animate-fade-in-up animation-delay-200" : "opacity-0"}`}>
+        <div className="mb-20">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-            沿革
+            {t("aboutPage.historyTitle")}
           </h2>
 
           <div className="max-w-3xl mx-auto">
             <div className="relative">
-              {/* 타임라인 선 */}
-              <div className="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 h-full w-0.5 bg-[#0085b2]/20"></div>
+              {/* 縦線 */}
+              <div className="absolute left-2 md:left-[120px] h-full w-0.5 bg-[#0085b2]/20"></div>
 
-              {/* 타임라인 아이템들 */}
-              <div className="space-y-8">
-                {history.map((item, index) => (
-                  <div key={index} className="relative flex items-start gap-8 md:gap-0">
-                    {/* 연도 (데스크탑 왼쪽) */}
-                    <div className="hidden md:block md:w-1/2 md:pr-8 md:text-right">
-                      <span className="text-xl font-bold text-[#0085b2]">{item.year}</span>
+              <div className="space-y-6">
+                {history.map((item, index) => {
+                  const isItemVisible = visibleItems.has(index)
+                  return (
+                    <div
+                      key={index}
+                      ref={el => { timelineRefs.current[index] = el }}
+                      className={`group relative flex items-start transition-all duration-1000 ease-out cursor-default
+                        hover:bg-[#0085b2]/5 rounded-lg p-2 -m-2
+                        ${isItemVisible ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-10 scale-95"}`}
+                      style={{ transitionDelay: isItemVisible ? `${index * 100}ms` : "0ms" }}
+                    >
+                      {/* 年（デスクトップ） */}
+                      <div className="hidden md:block w-[100px] pr-4 text-right shrink-0">
+                        <span className="text-lg font-bold text-[#0085b2] transition-transform duration-300 inline-block group-hover:scale-110 origin-right">{item.year}</span>
+                      </div>
+
+                      {/* ドット */}
+                      <div className={`absolute left-2 md:relative md:left-auto shrink-0 w-3 h-3 mt-1.5 rounded-full border-2 border-white shadow-sm transition-all duration-500 ${
+                        isItemVisible ? "bg-[#0085b2] scale-125 shadow-md shadow-[#0085b2]/30" : "bg-[#0085b2]/30 scale-75"
+                      }`}></div>
+
+                      {/* コンテンツ */}
+                      <div className="pl-8 md:pl-4">
+                        <span className="md:hidden text-base font-bold text-[#0085b2] block mb-0.5 transition-transform duration-300 inline-block group-hover:scale-105 origin-left">{item.year}</span>
+                        <h3 className="font-semibold text-gray-800 transition-transform duration-300 group-hover:scale-105 origin-left">{item.title}</h3>
+                        {item.description && (
+                          <p className="text-gray-600 mt-1 text-sm">{item.description}</p>
+                        )}
+                      </div>
                     </div>
-
-                    {/* 중앙 점 */}
-                    <div className="absolute left-4 md:left-1/2 transform -translate-x-1/2 w-4 h-4 bg-[#0085b2] rounded-full border-4 border-white shadow"></div>
-
-                    {/* 내용 */}
-                    <div className="md:w-1/2 md:pl-8 pl-12">
-                      <span className="md:hidden text-lg font-bold text-[#0085b2] block mb-1">{item.year}</span>
-                      <h3 className="font-semibold text-gray-800">{item.title}</h3>
-                      {item.description && (
-                        <p className="text-gray-600 mt-1 text-sm">{item.description}</p>
-                      )}
-                    </div>
-                  </div>
-                ))}
+                  )
+                })}
               </div>
             </div>
           </div>
@@ -237,22 +288,16 @@ export function AboutSection() {
         {/* 안심의 서포트 체제 */}
         <div className={`${isVisible ? "animate-fade-in-up animation-delay-400" : "opacity-0"}`}>
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-            安心のサポート体制
+            {t("aboutPage.supportTitle")}
           </h2>
 
           <div className="max-w-4xl mx-auto text-center">
             <div className="space-y-6 text-gray-700 leading-relaxed">
               <p>
-                KCPの個性豊かで経験豊富なベテラン教師・事務職員たち、<br />
-                入学した皆さんが充実した留学生活を送り、<br />
-                夢を実現することが、私たちの願いであり喜びでもあります。
+                {t("aboutPage.supportMessage1")}
               </p>
               <p>
-                全職員が連携して、ときに優しくときに厳しく将来を見据えた指導を、<br />
-                そして一人一人の学生と向き合い親身のサポートを行います。<br />
-                勉強が心配になったとき、生活で困ったことがあるとき、いつも皆さんのそばで力になります。<br />
-                日本語で伝えることが難しくても、英語・中国語・韓国語・ベトナム語に堪能な各国担当の<br />
-                スタッフがいますから、心配しなくても大丈夫です。
+                {t("aboutPage.supportMessage2")}
               </p>
             </div>
 
@@ -260,12 +305,12 @@ export function AboutSection() {
             <div className="mt-10">
               <div className="aspect-[21/9] bg-gray-100 rounded-lg overflow-hidden">
                 <img
-                  src="https://weavus-group.com/kcp/wp-content/uploads/2026/01/KCP%E3%81%A8%E3%81%AF%E3%80%8C%E9%9B%86%E5%90%88%E5%86%99%E7%9C%9F%E3%80%8D-1024x471.jpg"
+                  src="/images/original_from_customer/KCPとは「集合写真」.jpg"
                   alt="KCP地球市民日本語学校の教職員"
                   className="w-full h-full object-cover"
                 />
               </div>
-              <p className="text-sm text-gray-500 mt-4">KCP地球市民日本語学校の教職員</p>
+              <p className="text-sm text-gray-500 mt-4">{t("aboutPage.staffPhoto")}</p>
             </div>
           </div>
         </div>

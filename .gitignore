@@ -8,3 +8,8 @@ node_modules/
 .next/
 .env*.local
 .DS_Store
+Thumbs.db
+
+# Large media files
+*.HEIC
+*.mp4

@@ -17,7 +17,7 @@ export function CTASection() {
           setIsVisible(true)
         }
       },
-      { threshold: 0.2 }
+      { threshold: 0 }
     )
 
     if (sectionRef.current) {
@@ -32,8 +32,8 @@ export function CTASection() {
       <div className="mx-auto max-w-5xl px-6">
         {/* Section header */}
         <div className={`text-center mb-12 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
-          <p className="text-sm font-medium text-cyan-200 mb-3">{t("cta.label")}</p>
-          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight">
+          <p className="text-sm font-medium text-white/60 mb-3">{t("cta.label")}</p>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-white leading-tight">
             {t("cta.title")}
           </h2>
           <p className="mt-4 text-base text-white/80 max-w-xl mx-auto">

@@ -30,17 +30,13 @@ export const metadata: Metadata = {
         url: '/icon-dark-32x32.png',
         media: '(prefers-color-scheme: dark)',
       },
-      {
-        url: '/icon.svg',
-        type: 'image/svg+xml',
-      },
     ],
     apple: '/apple-icon.png',
   },
 }
 
 export const viewport: Viewport = {
-  themeColor: '#0891b2',
+  themeColor: '#0085b2',
 }
 
 export default function RootLayout({

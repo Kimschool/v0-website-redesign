@@ -15,7 +15,7 @@ export function AchievementSection() {
           setIsVisible(true)
         }
       },
-      { threshold: 0.2 }
+      { threshold: 0 }
     )
 
     if (sectionRef.current) {

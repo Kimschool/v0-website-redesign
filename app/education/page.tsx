@@ -13,7 +13,9 @@ export default function EducationPage() {
     <>
       <Header />
       <main>
-        <EducationSection />
+        <div className="pt-24">
+          <EducationSection />
+        </div>
       </main>
       <Footer />
       <ScrollToTop />

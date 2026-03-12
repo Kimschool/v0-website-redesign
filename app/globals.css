@@ -10,33 +10,33 @@
   --card-foreground: #1a1a1a;
   --popover: #ffffff;
   --popover-foreground: #1a1a1a;
-  --primary: #0891b2;
+  --primary: #0085b2;
   --primary-foreground: #ffffff;
-  --secondary: #f0f9ff;
-  --secondary-foreground: #0891b2;
+  --secondary: #f0ffff;
+  --secondary-foreground: #0085b2;
   --muted: #f1f5f9;
   --muted-foreground: #64748b;
-  --accent: #06b6d4;
+  --accent: #0cc0df;
   --accent-foreground: #ffffff;
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.577 0.245 27.325);
   --border: #e2e8f0;
   --input: #e2e8f0;
-  --ring: #0891b2;
-  --chart-1: #0891b2;
-  --chart-2: #06b6d4;
+  --ring: #0085b2;
+  --chart-1: #0085b2;
+  --chart-2: #0cc0df;
   --chart-3: #22d3ee;
   --chart-4: #67e8f9;
   --chart-5: #a5f3fc;
   --radius: 0.5rem;
   --sidebar: #ffffff;
   --sidebar-foreground: #1a1a1a;
-  --sidebar-primary: #0891b2;
+  --sidebar-primary: #0085b2;
   --sidebar-primary-foreground: #ffffff;
   --sidebar-accent: #f0f9ff;
-  --sidebar-accent-foreground: #0891b2;
+  --sidebar-accent-foreground: #0085b2;
   --sidebar-border: #e2e8f0;
-  --sidebar-ring: #0891b2;
+  --sidebar-ring: #0085b2;
 }
 
 .dark {
@@ -52,7 +52,7 @@
   --secondary-foreground: #22d3ee;
   --muted: #334155;
   --muted-foreground: #94a3b8;
-  --accent: #06b6d4;
+  --accent: #0cc0df;
   --accent-foreground: #0f172a;
   --destructive: oklch(0.396 0.141 25.723);
   --destructive-foreground: oklch(0.637 0.237 25.331);
@@ -60,8 +60,8 @@
   --input: #334155;
   --ring: #22d3ee;
   --chart-1: #22d3ee;
-  --chart-2: #06b6d4;
-  --chart-3: #0891b2;
+  --chart-2: #0cc0df;
+  --chart-3: #0085b2;
   --chart-4: #0e7490;
   --chart-5: #155e75;
   --sidebar: #1e293b;
@@ -188,12 +188,12 @@
   opacity: 0;
 }
 
-.animation-delay-100 { animation-delay: 100ms; }
-.animation-delay-200 { animation-delay: 200ms; }
-.animation-delay-300 { animation-delay: 300ms; }
-.animation-delay-400 { animation-delay: 400ms; }
-.animation-delay-500 { animation-delay: 500ms; }
-.animation-delay-600 { animation-delay: 600ms; }
+.animation-delay-100 { animation-delay: 300ms; }
+.animation-delay-200 { animation-delay: 600ms; }
+.animation-delay-300 { animation-delay: 900ms; }
+.animation-delay-400 { animation-delay: 1200ms; }
+.animation-delay-500 { animation-delay: 1500ms; }
+.animation-delay-600 { animation-delay: 1800ms; }
 
 /* Elegant divider with fade effect */
 .elegant-divider {
@@ -223,21 +223,21 @@
 
 .hover-lift:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 40px -12px rgba(8, 145, 178, 0.2);
+  box-shadow: 0 12px 40px -12px rgba(0, 133, 178, 0.2);
 }
 
 /* Image zoom effect */
 .img-zoom {
-  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .group:hover .img-zoom {
-  transform: scale(1.05);
+  transform: scale(1.2);
 }
 
 /* Gradient text */
 .gradient-text {
-  background: linear-gradient(135deg, #0891b2 0%, #06b6d4 50%, #22d3ee 100%);
+  background: linear-gradient(135deg, #0085b2 0%, #0cc0df 50%, #22d3ee 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -245,7 +245,7 @@
 
 /* Blue gradient background */
 .bg-gradient-cyan {
-  background: linear-gradient(135deg, #0891b2 0%, #06b6d4 50%, #0e7490 100%);
+  background: linear-gradient(135deg, #0085b2 0%, #0cc0df 50%, #006794 100%);
 }
 
 /* Carousel dot styles */
@@ -258,7 +258,7 @@
 }
 
 .carousel-dot.active {
-  background: #0891b2;
+  background: #0085b2;
   width: 24px;
   border-radius: 5px;
 }
@@ -288,4 +288,37 @@
 
 .animate-blink-fast {
   animation: blink-fast 0.6s step-end infinite;
+}
+
+/* Footer infinite scroll carousel */
+@keyframes footer-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.footer-carousel-track {
+  animation: footer-scroll 30s linear infinite;
+}
+
+/* Features section infinite scroll */
+@keyframes features-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.features-slider-track {
+  animation: features-scroll 60s linear infinite;
+}
+
+.features-slider-track:hover {
+  animation-play-state: paused;
+}
+
+/* Hide scrollbar for features carousel */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }
