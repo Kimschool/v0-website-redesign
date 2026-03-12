@@ -12,7 +12,7 @@ import { ScrollToTop } from "@/components/scroll-to-top"
 export default function Home() {
   return (
     <>
-      <LoadingScreen />
+      
       <Header />
       <main>
         <HeroSection />
