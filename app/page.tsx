@@ -5,7 +5,7 @@ import { Header } from "@/components/header"
 // import { FeaturesSection } from "@/components/features-section"
 import { EducationPointsSection } from "@/components/education-points-section"
 // import { SchoolLifeSection } from "@/components/school-life-section"
-// import { SongsSection } from "@/components/songs-section"
+import { SongsSection } from "@/components/songs-section"
 import { Footer } from "@/components/footer"
 import { ScrollToTop } from "@/components/scroll-to-top"
 
@@ -19,7 +19,7 @@ export default function Home() {
         
         
         <EducationPointsSection />
-        
+        <SongsSection />
         
       </main>
       <Footer />
