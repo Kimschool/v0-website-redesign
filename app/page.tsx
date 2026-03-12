@@ -1,4 +1,4 @@
-// import { LoadingScreen } from "@/components/loading-screen"
+import { LoadingScreen } from "@/components/loading-screen"
 import { Header } from "@/components/header"
 // import { HeroSection } from "@/components/hero-section"
 // import { NewsSection } from "@/components/news-section"
@@ -12,7 +12,7 @@ import { ScrollToTop } from "@/components/scroll-to-top"
 export default function Home() {
   return (
     <>
-      
+      <LoadingScreen />
       <Header />
       <main>
 
