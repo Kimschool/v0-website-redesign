@@ -1,6 +1,6 @@
 // import { LoadingScreen } from "@/components/loading-screen"
 import { Header } from "@/components/header"
-import { HeroSection } from "@/components/hero-section"
+// import { HeroSection } from "@/components/hero-section"
 import { NewsSection } from "@/components/news-section"
 import { FeaturesSection } from "@/components/features-section"
 import { EducationPointsSection } from "@/components/education-points-section"
@@ -15,7 +15,7 @@ export default function Home() {
       
       <Header />
       <main>
-        <HeroSection />
+
         <NewsSection />
         <FeaturesSection />
         <EducationPointsSection />
