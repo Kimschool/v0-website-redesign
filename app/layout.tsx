@@ -1,24 +1,7 @@
 import type { Metadata, Viewport } from 'next'
-import { Noto_Sans_JP, Noto_Serif_JP } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { I18nProvider } from '@/components/i18n-provider'
 import './globals.css'
-
-const notoSansJP = Noto_Sans_JP({
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '700'],
-  variable: '--font-noto-sans-jp',
-  display: 'swap',
-  preload: false,
-})
-
-const notoSerifJP = Noto_Serif_JP({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  variable: '--font-noto-serif-jp',
-  display: 'swap',
-  preload: false,
-})
 
 export const metadata: Metadata = {
   title: 'KCP地球市民日本語学校 | ともにまなび ともに生きる',
@@ -50,7 +33,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja">
-      <body className={`${notoSansJP.variable} ${notoSerifJP.variable} font-sans antialiased`}>
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700&family=Noto+Serif+JP:wght@400;500;600;700&display=swap"
+          rel="stylesheet"
+        />
+      </head>
+      <body className="font-sans antialiased">
         <I18nProvider>{children}</I18nProvider>
         <Analytics />
       </body>
