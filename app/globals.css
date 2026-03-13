@@ -76,7 +76,7 @@
 
 @theme inline {
   --font-sans: var(--font-noto-sans-jp), 'Noto Sans JP', 'Geist', sans-serif;
-  --font-serif: var(--font-zen-old-mincho), 'Zen Old Mincho', serif;
+  --font-serif: var(--font-noto-serif-jp), 'Noto Serif JP', serif;
   --font-mono: 'Geist Mono', 'Geist Mono Fallback';
   --color-background: var(--background);
   --color-foreground: var(--foreground);
