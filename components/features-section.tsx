@@ -35,6 +35,16 @@ export function FeaturesSection() {
     }
   }, [])
 
+    const featureItems = [
+    { src: "/images/original_from_customer/8つの窓/01_EJU.jpg", text: t("features.featureTexts.0"), objectPosition: "center bottom", objectFit: "cover" as const },
+    { src: "/images/original_from_customer/8つの窓/02_先生.jpg", text: t("features.featureTexts.1"), objectPosition: "center", objectFit: "cover" as const },
+    { src: "/images/original_from_customer/8つの窓/03_多国籍.jpg", text: t("features.featureTexts.2"), objectPosition: "center", objectFit: "cover" as const },
+    { src: "/images/original_from_customer/8つの窓/04_設備.jpg", text: t("features.featureTexts.3"), objectPosition: "center", objectFit: "cover" as const },
+    { src: "/images/original_from_customer/8つの窓/05_文化プログラム.jpg", text: t("features.featureTexts.4"), objectPosition: "center 15%", objectFit: "cover" as const },
+    { src: "/images/original_from_customer/8つの窓/06_公共性.jpg", text: t("features.featureTexts.5"), objectPosition: "center", objectFit: "cover" as const },
+    { src: "/images/original_from_customer/8つの窓/07_アメリカ.jpg", text: t("features.featureTexts.6"), objectPosition: "center", objectFit: "cover" as const },
+    { src: "/images/original_from_customer/8つの窓/08_認定日本語教育機関に認定.jpg", text: t("features.featureTexts.7"), objectPosition: "top", objectFit: "cover" as const },
+  ]
 
 
   console.log("featureItems", featureItems)
@@ -143,13 +153,9 @@ export function FeaturesSection() {
                     className="group relative flex-shrink-0 w-[320px] md:w-[380px] overflow-hidden rounded-lg cursor-pointer"
                   >
                     <div className="aspect-[480/306] relative overflow-hidden">
-                      <Image
-                        src={item.src}
-                        alt={item.text}
-                        fill
-                        className="object-cover transition-transform duration-500 group-hover:scale-[1.2]"
-                        style={{ objectPosition: item.objectPosition }}
-                      />
+                    <div className="w-full h-full bg-gray-200 flex items-center justify-center">
+                    TEST IMAGE
+                    </div>
                       <div className="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition-colors duration-300" />
                       <div className="absolute inset-0 flex items-end p-4">
                         <h3 className="text-sm md:text-base font-bold text-white drop-shadow-lg">
