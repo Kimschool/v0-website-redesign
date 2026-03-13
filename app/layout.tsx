@@ -4,8 +4,8 @@ import { I18nProvider } from '@/components/i18n-provider'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'KCP Japanese Language School',
-  description: 'Learn Japanese at KCP - Connecting the world through Japanese language education',
+  title: 'KCP Global Citizen Japanese Language School',
+  description: 'KCP Global Citizen Japanese Language School - Connecting the world through Japanese language education',
   generator: 'v0.app',
   icons: {
     icon: [
