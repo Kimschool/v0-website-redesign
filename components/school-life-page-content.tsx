@@ -2,280 +2,115 @@
 
 import { useState, useEffect, useRef } from "react"
 import Image from "next/image"
-import { Swiper, SwiperSlide } from "swiper/react"
-import { Navigation, Pagination, Autoplay } from "swiper/modules"
-import "swiper/css"
-import "swiper/css/navigation"
-import "swiper/css/pagination"
-
-const scheduleItems = [
-  {
-    month: "入学式",
-    description: "入学式",
-    image: "https://weavus-group.com/kcp/wp-content/uploads/2025/07/ffda5a2791a8f8bb0124fe176c06c924-scaled.jpg",
-    fullWidth: true
-  },
-  {
-    month: "4月",
-    description: "お花見",
-    image: "https://weavus-group.com/kcp/wp-content/uploads/2025/07/22717db41feca533263134125f8f0633.jpg"
-  },
-  {
-    month: "5月",
-    description: "端午の節句、中間試験、課外授業",
-    image: "https://weavus-group.com/kcp/wp-content/uploads/2025/11/de8141bf959b20d35dc3dbad61c2d58f-edited-1-scaled.jpg"
-  },
-  {
-    month: "6月",
-    description: "防犯講習、大学‧大学院進学フェア、第一回EJU、期末試験",
-    image: "https://weavus-group.com/kcp/wp-content/uploads/2026/02/6月大学進学フェア-3-scaled.png"
-  },
-  {
-    month: "7月",
-    description: "七夕、第一回JLPT、課外授業",
-    image: "https://weavus-group.com/kcp/wp-content/uploads/2026/02/7月コトバデー-1-scaled.jpg"
-  },
-  {
-    month: "8月",
-    description: "中間試験、夏休み、専門学校進学フェア",
-    image: "https://weavus-group.com/kcp/wp-content/uploads/2026/02/8月専門学校進学フェア-rotated.jpeg"
-  },
-  {
-    month: "9月",
-    description: "避難訓練、期末試験",
-    image: "https://weavus-group.com/kcp/wp-content/uploads/2026/02/9月______.jpg"
-  },
-  {
-    month: "10月",
-    description: "健康診断、課外授業",
-    image: "https://weavus-group.com/kcp/wp-content/uploads/2026/02/10月バーベキュー-scaled.jpg"
-  },
-  {
-    month: "11月",
-    description: "第二回EJU、中間試験",
-    image: "https://weavus-group.com/kcp/wp-content/uploads/2026/02/11月.jpg"
-  },
-  {
-    month: "12月",
-    description: "第二回JLPT、期末試験",
-    image: "https://weavus-group.com/kcp/wp-content/uploads/2026/02/12月-scaled.jpg"
-  },
-  {
-    month: "1月",
-    description: "成人を祝う会",
-    image: "https://weavus-group.com/kcp/wp-content/uploads/2026/02/1月課外授業（成人を祝う会に、課外授業を追記してください-scaled-e1772175060300.jpg"
-  },
-  {
-    month: "2月",
-    description: "節分、中間試験、卒業認定試験",
-    image: "https://weavus-group.com/kcp/wp-content/uploads/2026/02/2月節分-e1772175488544.jpg"
-  },
-  {
-    month: "3月",
-    description: "ひな祭り、卒業式、期末試験",
-    image: "https://weavus-group.com/kcp/wp-content/uploads/2026/02/3月卒業式-1-scaled.jpg"
-  }
-]
-
-const clubActivities = [
-  {
-    name: "演劇部",
-    description: "KCPオリジナル劇で、日本語の表現力をアップ!",
-    image: "https://weavus-group.com/kcp/wp-content/uploads/2026/02/演劇部.jpg"
-  },
-  {
-    name: "琴クラブ",
-    description: "伝統楽器を学びながら、音楽を楽しみましょう。",
-    image: "https://weavus-group.com/kcp/wp-content/uploads/2026/02/琴クラブ.jpg"
-  },
-  {
-    name: "新聞部",
-    description: "取材から記事作成‧デザインまで協力し合って作成します。",
-    image: "https://weavus-group.com/kcp/wp-content/uploads/2026/02/新聞部-1-scaled.jpg"
-  },
-  {
-    name: "マンガ‧アニメクラブ",
-    description: "好きな作品を日本語で熱く語り合いましょう。",
-    image: "https://weavus-group.com/kcp/wp-content/uploads/2026/02/%E3%83%9E%E3%83%B3%E3%82%AC%E3%83%BB%E3%82%A2%E3%83%8B%E3%83%A1%E3%82%AF%E3%83%A9%E3%83%96-1-scaled.jpg"
-  },
-  {
-    name: "茶道部",
-    description: "お茶の点て方をお稽古し、日本文化とマナーを学びます。",
-    image: "https://weavus-group.com/kcp/wp-content/uploads/2026/02/茶道クラブ-1-scaled.jpg"
-  },
-  {
-    name: "読書会‧読書クラブ",
-    description: "中上級‧初級に分かれて、レベルにあった本を楽しみます。",
-    image: "https://weavus-group.com/kcp/wp-content/uploads/2026/02/読書クラブ_2-1-scaled.jpg"
-  }
-]
-
-const stationTabs = [
-  {
-    id: "marunouchi",
-    name: "東京メトロ丸ノ内線",
-    logo: "https://weavus-group.com/kcp/wp-content/uploads/2025/11/Logo_of_Tokyo_Metro_Marunouchi_Line.svg_.png",
-    stations: [
-      {
-        name: "新宿御苑前駅",
-        code: "M10",
-        access: "2番出口より徒歩5分"
-      },
-      {
-        name: "四谷３丁目駅",
-        code: "M11",
-        access: "2番出口より徒歩12分"
-      }
-    ]
-  },
-  {
-    id: "fukutoshin",
-    name: "東京メトロ副都心線",
-    logo: "https://weavus-group.com/kcp/wp-content/uploads/2025/11/Logo_of_Tokyo_Metro_Fukutoshin_Line.svg_.png",
-    stations: [
-      {
-        name: "新宿3丁目駅",
-        code: "F13",
-        access: "C4出口より徒歩13分"
-      }
-    ]
-  },
-  {
-    id: "shinjuku",
-    name: "都営新宿線",
-    logo: "https://weavus-group.com/kcp/wp-content/uploads/2025/11/Toei_Shinjuku_line_symbol.svg_.png",
-    stations: [
-      {
-        name: "新宿3丁目駅",
-        code: "S02",
-        access: "C4出口より徒歩13分"
-      },
-      {
-        name: "曙橋駅",
-        code: "S03",
-        access: "C4出口より徒歩11分"
-      }
-    ]
-  }
-]
-
-const facilityItems = [
-  {
-    title: "全景",
-    caption: "安全で快適な学習環境を提供する地上7階、地下1階の校舎。",
-    image: "https://weavus-group.com/kcp/wp-content/uploads/2026/02/01_校舍全景-1024x655.jpg"
-  },
-  {
-    title: "校庭",
-    caption: "明るい広いスペースで世界中の友達と交流。",
-    image: "https://weavus-group.com/kcp/wp-content/uploads/2026/02/02_校庭-1-1024x655.jpg"
-  },
-  {
-    title: "駐輪場",
-    caption: "自転車通学の人はこちらに駐輪できます。",
-    image: "https://weavus-group.com/kcp/wp-content/uploads/2026/02/03_駐輪場-2-1024x655.jpg"
-  },
-  {
-    title: "BF1美術室",
-    caption: "美術系進学者のための設備を完備。",
-    image: "https://weavus-group.com/kcp/wp-content/uploads/2026/02/04_BF1美術室-1-1024x655.jpg"
-  },
-  {
-    title: "1F職員室",
-    caption: "面談や学習などのサポートにも利用。学生たちが困ったときは、いつでも相談や質問に来られるようにしています。",
-    image: "https://weavus-group.com/kcp/wp-content/uploads/2026/02/05_1F職員室-1-1024x655.jpg"
-  },
-  {
-    title: "2Fラウンジ",
-    caption: "自動販売機や電子レンジ付き、休み時間に一休憩。",
-    image: "https://weavus-group.com/kcp/wp-content/uploads/2026/02/06_2Fラウンジ-1-1024x655.jpg"
-  },
-  {
-    title: "2F図書室",
-    caption: "約5000冊の蔵書があり、自習スペースは最大100席。聴解用教材・パソコンも貸し出しています。",
-    image: "https://weavus-group.com/kcp/wp-content/uploads/2026/02/07_2F図書室-1-1024x655.jpg"
-  },
-  {
-    title: "教室",
-    caption: "防音と音響に配慮した語学に適した教室。",
-    image: "https://weavus-group.com/kcp/wp-content/uploads/2026/02/08_教室明るく調整してください）-1-1024x655.jpg"
-  },
-  {
-    title: "教室",
-    caption: "防音と音響に配慮した語学に適した教室。",
-    image: "https://weavus-group.com/kcp/wp-content/uploads/2026/02/09_教室2-1-1024x655.jpg"
-  },
-  {
-    title: "6F講堂",
-    caption: "式典や進学説明会など多様な目的に利用。",
-    image: "https://weavus-group.com/kcp/wp-content/uploads/2026/02/10_6F講堂-1-1024x655.jpg"
-  },
-  {
-    title: "7F和室",
-    caption: "茶道・琴などのクラブ活動に使用。",
-    image: "https://weavus-group.com/kcp/wp-content/uploads/2026/02/11_7F和室-1024x655.jpg"
-  },
-  {
-    title: "日本庭園",
-    caption: "1年12ヶ月の草花が植えられた庭園。お茶会では園芸クラブが丹精した花々を、床の間に生けます。",
-    image: "https://weavus-group.com/kcp/wp-content/uploads/2026/02/12_日本庭園-1024x655.jpg"
-  }
-]
-
-const surroundingEnvironment = [
-  {
-    title: "新宿御苑前駅（最寄り駅）",
-    image: "https://weavus-group.com/kcp/wp-content/uploads/2025/12/Shinjuku-gyoemmae-station-Exit1-1-2048x1536.jpg"
-  },
-  {
-    title: "花園病院",
-    image: "https://weavus-group.com/kcp/wp-content/uploads/2025/12/rich2s6257899_05-1.jpg"
-  },
-  {
-    title: "郵便局",
-    image: "https://weavus-group.com/kcp/wp-content/uploads/2025/12/unnamed.jpg"
-  },
-  {
-    title: "四谷区民センター",
-    image: "https://weavus-group.com/kcp/wp-content/uploads/2025/12/NRFaHRT38eoY60XESAAPgjV5AOK9ybxJKDsJO9EW-1.jpg"
-  },
-  {
-    title: "富久クロス",
-    image: "https://weavus-group.com/kcp/wp-content/uploads/2025/12/Tomihisa_Cross_Comfort_Tower-1-2048x1536.jpg"
-  }
-]
-
-const annualPhotoCarouselImages = [
-  {
-    image: "https://weavus-group.com/kcp/wp-content/uploads/2025/05/P1320108_low-1-scaled-e1773040878784-2048x1536.jpg",
-    caption: "入学式"
-  },
-  {
-    image: "https://weavus-group.com/kcp/wp-content/uploads/2025/05/DSC_1301_low-1-scaled-e1773040798800-2048x1536.jpg",
-    caption: "4月 : お花見"
-  },
-  {
-    image: "https://weavus-group.com/kcp/wp-content/uploads/2026/03/rsz_upscalemedia-transformed-2048x1536.jpg",
-    caption: "5月 : 端午の節句、中間試験、課外授業"
-  },
-  {
-    image: "https://weavus-group.com/kcp/wp-content/uploads/2025/11/DSC_1168_low-2-edited-2048x1536.jpg",
-    caption: "6月 : 防犯講習、大学・大学院進学フェア、第一回EJU、期末試験"
-  },
-  {
-    image: "https://weavus-group.com/kcp/wp-content/uploads/2025/11/e72a791362a75bb4b4f61b3ba2e9d824-edited-2048x1535.jpg",
-    caption: "7月：七夕、第一回JLPT、課外授業"
-  },
-  {
-    image: "https://weavus-group.com/kcp/wp-content/uploads/2025/11/6e2a97e0becab2a006dbbb37f451034b-2048x1536.jpg",
-    caption: "8月：中間試験、夏休み、専門学校進学フェア"
-  }
-]
+import { useTranslation } from "react-i18next"
+import Autoplay from "embla-carousel-autoplay"
+import {
+  type CarouselApi,
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselPrevious,
+  CarouselNext,
+} from "@/components/ui/carousel"
 
 export function SchoolLifePageContent() {
   const [activeTab, setActiveTab] = useState("marunouchi")
   const sectionRef = useRef<HTMLElement>(null)
   const [isVisible, setIsVisible] = useState(false)
+  const { t, i18n } = useTranslation()
+
+  const scheduleItems = [
+    { month: t("schoolLifePage.scheduleItems.0.month"), description: t("schoolLifePage.scheduleItems.0.description"), image: "/images/original_from_customer/nyuugakusiki.jpg", fullWidth: true },
+    { month: t("schoolLifePage.scheduleItems.1.month"), description: t("schoolLifePage.scheduleItems.1.description"), image: "/images/original_from_customer/年間スケジュール/4月お花見.jpg" },
+    { month: t("schoolLifePage.scheduleItems.2.month"), description: t("schoolLifePage.scheduleItems.2.description"), image: "/images/original_from_customer/年間スケジュール/5月端午の節句.JPG" },
+    { month: t("schoolLifePage.scheduleItems.3.month"), description: t("schoolLifePage.scheduleItems.3.description"), image: "/images/original_from_customer/予備/授業風景.jpg" },
+    { month: t("schoolLifePage.scheduleItems.4.month"), description: t("schoolLifePage.scheduleItems.4.description"), image: "/images/original_from_customer/年間スケジュール/7月コトバデー.jpg" },
+    { month: t("schoolLifePage.scheduleItems.5.month"), description: t("schoolLifePage.scheduleItems.5.description"), image: "/images/original_from_customer/年間スケジュール/8月専門学校進学フェア.jpeg" },
+    { month: t("schoolLifePage.scheduleItems.6.month"), description: t("schoolLifePage.scheduleItems.6.description"), image: "/images/original_from_customer/年間スケジュール/9月.jpg" },
+    { month: t("schoolLifePage.scheduleItems.7.month"), description: t("schoolLifePage.scheduleItems.7.description"), image: "/images/original_from_customer/年間スケジュール/10月バーベキュー.JPG" },
+    { month: t("schoolLifePage.scheduleItems.8.month"), description: t("schoolLifePage.scheduleItems.8.description"), image: "/images/original_from_customer/年間スケジュール/11月.jpg" },
+    { month: t("schoolLifePage.scheduleItems.9.month"), description: t("schoolLifePage.scheduleItems.9.description"), image: "/images/original_from_customer/年間スケジュール/12月.JPG" },
+    { month: t("schoolLifePage.scheduleItems.10.month"), description: t("schoolLifePage.scheduleItems.10.description"), image: "/images/original_from_customer/年間スケジュール/1月課外授業（成人を祝う会に、課外授業を追記してください.JPG" },
+    { month: t("schoolLifePage.scheduleItems.11.month"), description: t("schoolLifePage.scheduleItems.11.description"), image: "/images/original_from_customer/年間スケジュール/2月節分.jpg" },
+    { month: t("schoolLifePage.scheduleItems.12.month"), description: t("schoolLifePage.scheduleItems.12.description"), image: "/images/original_from_customer/年間スケジュール/3月卒業式.JPG" },
+  ]
+
+  const clubActivities = [
+    { name: t("schoolLifePage.clubItems.0.name"), description: t("schoolLifePage.clubItems.0.description"), image: "/images/original_from_customer/クラブ活動/演劇部.jpg" },
+    { name: t("schoolLifePage.clubItems.1.name"), description: t("schoolLifePage.clubItems.1.description"), image: "/images/original_from_customer/クラブ活動/琴クラブ.jpg" },
+    { name: t("schoolLifePage.clubItems.2.name"), description: t("schoolLifePage.clubItems.2.description"), image: "/images/original_from_customer/クラブ活動/新聞部.jpg" },
+    { name: t("schoolLifePage.clubItems.3.name"), description: t("schoolLifePage.clubItems.3.description"), image: "/images/original_from_customer/クラブ活動/マンガ・アニメクラブ.jpg" },
+    { name: t("schoolLifePage.clubItems.4.name"), description: t("schoolLifePage.clubItems.4.description"), image: "/images/original_from_customer/クラブ活動/茶道クラブ.JPG" },
+    { name: t("schoolLifePage.clubItems.5.name"), description: t("schoolLifePage.clubItems.5.description"), image: "/images/original_from_customer/クラブ活動/読書クラブ.jpg" },
+  ]
+
+  const stationTabs = [
+    {
+      id: "marunouchi",
+      name: t("schoolLifePage.stationTabs.0.name"),
+      color: "#e60012",
+      image: "/images/original_from_customer/metro/Logo_of_Tokyo_Metro_Marunouchi_Line.svg.png",
+      stations: [
+        { name: t("schoolLifePage.stationTabs.0.stations.0.name"), code: "M10", access: t("schoolLifePage.stationTabs.0.stations.0.access") },
+        { name: t("schoolLifePage.stationTabs.0.stations.1.name"), code: "M11", access: t("schoolLifePage.stationTabs.0.stations.1.access") },
+      ]
+    },
+    {
+      id: "fukutoshin",
+      name: t("schoolLifePage.stationTabs.1.name"),
+      color: "#bb641d",
+      image: "/images/original_from_customer/metro/Logo_of_Tokyo_Metro_Fukutoshin_Line.svg.png",
+      stations: [
+        { name: t("schoolLifePage.stationTabs.1.stations.0.name"), code: "F13", access: t("schoolLifePage.stationTabs.1.stations.0.access") },
+      ]
+    },
+    {
+      id: "shinjuku",
+      name: t("schoolLifePage.stationTabs.2.name"),
+      color: "#b0bf1e",
+      image: "/images/original_from_customer/metro/Toei_Shinjuku_line_symbol.svg.png",
+      stations: [
+        { name: t("schoolLifePage.stationTabs.2.stations.0.name"), code: "S02", access: t("schoolLifePage.stationTabs.2.stations.0.access") },
+        { name: t("schoolLifePage.stationTabs.2.stations.1.name"), code: "S03", access: t("schoolLifePage.stationTabs.2.stations.1.access") },
+      ]
+    }
+  ]
+
+  const facilityItems = [
+    { title: t("schoolLifePage.facilityItems.0.title"), caption: t("schoolLifePage.facilityItems.0.caption"), image: "/images/original_from_customer/施設案内/01_校舍全景.jpg" },
+    { title: t("schoolLifePage.facilityItems.1.title"), caption: t("schoolLifePage.facilityItems.1.caption"), image: "/images/original_from_customer/施設案内/02_校庭.jpg" },
+    { title: t("schoolLifePage.facilityItems.2.title"), caption: t("schoolLifePage.facilityItems.2.caption"), image: "/images/original_from_customer/施設案内/03_駐輪場.jpg" },
+    { title: t("schoolLifePage.facilityItems.3.title"), caption: t("schoolLifePage.facilityItems.3.caption"), image: "/images/original_from_customer/施設案内/04_BF1美術室.jpg" },
+    { title: t("schoolLifePage.facilityItems.4.title"), caption: t("schoolLifePage.facilityItems.4.caption"), image: "/images/original_from_customer/施設案内/05_1F職員室.jpg" },
+    { title: t("schoolLifePage.facilityItems.5.title"), caption: t("schoolLifePage.facilityItems.5.caption"), image: "/images/original_from_customer/施設案内/06_2Fラウンジ.jpg" },
+    { title: t("schoolLifePage.facilityItems.6.title"), caption: t("schoolLifePage.facilityItems.6.caption"), image: "/images/original_from_customer/施設案内/07_2F図書室.jpg" },
+    { title: t("schoolLifePage.facilityItems.7.title"), caption: t("schoolLifePage.facilityItems.7.caption"), image: "/images/original_from_customer/施設案内/08_教室(明るく調整してください）.jpg" },
+    { title: t("schoolLifePage.facilityItems.8.title"), caption: t("schoolLifePage.facilityItems.8.caption"), image: "/images/original_from_customer/施設案内/09_教室2.jpg" },
+    { title: t("schoolLifePage.facilityItems.9.title"), caption: t("schoolLifePage.facilityItems.9.caption"), image: "/images/original_from_customer/施設案内/10_6F講堂.jpg" },
+    { title: t("schoolLifePage.facilityItems.10.title"), caption: t("schoolLifePage.facilityItems.10.caption"), image: "/images/original_from_customer/施設案内/11_7F和室.jpg" },
+    { title: t("schoolLifePage.facilityItems.11.title"), caption: t("schoolLifePage.facilityItems.11.caption"), image: "/images/original_from_customer/施設案内/12_日本庭園.jpg" },
+  ]
+
+  const surroundingEnvironment = [
+    { title: t("schoolLifePage.surroundingItems.0.title"), image: "/images/original_from_customer/Shinjuku-gyoemmae-station-Exit1-1-scaled.jpg" },
+    { title: t("schoolLifePage.surroundingItems.1.title"), image: "/images/original_from_customer/rich2s6257899_05-1.jpg" },
+    { title: t("schoolLifePage.surroundingItems.2.title"), image: "/images/original_from_customer/unnamed.jpg" },
+    { title: t("schoolLifePage.surroundingItems.3.title"), image: "/images/original_from_customer/NRFaHRT38eoY60XESAAPgjV5AOK9ybxJKDsJO9EW-1.jpg" },
+    { title: t("schoolLifePage.surroundingItems.4.title"), image: "/images/original_from_customer/Tomihisa_Cross_Comfort_Tower-1-scaled.jpg" },
+    { title: t("schoolLifePage.surroundingItems.5.title"), image: "/images/original_from_customer/Shinjuku_Gyoen_National_Garden_-_sakura_3.jpg" },
+  ]
+
+  const [surroundingApi, setSurroundingApi] = useState<CarouselApi>()
+
+  useEffect(() => {
+    if (!surroundingApi) return
+    const onSelect = () => {
+      const autoplay = surroundingApi.plugins().autoplay
+      if (autoplay) autoplay.reset()
+    }
+    surroundingApi.on("select", onSelect)
+    return () => { surroundingApi.off("select", onSelect) }
+  }, [surroundingApi])
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -284,7 +119,7 @@ export function SchoolLifePageContent() {
           setIsVisible(true)
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0 }
     )
 
     if (sectionRef.current) {
@@ -295,28 +130,33 @@ export function SchoolLifePageContent() {
   }, [])
 
   return (
-    <section ref={sectionRef} className="py-16 bg-white">
-      <div className="container mx-auto px-4 md:px-6 max-w-6xl">
-        {/* Page Header */}
-        <div className={`text-center mb-12 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">学校生活</h1>
+    <section ref={sectionRef} className="bg-white">
+      {/* Page Banner */}
+      <div className="relative h-[250px] md:h-[300px] w-full overflow-hidden">
+        <Image
+          src="/images/original_from_customer/トップ背景/03_学校生活.jpg"
+          alt="学校生活"
+          fill
+          className="object-cover object-[center_30%]"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 to-black/60 flex items-center justify-center">
+          <h1 className="text-4xl md:text-5xl font-bold text-white">{t("schoolLifePage.bannerTitle")}</h1>
         </div>
-
+      </div>
+      <div className="container mx-auto px-4 md:px-6 max-w-6xl py-16">
         {/* Introduction Text */}
-        <div className={`text-center mb-16 ${isVisible ? "animate-fade-in-up animation-delay-100" : "opacity-0"}`}>
-          <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
-            KCPでの生活は、教室の中だけにとどまりません。
-            年間を通じてのイベントやクラブ活動——多国籍の仲間とともに過ごす日々の中で、日本語力だけでなく、人との関わり方や文化理解も自然と深まっていきます。
+        <div className={`text-center mb-16 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
+          <div className="w-12 h-1 bg-[#0085b2] mx-auto mb-6 rounded-full" />
+          <p className="text-lg md:text-xl text-gray-700 leading-relaxed max-w-3xl mx-auto">
+            {t("schoolLifePage.intro")}
           </p>
+          <div className="elegant-divider mt-8" />
         </div>
-
-        {/* Divider */}
-        <div className="w-full h-px bg-gray-300 mb-16" />
 
         {/* Annual Schedule Section */}
         <div className={`mb-20 ${isVisible ? "animate-fade-in-up animation-delay-200" : "opacity-0"}`}>
           <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
-            年間スケジュール
+            {t("schoolLifePage.scheduleTitle")}
           </h2>
 
           {/* Grid Layout */}
@@ -332,7 +172,6 @@ export function SchoolLifePageContent() {
                   alt={item.month}
                   fill
                   className="object-cover transition-transform duration-400 ease-out group-hover:scale-105"
-                  unoptimized
                 />
 
                 {/* Top overlay - month */}
@@ -348,45 +187,9 @@ export function SchoolLifePageContent() {
             ))}
           </div>
 
-          {/* Photo Carousel Section */}
-          <div className="mt-16 mb-12">
-            <Swiper
-              modules={[Navigation, Pagination, Autoplay]}
-              navigation
-              pagination={{ clickable: true }}
-              autoplay={{ delay: 5000, disableOnInteraction: false }}
-              loop
-              spaceBetween={16}
-              slidesPerView={1}
-              breakpoints={{
-                640: { slidesPerView: 2, spaceBetween: 12 },
-                1024: { slidesPerView: 3, spaceBetween: 16 }
-              }}
-              className="w-full pb-12"
-            >
-              {annualPhotoCarouselImages.map((item, index) => (
-                <SwiperSlide key={index} className="flex flex-col">
-                  <div className="relative w-full h-60 md:h-64 lg:h-72 rounded-lg overflow-hidden bg-gray-200">
-                    <img
-                      src={item.image}
-                      alt={item.caption}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <p className="text-center text-gray-700 font-medium mt-4 text-sm md:text-base">
-                    {item.caption}
-                  </p>
-                </SwiperSlide>
-              ))}
-            </Swiper>
-          </div>
-
           {/* Note */}
           <p className="mt-8 text-center text-gray-600">
-            <strong>*</strong> 課外授業は、BBQや運動会、コトバデー、バス旅行、小旅行などがあり、学期によって異なります。
-          </p>
-          <p className="mt-8 text-center text-gray-600">
-            <strong>*</strong> ほかにも、日本人との交流会や高校見学、町内祭り、野球観戦、和菓子作り体験など、様々なイベントを不定期に行います。
+            <strong>*</strong> {t("schoolLifePage.scheduleNote")}
           </p>
         </div>
 
@@ -396,7 +199,7 @@ export function SchoolLifePageContent() {
         {/* Club Activities Section */}
         <div className="mb-20">
           <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
-            クラブ活動
+            {t("schoolLifePage.clubTitle")}
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-gray-300 border border-gray-300">
@@ -410,7 +213,6 @@ export function SchoolLifePageContent() {
                   alt={club.name}
                   fill
                   className="object-cover transition-transform duration-400 ease-out group-hover:scale-105"
-                  unoptimized
                 />
 
                 {/* Top overlay - name */}
@@ -433,7 +235,7 @@ export function SchoolLifePageContent() {
         {/* Facility Guide Section */}
         <div className="mb-20">
           <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
-            施設案内
+            {t("schoolLifePage.facilityTitle")}
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -470,32 +272,44 @@ export function SchoolLifePageContent() {
         {/* Access Section */}
         <div className="mb-20">
           <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
-            アクセス‧周辺環境
+            {t("schoolLifePage.accessTitle")}
           </h2>
 
           <p className="text-center text-gray-700 mb-8">
-            <strong>新宿御苑前駅から徒歩3分、通学や買い物にも便利です。</strong><br />
-            <strong>周辺にはコンビニや飲食店だけでなく、緑豊かな新宿御苑、小学校・図書館などの文化施設、オフィスビル、集合住宅が立ち並び、静かで落ち着いた環境です。</strong>
+            <strong>{t("schoolLifePage.accessDesc1")}</strong><br />
+            <strong>{t("schoolLifePage.accessDesc2")}</strong>
           </p>
 
-          {/* Google Map */}
+          {/* Map - Baidu for Chinese users, Google for others */}
           <div className="w-full h-[450px] bg-gray-100 rounded-lg overflow-hidden mb-8">
-            <iframe
-              src="https://www.google.com/maps?q=東京都新宿区新宿1-29-12&z=18&output=embed"
-              width="100%"
-              height="450"
-              style={{ border: 0 }}
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              title="KCP地球市民日本語学校 所在地"
-            />
+            {i18n.language === "zh" ? (
+              <iframe
+                src="https://map.baidu.com/?newmap=1&reqflag=pcmap&biz=1&from=webmap&da_from=webmap&qt=s&c=12955284.05,4224430.25&z=18"
+                width="100%"
+                height="450"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                title="KCP地球市民日本語学校 所在地 (百度地图)"
+              />
+            ) : (
+              <iframe
+                src="https://www.google.com/maps?q=東京都新宿区新宿1-29-12&z=18&output=embed"
+                width="100%"
+                height="450"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="KCP地球市民日本語学校 所在地"
+              />
+            )}
           </div>
 
           <div className="text-center text-gray-700 mb-12">
-            <p>学校法人KCP学園 KCP地球市民日本語学校</p>
+            <p>{t("schoolLifePage.schoolAddress")}</p>
             <p>〒160-0022　東京都新宿区新宿1-29-12</p>
-            <p>連絡先：03-3356-2359 / Fax: 03-3356-2559 / Email：<a href="mailto:info@kcp.ac.jp">info@kcp.ac.jp</a></p>
+            <p>{t("schoolLifePage.schoolContact")}<a href="mailto:info@kcp.ac.jp" className="text-[#0085b2] hover:underline">info@kcp.ac.jp</a></p>
           </div>
         </div>
 
@@ -505,20 +319,20 @@ export function SchoolLifePageContent() {
         {/* Nearest Station Section */}
         <div>
           <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
-            最寄り駅
+            {t("schoolLifePage.stationTitle")}
           </h2>
 
           {/* Tabs */}
-          <div className="space-y-8">
+          <div>
             {/* Tab Buttons */}
-            <div className="flex flex-wrap justify-center gap-3 border-b border-gray-300 pb-4">
+            <div className="flex flex-wrap justify-center gap-3 border-b border-gray-300 pb-4 mb-8">
               {stationTabs.map((tab) => (
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
                   className={`px-6 py-3 font-semibold text-sm md:text-base border-b-2 transition-all ${activeTab === tab.id
-                    ? "text-blue-600 border-blue-600"
-                    : "text-gray-600 border-transparent hover:text-gray-900"
+                      ? "text-[#0085b2] border-[#0085b2]"
+                      : "text-gray-600 border-transparent hover:text-gray-900"
                     }`}
                 >
                   {tab.name}
@@ -532,36 +346,36 @@ export function SchoolLifePageContent() {
                 key={tab.id}
                 className={`${activeTab === tab.id ? "block" : "hidden"}`}
               >
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
-                  {/* Line Logo */}
-                  <div className="flex justify-center md:justify-start">
-                    <div className="w-40 h-40 bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl p-6 flex items-center justify-center border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
-                      <Image
-                        src={tab.logo}
-                        alt={tab.name}
-                        width={140}
-                        height={140}
-                        className="object-contain"
-                      />
-                    </div>
+                <div className="flex flex-col items-center gap-8 max-w-2xl mx-auto mb-8">
+                  {/* Line Logo + Name */}
+                  <div className="flex items-center gap-4">
+                    <Image
+                      src={tab.image}
+                      alt={tab.name}
+                      width={56}
+                      height={56}
+                      className="object-contain"
+                    />
+                    <span className="text-xl font-bold text-gray-900">{tab.name}</span>
                   </div>
 
-                  {/* Station Information */}
-                  <div className="space-y-4">
+                  {/* Station Cards */}
+                  <div className={`grid gap-4 w-full ${tab.stations.length === 1 ? "grid-cols-1 max-w-md mx-auto" : "grid-cols-1 md:grid-cols-2"}`}>
                     {tab.stations.map((station, idx) => (
                       <div
                         key={idx}
-                        className="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg p-5 border border-blue-200 hover:shadow-md transition-shadow"
+                        className="rounded-xl p-6 border border-gray-200 bg-white shadow-sm hover:shadow-md transition-shadow text-center"
                       >
-                        <div className="flex items-start justify-between mb-2">
-                          <h4 className="text-lg font-bold text-gray-900">
-                            {station.name}
-                          </h4>
-                          <span className="inline-block bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                            {station.code}
-                          </span>
-                        </div>
-                        <p className="text-gray-700 font-medium">
+                        <span
+                          className="inline-block px-4 py-1.5 rounded-full text-white text-sm font-bold mb-3"
+                          style={{ backgroundColor: tab.color }}
+                        >
+                          {station.code}
+                        </span>
+                        <h4 className="text-lg font-bold text-gray-900 mb-1">
+                          {station.name}
+                        </h4>
+                        <p className="text-gray-600">
                           {station.access}
                         </p>
                       </div>
@@ -579,45 +393,41 @@ export function SchoolLifePageContent() {
         {/* Surrounding Environment Section */}
         <div className="mb-20">
           <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
-            周辺環境
+            {t("schoolLifePage.surroundingTitle")}
           </h2>
 
-          <Swiper
-            modules={[Navigation, Pagination, Autoplay]}
-            navigation
-            pagination={{ clickable: true }}
-            autoplay={{ delay: 5000, disableOnInteraction: false }}
-            loop
-            spaceBetween={24}
-            slidesPerView={1}
-            breakpoints={{
-              768: { slidesPerView: 2, spaceBetween: 16 },
-              1024: { slidesPerView: 3, spaceBetween: 24 }
-            }}
-            className="w-full pb-12"
+          <Carousel
+            opts={{ loop: true, align: "start" }}
+            plugins={[Autoplay({ delay: 5000, stopOnInteraction: false, stopOnMouseEnter: true })]}
+            setApi={setSurroundingApi}
+            className="w-full max-w-5xl mx-auto"
           >
-            {surroundingEnvironment.map((item, index) => (
-              <SwiperSlide key={index}>
-                <div
-                  className="relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow group"
-                  style={{ aspectRatio: "16/9" }}
-                >
-                  <Image
-                    src={item.image}
-                    alt={item.title}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-300"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
-                    <h3 className="text-white font-bold text-lg p-4 w-full">
-                      {item.title}
-                    </h3>
+            <CarouselContent>
+              {surroundingEnvironment.map((item, index) => (
+                <CarouselItem key={index} className="basis-full md:basis-1/2">
+                  <div
+                    className="relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow group"
+                    style={{ aspectRatio: "16/9" }}
+                  >
+                    <Image
+                      src={item.image}
+                      alt={item.title}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
+                      <h3 className="text-white font-bold text-lg p-4 w-full">
+                        {item.title}
+                      </h3>
+                    </div>
                   </div>
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious />
+            <CarouselNext />
+          </Carousel>
         </div>
 
         {/* Divider */}
@@ -626,18 +436,14 @@ export function SchoolLifePageContent() {
         {/* Video Section */}
         <div className="mb-20">
           <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
-            校歌・応援歌
+            {t("schoolLifePage.songsTitle")}
           </h2>
-          <br></br>
-          <h2 className="text-3xl md:text-6xl font-bold text-center text-gray-900 mb-12">
-            KCP校歌と応援歌
-          </h2>
-          <br></br>
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
             {/* School Song Video */}
             <div className="flex flex-col">
               <h3 className="text-lg font-bold text-gray-900 mb-4 text-center">
-                校歌「今ここに」
+                {t("schoolLifePage.schoolSongTitle")}
               </h3>
               <video
                 controls
@@ -646,18 +452,18 @@ export function SchoolLifePageContent() {
                 playsInline
               >
                 <source
-                  src="https://weavus-group.com/kcp/wp-content/uploads/2025/08/校歌字幕.webm"
-                  type="video/webm"
+                  src="/images/original_from_customer/校歌字幕.mp4"
+                  type="video/mp4"
                 />
                 Your browser does not support the video tag.
               </video>
-              <p className="text-center text-gray-600 font-medium">「今ここに」</p>
+              <p className="text-center text-gray-600 font-medium">{t("schoolLifePage.schoolSongCaption")}</p>
             </div>
 
             {/* Cheering Song Video */}
             <div className="flex flex-col">
               <h3 className="text-lg font-bold text-gray-900 mb-4 text-center">
-                応援歌「そらとほしと」
+                {t("schoolLifePage.cheeringSongTitle")}
               </h3>
               <video
                 controls
@@ -666,12 +472,12 @@ export function SchoolLifePageContent() {
                 playsInline
               >
                 <source
-                  src="https://weavus-group.com/kcp/wp-content/uploads/2025/08/応援歌字幕明るいバージョン.webm"
-                  type="video/webm"
+                  src="/images/original_from_customer/応援歌字幕明るいバージョン.mp4"
+                  type="video/mp4"
                 />
                 Your browser does not support the video tag.
               </video>
-              <p className="text-center text-gray-600 font-medium">「そらとほしと」</p>
+              <p className="text-center text-gray-600 font-medium">{t("schoolLifePage.cheeringSongCaption")}</p>
             </div>
           </div>
         </div>

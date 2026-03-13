@@ -13,7 +13,9 @@ export default function AdmissionPage() {
     <>
       <Header />
       <main>
-        <AdmissionSection />
+        <div className="pt-24">
+          <AdmissionSection />
+        </div>
       </main>
       <Footer />
       <ScrollToTop />

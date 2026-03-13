@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { Menu, X, Globe, ChevronDown } from "lucide-react"
 import { useTranslation } from "react-i18next"
 import {
@@ -54,12 +55,13 @@ export function Header() {
       <div className="mx-auto max-w-7xl flex items-center justify-between px-6 py-4">
         {/* Logo */}
         <Link href="/" className="flex flex-col group">
-          <span className="text-[10px] tracking-[0.2em] uppercase text-muted-foreground font-medium">
-            {t("logoTop")}
-          </span>
-          <span className="text-lg font-bold tracking-wide text-foreground">
-            {t("logoBottom")}
-          </span>
+          <Image
+            src="/images/original_from_customer/4-e1764725157523.png"
+            alt="KCP地球市民日本語学校"
+            width={200}
+            height={40}
+            className="h-8 w-auto"
+          />
         </Link>
 
         {/* Desktop Navigation */}
@@ -102,14 +104,6 @@ export function Header() {
             </DropdownMenuContent>
           </DropdownMenu>
 
-          {/* CTA Button */}
-          <Link
-            href="#admission"
-            className="hidden md:inline-flex items-center px-6 py-2.5 bg-primary text-white text-sm font-medium rounded-full hover:bg-primary/90 transition-colors duration-200"
-          >
-            {t("requestInfo")}
-          </Link>
-
           <button
             className="lg:hidden p-2 text-foreground hover:bg-muted rounded-lg transition-colors"
             onClick={() => setMobileOpen(!mobileOpen)}
@@ -134,13 +128,32 @@ export function Header() {
                 {item.label}
               </Link>
             ))}
-            <Link
-              href="#admission"
-              className="mt-4 text-center py-3 bg-primary text-white font-medium rounded-full"
-              onClick={() => setMobileOpen(false)}
-            >
-              {t("requestInfo")}
-            </Link>
+
+            {/* Language Selector */}
+            <div className="border-t border-border mt-2 pt-4">
+              <div className="flex items-center gap-2 px-4 mb-3 text-sm text-muted-foreground">
+                <Globe className="h-4 w-4" />
+                <span className="font-medium">{currentLanguage.label}</span>
+              </div>
+              <div className="grid grid-cols-3 gap-2 px-4">
+                {languageOptions.map((language) => (
+                  <button
+                    key={language.code}
+                    onClick={() => {
+                      i18n.changeLanguage(language.code)
+                      setMobileOpen(false)
+                    }}
+                    className={`py-2 px-3 rounded-lg text-sm font-medium transition-colors ${
+                      language.code === currentLanguage.code
+                        ? "bg-[#0085b2] text-white"
+                        : "bg-muted text-foreground hover:bg-muted/80"
+                    }`}
+                  >
+                    {language.flag}
+                  </button>
+                ))}
+              </div>
+            </div>
           </div>
         </nav>
       )}

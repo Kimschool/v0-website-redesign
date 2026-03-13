@@ -1,6 +1,6 @@
 "use client"
 
-import "@/lib/i18n"
+import "@/lib/i18n/index"
 import type { ReactNode } from "react"
 
 type I18nProviderProps = {
