@@ -4,8 +4,8 @@ import { I18nProvider } from '@/components/i18n-provider'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'KCP地球市民日本語学校 | ともにまなび ともに生きる',
-  description: '学校法人KCP学園 KCP地球市民日本語学校 - 日本語教育を通じて世界をつなぐ',
+  title: 'KCP Global Citizen Japanese Language School',
+  description: 'KCP Global Citizen Japanese Language School - Connecting the world through Japanese language education',
   generator: 'v0.app',
   icons: {
     icon: [
