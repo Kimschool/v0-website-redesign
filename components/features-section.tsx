@@ -130,13 +130,7 @@ export function FeaturesSection() {
     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.2]"
     style={{ objectPosition: item.objectPosition }}
   />
-  <div className="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition-colors duration-300" />
-  <div className="absolute inset-0 flex items-end p-4">
-    <h3 className="text-sm md:text-base font-bold text-white drop-shadow-lg">
-      {item.text}
-    </h3>
-  </div>
-</div>
+
                     {/* Dark overlay */}
                     <div className="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition-colors duration-300" />
                     {/* Title overlay */}
