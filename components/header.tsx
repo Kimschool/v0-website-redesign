@@ -57,7 +57,7 @@ export function Header() {
         <Link href="/" className="flex flex-col group">
           <Image
             src="/images/original_from_customer/4-e1764725157523.png"
-            alt="KCP地球市民日本語学校"
+            alt="KCP Japanese Language School"
             width={200}
             height={40}
             className="h-8 w-auto"
@@ -83,7 +83,7 @@ export function Header() {
             <DropdownMenuTrigger asChild>
               <button
                 className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 py-2 px-3 rounded-lg hover:bg-muted"
-                aria-label={t("languageSelector")}
+                aria-label="Select language"
               >
                 <Globe className="h-4 w-4" />
                 <span className="font-medium uppercase">{currentLanguage.code}</span>
@@ -107,7 +107,7 @@ export function Header() {
           <button
             className="lg:hidden p-2 text-foreground hover:bg-muted rounded-lg transition-colors"
             onClick={() => setMobileOpen(!mobileOpen)}
-            aria-label={mobileOpen ? t("mobileMenuClose") : t("mobileMenuOpen")}
+            aria-label={mobileOpen ? "Close menu" : "Open menu"}
           >
             {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
