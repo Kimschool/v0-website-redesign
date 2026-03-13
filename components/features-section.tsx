@@ -26,7 +26,7 @@ export function FeaturesSection() {
     { src: "/images/original_from_customer/8つの窓/08_認定日本語教育機関に認定.jpg", text: t("features.featureTexts.7"), objectPosition: "top", objectFit: "cover" as const },
   ]
 
-  const doubledItems = [...featureItems, ...featureItems]
+  const doubledItems = featureItems.slice(0, 2)
 
   console.log("featureItems:", featureItems)
   console.log("featureItems length:", featureItems.length)
