@@ -347,57 +347,57 @@ export function EducationSection() {
             {/* 初級クラス */}
             <div className="mb-8">
               <div className="overflow-x-auto">
-                <table className="w-full border-collapse text-sm">
+                <table className="w-full table-fixed border-collapse text-sm">
                   <thead>
                     <tr className="bg-gray-100">
-                      <th className="border border-gray-300 p-2 font-bold">{t("educationPage.beginnerClass")}</th>
-                      <th className="border border-gray-300 p-2 font-bold">{t("educationPage.dayMon")}</th>
-                      <th className="border border-gray-300 p-2 font-bold">{t("educationPage.dayTue")}</th>
-                      <th className="border border-gray-300 p-2 font-bold">{t("educationPage.dayWed")}</th>
-                      <th className="border border-gray-300 p-2 font-bold">{t("educationPage.dayThu")}</th>
-                      <th className="border border-gray-300 p-2 font-bold">{t("educationPage.dayFri")}</th>
+                      <th className="border border-gray-300 p-3 text-left font-bold">{t("educationPage.beginnerClass")}</th>
+                      <th className="border border-gray-300 p-3 text-left font-bold">{t("educationPage.dayMon")}</th>
+                      <th className="border border-gray-300 p-3 text-left font-bold">{t("educationPage.dayTue")}</th>
+                      <th className="border border-gray-300 p-3 text-left font-bold">{t("educationPage.dayWed")}</th>
+                      <th className="border border-gray-300 p-3 text-left font-bold">{t("educationPage.dayThu")}</th>
+                      <th className="border border-gray-300 p-3 text-left font-bold">{t("educationPage.dayFri")}</th>
                     </tr>
                   </thead>
                   <tbody className="text-gray-700">
                     <tr>
-                      <td className="border border-gray-300 p-2 font-semibold">{t("educationPage.beginnerTimeSlots.0")}</td>
-                      <td className="border border-gray-300 p-2 bg-[#0085b2]/10">{t("educationPage.timetableBeginnerCells.0.0")}</td>
-                      <td className="border border-gray-300 p-2 bg-yellow-100">{t("educationPage.timetableBeginnerCells.0.1")}</td>
-                      <td className="border border-gray-300 p-2 bg-[#0085b2]/10">{t("educationPage.timetableBeginnerCells.0.2")}</td>
-                      <td className="border border-gray-300 p-2 bg-yellow-100">{t("educationPage.timetableBeginnerCells.0.3")}</td>
-                      <td className="border border-gray-300 p-2 bg-[#0085b2]/10">{t("educationPage.timetableBeginnerCells.0.4")}</td>
+                      <td className="border border-gray-300 p-3 text-left font-semibold">{t("educationPage.beginnerTimeSlots.0")}</td>
+                      <td className="border border-gray-300 p-3 text-left bg-[#0085b2]/10">{t("educationPage.timetableBeginnerCells.0.0")}</td>
+                      <td className="border border-gray-300 p-3 text-left bg-yellow-100">{t("educationPage.timetableBeginnerCells.0.1")}</td>
+                      <td className="border border-gray-300 p-3 text-left bg-[#0085b2]/10">{t("educationPage.timetableBeginnerCells.0.2")}</td>
+                      <td className="border border-gray-300 p-3 text-left bg-yellow-100">{t("educationPage.timetableBeginnerCells.0.3")}</td>
+                      <td className="border border-gray-300 p-3 text-left bg-[#0085b2]/10">{t("educationPage.timetableBeginnerCells.0.4")}</td>
                     </tr>
                     <tr>
-                      <td className="border border-gray-300 p-2 font-semibold">{t("educationPage.beginnerTimeSlots.1")}</td>
-                      <td className="border border-gray-300 p-2 bg-green-100">{t("educationPage.timetableBeginnerCells.1.0")}</td>
-                      <td className="border border-gray-300 p-2 bg-green-100">{t("educationPage.timetableBeginnerCells.1.1")}</td>
-                      <td className="border border-gray-300 p-2 bg-green-100">{t("educationPage.timetableBeginnerCells.1.2")}</td>
-                      <td className="border border-gray-300 p-2 bg-green-100">{t("educationPage.timetableBeginnerCells.1.3")}</td>
-                      <td className="border border-gray-300 p-2 bg-green-100">{t("educationPage.timetableBeginnerCells.1.4")}</td>
+                      <td className="border border-gray-300 p-3 text-left font-semibold">{t("educationPage.beginnerTimeSlots.1")}</td>
+                      <td className="border border-gray-300 p-3 text-left bg-green-100">{t("educationPage.timetableBeginnerCells.1.0")}</td>
+                      <td className="border border-gray-300 p-3 text-left bg-green-100">{t("educationPage.timetableBeginnerCells.1.1")}</td>
+                      <td className="border border-gray-300 p-3 text-left bg-green-100">{t("educationPage.timetableBeginnerCells.1.2")}</td>
+                      <td className="border border-gray-300 p-3 text-left bg-green-100">{t("educationPage.timetableBeginnerCells.1.3")}</td>
+                      <td className="border border-gray-300 p-3 text-left bg-green-100">{t("educationPage.timetableBeginnerCells.1.4")}</td>
                     </tr>
                     <tr>
-                      <td className="border border-gray-300 p-2 font-semibold">{t("educationPage.beginnerTimeSlots.2")}</td>
-                      <td className="border border-gray-300 p-2 bg-green-100">{t("educationPage.timetableBeginnerCells.2.0")}</td>
-                      <td className="border border-gray-300 p-2 bg-green-100">{t("educationPage.timetableBeginnerCells.2.1")}</td>
-                      <td className="border border-gray-300 p-2 bg-green-100">{t("educationPage.timetableBeginnerCells.2.2")}</td>
-                      <td className="border border-gray-300 p-2 bg-green-100">{t("educationPage.timetableBeginnerCells.2.3")}</td>
-                      <td className="border border-gray-300 p-2 bg-green-100">{t("educationPage.timetableBeginnerCells.2.4")}</td>
+                      <td className="border border-gray-300 p-3 text-left font-semibold">{t("educationPage.beginnerTimeSlots.2")}</td>
+                      <td className="border border-gray-300 p-3 text-left bg-green-100">{t("educationPage.timetableBeginnerCells.2.0")}</td>
+                      <td className="border border-gray-300 p-3 text-left bg-green-100">{t("educationPage.timetableBeginnerCells.2.1")}</td>
+                      <td className="border border-gray-300 p-3 text-left bg-green-100">{t("educationPage.timetableBeginnerCells.2.2")}</td>
+                      <td className="border border-gray-300 p-3 text-left bg-green-100">{t("educationPage.timetableBeginnerCells.2.3")}</td>
+                      <td className="border border-gray-300 p-3 text-left bg-green-100">{t("educationPage.timetableBeginnerCells.2.4")}</td>
                     </tr>
                     <tr>
-                      <td className="border border-gray-300 p-2 font-semibold">{t("educationPage.beginnerTimeSlots.3")}</td>
-                      <td className="border border-gray-300 p-2 bg-green-100">{t("educationPage.timetableBeginnerCells.3.0")}</td>
-                      <td className="border border-gray-300 p-2 bg-green-100">{t("educationPage.timetableBeginnerCells.3.1")}</td>
-                      <td className="border border-gray-300 p-2 bg-green-100">{t("educationPage.timetableBeginnerCells.3.2")}</td>
-                      <td className="border border-gray-300 p-2 bg-green-100">{t("educationPage.timetableBeginnerCells.3.3")}</td>
-                      <td className="border border-gray-300 p-2 bg-orange-100">{t("educationPage.timetableBeginnerCells.3.4")}</td>
+                      <td className="border border-gray-300 p-3 text-left font-semibold">{t("educationPage.beginnerTimeSlots.3")}</td>
+                      <td className="border border-gray-300 p-3 text-left bg-green-100">{t("educationPage.timetableBeginnerCells.3.0")}</td>
+                      <td className="border border-gray-300 p-3 text-left bg-green-100">{t("educationPage.timetableBeginnerCells.3.1")}</td>
+                      <td className="border border-gray-300 p-3 text-left bg-green-100">{t("educationPage.timetableBeginnerCells.3.2")}</td>
+                      <td className="border border-gray-300 p-3 text-left bg-green-100">{t("educationPage.timetableBeginnerCells.3.3")}</td>
+                      <td className="border border-gray-300 p-3 text-left bg-orange-100">{t("educationPage.timetableBeginnerCells.3.4")}</td>
                     </tr>
                     <tr>
-                      <td className="border border-gray-300 p-2 font-semibold">{t("educationPage.beginnerTimeSlots.4")}</td>
-                      <td className="border border-gray-300 p-2 bg-orange-100">{t("educationPage.timetableBeginnerCells.4.0")}</td>
-                      <td className="border border-gray-300 p-2">{t("educationPage.timetableBeginnerCells.4.1")}</td>
-                      <td className="border border-gray-300 p-2 bg-orange-100">{t("educationPage.timetableBeginnerCells.4.2")}</td>
-                      <td className="border border-gray-300 p-2">{t("educationPage.timetableBeginnerCells.4.3")}</td>
-                      <td className="border border-gray-300 p-2 bg-orange-100">{t("educationPage.timetableBeginnerCells.4.4")}</td>
+                      <td className="border border-gray-300 p-3 text-left font-semibold">{t("educationPage.beginnerTimeSlots.4")}</td>
+                      <td className="border border-gray-300 p-3 text-left bg-orange-100">{t("educationPage.timetableBeginnerCells.4.0")}</td>
+                      <td className="border border-gray-300 p-3 text-left">{t("educationPage.timetableBeginnerCells.4.1")}</td>
+                      <td className="border border-gray-300 p-3 text-left bg-orange-100">{t("educationPage.timetableBeginnerCells.4.2")}</td>
+                      <td className="border border-gray-300 p-3 text-left">{t("educationPage.timetableBeginnerCells.4.3")}</td>
+                      <td className="border border-gray-300 p-3 text-left bg-orange-100">{t("educationPage.timetableBeginnerCells.4.4")}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -407,49 +407,49 @@ export function EducationSection() {
             {/* 中級クラス */}
             <div className="mb-8">
               <div className="overflow-x-auto">
-                <table className="w-full border-collapse text-sm">
+                <table className="w-full table-fixed border-collapse text-sm">
                   <thead>
                     <tr className="bg-gray-100">
-                      <th className="border border-gray-300 p-2 font-bold">{t("educationPage.intermediateClass")}</th>
-                      <th className="border border-gray-300 p-2 font-bold">{t("educationPage.dayMon")}</th>
-                      <th className="border border-gray-300 p-2 font-bold">{t("educationPage.dayTue")}</th>
-                      <th className="border border-gray-300 p-2 font-bold">{t("educationPage.dayWed")}</th>
-                      <th className="border border-gray-300 p-2 font-bold">{t("educationPage.dayThu")}</th>
-                      <th className="border border-gray-300 p-2 font-bold">{t("educationPage.dayFri")}</th>
+                      <th className="border border-gray-300 p-3 text-left font-bold">{t("educationPage.intermediateClass")}</th>
+                      <th className="border border-gray-300 p-3 text-left font-bold">{t("educationPage.dayMon")}</th>
+                      <th className="border border-gray-300 p-3 text-left font-bold">{t("educationPage.dayTue")}</th>
+                      <th className="border border-gray-300 p-3 text-left font-bold">{t("educationPage.dayWed")}</th>
+                      <th className="border border-gray-300 p-3 text-left font-bold">{t("educationPage.dayThu")}</th>
+                      <th className="border border-gray-300 p-3 text-left font-bold">{t("educationPage.dayFri")}</th>
                     </tr>
                   </thead>
                   <tbody className="text-gray-700">
                     <tr>
-                      <td className="border border-gray-300 p-2 font-semibold">{t("educationPage.intermediateTimeSlots.0")}</td>
-                      <td className="border border-gray-300 p-2 bg-[#0085b2]/10">{t("educationPage.timetableIntermediateCells.0.0")}</td>
-                      <td className="border border-gray-300 p-2 bg-yellow-100">{t("educationPage.timetableIntermediateCells.0.1")}</td>
-                      <td className="border border-gray-300 p-2 bg-[#0085b2]/10">{t("educationPage.timetableIntermediateCells.0.2")}</td>
-                      <td className="border border-gray-300 p-2 bg-[#0085b2]/10">{t("educationPage.timetableIntermediateCells.0.3")}</td>
-                      <td className="border border-gray-300 p-2 bg-[#0085b2]/10">{t("educationPage.timetableIntermediateCells.0.4")}</td>
+                      <td className="border border-gray-300 p-3 text-left font-semibold">{t("educationPage.intermediateTimeSlots.0")}</td>
+                      <td className="border border-gray-300 p-3 text-left bg-[#0085b2]/10">{t("educationPage.timetableIntermediateCells.0.0")}</td>
+                      <td className="border border-gray-300 p-3 text-left bg-yellow-100">{t("educationPage.timetableIntermediateCells.0.1")}</td>
+                      <td className="border border-gray-300 p-3 text-left bg-[#0085b2]/10">{t("educationPage.timetableIntermediateCells.0.2")}</td>
+                      <td className="border border-gray-300 p-3 text-left bg-[#0085b2]/10">{t("educationPage.timetableIntermediateCells.0.3")}</td>
+                      <td className="border border-gray-300 p-3 text-left bg-[#0085b2]/10">{t("educationPage.timetableIntermediateCells.0.4")}</td>
                     </tr>
                     <tr>
-                      <td className="border border-gray-300 p-2 font-semibold">{t("educationPage.intermediateTimeSlots.1")}</td>
-                      <td className="border border-gray-300 p-2 bg-yellow-100">{t("educationPage.timetableIntermediateCells.1.0")}</td>
-                      <td className="border border-gray-300 p-2 bg-green-100">{t("educationPage.timetableIntermediateCells.1.1")}</td>
-                      <td className="border border-gray-300 p-2 bg-purple-100">{t("educationPage.timetableIntermediateCells.1.2")}</td>
-                      <td className="border border-gray-300 p-2 bg-green-100">{t("educationPage.timetableIntermediateCells.1.3")}</td>
-                      <td className="border border-gray-300 p-2 bg-yellow-100">{t("educationPage.timetableIntermediateCells.1.4")}</td>
+                      <td className="border border-gray-300 p-3 text-left font-semibold">{t("educationPage.intermediateTimeSlots.1")}</td>
+                      <td className="border border-gray-300 p-3 text-left bg-yellow-100">{t("educationPage.timetableIntermediateCells.1.0")}</td>
+                      <td className="border border-gray-300 p-3 text-left bg-green-100">{t("educationPage.timetableIntermediateCells.1.1")}</td>
+                      <td className="border border-gray-300 p-3 text-left bg-purple-100">{t("educationPage.timetableIntermediateCells.1.2")}</td>
+                      <td className="border border-gray-300 p-3 text-left bg-green-100">{t("educationPage.timetableIntermediateCells.1.3")}</td>
+                      <td className="border border-gray-300 p-3 text-left bg-yellow-100">{t("educationPage.timetableIntermediateCells.1.4")}</td>
                     </tr>
                     <tr>
-                      <td className="border border-gray-300 p-2 font-semibold">{t("educationPage.intermediateTimeSlots.2")}</td>
-                      <td className="border border-gray-300 p-2 bg-red-100">{t("educationPage.timetableIntermediateCells.2.0")}</td>
-                      <td className="border border-gray-300 p-2 bg-green-100">{t("educationPage.timetableIntermediateCells.2.1")}</td>
-                      <td className="border border-gray-300 p-2 bg-green-100">{t("educationPage.timetableIntermediateCells.2.2")}</td>
-                      <td className="border border-gray-300 p-2 bg-green-100">{t("educationPage.timetableIntermediateCells.2.3")}</td>
-                      <td className="border border-gray-300 p-2 bg-purple-100">{t("educationPage.timetableIntermediateCells.2.4")}</td>
+                      <td className="border border-gray-300 p-3 text-left font-semibold">{t("educationPage.intermediateTimeSlots.2")}</td>
+                      <td className="border border-gray-300 p-3 text-left bg-red-100">{t("educationPage.timetableIntermediateCells.2.0")}</td>
+                      <td className="border border-gray-300 p-3 text-left bg-green-100">{t("educationPage.timetableIntermediateCells.2.1")}</td>
+                      <td className="border border-gray-300 p-3 text-left bg-green-100">{t("educationPage.timetableIntermediateCells.2.2")}</td>
+                      <td className="border border-gray-300 p-3 text-left bg-green-100">{t("educationPage.timetableIntermediateCells.2.3")}</td>
+                      <td className="border border-gray-300 p-3 text-left bg-purple-100">{t("educationPage.timetableIntermediateCells.2.4")}</td>
                     </tr>
                     <tr>
-                      <td className="border border-gray-300 p-2 font-semibold">{t("educationPage.intermediateTimeSlots.3")}</td>
-                      <td className="border border-gray-300 p-2 bg-red-100">{t("educationPage.timetableIntermediateCells.3.0")}</td>
-                      <td className="border border-gray-300 p-2 bg-orange-100">{t("educationPage.timetableIntermediateCells.3.1")}</td>
-                      <td className="border border-gray-300 p-2 bg-orange-100">{t("educationPage.timetableIntermediateCells.3.2")}</td>
-                      <td className="border border-gray-300 p-2 bg-sky-100">{t("educationPage.timetableIntermediateCells.3.3")}</td>
-                      <td className="border border-gray-300 p-2 bg-purple-100">{t("educationPage.timetableIntermediateCells.3.4")}</td>
+                      <td className="border border-gray-300 p-3 text-left font-semibold">{t("educationPage.intermediateTimeSlots.3")}</td>
+                      <td className="border border-gray-300 p-3 text-left bg-red-100">{t("educationPage.timetableIntermediateCells.3.0")}</td>
+                      <td className="border border-gray-300 p-3 text-left bg-orange-100">{t("educationPage.timetableIntermediateCells.3.1")}</td>
+                      <td className="border border-gray-300 p-3 text-left bg-orange-100">{t("educationPage.timetableIntermediateCells.3.2")}</td>
+                      <td className="border border-gray-300 p-3 text-left bg-sky-100">{t("educationPage.timetableIntermediateCells.3.3")}</td>
+                      <td className="border border-gray-300 p-3 text-left bg-purple-100">{t("educationPage.timetableIntermediateCells.3.4")}</td>
                     </tr>
                   </tbody>
                 </table>
