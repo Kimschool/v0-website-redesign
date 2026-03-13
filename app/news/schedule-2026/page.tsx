@@ -4,8 +4,8 @@ import { Footer } from "@/components/footer"
 import { ScrollToTop } from "@/components/scroll-to-top"
 
 export const metadata = {
-  title: "2026年長期休みのスケジュール | KCP地球市民日本語学校",
-  description: "KCP地球市民日本語学校の2026年長期休みスケジュールのお知らせです。",
+  title: "2026 Holiday Schedule - KCP Global Citizen Japanese Language School",
+  description: "Announcement of the 2026 long vacation schedule for KCP Global Citizen Japanese Language School.",
 }
 
 const scheduleData = [

@@ -4,8 +4,8 @@ import { Footer } from "@/components/footer"
 import { ScrollToTop } from "@/components/scroll-to-top"
 
 export const metadata = {
-  title: "進学実績・卒業生の声 - KCP地球市民日本語学校",
-  description: "KCP地球市民日本語学校の進学実績一覧と卒業生の声をご紹介します。",
+  title: "Academic Results and Alumni Voices - KCP Global Citizen Japanese Language School",
+  description: "Academic achievements and testimonials from graduates of KCP Global Citizen Japanese Language School.",
 }
 
 export default function ResultsPage() {

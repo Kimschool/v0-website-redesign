@@ -5,8 +5,8 @@ import { Footer } from "@/components/footer"
 import { ScrollToTop } from "@/components/scroll-to-top"
 
 export const metadata = {
-  title: "認定日本語教育機関に認定されました | KCP地球市民日本語学校",
-  description: "KCP地球市民日本語学校が「認定日本語教育機関」に認定されました。",
+  title: "Certified Japanese Language Institution - KCP Global Citizen Japanese Language School",
+  description: "KCP Global Citizen Japanese Language School has been certified as a Certified Japanese Language Educational Institution.",
 }
 
 export default function AccreditationNewsPage() {

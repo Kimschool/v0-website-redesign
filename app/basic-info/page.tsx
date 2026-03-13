@@ -4,8 +4,8 @@ import { Footer } from "@/components/footer"
 import { ScrollToTop } from "@/components/scroll-to-top"
 
 export const metadata = {
-  title: "情報公開 | KCP地球市民日本語学校",
-  description: "KCP地球市民日本語学校の基本情報および情報公開ページです。",
+  title: "Information Disclosure - KCP Global Citizen Japanese Language School",
+  description: "Basic information and public disclosure page for KCP Global Citizen Japanese Language School.",
 }
 
 export default function BasicInfoPage() {

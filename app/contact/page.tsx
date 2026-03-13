@@ -4,8 +4,8 @@ import { ContactSection } from "@/components/contact-section"
 import { ScrollToTop } from "@/components/scroll-to-top"
 
 export const metadata = {
-  title: "お問い合わせ | KCP地球市民日本語学校",
-  description: "KCP地球市民日本語学校へのお問い合わせ。入学案内、資料請求、その他ご質問がございましたら、こちらからお気軽にお問い合わせください。"
+  title: "Contact - KCP Global Citizen Japanese Language School",
+  description: "Contact KCP Global Citizen Japanese Language School for admission inquiries, brochure requests, and other questions."
 }
 
 export default function ContactPage() {

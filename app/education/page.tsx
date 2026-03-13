@@ -4,8 +4,8 @@ import { Footer } from "@/components/footer"
 import { ScrollToTop } from "@/components/scroll-to-top"
 
 export const metadata = {
-  title: "教育内容 - KCP地球市民日本語学校",
-  description: "世界から集う若者に、質の高い日本語教育を。確かな日本語力ときめ細かな進路指導で夢の実現を支えていきます。",
+  title: "Education - KCP Global Citizen Japanese Language School",
+  description: "High-quality Japanese language education for students from around the world, supporting their dreams through solid language skills and personalized career guidance.",
 }
 
 export default function EducationPage() {
