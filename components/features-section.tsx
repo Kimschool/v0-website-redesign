@@ -128,7 +128,6 @@ export function FeaturesSection() {
             >
               {doubledItems.map((item, index) => (
               console.log("render item:", index, item.src)
-              return(
                 <div
                   key={index}
                   className="group relative flex-shrink-0 w-[320px] md:w-[380px] overflow-hidden rounded-lg cursor-pointer"
@@ -153,7 +152,6 @@ export function FeaturesSection() {
                     </div>
                   </div>
                 </div>
-              )
               ))}
             </div>
           </div>
