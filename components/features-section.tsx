@@ -139,6 +139,8 @@ export function FeaturesSection() {
           src={item.src}
           alt={item.text}
           fill
+          sizes="(max-width: 768px) 320px, 380px"
+          quality={60}
           onLoad={() => console.log("image loaded:", item.src)}
           onError={() => console.error("image error:", item.src)}
           className="object-cover transition-transform duration-500 group-hover:scale-[1.2]"
