@@ -7,12 +7,33 @@ import { useTranslation } from "react-i18next"
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react"
 
 export function FeaturesSection() {
+   console.log("FeaturesSection render start")
   const sectionRef = useRef<HTMLElement>(null)
   const trackRef = useRef<HTMLDivElement>(null)
   const [isVisible, setIsVisible] = useState(false)
   const resumeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const { t } = useTranslation()
+  console.log("i18n check", t("features.title"))
 
+useEffect(() => {
+    const handleError = (e: ErrorEvent) => {
+      console.error("Global Error:", e.error)
+    }
+
+    const handlePromiseError = (e: PromiseRejectionEvent) => {
+      console.error("Promise Error:", e.reason)
+    }
+
+    window.addEventListener("error", handleError)
+    window.addEventListener("unhandledrejection", handlePromiseError)
+
+    return () => {
+      window.removeEventListener("error", handleError)
+      window.removeEventListener("unhandledrejection", handlePromiseError)
+    }
+  }, [])
+
+  
   const featureItems = [
     { src: "/images/original_from_customer/8つの窓/01_EJU.jpg", text: t("features.featureTexts.0"), objectPosition: "center bottom", objectFit: "cover" as const },
     { src: "/images/original_from_customer/8つの窓/02_先生.jpg", text: t("features.featureTexts.1"), objectPosition: "center", objectFit: "cover" as const },
@@ -23,10 +44,14 @@ export function FeaturesSection() {
     { src: "/images/original_from_customer/8つの窓/07_アメリカ.jpg", text: t("features.featureTexts.6"), objectPosition: "center", objectFit: "cover" as const },
     { src: "/images/original_from_customer/8つの窓/08_認定日本語教育機関に認定.jpg", text: t("features.featureTexts.7"), objectPosition: "top", objectFit: "cover" as const },
   ]
+  console.log("featureItems", featureItems)
 
   const doubledItems = [...featureItems, ...featureItems]
-
+  console.log("doubledItems length:", doubledItems.length)
+  
   useEffect(() => {
+    console.log("IntersectionObserver effect start")
+    
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -118,7 +143,10 @@ export function FeaturesSection() {
               ref={trackRef}
               className="features-slider-track flex gap-4 w-max"
             >
-              {doubledItems.map((item, index) => (
+              {doubledItems.map((item, index) => {
+                console.log("render item:", index)
+
+              return (
                 <div
                   key={index}
                   className="group relative flex-shrink-0 w-[320px] md:w-[380px] overflow-hidden rounded-lg cursor-pointer"
@@ -141,6 +169,7 @@ export function FeaturesSection() {
                     </div>
                   </div>
                 </div>
+                )
               ))}
             </div>
           </div>
