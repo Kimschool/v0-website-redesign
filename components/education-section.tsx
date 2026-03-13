@@ -36,7 +36,7 @@ export function EducationSection() {
           src="/images/original_from_customer/トップ背景/02_教育内容（手元にフォーカス）.jpg"
           alt="教育内容"
           fill
-          className="object-cover object-[center_15%]"
+          className="object-cover object-[center_35%]"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 to-black/60 flex items-center justify-center">
           <h1 className="text-4xl md:text-5xl font-bold text-white">{t("educationPage.bannerTitle")}</h1>
