@@ -121,13 +121,14 @@ export function FeaturesSection() {
           {/* Infinite scroll container */}
           <div className="overflow-hidden">
             
-            return(
+            
             <div
               ref={trackRef}
               className="features-slider-track flex gap-4 w-max"
             >
               {doubledItems.map((item, index) => (
               console.log("render item:", index, item.src)
+              return(
                 <div
                   key={index}
                   className="group relative flex-shrink-0 w-[320px] md:w-[380px] overflow-hidden rounded-lg cursor-pointer"
