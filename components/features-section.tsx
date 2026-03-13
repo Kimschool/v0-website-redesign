@@ -26,7 +26,7 @@ export function FeaturesSection() {
     { src: "/images/original_from_customer/8つの窓/08_認定日本語教育機関に認定.jpg", text: t("features.featureTexts.7"), objectPosition: "top", objectFit: "cover" as const },
   ]
 
-  const doubledItems = featureItems.slice()
+  const doubledItems = featureItems
 
   console.log("featureItems:", featureItems)
   console.log("featureItems length:", featureItems.length)
@@ -139,8 +139,6 @@ export function FeaturesSection() {
           src={item.src}
           alt={item.text}
           fill
-          sizes="(max-width: 768px) 320px, 380px"
-          quality={60}
           onLoad={() => console.log("image loaded:", item.src)}
           onError={() => console.error("image error:", item.src)}
           className="object-cover transition-transform duration-500 group-hover:scale-[1.2]"
