@@ -7,8 +7,6 @@ import { useTranslation } from "react-i18next"
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react"
 
 export function FeaturesSection() {
-  console.log("FeaturesSection render start")
-  
   const sectionRef = useRef<HTMLElement>(null)
   const trackRef = useRef<HTMLDivElement>(null)
   const [isVisible, setIsVisible] = useState(false)
@@ -26,16 +24,10 @@ export function FeaturesSection() {
     { src: "/images/original_from_customer/8つの窓/08_認定日本語教育機関に認定.jpg", text: t("features.featureTexts.7"), objectPosition: "top", objectFit: "cover" as const },
   ]
 
-  const doubledItems = featureItems
-
-  console.log("featureItems:", featureItems)
-  console.log("featureItems length:", featureItems.length)
-
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          console.log("section visible")
           setIsVisible(true)
         }
       },
@@ -120,42 +112,36 @@ export function FeaturesSection() {
 
           {/* Infinite scroll container */}
           <div className="overflow-hidden">
-            
-            
             <div
               ref={trackRef}
               className="features-slider-track flex gap-4 w-max"
             >
-              {doubledItems.map((item, index) => {
-  console.log("render item:", index, item.src)
-
-  return (
-    <div
-      key={index}
-      className="group relative flex-shrink-0 w-[320px] md:w-[380px] overflow-hidden rounded-lg cursor-pointer"
-    >
-      <div className="aspect-[480/306] relative overflow-hidden">
-        <Image
-          src={item.src}
-          alt={item.text}
-          fill
-          sizes="(max-width: 768px) 320px, 380px"
-          quality={60}
-          onLoad={() => console.log("image loaded:", item.src)}
-          onError={() => console.error("image error:", item.src)}
-          className="object-cover transition-transform duration-500 group-hover:scale-[1.2]"
-          style={{ objectPosition: item.objectPosition }}
-        />
-        <div className="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition-colors duration-300" />
-        <div className="absolute inset-0 flex items-end p-4">
-          <h3 className="text-sm md:text-base font-bold text-white drop-shadow-lg">
-            {item.text}
-          </h3>
-        </div>
-      </div>
-    </div>
-  )
-})}
+              {[...featureItems, ...featureItems].map((item, index) => (
+                <div
+                  key={index}
+                  className="group relative flex-shrink-0 w-[320px] md:w-[380px] overflow-hidden rounded-lg cursor-pointer"
+                >
+                  <div className="aspect-[480/306] relative overflow-hidden">
+                    <Image
+                      src={item.src}
+                      alt={item.text}
+                      fill
+                      sizes="(max-width: 768px) 320px, 380px"
+                      loading={index < 4 ? "eager" : "lazy"}
+                      className="object-cover transition-transform duration-500 group-hover:scale-[1.2]"
+                      style={{ objectPosition: item.objectPosition }}
+                    />
+                    {/* Dark overlay */}
+                    <div className="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition-colors duration-300" />
+                    {/* Title overlay */}
+                    <div className="absolute inset-0 flex items-end p-4">
+                      <h3 className="text-sm md:text-base font-bold text-white drop-shadow-lg">
+                        {item.text}
+                      </h3>
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
