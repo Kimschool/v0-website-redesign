@@ -1,22 +1,8 @@
 import type { Metadata, Viewport } from 'next'
-import { Noto_Sans_JP, Noto_Serif_JP } from 'next/font/google'
+import Script from 'next/script'
 import { Analytics } from '@vercel/analytics/next'
 import { I18nProvider } from '@/components/i18n-provider'
 import './globals.css'
-
-const notoSansJP = Noto_Sans_JP({
-  weight: ['300', '400', '500', '600', '700'],
-  subsets: ['latin'],
-  variable: '--font-noto-sans-jp',
-  display: 'swap',
-})
-
-const notoSerifJP = Noto_Serif_JP({
-  weight: ['400', '500', '600', '700'],
-  subsets: ['latin'],
-  variable: '--font-noto-serif-jp',
-  display: 'swap',
-})
 
 export const metadata: Metadata = {
   title: 'KCP Japanese Language School',
@@ -47,7 +33,15 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="ja" className={`${notoSansJP.variable} ${notoSerifJP.variable}`}>
+    <html lang="ja">
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700&family=Noto+Serif+JP:wght@400;500;600;700&display=swap"
+          rel="stylesheet"
+        />
+      </head>
       <body className="font-sans antialiased">
         <I18nProvider>{children}</I18nProvider>
         <Analytics />
