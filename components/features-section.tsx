@@ -7,6 +7,8 @@ import { useTranslation } from "react-i18next"
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react"
 
 export function FeaturesSection() {
+  console.log("FeaturesSection render start")
+  
   const sectionRef = useRef<HTMLElement>(null)
   const trackRef = useRef<HTMLDivElement>(null)
   const [isVisible, setIsVisible] = useState(false)
@@ -26,10 +28,14 @@ export function FeaturesSection() {
 
   const doubledItems = [...featureItems, ...featureItems]
 
+  console.log("featureItems:", featureItems)
+  console.log("featureItems length:", featureItems.length)
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
+          console.log("section visible")
           setIsVisible(true)
         }
       },
@@ -119,6 +125,7 @@ export function FeaturesSection() {
               className="features-slider-track flex gap-4 w-max"
             >
               {doubledItems.map((item, index) => (
+              console.log("render item:", index, item.src)
                 <div
                   key={index}
                   className="group relative flex-shrink-0 w-[320px] md:w-[380px] overflow-hidden rounded-lg cursor-pointer"
@@ -128,6 +135,8 @@ export function FeaturesSection() {
                       src={item.src}
                       alt={item.text}
                       fill
+                      onLoad={() => console.log("image loaded:", item.src)}
+                      onError={(e) => console.error("image error:", item.src, e)}
                       className="object-cover transition-transform duration-500 group-hover:scale-[1.2]"
                       style={{ objectPosition: item.objectPosition }}
                     />
