@@ -18,7 +18,7 @@ export function FeaturesSection() {
     { src: "/images/original_from_customer/8つの窓/02_先生.jpg", text: t("features.featureTexts.1"), objectPosition: "center", objectFit: "cover" as const },
     { src: "/images/original_from_customer/8つの窓/03_多国籍.jpg", text: t("features.featureTexts.2"), objectPosition: "center", objectFit: "cover" as const },
     { src: "/images/original_from_customer/8つの窓/04_設備.jpg", text: t("features.featureTexts.3"), objectPosition: "center", objectFit: "cover" as const },
-    { src: "/images/original_from_customer/8つの窓/05_文化プログラム.jpg", text: t("features.featureTexts.4"), objectPosition: "center 15%", objectFit: "cover" as const },
+    { src: "/images/original_from_customer/8つの窓/05_文化プログラム.jpg", text: t("features.featureTexts.4"), objectPosition: "center", objectFit: "cover" as const },
     { src: "/images/original_from_customer/8つの窓/06_公共性.jpg", text: t("features.featureTexts.5"), objectPosition: "center", objectFit: "cover" as const },
     { src: "/images/original_from_customer/8つの窓/07_アメリカ.jpg", text: t("features.featureTexts.6"), objectPosition: "center", objectFit: "cover" as const },
     { src: "/images/original_from_customer/8つの窓/08_認定日本語教育機関に認定.jpg", text: t("features.featureTexts.7"), objectPosition: "top", objectFit: "cover" as const },
