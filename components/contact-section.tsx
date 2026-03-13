@@ -219,7 +219,7 @@ export function ContactSection() {
             {/* Name (Kanji) */}
             <div>
               <label htmlFor="nameKanji" className="block text-sm font-semibold text-gray-800 mb-2">
-                {t("contactPage.formLabels.nameKanji")}
+                {t("contactPage.formLabels.nameKanji")} <span className="text-red-500">*</span>
               </label>
               <input
                 type="text"
@@ -227,6 +227,7 @@ export function ContactSection() {
                 name="nameKanji"
                 value={formData.nameKanji}
                 onChange={handleChange}
+                required
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0085b2]"
               />
             </div>
@@ -432,13 +433,14 @@ export function ContactSection() {
             {/* Notes */}
             <div className="md:col-span-2">
               <label htmlFor="notes" className="block text-sm font-semibold text-gray-800 mb-2">
-                {t("contactPage.formLabels.notes")}
+                {t("contactPage.formLabels.notes")} <span className="text-red-500">*</span>
               </label>
               <textarea
                 id="notes"
                 name="notes"
                 value={formData.notes}
                 onChange={handleChange}
+                required
                 rows={4}
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0085b2]"
                 placeholder=""
