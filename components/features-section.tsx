@@ -120,6 +120,8 @@ export function FeaturesSection() {
 
           {/* Infinite scroll container */}
           <div className="overflow-hidden">
+            
+            return(
             <div
               ref={trackRef}
               className="features-slider-track flex gap-4 w-max"
@@ -150,6 +152,7 @@ export function FeaturesSection() {
                     </div>
                   </div>
                 </div>
+              )
               ))}
             </div>
           </div>
