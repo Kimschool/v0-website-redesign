@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
-import Image from "next/image"
+// import Image from "next/image"
 import Link from "next/link"
 import { useTranslation } from "react-i18next"
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react"
@@ -124,12 +124,19 @@ export function FeaturesSection() {
                   className="group relative flex-shrink-0 w-[320px] md:w-[380px] overflow-hidden rounded-lg cursor-pointer"
                 >
                   <div className="aspect-[480/306] relative overflow-hidden">
-                    <img
-                      src={item.src}
-                      alt={item.text}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.2]"
-                      style={{ objectPosition: item.objectPosition }}
-                    />
+  <img
+    src={item.src}
+    alt={item.text}
+    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.2]"
+    style={{ objectPosition: item.objectPosition }}
+  />
+  <div className="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition-colors duration-300" />
+  <div className="absolute inset-0 flex items-end p-4">
+    <h3 className="text-sm md:text-base font-bold text-white drop-shadow-lg">
+      {item.text}
+    </h3>
+  </div>
+</div>
                     {/* Dark overlay */}
                     <div className="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition-colors duration-300" />
                     {/* Title overlay */}
