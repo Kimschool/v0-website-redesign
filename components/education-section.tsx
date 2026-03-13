@@ -472,7 +472,12 @@ export function EducationSection() {
             <div className="mb-10">
               <h3 className="text-xl font-bold mb-4 text-gray-800">{t("educationPage.year1Title")}</h3>
               <div className="overflow-x-auto">
-                <table className="w-full table-fixed border-collapse text-sm bg-white">
+                <table className="w-full border-collapse text-sm bg-white">
+                  <colgroup>
+                    <col className="w-1/4" />
+                    <col className="w-3/8" />
+                    <col className="w-3/8" />
+                  </colgroup>
                   <thead>
                     <tr className="bg-[#0085b2]/10">
                       <th className="border border-gray-300 p-3 font-bold text-left">{t("educationPage.scheduleCategory")}</th>
@@ -499,7 +504,12 @@ export function EducationSection() {
             <div className="mb-10">
               <h3 className="text-xl font-bold mb-4 text-gray-800">{t("educationPage.year2FirstTitle")}</h3>
               <div className="overflow-x-auto">
-                <table className="w-full table-fixed border-collapse text-sm bg-white">
+                <table className="w-full border-collapse text-sm bg-white">
+                  <colgroup>
+                    <col className="w-1/4" />
+                    <col className="w-3/8" />
+                    <col className="w-3/8" />
+                  </colgroup>
                   <thead>
                     <tr className="bg-green-100">
                       <th className="border border-gray-300 p-3 font-bold text-left">{t("educationPage.scheduleCategory")}</th>
@@ -526,7 +536,12 @@ export function EducationSection() {
             <div>
               <h3 className="text-xl font-bold mb-4 text-gray-800">{t("educationPage.year2SecondTitle")}</h3>
               <div className="overflow-x-auto">
-                <table className="w-full table-fixed border-collapse text-sm bg-white">
+                <table className="w-full border-collapse text-sm bg-white">
+                  <colgroup>
+                    <col className="w-1/4" />
+                    <col className="w-3/8" />
+                    <col className="w-3/8" />
+                  </colgroup>
                   <thead>
                     <tr className="bg-purple-100">
                       <th className="border border-gray-300 p-3 font-bold text-left">{t("educationPage.scheduleCategory")}</th>
