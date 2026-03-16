@@ -140,22 +140,23 @@ export function SchoolLifePageContent() {
           className="object-cover object-[center_30%]"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 to-black/60 flex items-center justify-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-white">{t("schoolLifePage.bannerTitle")}</h1>
+          <h1 className="font-serif text-4xl md:text-5xl font-bold text-white">{t("schoolLifePage.bannerTitle")}</h1>
         </div>
       </div>
       <div className="container mx-auto px-4 md:px-6 max-w-6xl py-16">
         {/* Introduction Text */}
-        <div className={`text-center mb-16 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
+        <div className="text-center mb-16"></div>
+        {/* <div className={`text-center mb-16 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
           <div className="w-12 h-1 bg-[#0085b2] mx-auto mb-6 rounded-full" />
           <p className="text-lg md:text-xl text-gray-700 leading-relaxed max-w-3xl mx-auto">
             {t("schoolLifePage.intro")}
           </p>
           <div className="elegant-divider mt-8" />
-        </div>
+        </div> */}
 
         {/* Annual Schedule Section */}
         <div className={`mb-20 ${isVisible ? "animate-fade-in-up animation-delay-200" : "opacity-0"}`}>
-          <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
+          <h2 className="font-serif text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
             {t("schoolLifePage.scheduleTitle")}
           </h2>
 
@@ -198,7 +199,7 @@ export function SchoolLifePageContent() {
 
         {/* Club Activities Section */}
         <div className="mb-20">
-          <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
+          <h2 className="font-serif text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
             {t("schoolLifePage.clubTitle")}
           </h2>
 
@@ -234,7 +235,7 @@ export function SchoolLifePageContent() {
 
         {/* Facility Guide Section */}
         <div className="mb-20">
-          <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
+          <h2 className="font-serif text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
             {t("schoolLifePage.facilityTitle")}
           </h2>
 
@@ -254,7 +255,7 @@ export function SchoolLifePageContent() {
 
                 {/* Text Content */}
                 <div className="p-5">
-                  <h3 className="text-lg font-bold text-gray-900 mb-2">
+                  <h3 className="font-serif text-lg font-bold text-gray-900 mb-2">
                     {facility.title}
                   </h3>
                   <p className="text-sm text-gray-700 leading-relaxed">
@@ -271,7 +272,7 @@ export function SchoolLifePageContent() {
 
         {/* Access Section */}
         <div className="mb-20">
-          <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
+          <h2 className="font-serif text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
             {t("schoolLifePage.accessTitle")}
           </h2>
 
@@ -318,7 +319,7 @@ export function SchoolLifePageContent() {
 
         {/* Nearest Station Section */}
         <div>
-          <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
+          <h2 className="font-serif text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
             {t("schoolLifePage.stationTitle")}
           </h2>
 
@@ -392,7 +393,7 @@ export function SchoolLifePageContent() {
 
         {/* Surrounding Environment Section */}
         <div className="mb-20">
-          <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
+          <h2 className="font-serif text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
             {t("schoolLifePage.surroundingTitle")}
           </h2>
 
@@ -435,14 +436,14 @@ export function SchoolLifePageContent() {
 
         {/* Video Section */}
         <div className="mb-20">
-          <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
+          <h2 className="font-serif text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
             {t("schoolLifePage.songsTitle")}
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
             {/* School Song Video */}
             <div className="flex flex-col">
-              <h3 className="text-lg font-bold text-gray-900 mb-4 text-center">
+              <h3 className="font-serif text-lg font-bold text-gray-900 mb-4 text-center">
                 {t("schoolLifePage.schoolSongTitle")}
               </h3>
               <video
@@ -462,7 +463,7 @@ export function SchoolLifePageContent() {
 
             {/* Cheering Song Video */}
             <div className="flex flex-col">
-              <h3 className="text-lg font-bold text-gray-900 mb-4 text-center">
+              <h3 className="font-serif text-lg font-bold text-gray-900 mb-4 text-center">
                 {t("schoolLifePage.cheeringSongTitle")}
               </h3>
               <video

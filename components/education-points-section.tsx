@@ -4,12 +4,22 @@ import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
-import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts"
-
-const chartData = [
-  { name: "進学", value: 50, color: "#41962e" },
-  { name: "就職", value: 40, color: "#db728e" },
-  { name: "その他", value: 10, color: "#dd9933" },
+const admissionHighlights = [
+  {
+    category: "国公立大学/大学院 主な合格先",
+    color: "#0085b2",
+    schools: ["東京大学", "京都大学", "大阪大学", "一橋大学", "東京工業大学"],
+  },
+  {
+    category: "私立大学/大学院 主な合格先",
+    color: "#db728e",
+    schools: ["早稲田大学", "慶應義塾大学", "上智大学", "明治大学", "青山学院大学"],
+  },
+  {
+    category: "芸術系・音楽系大学/大学院 主な合格先",
+    color: "#41962e",
+    schools: ["東京藝術大学", "多摩美術大学", "武蔵野美術大学", "京都市立芸術大学", "愛知県立芸術大学"],
+  },
 ]
 
 export function EducationPointsSection() {
@@ -91,66 +101,45 @@ export function EducationPointsSection() {
           </div>
         </div>
 
-        {/* POINT 3 - with donut chart */}
+        {/* POINT 3 - 進学実績ハイライト */}
         <div className={`${isVisible ? "animate-fade-in-up animation-delay-400" : "opacity-0"}`}>
           <div className="flex items-center gap-4 mb-6">
             <span className="text-sm font-bold text-white bg-[#0085b2] px-4 py-1 rounded">POINT 3</span>
             <h3 className="text-2xl md:text-3xl font-bold">進学実績</h3>
           </div>
-          <div className="flex flex-col items-center">
-            <p className="text-muted-foreground leading-relaxed text-center max-w-2xl mb-8">
-              KCPの卒業生は、有名大学・大学院への進学をはじめ、様々な分野で活躍しています。
-            </p>
-            <Link href="/education#course3" className="inline-flex items-center gap-2 text-primary font-medium hover:underline mb-6">
+          <p className="text-muted-foreground leading-relaxed max-w-3xl mb-8">
+            KCPの卒業生は、国公立大学、難関私立大学、芸術系・音楽系大学など、国内有数の大学・大学院へ多数進学しています。
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {admissionHighlights.map((item) => (
+              <div
+                key={item.category}
+                className="rounded-2xl bg-white shadow-md hover:shadow-xl transition-shadow p-6 flex flex-col h-full border border-gray-100"
+              >
+                <h4
+                  className="text-xs font-semibold tracking-wide text-white inline-flex px-3 py-1 rounded-full mb-4"
+                  style={{ backgroundColor: item.color }}
+                >
+                  {item.category}
+                </h4>
+                <ul className="space-y-1.5 mb-3 text-sm text-gray-900">
+                  {item.schools.map((name) => (
+                    <li key={name}>・{name}</li>
+                  ))}
+                </ul>
+                <p className="mt-auto text-xs text-muted-foreground">
+                  上記は代表的な合格先の一部です。このほかにも多数の大学・大学院への進学実績があります。
+                </p>
+              </div>
+            ))}
+          </div>
+          <div className="mt-6">
+            <Link
+              href="/education#course3"
+              className="inline-flex items-center gap-2 text-primary font-medium hover:underline"
+            >
               詳細を見る <ArrowRight className="w-4 h-4" />
             </Link>
-            <div className="w-full max-w-md">
-              <ResponsiveContainer width="100%" height={300}>
-                <PieChart>
-                  <Pie
-                    data={chartData}
-                    cx="50%"
-                    cy="50%"
-                    innerRadius={60}
-                    outerRadius={120}
-                    dataKey="value"
-                    startAngle={90}
-                    endAngle={-270}
-                    animationBegin={isVisible ? 0 : 99999}
-                    animationDuration={1500}
-                    label={({ cx, cy, midAngle, innerRadius, outerRadius, value }) => {
-                      const RADIAN = Math.PI / 180
-                      const radius = innerRadius + (outerRadius - innerRadius) * 0.5
-                      const x = cx + radius * Math.cos(-midAngle * RADIAN)
-                      const y = cy + radius * Math.sin(-midAngle * RADIAN)
-                      return (
-                        <text x={x} y={y} fill="white" textAnchor="middle" dominantBaseline="central" fontSize={14} fontWeight="bold">
-                          {value}%
-                        </text>
-                      )
-                    }}
-                    labelLine={false}
-                  >
-                    {chartData.map((entry, index) => (
-                      <Cell key={index} fill={entry.color} />
-                    ))}
-                  </Pie>
-                  {/* Center label */}
-                  <text x="50%" y="50%" textAnchor="middle" dominantBaseline="central" fontSize={16} fontWeight="bold" fill="#333">
-                    進学実績
-                  </text>
-                </PieChart>
-              </ResponsiveContainer>
-              {/* Legend */}
-              <div className="flex justify-center gap-6 mt-4">
-                {chartData.map((entry) => (
-                  <div key={entry.name} className="flex items-center gap-2">
-                    <div className="w-4 h-4 rounded" style={{ backgroundColor: entry.color }} />
-                    <span className="text-sm text-muted-foreground">{entry.name}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
           </div>
         </div>
       </div>
