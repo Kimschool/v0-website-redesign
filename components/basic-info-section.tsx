@@ -90,14 +90,32 @@ export function BasicInfoSection() {
   }, [])
 
   return (
-    <section ref={sectionRef} className="py-16 bg-white">
-      <div className="container mx-auto px-4 md:px-6 max-w-5xl">
-        {/* Page Header */}
+    <section ref={sectionRef} className="bg-white">
+      {/* Page Banner - Extended to cover navigation area */}
+      <div className="relative h-[350px] md:h-[400px] w-full overflow-hidden">
+        <Image
+          src="/images/original_from_customer/トップ背景/01_KCPとは（拡大して周りの建物があまり見えないように）.jpg"
+          alt="情報公開"
+          fill
+          className="object-cover object-center"
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/60 flex items-center justify-center pt-16">
+          <div className="text-center">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight">{t("basicInfoPage.bannerTitle")}</h1>
+            <div className="w-20 h-1 bg-white/80 mx-auto mt-6 rounded-full"></div>
+          </div>
+        </div>
+      </div>
+
+      <div className="container mx-auto px-4 md:px-6 max-w-5xl py-16">
+        {/* Introduction */}
         <div className={`text-center mb-16 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">{t("basicInfoPage.bannerTitle")}</h1>
+          <div className="w-12 h-1 bg-[#0085b2] mx-auto mb-6 rounded-full" />
           <p className="text-lg text-gray-600">
             {t("basicInfoPage.subtitle")}
           </p>
+          <div className="elegant-divider mt-8" />
         </div>
 
         {/* Divider */}

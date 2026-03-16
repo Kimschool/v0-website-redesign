@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
-import { School, User } from "lucide-react"
+import { School, User, ArrowRight, Quote } from "lucide-react"
 import { useTranslation } from "react-i18next"
 
 export function AboutSection() {
@@ -106,174 +106,252 @@ export function AboutSection() {
   }, [])
 
   return (
-    <section ref={sectionRef} id="about" className="bg-white">
-      {/* Hero Banner */}
-      <div className="relative w-full h-[250px] md:h-[300px] overflow-hidden">
+    <section ref={sectionRef} id="about" className="bg-background">
+      {/* Hero Banner - Full viewport cinematic style */}
+      <div className="relative w-full h-[70vh] md:h-[80vh] overflow-hidden">
         <Image
           src="/images/original_from_customer/トップ背景/01_KCPとは（拡大して周りの建物があまり見えないように）.jpg"
           alt="KCPとは"
           fill
-          className="object-cover"
+          className="object-cover object-center scale-105"
+          priority
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/40 to-black/60 flex items-center justify-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-white">{t("aboutPage.bannerTitle")}</h1>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70" />
+        
+        {/* Hero Content */}
+        <div className="absolute inset-0 flex flex-col items-center justify-center pt-16 px-4">
+          <div className={`text-center max-w-4xl ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
+            <span className="inline-block text-white/70 text-sm md:text-base tracking-[0.3em] uppercase mb-4">
+              KCP Japanese Language School
+            </span>
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white tracking-tight leading-[1.1] text-balance">
+              {t("aboutPage.bannerTitle")}
+            </h1>
+            <div className="flex items-center justify-center gap-4 mt-8">
+              <div className="w-12 h-[2px] bg-white/40" />
+              <span className="text-white/60 text-sm tracking-widest">Since 1983</span>
+              <div className="w-12 h-[2px] bg-white/40" />
+            </div>
+          </div>
+        </div>
+
+        {/* Scroll indicator */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-scroll-indicator">
+          <div className="w-6 h-10 rounded-full border-2 border-white/30 flex items-start justify-center p-2">
+            <div className="w-1.5 h-1.5 rounded-full bg-white/60" />
+          </div>
         </div>
       </div>
 
-      <div className="container mx-auto px-4 md:px-6 py-20">
-        {/* KCP 철학 섹션 */}
-        <div className={`mb-20 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
-          <div className="text-center mb-16">
-            {/* K C P Philosophy Image */}
-            <div className="mb-12 flex justify-center">
-              <div className="w-full max-w-2xl">
-                <Image
-                  src="/images/kcp-philosophy.png"
-                  alt="KCP Philosophy - Knowledge, Coexistence, Peace"
-                  width={600}
-                  height={300}
-                  className="w-full h-auto"
-                  priority={false}
-                />
+      {/* Philosophy Section - Bold typographic approach */}
+      <div className="relative bg-white">
+        <div className="container mx-auto px-4 md:px-6 py-24 md:py-32">
+          <div className={`${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
+            {/* Large Philosophy Statement */}
+            <div className="max-w-6xl mx-auto mb-20">
+              <div className="grid md:grid-cols-3 gap-8 md:gap-4 mb-16">
+                {/* K */}
+                <div className="group text-center md:text-left">
+                  <div className="inline-flex items-baseline gap-2 md:gap-4">
+                    <span className="text-8xl md:text-9xl lg:text-[12rem] font-bold text-[#0085b2] leading-none tracking-tighter">K</span>
+                    <span className="text-xl md:text-2xl lg:text-3xl font-light text-gray-600 tracking-wide">nowledge</span>
+                  </div>
+                  <p className="mt-4 text-gray-500 text-sm md:text-base max-w-xs mx-auto md:mx-0">
+                    {t("aboutPage.philosophy1").slice(0, 100)}...
+                  </p>
+                </div>
+                {/* C */}
+                <div className="group text-center">
+                  <div className="inline-flex items-baseline gap-2 md:gap-4">
+                    <span className="text-8xl md:text-9xl lg:text-[12rem] font-bold text-[#0085b2] leading-none tracking-tighter">C</span>
+                    <span className="text-xl md:text-2xl lg:text-3xl font-light text-gray-600 tracking-wide">oexistence</span>
+                  </div>
+                  <p className="mt-4 text-gray-500 text-sm md:text-base max-w-xs mx-auto">
+                    {t("aboutPage.philosophy2").slice(0, 100)}...
+                  </p>
+                </div>
+                {/* P */}
+                <div className="group text-center md:text-right">
+                  <div className="inline-flex items-baseline gap-2 md:gap-4">
+                    <span className="text-8xl md:text-9xl lg:text-[12rem] font-bold text-[#0085b2] leading-none tracking-tighter">P</span>
+                    <span className="text-xl md:text-2xl lg:text-3xl font-light text-gray-600 tracking-wide">eace</span>
+                  </div>
+                  <p className="mt-4 text-gray-500 text-sm md:text-base max-w-xs mx-auto md:ml-auto md:mr-0">
+                    {t("aboutPage.philosophy3").slice(0, 100)}...
+                  </p>
+                </div>
+              </div>
+
+              {/* Full Philosophy Text */}
+              <div className="max-w-3xl mx-auto">
+                <div className="relative">
+                  <Quote className="absolute -top-4 -left-8 w-16 h-16 text-[#0085b2]/10" />
+                  <div className="space-y-6 text-gray-700 text-lg md:text-xl leading-relaxed text-center">
+                    <p>{t("aboutPage.philosophy1")}</p>
+                    <p>{t("aboutPage.philosophy2")}</p>
+                    <p>{t("aboutPage.philosophy3")}</p>
+                  </div>
+                </div>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
 
-            {/* 철학 설명 */}
-            <div className="max-w-3xl mx-auto mb-12 text-gray-700 space-y-3 text-sm md:text-base leading-relaxed">
-              <p>
-                {t("aboutPage.philosophy1")}
-              </p>
-              <p>
-                {t("aboutPage.philosophy2")}
-              </p>
-              <p>
-                {t("aboutPage.philosophy3")}
-              </p>
-            </div>
-
-            {/* 学生写真 */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-12">
-              <div className="aspect-[3/4] bg-gray-100 rounded-2xl overflow-hidden">
-                <img
+      {/* Student Photos - Asymmetric Grid */}
+      <div className="bg-[#f8fafb] py-24 md:py-32 overflow-hidden">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="grid grid-cols-12 gap-4 md:gap-6 max-w-7xl mx-auto">
+            {/* Large Image */}
+            <div className="col-span-12 md:col-span-7 relative group">
+              <div className="aspect-[4/5] md:aspect-[4/3] rounded-2xl overflow-hidden">
+                <Image
                   src="/images/original_from_customer/予備/K.jpg"
                   alt="Student 1"
-                  className="w-full h-full object-cover"
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
                 />
-              </div>
-              <div className="aspect-[3/4] bg-gray-100 rounded-2xl overflow-hidden">
-                <img
-                  src="/images/original_from_customer/予備/学生2【予備】.jpg"
-                  alt="Student 2"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="aspect-[3/4] bg-gray-100 rounded-2xl overflow-hidden">
-                <img
-                  src="/images/original_from_customer/818e60bf0c192652f5fe869245e46afb-1-scaled.jpg"
-                  alt="Student 3"
-                  className="w-full h-full object-cover"
-                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               </div>
             </div>
-
-            <div className="border-b-2 border-gray-300 mb-12"></div>
-          </div>
-        </div>
-
-        {/* 학교장 인사말 */}
-        <div className={`mb-20 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-            {t("aboutPage.principalTitle")}
-          </h2>
-
-          <div className="grid md:grid-cols-2 gap-12 items-start max-w-5xl mx-auto">
-            {/* 학교장 이미지 및 정보 */}
-            <div className="space-y-6">
-              <div className="aspect-[4/3] bg-gray-100 rounded-lg overflow-hidden">
-                <img
-                  src="/images/original_from_customer/校長先生.jpg"
-                  alt="学校長"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="space-y-3">
-                <div className="flex items-center gap-3">
-                  <School className="w-5 h-5 text-[#0085b2]" />
-                  <span className="text-lg">{t("aboutPage.schoolFoundation")}</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <School className="w-5 h-5 text-[#0085b2]" />
-                  <span className="text-lg">{t("aboutPage.schoolName")}</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <User className="w-5 h-5 text-[#0085b2]" />
-                  <span className="text-lg">{t("aboutPage.principalName")}</span>
+            
+            {/* Stacked Images */}
+            <div className="col-span-12 md:col-span-5 flex flex-col gap-4 md:gap-6">
+              <div className="relative group flex-1">
+                <div className="aspect-square md:aspect-auto md:h-full rounded-2xl overflow-hidden">
+                  <Image
+                    src="/images/original_from_customer/予備/学生2【予備】.jpg"
+                    alt="Student 2"
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 </div>
               </div>
-            </div>
-
-            {/* 학교장 인사말 텍스트 */}
-            <div className="space-y-6 text-gray-700 leading-relaxed">
-              <p>
-                {t("aboutPage.principalMessage1")}
-              </p>
-              <p>
-                {t("aboutPage.principalMessage2")}
-              </p>
-              <p>
-                {t("aboutPage.principalMessage3")}
-              </p>
-              <p>
-                {t("aboutPage.principalMessage4")}
-              </p>
+              <div className="relative group flex-1">
+                <div className="aspect-square md:aspect-auto md:h-full rounded-2xl overflow-hidden">
+                  <Image
+                    src="/images/original_from_customer/818e60bf0c192652f5fe869245e46afb-1-scaled.jpg"
+                    alt="Student 3"
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                </div>
+              </div>
             </div>
           </div>
         </div>
+      </div>
 
-        {/* 구분선 */}
-        <div className="border-t border-gray-200 my-16"></div>
+      {/* Principal Section - Magazine Style */}
+      <div className="bg-white py-24 md:py-32">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="max-w-7xl mx-auto">
+            {/* Section Header */}
+            <div className="flex items-center gap-4 mb-16">
+              <span className="text-[#0085b2] text-sm tracking-[0.2em] uppercase font-medium">Message</span>
+              <div className="flex-1 h-[1px] bg-gradient-to-r from-[#0085b2]/30 to-transparent" />
+            </div>
 
-        {/* 연혁 */}
-        <div className="mb-20">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-            {t("aboutPage.historyTitle")}
-          </h2>
+            <div className="grid md:grid-cols-2 gap-12 md:gap-20 items-start">
+              {/* Principal Photo */}
+              <div className="relative">
+                <div className="aspect-[3/4] rounded-2xl overflow-hidden">
+                  <Image
+                    src="/images/original_from_customer/校長先生.jpg"
+                    alt="学校長"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                {/* Info Card */}
+                <div className="absolute -bottom-8 -right-4 md:-right-8 bg-white rounded-xl shadow-xl p-6 max-w-xs border border-gray-100">
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-full bg-[#0085b2]/10 flex items-center justify-center">
+                        <School className="w-5 h-5 text-[#0085b2]" />
+                      </div>
+                      <span className="text-sm text-gray-700">{t("aboutPage.schoolFoundation")}</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-full bg-[#0085b2]/10 flex items-center justify-center">
+                        <User className="w-5 h-5 text-[#0085b2]" />
+                      </div>
+                      <span className="text-sm text-gray-700 font-medium">{t("aboutPage.principalName")}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
-          <div className="max-w-3xl mx-auto">
+              {/* Principal Message */}
+              <div className="md:pt-12">
+                <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-8 leading-tight">
+                  {t("aboutPage.principalTitle")}
+                </h2>
+                <div className="space-y-6 text-gray-600 text-base md:text-lg leading-relaxed">
+                  <p>{t("aboutPage.principalMessage1")}</p>
+                  <p>{t("aboutPage.principalMessage2")}</p>
+                  <p>{t("aboutPage.principalMessage3")}</p>
+                  <p>{t("aboutPage.principalMessage4")}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* History Section - Modern Timeline */}
+      <div className="bg-[#0a1628] text-white py-24 md:py-32 relative overflow-hidden">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '40px 40px' }} />
+        </div>
+
+        <div className="container mx-auto px-4 md:px-6 relative">
+          <div className="max-w-6xl mx-auto">
+            {/* Section Header */}
+            <div className="text-center mb-20">
+              <span className="inline-block text-[#0cc0df] text-sm tracking-[0.3em] uppercase mb-4">Our Journey</span>
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold">{t("aboutPage.historyTitle")}</h2>
+            </div>
+
+            {/* Timeline */}
             <div className="relative">
-              {/* 縦線 */}
-              <div className="absolute left-2 md:left-[120px] h-full w-0.5 bg-[#0085b2]/20"></div>
+              {/* Center Line */}
+              <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-[2px] bg-gradient-to-b from-[#0085b2] via-[#0cc0df] to-[#0085b2]" />
 
-              <div className="space-y-6">
+              <div className="space-y-8 md:space-y-12">
                 {history.map((item, index) => {
                   const isItemVisible = visibleItems.has(index)
+                  const isEven = index % 2 === 0
+                  
                   return (
                     <div
                       key={index}
                       ref={el => { timelineRefs.current[index] = el }}
-                      className={`group relative flex items-start transition-all duration-1000 ease-out cursor-default
-                        hover:bg-[#0085b2]/5 rounded-lg p-2 -m-2
-                        ${isItemVisible ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-10 scale-95"}`}
+                      className={`relative flex items-start gap-8 transition-all duration-1000 
+                        ${isItemVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}
+                        ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'}
+                      `}
                       style={{ transitionDelay: isItemVisible ? `${index * 100}ms` : "0ms" }}
                     >
-                      {/* 年（デスクトップ） */}
-                      <div className="hidden md:block w-[100px] pr-4 text-right shrink-0">
-                        <span className="text-lg font-bold text-[#0085b2] transition-transform duration-300 inline-block group-hover:scale-110 origin-right">{item.year}</span>
+                      {/* Content */}
+                      <div className={`flex-1 pl-12 md:pl-0 ${isEven ? 'md:pr-16 md:text-right' : 'md:pl-16 md:text-left'}`}>
+                        <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10 hover:bg-white/10 transition-colors duration-300">
+                          <span className="text-3xl md:text-4xl font-bold text-[#0cc0df] block mb-2">{item.year}</span>
+                          <h3 className="text-lg md:text-xl font-semibold text-white mb-2">{item.title}</h3>
+                          {item.description && (
+                            <p className="text-white/60 text-sm">{item.description}</p>
+                          )}
+                        </div>
                       </div>
 
-                      {/* ドット */}
-                      <div className={`absolute left-2 md:relative md:left-auto shrink-0 w-3 h-3 mt-1.5 rounded-full border-2 border-white shadow-sm transition-all duration-500 ${
-                        isItemVisible ? "bg-[#0085b2] scale-125 shadow-md shadow-[#0085b2]/30" : "bg-[#0085b2]/30 scale-75"
-                      }`}></div>
+                      {/* Dot */}
+                      <div className="absolute left-4 md:left-1/2 top-6 w-4 h-4 -translate-x-1/2 rounded-full bg-[#0cc0df] shadow-lg shadow-[#0cc0df]/50 z-10" />
 
-                      {/* コンテンツ */}
-                      <div className="pl-8 md:pl-4">
-                        <span className="md:hidden text-base font-bold text-[#0085b2] block mb-0.5 transition-transform duration-300 inline-block group-hover:scale-105 origin-left">{item.year}</span>
-                        <h3 className="font-semibold text-gray-800 transition-transform duration-300 group-hover:scale-105 origin-left">{item.title}</h3>
-                        {item.description && (
-                          <p className="text-gray-600 mt-1 text-sm">{item.description}</p>
-                        )}
-                      </div>
+                      {/* Hidden spacer for desktop */}
+                      <div className="hidden md:block flex-1" />
                     </div>
                   )
                 })}
@@ -281,37 +359,59 @@ export function AboutSection() {
             </div>
           </div>
         </div>
+      </div>
 
-        {/* 구분선 */}
-        <div className="border-t border-gray-200 my-16"></div>
-
-        {/* 안심의 서포트 체제 */}
-        <div className={`${isVisible ? "animate-fade-in-up animation-delay-400" : "opacity-0"}`}>
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-            {t("aboutPage.supportTitle")}
-          </h2>
-
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="space-y-6 text-gray-700 leading-relaxed">
-              <p>
-                {t("aboutPage.supportMessage1")}
-              </p>
-              <p>
-                {t("aboutPage.supportMessage2")}
-              </p>
-            </div>
-
-            {/* 교직원 단체 사진 */}
-            <div className="mt-10">
-              <div className="aspect-[21/9] bg-gray-100 rounded-lg overflow-hidden">
-                <img
-                  src="/images/original_from_customer/KCPとは「集合写真」.jpg"
-                  alt="KCP地球市民日本語学校の教職員"
-                  className="w-full h-full object-cover"
-                />
+      {/* Support Section - Full Width Image */}
+      <div className="relative">
+        {/* Staff Photo Background */}
+        <div className="relative h-[60vh] md:h-[70vh]">
+          <Image
+            src="/images/original_from_customer/KCPとは「集合写真」.jpg"
+            alt="KCP地球市民日本語学校の教職員"
+            fill
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20" />
+          
+          {/* Content Overlay */}
+          <div className="absolute inset-0 flex flex-col justify-end pb-16 md:pb-24">
+            <div className="container mx-auto px-4 md:px-6">
+              <div className="max-w-3xl">
+                <span className="inline-block text-[#0cc0df] text-sm tracking-[0.2em] uppercase mb-4">Support System</span>
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
+                  {t("aboutPage.supportTitle")}
+                </h2>
+                <div className="space-y-4 text-white/80 text-base md:text-lg leading-relaxed">
+                  <p>{t("aboutPage.supportMessage1")}</p>
+                  <p>{t("aboutPage.supportMessage2")}</p>
+                </div>
+                <p className="text-white/60 text-sm mt-8 flex items-center gap-2">
+                  <span className="w-8 h-[1px] bg-white/40" />
+                  {t("aboutPage.staffPhoto")}
+                </p>
               </div>
-              <p className="text-sm text-gray-500 mt-4">{t("aboutPage.staffPhoto")}</p>
             </div>
+          </div>
+        </div>
+      </div>
+
+      {/* CTA Section */}
+      <div className="bg-[#0085b2] py-16 md:py-20">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-8 max-w-5xl mx-auto">
+            <div>
+              <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">
+                {t("common.admissionCta")}
+              </h3>
+              <p className="text-white/80">{t("common.admissionCtaDesc")}</p>
+            </div>
+            <a
+              href="/admission"
+              className="inline-flex items-center gap-3 bg-white text-[#0085b2] px-8 py-4 rounded-full font-semibold hover:bg-white/90 transition-colors group"
+            >
+              {t("nav.admission")}
+              <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+            </a>
           </div>
         </div>
       </div>

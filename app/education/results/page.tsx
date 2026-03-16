@@ -13,9 +13,7 @@ export default function ResultsPage() {
     <>
       <Header />
       <main>
-        <div className="pt-24">
-          <ResultsPageContent />
-        </div>
+        <ResultsPageContent />
       </main>
       <Footer />
       <ScrollToTop />

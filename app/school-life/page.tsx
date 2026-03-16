@@ -13,9 +13,7 @@ export default function SchoolLifePage() {
     <>
       <Header />
       <main>
-        <div className="pt-24">
-          <SchoolLifePageContent />
-        </div>
+        <SchoolLifePageContent />
       </main>
       <Footer />
       <ScrollToTop />

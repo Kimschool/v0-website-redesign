@@ -13,9 +13,7 @@ export default function BasicInfoPage() {
     <>
       <Header />
       <main>
-        <div className="pt-24">
-          <BasicInfoSection />
-        </div>
+        <BasicInfoSection />
       </main>
       <Footer />
       <ScrollToTop />
