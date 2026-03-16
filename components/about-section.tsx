@@ -364,27 +364,37 @@ export function AboutSection() {
       {/* Support Section - Full Width Image */}
       <div className="relative">
         {/* Staff Photo Background */}
-        <div className="relative h-[60vh] md:h-[70vh]">
+        <div className="relative min-h-[85vh] md:h-[70vh]">
           <Image
             src="/images/original_from_customer/KCPとは「集合写真」.jpg"
             alt="KCP地球市民日本語学校の教職員"
             fill
             className="object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20" />
+          {/* Stronger overlay on mobile for better readability */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/70 to-black/50 md:from-black/80 md:via-black/40 md:to-black/20" />
           
           {/* Content Overlay */}
           <div className="absolute inset-0 flex flex-col justify-end pb-16 md:pb-24">
             <div className="container mx-auto px-4 md:px-6">
               <div className="max-w-3xl">
                 <span className="inline-block text-[#0cc0df] text-sm tracking-[0.2em] uppercase mb-4">Support System</span>
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
+                <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-white mb-4 md:mb-6">
                   {t("aboutPage.supportTitle")}
                 </h2>
-                <div className="space-y-4 text-white/80 text-base md:text-lg leading-relaxed">
+                <div className="space-y-4 text-white text-sm md:text-lg leading-relaxed">
                   <p>{t("aboutPage.supportMessage1")}</p>
                   <p>{t("aboutPage.supportMessage2")}</p>
                 </div>
+                <p className="text-white/70 text-xs md:text-sm mt-6 md:mt-8 flex items-center gap-2">
+                  <span className="w-8 h-[1px] bg-white/40" />
+                  {t("aboutPage.staffPhoto")}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
                 <p className="text-white/60 text-sm mt-8 flex items-center gap-2">
                   <span className="w-8 h-[1px] bg-white/40" />
                   {t("aboutPage.staffPhoto")}
@@ -395,26 +405,7 @@ export function AboutSection() {
         </div>
       </div>
 
-      {/* CTA Section */}
-      <div className="bg-[#0085b2] py-16 md:py-20">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-8 max-w-5xl mx-auto">
-            <div>
-              <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">
-                {t("common.admissionCta")}
-              </h3>
-              <p className="text-white/80">{t("common.admissionCtaDesc")}</p>
-            </div>
-            <a
-              href="/admission"
-              className="inline-flex items-center gap-3 bg-white text-[#0085b2] px-8 py-4 rounded-full font-semibold hover:bg-white/90 transition-colors group"
-            >
-              {t("nav.admission")}
-              <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
-            </a>
-          </div>
-        </div>
-      </div>
+
     </section>
   )
 }
