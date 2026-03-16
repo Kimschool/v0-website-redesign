@@ -78,14 +78,23 @@ export function FeaturesSection() {
   }, [])
 
   return (
-    <section ref={sectionRef} className="py-24 lg:py-32 bg-white">
-      <div className="mx-auto max-w-7xl px-6">
+    <section ref={sectionRef} className="py-24 lg:py-32 bg-background relative overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+      <div className="absolute bottom-0 left-0 w-80 h-80 bg-accent/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
+      
+      <div className="mx-auto max-w-7xl px-6 relative">
         {/* Section heading */}
         <div className={`text-center mb-16 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground leading-tight">
+          {/* Section badge */}
+          <div className="inline-flex items-center gap-2 bg-primary/10 text-primary text-sm font-semibold px-4 py-2 rounded-full mb-6">
+            <span className="w-1.5 h-1.5 bg-primary rounded-full" />
+            FEATURES
+          </div>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground leading-tight font-serif">
             {t("features.title")}
           </h2>
-          <p className="mt-4 text-base text-muted-foreground max-w-2xl mx-auto">
+          <p className="mt-6 text-base md:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
             {t("features.description")}
           </p>
         </div>
@@ -95,31 +104,31 @@ export function FeaturesSection() {
           {/* Left arrow */}
           <button
             onClick={() => handleArrowClick("left")}
-            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 md:w-12 md:h-12 bg-white/90 hover:bg-white shadow-lg rounded-full flex items-center justify-center transition-all duration-300 -translate-x-1/2 opacity-0 group-hover/carousel:opacity-100 hover:scale-110"
+            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 md:w-14 md:h-14 bg-white/95 hover:bg-white shadow-xl rounded-full flex items-center justify-center transition-all duration-300 -translate-x-1/2 opacity-0 group-hover/carousel:opacity-100 hover:scale-110 border border-border/50"
             aria-label="前へ"
           >
-            <ChevronLeft className="w-5 h-5 md:w-6 md:h-6 text-gray-700" />
+            <ChevronLeft className="w-5 h-5 md:w-6 md:h-6 text-foreground" />
           </button>
 
           {/* Right arrow */}
           <button
             onClick={() => handleArrowClick("right")}
-            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 md:w-12 md:h-12 bg-white/90 hover:bg-white shadow-lg rounded-full flex items-center justify-center transition-all duration-300 translate-x-1/2 opacity-0 group-hover/carousel:opacity-100 hover:scale-110"
+            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 md:w-14 md:h-14 bg-white/95 hover:bg-white shadow-xl rounded-full flex items-center justify-center transition-all duration-300 translate-x-1/2 opacity-0 group-hover/carousel:opacity-100 hover:scale-110 border border-border/50"
             aria-label="次へ"
           >
-            <ChevronRight className="w-5 h-5 md:w-6 md:h-6 text-gray-700" />
+            <ChevronRight className="w-5 h-5 md:w-6 md:h-6 text-foreground" />
           </button>
 
           {/* Infinite scroll container */}
-          <div className="overflow-hidden">
+          <div className="overflow-hidden rounded-2xl">
             <div
               ref={trackRef}
-              className="features-slider-track flex gap-4 w-max"
+              className="features-slider-track flex gap-5 w-max"
             >
               {[...featureItems, ...featureItems].map((item, index) => (
                 <div
                   key={index}
-                  className="group relative flex-shrink-0 w-[320px] md:w-[380px] overflow-hidden rounded-lg cursor-pointer"
+                  className="group relative flex-shrink-0 w-[320px] md:w-[380px] overflow-hidden rounded-2xl cursor-pointer card-glow"
                 >
                   <div className="aspect-[480/306] relative overflow-hidden">
                     <Image
@@ -128,16 +137,22 @@ export function FeaturesSection() {
                       fill
                       sizes="(max-width: 768px) 320px, 380px"
                       loading={index < 4 ? "eager" : "lazy"}
-                      className="object-cover transition-transform duration-500 group-hover:scale-[1.2]"
+                      className="object-cover transition-transform duration-700 group-hover:scale-[1.15]"
                       style={{ objectPosition: item.objectPosition }}
                     />
-                    {/* Dark overlay */}
-                    <div className="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition-colors duration-300" />
+                    {/* Gradient overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-300" />
                     {/* Title overlay */}
-                    <div className="absolute inset-0 flex items-end p-4">
-                      <h3 className="text-sm md:text-base font-bold text-white drop-shadow-lg">
-                        {item.text}
-                      </h3>
+                    <div className="absolute inset-0 flex flex-col justify-end p-5">
+                      <div className="transform transition-transform duration-300 group-hover:-translate-y-2">
+                        <h3 className="text-base md:text-lg font-bold text-white drop-shadow-lg leading-snug">
+                          {item.text}
+                        </h3>
+                        <div className="flex items-center gap-1 mt-2 text-sm text-white/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                          <span>詳細を見る</span>
+                          <ArrowRight className="w-4 h-4" />
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -147,10 +162,10 @@ export function FeaturesSection() {
         </div>
 
         {/* CTA Button */}
-        <div className={`text-center mt-12 ${isVisible ? "animate-fade-in-up animation-delay-400" : "opacity-0"}`}>
+        <div className={`text-center mt-14 ${isVisible ? "animate-fade-in-up animation-delay-400" : "opacity-0"}`}>
           <Link
             href="/about"
-            className="group inline-flex items-center gap-3 bg-[#0085b2] hover:bg-[#006d94] text-white font-bold text-base px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5"
+            className="group inline-flex items-center gap-3 bg-primary hover:bg-primary/90 text-white font-bold text-base px-8 py-4 rounded-full shadow-xl shadow-primary/20 hover:shadow-2xl hover:shadow-primary/30 transition-all duration-300 hover:-translate-y-1 shimmer"
           >
             {t("about.label")}
             <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />

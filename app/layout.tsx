@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import { Noto_Sans_JP, Zen_Old_Mincho } from 'next/font/google'
+import { Noto_Sans_JP, Noto_Serif_JP } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { I18nProvider } from '@/components/i18n-provider'
 import './globals.css'
@@ -7,13 +7,13 @@ import './globals.css'
 const notoSansJP = Noto_Sans_JP({
   subsets: ['latin'],
   weight: ['300', '400', '500', '700'],
-  variable: '--font-noto-sans-jp',
+  variable: '--font-sans',
 })
 
-const zenOldMincho = Zen_Old_Mincho({
+const notoSerifJP = Noto_Serif_JP({
   subsets: ['latin'],
-  weight: ['400', '500', '700', '900'],
-  variable: '--font-zen-old-mincho',
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-serif',
 })
 
 export const metadata: Metadata = {
@@ -46,7 +46,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja">
-      <body className={`${notoSansJP.variable} ${zenOldMincho.variable} font-sans antialiased`}>
+      <body className={`${notoSansJP.variable} ${notoSerifJP.variable} font-sans antialiased`}>
         <I18nProvider>{children}</I18nProvider>
         <Analytics />
       </body>

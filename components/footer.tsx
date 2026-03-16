@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import Image from "next/image"
-import { FileText, HelpCircle, ArrowRight } from "lucide-react"
+import { FileText, HelpCircle, ArrowRight, MapPin, Phone, Mail } from "lucide-react"
 import { useTranslation } from "react-i18next"
 
 const quickLinkHrefs = ["/about", "/education", "/admission", "/school-life", "/contact"]
@@ -43,10 +43,10 @@ function WeiboIcon({ className }: { className?: string }) {
 }
 
 const socialLinks = [
-  { icon: FacebookIcon, label: "Facebook", href: "https://www.facebook.com/kcpchikyushimin/?locale=ja_JP", color: "hover:!bg-[#1877F2]" },
-  { icon: InstagramIcon, label: "Instagram", href: "https://www.instagram.com/kcp_yosei/", color: "hover:!bg-[#E4405F]" },
-  { icon: FacebookIcon, label: "Facebook2", href: "https://www.facebook.com/kcpchikyushimin", color: "hover:!bg-[#4267B2]" },
-  { icon: WeiboIcon, label: "Weibo", href: "https://passport.weibo.com/visitor/visitor?entry=miniblog&a=enter&url=https%3A%2F%2Fweibo.com%2Fkcp30&domain=weibo.com", color: "hover:!bg-[#E6162D]" },
+  { icon: FacebookIcon, label: "Facebook", href: "https://www.facebook.com/kcpchikyushimin/?locale=ja_JP" },
+  { icon: InstagramIcon, label: "Instagram", href: "https://www.instagram.com/kcp_yosei/" },
+  { icon: FacebookIcon, label: "Facebook2", href: "https://www.facebook.com/kcpchikyushimin" },
+  { icon: WeiboIcon, label: "Weibo", href: "https://passport.weibo.com/visitor/visitor?entry=miniblog&a=enter&url=https%3A%2F%2Fweibo.com%2Fkcp30&domain=weibo.com" },
 ]
 
 export function Footer() {
@@ -59,41 +59,46 @@ export function Footer() {
   const doubledImages = [...carouselImages, ...carouselImages]
 
   return (
-    <footer className="bg-white border-t border-border">
+    <footer className="bg-background border-t border-border/50">
       {/* Infinite scrolling image carousel */}
-      <div className="overflow-hidden py-6 bg-[#f2f2f2]">
+      <div className="overflow-hidden py-8 bg-muted/30">
         <div className="footer-carousel-track flex gap-4">
           {doubledImages.map((src, index) => (
-            <div key={index} className="flex-shrink-0 w-48 h-32 relative rounded-lg overflow-hidden">
+            <div key={index} className="flex-shrink-0 w-52 h-36 relative rounded-xl overflow-hidden group">
               <Image
                 src={src}
                 alt=""
                 fill
-                className="object-cover"
+                className="object-cover transition-transform duration-500 group-hover:scale-110"
               />
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
             </div>
           ))}
         </div>
       </div>
 
-      {/* CTA Section - 入学案内 + お問い合わせ */}
-      <div className="py-16 bg-gradient-cyan">
-        <div className="mx-auto max-w-5xl px-6">
-          <div className="text-center mb-10">
-            <h2 className="text-3xl md:text-4xl font-semibold text-white leading-tight">
+      {/* CTA Section */}
+      <div className="py-20 bg-gradient-to-br from-primary via-primary/95 to-accent/90 relative overflow-hidden">
+        {/* Background decoration */}
+        <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-80 h-80 bg-accent/20 rounded-full blur-3xl" />
+        
+        <div className="mx-auto max-w-5xl px-6 relative">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight font-serif">
               {t("cta.title")}
             </h2>
-            <p className="mt-4 text-base text-white/80 max-w-xl mx-auto">
+            <p className="mt-5 text-lg text-white/80 max-w-xl mx-auto">
               {t("cta.description")}
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <Link
               href="/admission"
-              className="group flex items-center gap-6 p-8 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover-lift"
+              className="group flex items-center gap-6 p-8 bg-white rounded-2xl shadow-2xl hover:shadow-white/20 transition-all duration-300 hover:-translate-y-1"
             >
-              <div className="shrink-0 w-16 h-16 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary transition-colors duration-300">
-                <FileText className="h-7 w-7 text-primary group-hover:text-white" strokeWidth={1.5} />
+              <div className="shrink-0 w-16 h-16 rounded-2xl bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center shadow-lg shadow-primary/30 group-hover:scale-110 transition-transform duration-300">
+                <FileText className="h-7 w-7 text-white" strokeWidth={1.5} />
               </div>
               <div className="flex-1">
                 <h3 className="text-lg font-bold text-foreground mb-1">
@@ -107,10 +112,10 @@ export function Footer() {
             </Link>
             <Link
               href="/contact"
-              className="group flex items-center gap-6 p-8 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover-lift"
+              className="group flex items-center gap-6 p-8 bg-white rounded-2xl shadow-2xl hover:shadow-white/20 transition-all duration-300 hover:-translate-y-1"
             >
-              <div className="shrink-0 w-16 h-16 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary transition-colors duration-300">
-                <HelpCircle className="h-7 w-7 text-primary group-hover:text-white" strokeWidth={1.5} />
+              <div className="shrink-0 w-16 h-16 rounded-2xl bg-gradient-to-br from-accent to-accent/80 flex items-center justify-center shadow-lg shadow-accent/30 group-hover:scale-110 transition-transform duration-300">
+                <HelpCircle className="h-7 w-7 text-white" strokeWidth={1.5} />
               </div>
               <div className="flex-1">
                 <h3 className="text-lg font-bold text-foreground mb-1">
@@ -127,10 +132,13 @@ export function Footer() {
       </div>
 
       {/* Footer catch */}
-      <div className="py-5 bg-primary/10 text-center">
-        <h2 className="text-lg md:text-xl font-semibold text-foreground">
-          KCP地球市民日本語学校
-        </h2>
+      <div className="py-6 bg-primary/5 border-y border-primary/10">
+        <div className="mx-auto max-w-7xl px-6 text-center">
+          <h2 className="text-xl md:text-2xl font-bold text-foreground font-serif">
+            KCP地球市民日本語学校
+          </h2>
+          <p className="text-sm text-muted-foreground mt-1">ともにまなび ともに生きる</p>
+        </div>
       </div>
 
       {/* Main footer content */}
@@ -139,25 +147,31 @@ export function Footer() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
             {/* School info */}
             <div className="lg:col-span-1">
-              <p className="text-xs text-muted-foreground font-medium mb-2">
+              <p className="text-xs text-muted-foreground font-medium mb-2 uppercase tracking-wider">
                 {t("logoTop")}
               </p>
-              <h3 className="text-lg font-bold text-foreground mb-4">
+              <h3 className="text-lg font-bold text-foreground mb-6 font-serif">
                 {t("logoBottom")}
               </h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                {t("footer.address.postalCode")}
-                <br />
-                {t("footer.address.address")}
-              </p>
-              <p className="text-sm text-muted-foreground mt-2">
-                {t("footer.address.tel")}
-              </p>
+              <div className="space-y-3">
+                <div className="flex items-start gap-3 text-sm text-muted-foreground">
+                  <MapPin className="w-4 h-4 mt-0.5 text-primary shrink-0" />
+                  <p className="leading-relaxed">
+                    {t("footer.address.postalCode")}
+                    <br />
+                    {t("footer.address.address")}
+                  </p>
+                </div>
+                <div className="flex items-center gap-3 text-sm text-muted-foreground">
+                  <Phone className="w-4 h-4 text-primary shrink-0" />
+                  <p>{t("footer.address.tel")}</p>
+                </div>
+              </div>
             </div>
 
             {/* Quick links */}
             <div>
-              <h4 className="text-sm font-bold text-foreground mb-4">
+              <h4 className="text-sm font-bold text-foreground mb-5 uppercase tracking-wider">
                 {t("footer.menu")}
               </h4>
               <nav className="flex flex-col gap-3">
@@ -165,7 +179,7 @@ export function Footer() {
                   <Link
                     key={link.label}
                     href={quickLinkHrefs[index]}
-                    className="text-sm text-muted-foreground hover:text-primary transition-colors duration-200"
+                    className="text-sm text-muted-foreground hover:text-primary hover:translate-x-1 transition-all duration-200"
                   >
                     {link.label}
                   </Link>
@@ -175,7 +189,7 @@ export function Footer() {
 
             {/* Related links */}
             <div>
-              <h4 className="text-sm font-bold text-foreground mb-4">
+              <h4 className="text-sm font-bold text-foreground mb-5 uppercase tracking-wider">
                 {t("footer.relatedLinks")}
               </h4>
               <nav className="flex flex-col gap-3">
@@ -186,7 +200,7 @@ export function Footer() {
                     <Link
                       key={link.label}
                       href={href}
-                      className="text-sm text-muted-foreground hover:text-primary transition-colors duration-200"
+                      className="text-sm text-muted-foreground hover:text-primary hover:translate-x-1 transition-all duration-200"
                       {...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                     >
                       {link.label}
@@ -198,7 +212,7 @@ export function Footer() {
 
             {/* Social */}
             <div>
-              <h4 className="text-sm font-bold text-foreground mb-4">
+              <h4 className="text-sm font-bold text-foreground mb-5 uppercase tracking-wider">
                 {t("footer.follow")}
               </h4>
               <div className="flex items-center gap-3">
@@ -209,11 +223,21 @@ export function Footer() {
                     aria-label={social.label}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`w-10 h-10 rounded-full bg-muted flex items-center justify-center text-muted-foreground hover:bg-primary hover:text-white transition-all duration-200 ${social.color}`}
+                    className="w-11 h-11 rounded-xl bg-muted flex items-center justify-center text-muted-foreground hover:bg-primary hover:text-white hover:scale-110 transition-all duration-300"
                   >
-                    <social.icon className="h-4 w-4" />
+                    <social.icon className="h-5 w-5" />
                   </Link>
                 ))}
+              </div>
+              
+              {/* Contact email */}
+              <div className="mt-6 pt-6 border-t border-border/50">
+                <div className="flex items-center gap-3 text-sm text-muted-foreground">
+                  <Mail className="w-4 h-4 text-primary" />
+                  <a href="mailto:info@kcp.ac.jp" className="hover:text-primary transition-colors">
+                    info@kcp.ac.jp
+                  </a>
+                </div>
               </div>
             </div>
           </div>
@@ -221,7 +245,7 @@ export function Footer() {
       </div>
 
       {/* Bottom bar */}
-      <div className="border-t border-border py-6">
+      <div className="border-t border-border/50 py-6 bg-muted/30">
         <div className="mx-auto max-w-7xl px-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-xs text-muted-foreground">

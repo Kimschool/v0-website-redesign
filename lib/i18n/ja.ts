@@ -284,7 +284,7 @@ const ja = {
     scholarship1Desc: "優秀な成績と出席状況を保つ学生に対して支給される奨学金です。",
     scholarship2Title: "留学生受入れ促進プログラム　文部科学省外国人留学生学習奨励費",
     scholarship2Desc: "文部科学省による留学生支援制度で、学業成績と出席率が優秀な学生が対象です。",
-    scholarshipNote: "※ 詳しい奨学金の条件や申請方法については、入学後にご案内いたします。",
+    scholarshipNote: "詳しい奨学金の条件や申請方法については、入学後にご案内いたします。",
   },
 
   // Basic Info Page
