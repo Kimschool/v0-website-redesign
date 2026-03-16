@@ -181,20 +181,19 @@ export function ContactSection() {
           <h1 className="text-4xl md:text-5xl font-bold text-white">{t("contactPage.bannerTitle")}</h1>
         </div>
       </div>
-      <div className="mx-auto max-w-4xl px-6 py-20">
+      <div className="mx-auto max-w-5xl px-6 py-16 md:py-24">
         {/* Section heading */}
-        <div className={`text-center mb-16 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
-          <div className="w-12 h-1 bg-[#0085b2] mx-auto mb-6 rounded-full" />
-          <p className="text-lg md:text-xl text-gray-700 leading-relaxed max-w-3xl mx-auto">
+        <div className={`text-center mb-12 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
+          <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto">
             {t("contactPage.intro")}
           </p>
-          <div className="elegant-divider mt-8" />
         </div>
+
         {/* Contact Form */}
-        <form onSubmit={handleSubmit} className={`bg-white rounded-xl p-8 border border-gray-200 shadow-lg ${isVisible ? "animate-fade-in-up animation-delay-300" : "opacity-0"}`}>
+        <form onSubmit={handleSubmit} className={`bg-card rounded-2xl border-2 border-border overflow-hidden ${isVisible ? "animate-fade-in-up animation-delay-300" : "opacity-0"}`}>
           {/* Test recipient email block */}
-          <div className="mb-6 p-4 bg-yellow-100 border-2 border-yellow-400 rounded-lg">
-            <label htmlFor="recipientEmail" className="block text-sm font-bold text-yellow-800 mb-2">
+          <div className="p-5 bg-amber-50 border-b-2 border-amber-200">
+            <label htmlFor="recipientEmail" className="block text-xs font-bold text-amber-800 uppercase tracking-wider mb-2">
               {t("contactPage.testEmailLabel")}
             </label>
             <input
@@ -203,264 +202,270 @@ export function ContactSection() {
               value={recipientEmail}
               onChange={(e) => setRecipientEmail(e.target.value)}
               required
-              className="w-full px-4 py-2 border border-yellow-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 bg-white"
+              className="w-full px-4 py-3 border-2 border-amber-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 bg-white text-foreground transition-all"
               placeholder="test@example.com"
             />
-            <p className="mt-1 text-xs text-yellow-700">{t("contactPage.testEmailNote")}</p>
+            <p className="mt-2 text-xs text-amber-700">{t("contactPage.testEmailNote")}</p>
           </div>
 
           {submitStatus && (
-            <div className={`mb-6 p-4 rounded-lg ${submitStatus.type === "success" ? "bg-green-50 border border-green-300 text-green-800" : "bg-red-50 border border-red-300 text-red-800"}`}>
+            <div className={`mx-6 mt-6 p-4 rounded-lg ${submitStatus.type === "success" ? "bg-emerald-50 border-2 border-emerald-300 text-emerald-800" : "bg-red-50 border-2 border-red-300 text-red-800"}`}>
               {submitStatus.message}
             </div>
           )}
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-            {/* Name (Kanji) */}
-            <div>
-              <label htmlFor="nameKanji" className="block text-sm font-semibold text-gray-800 mb-2">
-                {t("contactPage.formLabels.nameKanji")}
-              </label>
-              <input
-                type="text"
-                id="nameKanji"
-                name="nameKanji"
-                value={formData.nameKanji}
-                onChange={handleChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0085b2]"
-              />
-            </div>
+          {/* STEP 1: Personal Information */}
+          <div className="p-6 md:p-8 border-b border-border">
+            <h3 className="text-sm font-bold text-foreground uppercase tracking-wider mb-6">
+              STEP 1: {t("contactPage.formLabels.personalInfo") || "Personal Information"}
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              {/* Name (Kanji) */}
+              <div className="space-y-2">
+                <label htmlFor="nameKanji" className="block text-sm font-semibold text-foreground uppercase tracking-wide">
+                  {t("contactPage.formLabels.nameKanji")}
+                </label>
+                <input
+                  type="text"
+                  id="nameKanji"
+                  name="nameKanji"
+                  value={formData.nameKanji}
+                  onChange={handleChange}
+                  className="w-full px-4 py-3 border-2 border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary bg-background text-foreground transition-all"
+                />
+              </div>
 
-            {/* Name (English) */}
-            <div>
-              <label htmlFor="name" className="block text-sm font-semibold text-gray-800 mb-2">
-                {t("contactPage.formLabels.name")} <span className="text-red-500">*</span>
-              </label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                required
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0085b2]"
-              />
-            </div>
+              {/* Name (English) */}
+              <div className="space-y-2">
+                <label htmlFor="name" className="block text-sm font-semibold text-foreground uppercase tracking-wide">
+                  {t("contactPage.formLabels.name")} <span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
+                  className="w-full px-4 py-3 border-2 border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary bg-background text-foreground transition-all"
+                />
+              </div>
 
-            {/* Gender */}
-            <div>
-              <label htmlFor="gender" className="block text-sm font-semibold text-gray-800 mb-2">
-                {t("contactPage.formLabels.gender")} <span className="text-red-500">*</span>
-              </label>
-              <select
-                id="gender"
-                name="gender"
-                value={formData.gender}
-                onChange={handleChange}
-                required
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0085b2]"
-              >
-                <option value="">{t("contactPage.genderOptions.selectDefault")}</option>
-                <option value="male">{t("contactPage.genderOptions.male")}</option>
-                <option value="female">{t("contactPage.genderOptions.female")}</option>
-                <option value="other">{t("contactPage.genderOptions.other")}</option>
-              </select>
-            </div>
+              {/* Gender */}
+              <div className="space-y-2">
+                <label htmlFor="gender" className="block text-sm font-semibold text-foreground uppercase tracking-wide">
+                  {t("contactPage.formLabels.gender")} <span className="text-red-500">*</span>
+                </label>
+                <select
+                  id="gender"
+                  name="gender"
+                  value={formData.gender}
+                  onChange={handleChange}
+                  required
+                  className="w-full px-4 py-3 border-2 border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary bg-background text-foreground transition-all appearance-none cursor-pointer"
+                >
+                  <option value="">{t("contactPage.genderOptions.selectDefault")}</option>
+                  <option value="male">{t("contactPage.genderOptions.male")}</option>
+                  <option value="female">{t("contactPage.genderOptions.female")}</option>
+                  <option value="other">{t("contactPage.genderOptions.other")}</option>
+                </select>
+              </div>
 
-            {/* Nationality */}
-            <div>
-              <label htmlFor="nationality" className="block text-sm font-semibold text-gray-800 mb-2">
-                {t("contactPage.formLabels.nationality")} <span className="text-red-500">*</span>
-              </label>
-              <input
-                type="text"
-                id="nationality"
-                name="nationality"
-                value={formData.nationality}
-                onChange={handleChange}
-                required
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0085b2]"
-                placeholder=""
-              />
-            </div>
+              {/* Nationality */}
+              <div className="space-y-2">
+                <label htmlFor="nationality" className="block text-sm font-semibold text-foreground uppercase tracking-wide">
+                  {t("contactPage.formLabels.nationality")} <span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="nationality"
+                  name="nationality"
+                  value={formData.nationality}
+                  onChange={handleChange}
+                  required
+                  className="w-full px-4 py-3 border-2 border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary bg-background text-foreground transition-all"
+                />
+              </div>
 
-            {/* Birth Date */}
-            <div>
-              <label htmlFor="birthDate" className="block text-sm font-semibold text-gray-800 mb-2">
-                {t("contactPage.formLabels.birthDate")} <span className="text-red-500">*</span>
-              </label>
-              <input
-                type="date"
-                id="birthDate"
-                name="birthDate"
-                value={formData.birthDate}
-                onChange={handleChange}
-                required
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0085b2]"
-              />
-            </div>
+              {/* Birth Date */}
+              <div className="space-y-2">
+                <label htmlFor="birthDate" className="block text-sm font-semibold text-foreground uppercase tracking-wide">
+                  {t("contactPage.formLabels.birthDate")} <span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="date"
+                  id="birthDate"
+                  name="birthDate"
+                  value={formData.birthDate}
+                  onChange={handleChange}
+                  required
+                  className="w-full px-4 py-3 border-2 border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary bg-background text-foreground transition-all"
+                />
+              </div>
 
-            {/* Student ID */}
-            <div>
-              <label htmlFor="studentId" className="block text-sm font-semibold text-gray-800 mb-2">
-                {t("contactPage.formLabels.studentId")} <span className="text-red-500">*</span>
-              </label>
-              <input
-                type="text"
-                id="studentId"
-                name="studentId"
-                value={formData.studentId}
-                onChange={handleChange}
-                required
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0085b2]"
-                placeholder=""
-              />
-            </div>
+              {/* Student ID */}
+              <div className="space-y-2">
+                <label htmlFor="studentId" className="block text-sm font-semibold text-foreground uppercase tracking-wide">
+                  {t("contactPage.formLabels.studentId")} <span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="studentId"
+                  name="studentId"
+                  value={formData.studentId}
+                  onChange={handleChange}
+                  required
+                  className="w-full px-4 py-3 border-2 border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary bg-background text-foreground transition-all"
+                />
+              </div>
 
-            {/* Current Address */}
-            <div className="md:col-span-2">
-              <label htmlFor="address" className="block text-sm font-semibold text-gray-800 mb-2">
-                {t("contactPage.formLabels.address")} <span className="text-red-500">*</span>
-              </label>
-              <input
-                type="text"
-                id="address"
-                name="address"
-                value={formData.address}
-                onChange={handleChange}
-                required
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0085b2]"
-                placeholder=""
-              />
-            </div>
+              {/* Current Address */}
+              <div className="md:col-span-2 space-y-2">
+                <label htmlFor="address" className="block text-sm font-semibold text-foreground uppercase tracking-wide">
+                  {t("contactPage.formLabels.address")} <span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="address"
+                  name="address"
+                  value={formData.address}
+                  onChange={handleChange}
+                  required
+                  className="w-full px-4 py-3 border-2 border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary bg-background text-foreground transition-all"
+                />
+              </div>
 
-            {/* Phone */}
-            <div>
-              <label htmlFor="phone" className="block text-sm font-semibold text-gray-800 mb-2">
-                {t("contactPage.formLabels.phone")} <span className="text-red-500">*</span>
-              </label>
-              <input
-                type="tel"
-                id="phone"
-                name="phone"
-                value={formData.phone}
-                onChange={handleChange}
-                required
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0085b2]"
-                placeholder=""
-              />
-            </div>
+              {/* Phone */}
+              <div className="space-y-2">
+                <label htmlFor="phone" className="block text-sm font-semibold text-foreground uppercase tracking-wide">
+                  {t("contactPage.formLabels.phone")} <span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  required
+                  className="w-full px-4 py-3 border-2 border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary bg-background text-foreground transition-all"
+                />
+              </div>
 
-            {/* Email */}
-            <div>
-              <label htmlFor="email" className="block text-sm font-semibold text-gray-800 mb-2">
-                {t("contactPage.formLabels.email")} <span className="text-red-500">*</span>
-              </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                required
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0085b2]"
-                placeholder=""
-              />
+              {/* Email */}
+              <div className="space-y-2">
+                <label htmlFor="email" className="block text-sm font-semibold text-foreground uppercase tracking-wide">
+                  {t("contactPage.formLabels.email")} <span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                  className="w-full px-4 py-3 border-2 border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary bg-background text-foreground transition-all"
+                />
+              </div>
             </div>
+          </div>
 
-            {/* Certificate Type */}
-            <div>
-              <label htmlFor="certificateType" className="block text-sm font-semibold text-gray-800 mb-2">
-                {t("contactPage.formLabels.certificateType")} <span className="text-red-500">*</span>
-              </label>
-              <input
-                type="text"
-                id="certificateType"
-                name="certificateType"
-                value={formData.certificateType}
-                onChange={handleChange}
-                required
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0085b2]"
-              />
-            </div>
+          {/* STEP 2: Certificate Information */}
+          <div className="p-6 md:p-8 border-b border-border bg-muted/30">
+            <h3 className="text-sm font-bold text-foreground uppercase tracking-wider mb-6">
+              STEP 2: {t("contactPage.formLabels.certificateInfo") || "Certificate Information"}
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              {/* Certificate Type */}
+              <div className="space-y-2">
+                <label htmlFor="certificateType" className="block text-sm font-semibold text-foreground uppercase tracking-wide">
+                  {t("contactPage.formLabels.certificateType")} <span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="certificateType"
+                  name="certificateType"
+                  value={formData.certificateType}
+                  onChange={handleChange}
+                  required
+                  className="w-full px-4 py-3 border-2 border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary bg-background text-foreground transition-all"
+                />
+              </div>
 
-            {/* Purpose */}
-            <div>
-              <label htmlFor="purpose" className="block text-sm font-semibold text-gray-800 mb-2">
-                {t("contactPage.formLabels.purpose")} <span className="text-red-500">*</span>
-              </label>
-              <input
-                type="text"
-                id="purpose"
-                name="purpose"
-                value={formData.purpose}
-                onChange={handleChange}
-                required
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0085b2]"
-                placeholder=""
-              />
-            </div>
+              {/* Purpose */}
+              <div className="space-y-2">
+                <label htmlFor="purpose" className="block text-sm font-semibold text-foreground uppercase tracking-wide">
+                  {t("contactPage.formLabels.purpose")} <span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="purpose"
+                  name="purpose"
+                  value={formData.purpose}
+                  onChange={handleChange}
+                  required
+                  className="w-full px-4 py-3 border-2 border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary bg-background text-foreground transition-all"
+                />
+              </div>
 
-            {/* Submission Place */}
-            <div>
-              <label htmlFor="submissionPlace" className="block text-sm font-semibold text-gray-800 mb-2">
-                {t("contactPage.formLabels.submissionPlace")} <span className="text-red-500">*</span>
-              </label>
-              <input
-                type="text"
-                id="submissionPlace"
-                name="submissionPlace"
-                value={formData.submissionPlace}
-                onChange={handleChange}
-                required
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0085b2]"
-                placeholder=""
-              />
-            </div>
+              {/* Submission Place */}
+              <div className="space-y-2">
+                <label htmlFor="submissionPlace" className="block text-sm font-semibold text-foreground uppercase tracking-wide">
+                  {t("contactPage.formLabels.submissionPlace")} <span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="submissionPlace"
+                  name="submissionPlace"
+                  value={formData.submissionPlace}
+                  onChange={handleChange}
+                  required
+                  className="w-full px-4 py-3 border-2 border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary bg-background text-foreground transition-all"
+                />
+              </div>
 
-            {/* Receive Method */}
-            <div>
-              <label htmlFor="receiveMethod" className="block text-sm font-semibold text-gray-800 mb-2">
-                {t("contactPage.formLabels.receiveMethod")} <span className="text-red-500">*</span>
-              </label>
-              <select
-                id="receiveMethod"
-                name="receiveMethod"
-                value={formData.receiveMethod}
-                onChange={handleChange}
-                required
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0085b2]"
-              >
-                <option value="">{t("contactPage.receiveOptions.selectDefault")}</option>
-                <option value="mail">{t("contactPage.receiveOptions.mail")}</option>
-                <option value="pickup">{t("contactPage.receiveOptions.pickup")}</option>
-                <option value="proxy">{t("contactPage.receiveOptions.proxy")}</option>
-              </select>
-            </div>
+              {/* Receive Method */}
+              <div className="space-y-2">
+                <label htmlFor="receiveMethod" className="block text-sm font-semibold text-foreground uppercase tracking-wide">
+                  {t("contactPage.formLabels.receiveMethod")} <span className="text-red-500">*</span>
+                </label>
+                <select
+                  id="receiveMethod"
+                  name="receiveMethod"
+                  value={formData.receiveMethod}
+                  onChange={handleChange}
+                  required
+                  className="w-full px-4 py-3 border-2 border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary bg-background text-foreground transition-all appearance-none cursor-pointer"
+                >
+                  <option value="">{t("contactPage.receiveOptions.selectDefault")}</option>
+                  <option value="mail">{t("contactPage.receiveOptions.mail")}</option>
+                  <option value="pickup">{t("contactPage.receiveOptions.pickup")}</option>
+                  <option value="proxy">{t("contactPage.receiveOptions.proxy")}</option>
+                </select>
+              </div>
 
-            {/* Notes */}
-            <div className="md:col-span-2">
-              <label htmlFor="notes" className="block text-sm font-semibold text-gray-800 mb-2">
-                {t("contactPage.formLabels.notes")}
-              </label>
-              <textarea
-                id="notes"
-                name="notes"
-                value={formData.notes}
-                onChange={handleChange}
-                rows={4}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0085b2]"
-                placeholder=""
-              />
+              {/* Notes */}
+              <div className="md:col-span-2 space-y-2">
+                <label htmlFor="notes" className="block text-sm font-semibold text-foreground uppercase tracking-wide">
+                  {t("contactPage.formLabels.notes")}
+                </label>
+                <textarea
+                  id="notes"
+                  name="notes"
+                  value={formData.notes}
+                  onChange={handleChange}
+                  rows={4}
+                  className="w-full px-4 py-3 border-2 border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary bg-background text-foreground transition-all resize-none"
+                />
+              </div>
             </div>
           </div>
 
           {/* Submit Button */}
-          <div className="flex justify-center">
+          <div className="p-6 md:p-8 bg-card">
             <button
               type="submit"
               disabled={isSubmitting}
-              className="px-12 py-3 bg-[#0085b2] text-white font-semibold rounded-full hover:bg-[#006794] transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full md:w-auto md:min-w-[200px] mx-auto flex items-center justify-center px-8 py-4 bg-primary text-primary-foreground font-bold uppercase tracking-wider rounded-lg hover:bg-primary/90 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {isSubmitting ? t("contactPage.submittingBtn") : t("contactPage.submitBtn")}
             </button>
@@ -468,32 +473,55 @@ export function ContactSection() {
         </form>
 
         {/* Divider */}
-        <div className="w-full h-px bg-gray-300 mb-16" />
+        <div className="my-16" />
 
         {/* Contact Information Card */}
-        <div className={`mb-16 bg-[#f0ffff] border-l-4 border-[#0085b2] rounded-lg p-8 ${isVisible ? "animate-fade-in-up animation-delay-100" : "opacity-0"}`}>
-          <div className="grid md:grid-cols-2 gap-8">
-            <div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4">{t("contactPage.contactInfo.orgName")}</h3>
-              <p className="text-lg font-semibold text-gray-800 mb-4">{t("contactPage.contactInfo.schoolName")}</p>
-              <div className="space-y-3 text-gray-700">
-                <div>
-                  <p className="font-semibold text-gray-800">{t("contactPage.contactInfo.telLabel")}</p>
-                  <p className="text-base">+81-3-6825-3388</p>
+        <div className={`mb-12 bg-card border-2 border-border rounded-2xl overflow-hidden ${isVisible ? "animate-fade-in-up animation-delay-100" : "opacity-0"}`}>
+          <div className="grid md:grid-cols-2">
+            <div className="p-6 md:p-8 border-b md:border-b-0 md:border-r border-border">
+              <h3 className="text-sm font-bold text-foreground uppercase tracking-wider mb-4">{t("contactPage.contactInfo.orgName")}</h3>
+              <p className="text-lg font-semibold text-foreground mb-6">{t("contactPage.contactInfo.schoolName")}</p>
+              <div className="space-y-4">
+                <div className="flex items-start gap-3">
+                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                    <svg className="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">{t("contactPage.contactInfo.telLabel")}</p>
+                    <p className="text-foreground font-medium">+81-3-6825-3388</p>
+                  </div>
                 </div>
-                <div>
-                  <p className="font-semibold text-gray-800">{t("contactPage.contactInfo.emailLabel")}</p>
-                  <p className="text-base">info@kcp.ac.jp</p>
+                <div className="flex items-start gap-3">
+                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                    <svg className="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">{t("contactPage.contactInfo.emailLabel")}</p>
+                    <p className="text-foreground font-medium">info@kcp.ac.jp</p>
+                  </div>
                 </div>
               </div>
             </div>
-            <div>
-              <h3 className="text-lg font-bold text-gray-900 mb-4">{t("contactPage.contactInfo.hoursTitle")}</h3>
-              <div className="space-y-2 text-gray-700">
-                <p><span className="font-semibold">{t("contactPage.contactInfo.weekday")}</span> 9:00～18:00</p>
-                <p><span className="font-semibold">{t("contactPage.contactInfo.saturday")}</span> 10:00～17:00</p>
-                <p><span className="font-semibold">{t("contactPage.contactInfo.sundayHoliday")}</span> {t("contactPage.contactInfo.sundayHolidayHours")}</p>
-                <p className="text-sm text-gray-600 mt-4">
+            <div className="p-6 md:p-8 bg-muted/30">
+              <h3 className="text-sm font-bold text-foreground uppercase tracking-wider mb-4">{t("contactPage.contactInfo.hoursTitle")}</h3>
+              <div className="space-y-3">
+                <div className="flex justify-between items-center py-2 border-b border-border">
+                  <span className="text-sm font-medium text-muted-foreground">{t("contactPage.contactInfo.weekday")}</span>
+                  <span className="text-sm font-semibold text-foreground">9:00 - 18:00</span>
+                </div>
+                <div className="flex justify-between items-center py-2 border-b border-border">
+                  <span className="text-sm font-medium text-muted-foreground">{t("contactPage.contactInfo.saturday")}</span>
+                  <span className="text-sm font-semibold text-foreground">10:00 - 17:00</span>
+                </div>
+                <div className="flex justify-between items-center py-2">
+                  <span className="text-sm font-medium text-muted-foreground">{t("contactPage.contactInfo.sundayHoliday")}</span>
+                  <span className="text-sm font-semibold text-foreground">{t("contactPage.contactInfo.sundayHolidayHours")}</span>
+                </div>
+                <p className="text-xs text-muted-foreground mt-4 pt-4 border-t border-border">
                   {t("contactPage.contactInfo.hoursNote")}
                 </p>
               </div>
@@ -502,48 +530,59 @@ export function ContactSection() {
         </div>
 
         {/* Notice Box */}
-        <div className={`mb-12 p-6 bg-yellow-50 border-l-4 border-yellow-500 rounded-lg ${isVisible ? "animate-fade-in-up animation-delay-200" : "opacity-0"}`}>
-          <h3 className="font-semibold text-gray-900 mb-3">{t("contactPage.noticeTitle")}</h3>
-          <ul className="text-sm text-gray-700 space-y-2">
-            <li>• {t("contactPage.noticeItems.0")}</li>
-            <li>• {t("contactPage.noticeItems.1")}</li>
-            <li>• {t("contactPage.noticeItems.2")}</li>
+        <div className={`mb-12 p-6 bg-amber-50 border-2 border-amber-200 rounded-xl ${isVisible ? "animate-fade-in-up animation-delay-200" : "opacity-0"}`}>
+          <h3 className="font-bold text-amber-800 uppercase tracking-wider text-sm mb-3">{t("contactPage.noticeTitle")}</h3>
+          <ul className="text-sm text-amber-700 space-y-2">
+            <li className="flex items-start gap-2">
+              <span className="text-amber-500 mt-1">&#9679;</span>
+              {t("contactPage.noticeItems.0")}
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-amber-500 mt-1">&#9679;</span>
+              {t("contactPage.noticeItems.1")}
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-amber-500 mt-1">&#9679;</span>
+              {t("contactPage.noticeItems.2")}
+            </li>
           </ul>
         </div>
 
         {/* Overseas Offices Section */}
         <div className={`mb-16 ${isVisible ? "animate-fade-in-up animation-delay-200" : "opacity-0"}`}>
-          <h3 className="text-2xl font-bold text-gray-900 mb-6">{t("contactPage.overseasTitle")}</h3>
+          <h3 className="text-sm font-bold text-foreground uppercase tracking-wider mb-6">{t("contactPage.overseasTitle")}</h3>
           <div className="space-y-3">
             {overseasOffices.map((office, index) => (
-              <details key={index} className="group border border-gray-300 rounded-lg overflow-hidden hover:border-[#0085b2] transition">
-                <summary className="flex cursor-pointer items-center justify-between bg-gradient-to-r from-[#f0ffff] to-[#0085b2]/10 px-6 py-4 font-semibold text-gray-800 hover:bg-[#0085b2]/10 transition">
+              <details key={index} className="group border-2 border-border rounded-xl overflow-hidden hover:border-primary/50 transition-all">
+                <summary className="flex cursor-pointer items-center justify-between bg-muted/30 px-6 py-4 font-semibold text-foreground hover:bg-muted/50 transition">
                   <span>{office.name}</span>
-                  <span className="text-xl font-bold text-[#0085b2] group-open:rotate-180 transition-transform duration-300">▼</span>
+                  <svg className="w-5 h-5 text-primary group-open:rotate-180 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
                 </summary>
 
-                <div className="px-6 py-4 bg-white space-y-3 border-t border-gray-200">
+                <div className="px-6 py-5 bg-card space-y-3 border-t-2 border-border">
                   {office.details.map((detail, idx) => (
                     <div key={idx} className="flex flex-col">
-                      <p className="text-sm font-semibold text-gray-600 mb-1">{detail.label}</p>
+                      <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-1">{detail.label}</p>
                       {detail.isLink ? (
                         <a
                           href={detail.value}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-[#0085b2] hover:text-[#006794] hover:underline break-all"
+                          className="text-primary hover:text-primary/80 hover:underline break-all transition-colors"
                         >
                           {detail.value}
                         </a>
                       ) : detail.isEmail ? (
                         <a
                           href={`mailto:${detail.value}`}
-                          className="text-[#0085b2] hover:text-[#006794] hover:underline"
+                          className="text-primary hover:text-primary/80 hover:underline transition-colors"
                         >
                           {detail.value}
                         </a>
                       ) : (
-                        <p className="text-gray-700">{detail.value}</p>
+                        <p className="text-foreground">{detail.value}</p>
                       )}
                     </div>
                   ))}
@@ -555,19 +594,21 @@ export function ContactSection() {
 
         {/* FAQ Section */}
         <div className={`mb-16 ${isVisible ? "animate-fade-in-up animation-delay-300" : "opacity-0"}`}>
-          <h3 className="text-2xl font-bold text-gray-900 mb-8">{t("contactPage.faqTitle")}</h3>
+          <h3 className="text-sm font-bold text-foreground uppercase tracking-wider mb-8">{t("contactPage.faqTitle")}</h3>
           <div className="space-y-4">
             {faqItems.map((item, index) => (
-              <details key={index} className="group border border-gray-200 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
-                <summary className="flex cursor-pointer items-center gap-4 bg-[#0085b2]/10 px-6 py-5 hover:bg-[#0085b2]/15 transition">
-                  <span className="flex-shrink-0 w-8 h-8 rounded-full bg-[#0085b2] text-white flex items-center justify-center font-bold text-sm">Q</span>
-                  <span className="flex-1 text-base font-bold text-[#0085b2]">{item.question}</span>
-                  <span className="text-lg font-bold text-[#0085b2] group-open:rotate-180 transition-transform duration-300">▼</span>
+              <details key={index} className="group border-2 border-border rounded-xl overflow-hidden hover:border-primary/50 transition-all">
+                <summary className="flex cursor-pointer items-center gap-4 bg-muted/30 px-6 py-5 hover:bg-muted/50 transition">
+                  <span className="flex-shrink-0 w-8 h-8 rounded-lg bg-primary text-primary-foreground flex items-center justify-center font-bold text-sm">Q</span>
+                  <span className="flex-1 text-base font-semibold text-foreground">{item.question}</span>
+                  <svg className="w-5 h-5 text-primary group-open:rotate-180 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
                 </summary>
 
-                <div className="flex gap-4 px-6 py-5 bg-white border-t border-gray-100">
-                  <span className="flex-shrink-0 w-8 h-8 rounded-full bg-[#006794] text-white flex items-center justify-center font-bold text-sm">A</span>
-                  <p className="flex-1 text-gray-700 leading-relaxed">{item.answer}</p>
+                <div className="flex gap-4 px-6 py-5 bg-card border-t-2 border-border">
+                  <span className="flex-shrink-0 w-8 h-8 rounded-lg bg-primary/20 text-primary flex items-center justify-center font-bold text-sm">A</span>
+                  <p className="flex-1 text-muted-foreground leading-relaxed">{item.answer}</p>
                 </div>
               </details>
             ))}
