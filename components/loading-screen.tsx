@@ -130,7 +130,7 @@ function Pattern1({ phase, imageVisible }: { phase: Phase; imageVisible: boolean
           <div className="absolute bottom-1/4 right-1/4 w-48 h-48 bg-[#0085b2]/5 rounded-full animate-pulse delay-300" />
         </div>
 
-        <div className="text-center px-6 relative z-10">
+        <div className="text-center px-6 relative z-10 font-sans">
           <div className="text-3xl md:text-5xl font-bold text-[#0085b2] tracking-wider mb-4 min-h-[2.6em]">
             <p className="inline-flex items-center justify-center min-h-[1.2em]">
               <span>{typed1a}</span>
@@ -279,7 +279,7 @@ function Pattern2({ phase, imageVisible }: { phase: Phase; imageVisible: boolean
             transition: "opacity 300ms ease-out",
           }}
         >
-          <div className="text-center px-6">
+          <div className="text-center px-6 font-sans">
             <div className="text-3xl md:text-5xl font-bold text-[#0085b2] tracking-wider mb-4 min-h-[2.6em]">
               <p className="inline-flex items-center justify-center min-h-[1.2em]">
                 <span>{typed1a}</span>
@@ -427,7 +427,7 @@ function Pattern3({ phase, imageVisible }: { phase: Phase; imageVisible: boolean
             transition: "opacity 200ms ease-out",
           }}
         >
-          <div className="text-center px-6">
+          <div className="text-center px-6 font-sans">
             <div className="text-3xl md:text-5xl font-bold text-[#0085b2] tracking-wider mb-4 min-h-[2.6em]">
               <p className="inline-flex items-center justify-center min-h-[1.2em]">
                 <span>{typed1a}</span>
