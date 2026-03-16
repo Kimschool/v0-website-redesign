@@ -6,103 +6,104 @@ import Link from "next/link"
 import { useTranslation } from "react-i18next"
 import { ArrowRight, ChevronDown } from "lucide-react"
 
-function TypewriterText({ 
-  text, 
-  delay = 0,
-  onComplete,
-  showCursorProp = false 
+// Cursor component that can be positioned independently
+function TypewriterCursor({ 
+  visible, 
+  isTyping 
 }: { 
-  text: string; 
-  delay?: number;
-  onComplete?: () => void;
-  showCursorProp?: boolean;
+  visible: boolean; 
+  isTyping: boolean;
 }) {
-  const [displayedText, setDisplayedText] = useState("")
-  const [hasStarted, setHasStarted] = useState(false)
-  const [isTyping, setIsTyping] = useState(false)
-
-  useEffect(() => {
-    setDisplayedText("")
-    setHasStarted(false)
-    setIsTyping(false)
-
-    const startTimer = setTimeout(() => {
-      setHasStarted(true)
-      setIsTyping(true)
-    }, delay)
-
-    return () => clearTimeout(startTimer)
-  }, [text, delay])
-
-  useEffect(() => {
-    if (!hasStarted) return
-
-    let currentIndex = 0
-    const typingInterval = setInterval(() => {
-      if (currentIndex < text.length) {
-        setDisplayedText(text.slice(0, currentIndex + 1))
-        currentIndex++
-      } else {
-        setIsTyping(false)
-        clearInterval(typingInterval)
-        onComplete?.()
-      }
-    }, 120)
-
-    return () => clearInterval(typingInterval)
-  }, [text, hasStarted, onComplete])
-
   return (
-    <span className="inline">
-      {/* Pre-render invisible text to prevent layout shift */}
-      <span className="relative">
-        <span className="invisible">{text}</span>
-        <span className="absolute inset-0">{displayedText}</span>
-      </span>
-      <span
-        className={`inline-block w-[3px] h-[0.85em] bg-white ml-1 align-middle transition-opacity duration-300 ${
-          isTyping ? "animate-blink-fast" : "animate-blink"
-        }`}
-        style={{ 
-          verticalAlign: "baseline", 
-          marginBottom: "0.15em",
-          opacity: showCursorProp ? 1 : 0
-        }}
-      />
-    </span>
+    <span
+      className={`inline-block w-[3px] h-[0.85em] bg-white align-middle transition-opacity duration-500 ${
+        isTyping ? "animate-blink-fast" : "animate-blink"
+      }`}
+      style={{ 
+        verticalAlign: "baseline", 
+        marginBottom: "0.15em",
+        opacity: visible ? 1 : 0
+      }}
+    />
   )
 }
 
 export function HeroSection() {
   const { t } = useTranslation()
   const [isLoaded, setIsLoaded] = useState(false)
-  const [line1Complete, setLine1Complete] = useState(false)
-  const [line2Complete, setLine2Complete] = useState(false)
-  const [showLine1Cursor, setShowLine1Cursor] = useState(true)
-  const [showLine2Cursor, setShowLine2Cursor] = useState(false)
+  
+  // Typing state
+  const [line1Text, setLine1Text] = useState("")
+  const [line2Text, setLine2Text] = useState("")
+  const [currentLine, setCurrentLine] = useState(0) // 0: not started, 1: typing line1, 2: typing line2, 3: done
+  const [cursorVisible, setCursorVisible] = useState(false)
+
+  const title1 = t("hero.title1")
+  const title2 = t("hero.title2")
 
   useEffect(() => {
     setIsLoaded(true)
   }, [])
 
-  const title1 = t("hero.title1")
-  const title2 = t("hero.title2")
+  // Main typing animation effect
+  useEffect(() => {
+    // Reset state
+    setLine1Text("")
+    setLine2Text("")
+    setCurrentLine(0)
+    setCursorVisible(false)
 
-  // When line 1 completes, hide its cursor and show line 2 cursor
-  const handleLine1Complete = () => {
-    setLine1Complete(true)
-    setShowLine1Cursor(false)
-    setShowLine2Cursor(true)
-  }
+    // Start typing after initial delay
+    const startTimer = setTimeout(() => {
+      setCurrentLine(1)
+      setCursorVisible(true)
+    }, 500)
 
-  // When line 2 completes, fade out its cursor
-  const handleLine2Complete = () => {
-    setLine2Complete(true)
-    // Keep cursor visible briefly, then fade out
-    setTimeout(() => {
-      setShowLine2Cursor(false)
-    }, 800)
-  }
+    return () => clearTimeout(startTimer)
+  }, [title1, title2])
+
+  // Line 1 typing
+  useEffect(() => {
+    if (currentLine !== 1) return
+
+    let index = 0
+    const interval = setInterval(() => {
+      if (index < title1.length) {
+        setLine1Text(title1.slice(0, index + 1))
+        index++
+      } else {
+        clearInterval(interval)
+        // Small pause before moving to line 2
+        setTimeout(() => {
+          setCurrentLine(2)
+        }, 300)
+      }
+    }, 120)
+
+    return () => clearInterval(interval)
+  }, [currentLine, title1])
+
+  // Line 2 typing
+  useEffect(() => {
+    if (currentLine !== 2) return
+
+    let index = 0
+    const interval = setInterval(() => {
+      if (index < title2.length) {
+        setLine2Text(title2.slice(0, index + 1))
+        index++
+      } else {
+        clearInterval(interval)
+        setCurrentLine(3)
+        // Fade out cursor after completion
+        setTimeout(() => {
+          setCursorVisible(false)
+        }, 1000)
+      }
+    }, 120)
+
+    return () => clearInterval(interval)
+  }, [currentLine, title2])
 
   const scrollToContent = () => {
     window.scrollTo({
@@ -141,20 +142,33 @@ export function HeroSection() {
 
         {/* Main title with serif font */}
         <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight tracking-wide font-serif">
+          {/* Line 1 */}
           <span className="block drop-shadow-lg">
-            <TypewriterText 
-              text={title1} 
-              delay={500} 
-              onComplete={handleLine1Complete}
-              showCursorProp={showLine1Cursor && !line1Complete}
+            <span className="relative inline">
+              {/* Invisible placeholder for layout stability */}
+              <span className="invisible">{title1}</span>
+              {/* Actual typed text */}
+              <span className="absolute inset-0">{line1Text}</span>
+            </span>
+            {/* Cursor on line 1 */}
+            <TypewriterCursor 
+              visible={cursorVisible && currentLine === 1} 
+              isTyping={currentLine === 1} 
             />
           </span>
+          
+          {/* Line 2 */}
           <span className="block mt-3 drop-shadow-lg">
-            <TypewriterText 
-              text={title2} 
-              delay={500 + title1.length * 120 + 300} 
-              onComplete={handleLine2Complete}
-              showCursorProp={showLine2Cursor}
+            <span className="relative inline">
+              {/* Invisible placeholder for layout stability */}
+              <span className="invisible">{title2}</span>
+              {/* Actual typed text */}
+              <span className="absolute inset-0">{line2Text}</span>
+            </span>
+            {/* Cursor on line 2 */}
+            <TypewriterCursor 
+              visible={cursorVisible && currentLine >= 2} 
+              isTyping={currentLine === 2} 
             />
           </span>
         </h1>
