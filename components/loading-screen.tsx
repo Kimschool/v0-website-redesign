@@ -129,7 +129,7 @@ function Pattern1({ phase, imageVisible }: { phase: Phase; imageVisible: boolean
           <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-[#0085b2]/5 rounded-full animate-pulse" />
           <div className="absolute bottom-1/4 right-1/4 w-48 h-48 bg-[#0085b2]/5 rounded-full animate-pulse delay-300" />
         </div>
-        
+
         <div className="text-center px-6 relative z-10">
           <div className="text-3xl md:text-5xl font-bold text-[#0085b2] tracking-wider mb-4 min-h-[2.6em]">
             <p className="inline-flex items-center justify-center min-h-[1.2em]">
@@ -501,18 +501,18 @@ export function LoadingScreen() {
       setImageVisible(true)
     }, line1aTime + 200 + line1bTime + 200 + line2Time + 800)
 
-    // fadeout 시작
+    // fadeout 시작 (1초 후)
     const timer5 = setTimeout(() => {
       setPhase("fadeout")
       sessionStorage.setItem("kcp-loading-shown", "true")
-    }, line1aTime + 200 + line1bTime + 200 + line2Time + 800 + 2500)
+    }, line1aTime + 200 + line1bTime + 200 + line2Time + 800 + 1000)
 
     // DOM에서 제거
     const timer6 = setTimeout(() => {
       setIsVisible(false)
       setShouldRender(false)
       document.body.style.overflow = ""
-    }, line1aTime + 200 + line1bTime + 200 + line2Time + 800 + 2500 + 800)
+    }, line1aTime + 200 + line1bTime + 200 + line2Time + 800 + 1000 + 800)
 
     return () => {
       clearTimeout(timer1)
