@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
-import { Menu, X, Globe, ChevronDown } from "lucide-react"
+import { Menu, X, Globe, ChevronDown, ArrowRight } from "lucide-react"
 import { useTranslation } from "react-i18next"
 import {
   DropdownMenu,
@@ -46,31 +46,37 @@ export function Header() {
 
   return (
     <header 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled 
-          ? "bg-white shadow-md" 
-          : "bg-white/95 backdrop-blur-sm"
+          ? "bg-white/95 backdrop-blur-xl shadow-lg shadow-black/[0.03] py-2" 
+          : "bg-transparent py-4"
       }`}
     >
-      <div className="mx-auto max-w-7xl flex items-center justify-between px-6 py-4">
+      <div className="mx-auto max-w-7xl flex items-center justify-between px-6">
         {/* Logo */}
-        <Link href="/" className="flex flex-col group">
-          <Image
-            src="/images/original_from_customer/4-e1764725157523.png"
-            alt="KCP地球市民日本語学校"
-            width={200}
-            height={40}
-            className="h-8 w-auto"
-          />
+        <Link href="/" className="flex flex-col group relative">
+          <div className={`transition-all duration-300 ${scrolled ? "" : "drop-shadow-lg"}`}>
+            <Image
+              src="/images/original_from_customer/4-e1764725157523.png"
+              alt="KCP地球市民日本語学校"
+              width={200}
+              height={40}
+              className={`h-8 w-auto transition-all duration-300 ${!scrolled ? "brightness-0 invert" : ""}`}
+            />
+          </div>
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden lg:flex items-center gap-8" aria-label="Main navigation">
+        <nav className="hidden lg:flex items-center gap-1" aria-label="Main navigation">
           {navItems.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="text-sm font-medium text-foreground hover:text-primary transition-colors duration-200"
+              className={`nav-link text-sm font-medium px-4 py-2 rounded-lg transition-all duration-300 ${
+                scrolled 
+                  ? "text-foreground hover:text-primary hover:bg-primary/5" 
+                  : "text-white/90 hover:text-white hover:bg-white/10"
+              }`}
             >
               {item.label}
             </Link>
@@ -78,11 +84,16 @@ export function Header() {
         </nav>
 
         {/* Right side - Language + CTA */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3">
+          {/* Language Selector */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <button
-                className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 py-2 px-3 rounded-lg hover:bg-muted"
+                className={`flex items-center gap-2 text-sm py-2 px-3 rounded-lg transition-all duration-300 ${
+                  scrolled 
+                    ? "text-muted-foreground hover:text-foreground hover:bg-muted" 
+                    : "text-white/80 hover:text-white hover:bg-white/10"
+                }`}
                 aria-label={t("languageSelector")}
               >
                 <Globe className="h-4 w-4" />
@@ -90,12 +101,12 @@ export function Header() {
                 <ChevronDown className="h-3.5 w-3.5" />
               </button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="min-w-48 rounded-xl shadow-xl border-border">
+            <DropdownMenuContent align="end" className="min-w-48 rounded-xl shadow-xl border-border/50 bg-white/95 backdrop-blur-xl">
               {languageOptions.map((language) => (
                 <DropdownMenuItem 
                   key={language.code} 
                   onClick={() => i18n.changeLanguage(language.code)}
-                  className="py-3 cursor-pointer"
+                  className="py-3 cursor-pointer hover:bg-primary/5"
                 >
                   <span className="mr-3 text-xs font-bold text-muted-foreground">{language.flag}</span>
                   <span>{language.label}</span>
@@ -104,8 +115,26 @@ export function Header() {
             </DropdownMenuContent>
           </DropdownMenu>
 
+          {/* CTA Button - Desktop */}
+          <Link
+            href="/admission"
+            className={`hidden lg:flex items-center gap-2 text-sm font-semibold px-5 py-2.5 rounded-full transition-all duration-300 shimmer ${
+              scrolled 
+                ? "bg-primary text-white hover:bg-primary/90 shadow-lg shadow-primary/20" 
+                : "bg-white text-primary hover:bg-white/90"
+            }`}
+          >
+            {t("nav.admission")}
+            <ArrowRight className="w-4 h-4" />
+          </Link>
+
+          {/* Mobile Menu Button */}
           <button
-            className="lg:hidden p-2 text-foreground hover:bg-muted rounded-lg transition-colors"
+            className={`lg:hidden p-2 rounded-lg transition-all duration-300 ${
+              scrolled 
+                ? "text-foreground hover:bg-muted" 
+                : "text-white hover:bg-white/10"
+            }`}
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label={mobileOpen ? t("mobileMenuClose") : t("mobileMenuOpen")}
           >
@@ -115,22 +144,36 @@ export function Header() {
       </div>
 
       {/* Mobile Navigation */}
-      {mobileOpen && (
-        <nav className="lg:hidden bg-white border-t border-border" aria-label="Mobile navigation">
-          <div className="px-6 py-6 flex flex-col gap-2">
+      <div 
+        className={`lg:hidden overflow-hidden transition-all duration-300 ${
+          mobileOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0"
+        }`}
+      >
+        <nav className="bg-white/95 backdrop-blur-xl border-t border-border/50 shadow-xl" aria-label="Mobile navigation">
+          <div className="px-6 py-6 flex flex-col gap-1">
             {navItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-base font-medium text-foreground hover:text-primary hover:bg-muted transition-all py-3 px-4 rounded-lg"
+                className="text-base font-medium text-foreground hover:text-primary hover:bg-primary/5 transition-all py-3 px-4 rounded-xl"
                 onClick={() => setMobileOpen(false)}
               >
                 {item.label}
               </Link>
             ))}
 
-            {/* Language Selector */}
-            <div className="border-t border-border mt-2 pt-4">
+            {/* Mobile CTA */}
+            <Link
+              href="/admission"
+              className="mt-4 flex items-center justify-center gap-2 bg-primary text-white font-semibold py-4 px-6 rounded-xl shadow-lg shadow-primary/20"
+              onClick={() => setMobileOpen(false)}
+            >
+              {t("nav.admission")}
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+
+            {/* Language Selector - Mobile */}
+            <div className="border-t border-border/50 mt-4 pt-4">
               <div className="flex items-center gap-2 px-4 mb-3 text-sm text-muted-foreground">
                 <Globe className="h-4 w-4" />
                 <span className="font-medium">{currentLanguage.label}</span>
@@ -143,10 +186,10 @@ export function Header() {
                       i18n.changeLanguage(language.code)
                       setMobileOpen(false)
                     }}
-                    className={`py-2 px-3 rounded-lg text-sm font-medium transition-colors ${
+                    className={`py-2.5 px-3 rounded-xl text-sm font-medium transition-all ${
                       language.code === currentLanguage.code
-                        ? "bg-[#0085b2] text-white"
-                        : "bg-muted text-foreground hover:bg-muted/80"
+                        ? "bg-primary text-white shadow-lg shadow-primary/20"
+                        : "bg-muted text-foreground hover:bg-primary/10 hover:text-primary"
                     }`}
                   >
                     {language.flag}
@@ -156,7 +199,7 @@ export function Header() {
             </div>
           </div>
         </nav>
-      )}
+      </div>
     </header>
   )
 }

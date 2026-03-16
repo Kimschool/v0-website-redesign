@@ -2,17 +2,20 @@
 
 import { useEffect, useRef, useState, useCallback } from "react"
 import Link from "next/link"
+import { Bell, ArrowRight } from "lucide-react"
 
 const newsItems = [
   {
     date: "2026.01.06",
     title: "認定日本語教育機関に認定されました",
     href: "/news/accreditation",
+    isNew: true,
   },
   {
     date: "2025.12.25",
     title: "2026年度予定表を公開しました",
     href: "/news/schedule-2026",
+    isNew: false,
   },
 ]
 
@@ -54,16 +57,17 @@ export function NewsSection() {
   }, [startAutoplay])
 
   return (
-    <section ref={sectionRef} className="bg-white border-b border-gray-200">
+    <section ref={sectionRef} className="bg-gradient-to-r from-primary/5 via-background to-accent/5 border-b border-border/50">
       <div className="mx-auto max-w-7xl px-6">
-        <div className={`flex items-center gap-0 py-4 ${isVisible ? "animate-fade-in" : "opacity-0"}`}>
-          {/* Label */}
-          <div className="flex-shrink-0 bg-[#0085b2] text-white text-sm font-bold px-5 py-2 rounded-sm mr-6">
-            お知らせ
+        <div className={`flex items-center gap-0 py-5 ${isVisible ? "animate-fade-in" : "opacity-0"}`}>
+          {/* Label with icon */}
+          <div className="flex-shrink-0 flex items-center gap-2 bg-gradient-to-r from-primary to-primary/90 text-white text-sm font-bold px-5 py-2.5 rounded-full mr-6 shadow-lg shadow-primary/20">
+            <Bell className="w-4 h-4" />
+            <span>お知らせ</span>
           </div>
 
           {/* Vertical ticker - single item visible */}
-          <div className="flex-1 overflow-hidden h-[40px] relative">
+          <div className="flex-1 overflow-hidden h-[44px] relative">
             {newsItems.map((item, index) => (
               <div
                 key={index}
@@ -75,12 +79,18 @@ export function NewsSection() {
                     : "opacity-0 translate-y-full"
                 }`}
               >
-                <time className="text-sm text-muted-foreground whitespace-nowrap">{item.date}</time>
+                <div className="flex items-center gap-3">
+                  <time className="text-sm text-muted-foreground whitespace-nowrap font-medium">{item.date}</time>
+                  {item.isNew && (
+                    <span className="text-[10px] font-bold text-white bg-accent px-2 py-0.5 rounded-full badge-pulse">NEW</span>
+                  )}
+                </div>
                 <Link
                   href={item.href}
-                  className="text-sm md:text-base text-gray-900 hover:text-primary transition-colors truncate"
+                  className="group flex items-center gap-2 text-sm md:text-base text-foreground hover:text-primary transition-colors font-medium"
                 >
-                  {item.title}
+                  <span className="truncate">{item.title}</span>
+                  <ArrowRight className="w-4 h-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
                 </Link>
               </div>
             ))}
@@ -88,7 +98,7 @@ export function NewsSection() {
 
           {/* Dots indicator */}
           {newsItems.length > 1 && (
-            <div className="flex-shrink-0 flex items-center gap-1.5 ml-4">
+            <div className="flex-shrink-0 flex items-center gap-2 ml-4">
               {newsItems.map((_, index) => (
                 <button
                   key={index}
@@ -96,8 +106,10 @@ export function NewsSection() {
                     setActiveIndex(index)
                     startAutoplay()
                   }}
-                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                    index === activeIndex ? "bg-[#0085b2] w-4" : "bg-gray-300"
+                  className={`h-2 rounded-full transition-all duration-300 ${
+                    index === activeIndex 
+                      ? "bg-primary w-6" 
+                      : "bg-border hover:bg-primary/30 w-2"
                   }`}
                   aria-label={`News ${index + 1}`}
                 />
