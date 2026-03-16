@@ -144,15 +144,18 @@ export function SchoolLifePageContent() {
         </div>
       </div>
       <div className="container mx-auto px-4 md:px-6 max-w-6xl py-16">
-        {/* Introduction Text */}
-        <div className="text-center mb-16"></div>
-        {/* <div className={`text-center mb-16 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
-          <div className="w-12 h-1 bg-[#0085b2] mx-auto mb-6 rounded-full" />
-          <p className="text-lg md:text-xl text-gray-700 leading-relaxed max-w-3xl mx-auto">
-            {t("schoolLifePage.intro")}
-          </p>
-          <div className="elegant-divider mt-8" />
-        </div> */}
+{/* Introduction Text – Pattern 2 */}
+<div
+  className={`text-center mb-16 transition-all duration-700 ${
+    isVisible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-6"
+  }`}
+>
+  <div className="w-12 h-1 bg-[#0085b2] mx-auto mb-6 rounded-full" />
+  <p className="text-lg md:text-xl text-gray-700 leading-relaxed max-w-3xl mx-auto">
+    {t("schoolLifePage.intro")}
+  </p>
+  <div className="elegant-divider mt-8" />
+</div>
 
         {/* Annual Schedule Section */}
         <div className={`mb-20 ${isVisible ? "animate-fade-in-up animation-delay-200" : "opacity-0"}`}>
@@ -434,14 +437,14 @@ export function SchoolLifePageContent() {
         {/* Divider */}
         <div className="w-full h-px bg-gray-300 mb-16" />
 
-        {/* Video Section */}
+        {/* Video Section (temporarily disabled to avoid missing mp4 requests) */}
+        {/*
         <div className="mb-20">
           <h2 className="font-serif text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
             {t("schoolLifePage.songsTitle")}
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-            {/* School Song Video */}
             <div className="flex flex-col">
               <h3 className="font-serif text-lg font-bold text-gray-900 mb-4 text-center">
                 {t("schoolLifePage.schoolSongTitle")}
@@ -461,7 +464,6 @@ export function SchoolLifePageContent() {
               <p className="text-center text-gray-600 font-medium">{t("schoolLifePage.schoolSongCaption")}</p>
             </div>
 
-            {/* Cheering Song Video */}
             <div className="flex flex-col">
               <h3 className="font-serif text-lg font-bold text-gray-900 mb-4 text-center">
                 {t("schoolLifePage.cheeringSongTitle")}
@@ -483,8 +485,8 @@ export function SchoolLifePageContent() {
           </div>
         </div>
 
-        {/* Divider */}
         <div className="w-full h-px bg-gray-300 mb-16" />
+        */}
       </div>
     </section>
   )

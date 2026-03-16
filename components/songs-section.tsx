@@ -4,8 +4,8 @@ import { useEffect, useRef, useState } from "react"
 import { useTranslation } from "react-i18next"
 
 const songVideos = [
-  "/images/original_from_customer/校歌字幕.mp4",
-  "/images/original_from_customer/応援歌字幕明るいバージョン.mp4",
+  "",
+  "",
 ]
 
 export function SongsSection() {
@@ -58,7 +58,9 @@ export function SongsSection() {
                   className="w-full aspect-video"
                   poster=""
                 >
-                  <source src={songVideos[index]} type="video/mp4" />
+                  {songVideos[index] && (
+                    <source src={songVideos[index]} type="video/mp4" />
+                  )}
                   Your browser does not support the video tag.
                 </video>
               </div>

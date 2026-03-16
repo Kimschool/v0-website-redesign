@@ -30,12 +30,12 @@ export const TopPage = () => {
           <div className="absolute bottom-10 left-10 w-96 h-96 bg-[#0cc0df] rounded-full blur-3xl"></div>
         </div>
         <div className="relative z-10 text-center px-4">
-          <h2 className="text-5xl md:text-7xl font-bold text-[#0085b2] mb-6 leading-tight">
-            ともにまなび
-          </h2>
-          <h2 className="text-5xl md:text-7xl font-bold text-[#0085b2] mb-8 leading-tight">
-            ともに生きる
-          </h2>
+        <h2 className="text-10xl md:text-9xl font-bold text-[#0085b2] mb-6 leading-tight">
+          ともにまなび
+        </h2>
+        <h2 className="text-10xl md:text-9xl font-bold text-[#0085b2] mb-8 leading-tight">
+          ともに生きる
+        </h2>
           <p className="text-xl md:text-2xl text-gray-700 mb-8 max-w-2xl mx-auto">
             KCP Always by your side
           </p>
