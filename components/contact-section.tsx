@@ -219,7 +219,7 @@ export function ContactSection() {
             {/* Name (Kanji) */}
             <div>
               <label htmlFor="nameKanji" className="block text-sm font-semibold text-gray-800 mb-2">
-                {t("contactPage.formLabels.nameKanji")} <span className="text-red-500">*</span>
+                {t("contactPage.formLabels.nameKanji")}
               </label>
               <input
                 type="text"
@@ -227,7 +227,6 @@ export function ContactSection() {
                 name="nameKanji"
                 value={formData.nameKanji}
                 onChange={handleChange}
-                required
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0085b2]"
               />
             </div>
@@ -251,13 +250,14 @@ export function ContactSection() {
             {/* Gender */}
             <div>
               <label htmlFor="gender" className="block text-sm font-semibold text-gray-800 mb-2">
-                {t("contactPage.formLabels.gender")}
+                {t("contactPage.formLabels.gender")} <span className="text-red-500">*</span>
               </label>
               <select
                 id="gender"
                 name="gender"
                 value={formData.gender}
                 onChange={handleChange}
+                required
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0085b2]"
               >
                 <option value="">{t("contactPage.genderOptions.selectDefault")}</option>
@@ -270,7 +270,7 @@ export function ContactSection() {
             {/* Nationality */}
             <div>
               <label htmlFor="nationality" className="block text-sm font-semibold text-gray-800 mb-2">
-                {t("contactPage.formLabels.nationality")}
+                {t("contactPage.formLabels.nationality")} <span className="text-red-500">*</span>
               </label>
               <input
                 type="text"
@@ -278,6 +278,7 @@ export function ContactSection() {
                 name="nationality"
                 value={formData.nationality}
                 onChange={handleChange}
+                required
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0085b2]"
                 placeholder=""
               />
@@ -286,7 +287,7 @@ export function ContactSection() {
             {/* Birth Date */}
             <div>
               <label htmlFor="birthDate" className="block text-sm font-semibold text-gray-800 mb-2">
-                {t("contactPage.formLabels.birthDate")}
+                {t("contactPage.formLabels.birthDate")} <span className="text-red-500">*</span>
               </label>
               <input
                 type="date"
@@ -294,6 +295,7 @@ export function ContactSection() {
                 name="birthDate"
                 value={formData.birthDate}
                 onChange={handleChange}
+                required
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0085b2]"
               />
             </div>
@@ -301,7 +303,7 @@ export function ContactSection() {
             {/* Student ID */}
             <div>
               <label htmlFor="studentId" className="block text-sm font-semibold text-gray-800 mb-2">
-                {t("contactPage.formLabels.studentId")}
+                {t("contactPage.formLabels.studentId")} <span className="text-red-500">*</span>
               </label>
               <input
                 type="text"
@@ -309,6 +311,7 @@ export function ContactSection() {
                 name="studentId"
                 value={formData.studentId}
                 onChange={handleChange}
+                required
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0085b2]"
                 placeholder=""
               />
@@ -317,7 +320,7 @@ export function ContactSection() {
             {/* Current Address */}
             <div className="md:col-span-2">
               <label htmlFor="address" className="block text-sm font-semibold text-gray-800 mb-2">
-                {t("contactPage.formLabels.address")}
+                {t("contactPage.formLabels.address")} <span className="text-red-500">*</span>
               </label>
               <input
                 type="text"
@@ -325,6 +328,7 @@ export function ContactSection() {
                 name="address"
                 value={formData.address}
                 onChange={handleChange}
+                required
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0085b2]"
                 placeholder=""
               />
@@ -333,7 +337,7 @@ export function ContactSection() {
             {/* Phone */}
             <div>
               <label htmlFor="phone" className="block text-sm font-semibold text-gray-800 mb-2">
-                {t("contactPage.formLabels.phone")}
+                {t("contactPage.formLabels.phone")} <span className="text-red-500">*</span>
               </label>
               <input
                 type="tel"
@@ -341,6 +345,7 @@ export function ContactSection() {
                 name="phone"
                 value={formData.phone}
                 onChange={handleChange}
+                required
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0085b2]"
                 placeholder=""
               />
@@ -382,7 +387,7 @@ export function ContactSection() {
             {/* Purpose */}
             <div>
               <label htmlFor="purpose" className="block text-sm font-semibold text-gray-800 mb-2">
-                {t("contactPage.formLabels.purpose")}
+                {t("contactPage.formLabels.purpose")} <span className="text-red-500">*</span>
               </label>
               <input
                 type="text"
@@ -390,6 +395,7 @@ export function ContactSection() {
                 name="purpose"
                 value={formData.purpose}
                 onChange={handleChange}
+                required
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0085b2]"
                 placeholder=""
               />
@@ -398,7 +404,7 @@ export function ContactSection() {
             {/* Submission Place */}
             <div>
               <label htmlFor="submissionPlace" className="block text-sm font-semibold text-gray-800 mb-2">
-                {t("contactPage.formLabels.submissionPlace")}
+                {t("contactPage.formLabels.submissionPlace")} <span className="text-red-500">*</span>
               </label>
               <input
                 type="text"
@@ -406,6 +412,7 @@ export function ContactSection() {
                 name="submissionPlace"
                 value={formData.submissionPlace}
                 onChange={handleChange}
+                required
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0085b2]"
                 placeholder=""
               />
@@ -414,13 +421,14 @@ export function ContactSection() {
             {/* Receive Method */}
             <div>
               <label htmlFor="receiveMethod" className="block text-sm font-semibold text-gray-800 mb-2">
-                {t("contactPage.formLabels.receiveMethod")}
+                {t("contactPage.formLabels.receiveMethod")} <span className="text-red-500">*</span>
               </label>
               <select
                 id="receiveMethod"
                 name="receiveMethod"
                 value={formData.receiveMethod}
                 onChange={handleChange}
+                required
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0085b2]"
               >
                 <option value="">{t("contactPage.receiveOptions.selectDefault")}</option>
@@ -433,14 +441,13 @@ export function ContactSection() {
             {/* Notes */}
             <div className="md:col-span-2">
               <label htmlFor="notes" className="block text-sm font-semibold text-gray-800 mb-2">
-                {t("contactPage.formLabels.notes")} <span className="text-red-500">*</span>
+                {t("contactPage.formLabels.notes")}
               </label>
               <textarea
                 id="notes"
                 name="notes"
                 value={formData.notes}
                 onChange={handleChange}
-                required
                 rows={4}
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0085b2]"
                 placeholder=""
