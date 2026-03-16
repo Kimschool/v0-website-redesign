@@ -501,18 +501,18 @@ export function LoadingScreen() {
       setImageVisible(true)
     }, line1aTime + 200 + line1bTime + 200 + line2Time + 800)
 
-    // fadeout 시작 (1초 후)
+    // fadeout 시작
     const timer5 = setTimeout(() => {
       setPhase("fadeout")
       sessionStorage.setItem("kcp-loading-shown", "true")
-    }, line1aTime + 200 + line1bTime + 200 + line2Time + 800 + 1000)
+    }, line1aTime + 200 + line1bTime + 200 + line2Time + 800 + 2500)
 
     // DOM에서 제거
     const timer6 = setTimeout(() => {
       setIsVisible(false)
       setShouldRender(false)
       document.body.style.overflow = ""
-    }, line1aTime + 200 + line1bTime + 200 + line2Time + 800 + 1000 + 800)
+    }, line1aTime + 200 + line1bTime + 200 + line2Time + 800 + 800)
 
     return () => {
       clearTimeout(timer1)
