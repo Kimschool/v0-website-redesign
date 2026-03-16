@@ -143,7 +143,7 @@ export function AboutSection() {
             </div>
 
             {/* 철학 설명 */}
-            <div className="max-w-3xl mx-auto mb-12 text-gray-700 space-y-3 text-sm md:text-base leading-relaxed">
+            <div className="max-w-3xl mx-auto mb-12 text-gray-700 space-y-5 text-base md:text-lg leading-relaxed md:leading-loose">
               <p>
                 {t("aboutPage.philosophy1")}
               </p>
@@ -157,25 +157,25 @@ export function AboutSection() {
 
             {/* 学生写真 */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-12">
-              <div className="aspect-[3/4] bg-gray-100 rounded-2xl overflow-hidden">
+              <div className="aspect-[3/4] bg-gray-100 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group">
                 <img
                   src="/images/original_from_customer/予備/K.jpg"
                   alt="Student 1"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
               </div>
-              <div className="aspect-[3/4] bg-gray-100 rounded-2xl overflow-hidden">
+              <div className="aspect-[3/4] bg-gray-100 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group">
                 <img
                   src="/images/original_from_customer/予備/学生2【予備】.jpg"
                   alt="Student 2"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
               </div>
-              <div className="aspect-[3/4] bg-gray-100 rounded-2xl overflow-hidden">
+              <div className="aspect-[3/4] bg-gray-100 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group">
                 <img
                   src="/images/original_from_customer/818e60bf0c192652f5fe869245e46afb-1-scaled.jpg"
                   alt="Student 3"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
               </div>
             </div>
@@ -262,17 +262,17 @@ export function AboutSection() {
                     >
                       {/* 年（デスクトップ） */}
                       <div className="hidden md:block w-[100px] pr-4 text-right shrink-0">
-                        <span className="text-lg font-bold text-[#0085b2] transition-transform duration-300 inline-block group-hover:scale-110 origin-right">{item.year}</span>
+                        <span className="text-xl font-bold text-[#0085b2] transition-transform duration-300 inline-block group-hover:scale-110 origin-right">{item.year}</span>
                       </div>
 
                       {/* ドット */}
-                      <div className={`absolute left-2 md:relative md:left-auto shrink-0 w-3 h-3 mt-1.5 rounded-full border-2 border-white shadow-sm transition-all duration-500 ${
+                      <div className={`absolute left-2 md:relative md:left-auto shrink-0 w-4 h-4 mt-1 rounded-full border-2 border-white shadow-sm transition-all duration-500 ${
                         isItemVisible ? "bg-[#0085b2] scale-125 shadow-md shadow-[#0085b2]/30" : "bg-[#0085b2]/30 scale-75"
                       }`}></div>
 
                       {/* コンテンツ */}
                       <div className="pl-8 md:pl-4">
-                        <span className="md:hidden text-base font-bold text-[#0085b2] block mb-0.5 transition-transform duration-300 inline-block group-hover:scale-105 origin-left">{item.year}</span>
+                        <span className="md:hidden text-lg font-bold text-[#0085b2] block mb-1 transition-transform duration-300 inline-block group-hover:scale-105 origin-left">{item.year}</span>
                         <h3 className="font-semibold text-gray-800 transition-transform duration-300 group-hover:scale-105 origin-left">{item.title}</h3>
                         {item.description && (
                           <p className="text-gray-600 mt-1 text-sm">{item.description}</p>
@@ -307,14 +307,14 @@ export function AboutSection() {
 
             {/* 교직원 단체 사진 */}
             <div className="mt-10">
-              <div className="aspect-[21/9] bg-gray-100 rounded-lg overflow-hidden">
+              <div className="aspect-[21/9] md:aspect-[21/9] aspect-[16/9] bg-gray-100 rounded-lg overflow-hidden shadow-lg">
                 <img
                   src="/images/original_from_customer/KCPとは「集合写真」.jpg"
                   alt="KCP地球市民日本語学校の教職員"
                   className="w-full h-full object-cover"
                 />
               </div>
-              <p className="text-sm text-gray-500 mt-4">{t("aboutPage.staffPhoto")}</p>
+              <p className="text-sm text-gray-500 mt-4 font-medium">{t("aboutPage.staffPhoto")}</p>
             </div>
           </div>
         </div>
