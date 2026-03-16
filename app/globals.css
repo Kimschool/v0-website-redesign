@@ -3,6 +3,15 @@
 
 @custom-variant dark (&:is(.dark *));
 
+html {
+  scrollbar-gutter: stable;
+  overflow-y: scroll;
+}
+
+body {
+  overflow-y: auto;
+}
+
 :root {
   --background: #ffffff;
   --foreground: #1a1a1a;
@@ -127,6 +136,18 @@
   h2,
   h3 {
     @apply font-serif;
+  }
+
+  /* Hide inner scrollbar of language dropdown (Radix dropdown-menu content) */
+  [data-slot="dropdown-menu-content"] {
+    max-height: 80vh;
+    overflow-y: auto;
+    scrollbar-width: none; /* Firefox */
+  }
+
+  [data-slot="dropdown-menu-content"]::-webkit-scrollbar {
+    width: 0;
+    height: 0;
   }
 }
 
@@ -490,3 +511,4 @@
   background-image: radial-gradient(rgba(0, 133, 178, 0.08) 1px, transparent 1px);
   background-size: 20px 20px;
 }
+

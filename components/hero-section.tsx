@@ -6,7 +6,7 @@ import Link from "next/link"
 import { useTranslation } from "react-i18next"
 import { ArrowRight, ChevronDown } from "lucide-react"
 
-function TypewriterText({ text, delay = 0 }: { text: string; delay?: number }) {
+function TypewriterText({ text, delay = 0, hideCursor = false }: { text: string; delay?: number; hideCursor?: boolean }) {
   const [displayedText, setDisplayedText] = useState("")
   const [showCursor, setShowCursor] = useState(false)
   const [hasStarted, setHasStarted] = useState(false)
@@ -47,14 +47,16 @@ function TypewriterText({ text, delay = 0 }: { text: string; delay?: number }) {
   return (
     <span className="relative">
       {displayedText}
-      {showCursor && (
-        <span
-          className={`inline-block w-[3px] h-[1em] bg-white ml-1 align-middle ${
-            isComplete ? "animate-blink" : "animate-blink-fast"
-          }`}
-          style={{ verticalAlign: "baseline", marginBottom: "0.1em" }}
-        />
-      )}
+      <span
+        className={`inline-block w-[3px] h-[1em] bg-white ml-1 align-middle ${
+          showCursor && !hideCursor ? (isComplete ? "animate-blink" : "animate-blink-fast") : ""
+        }`}
+        style={{
+          verticalAlign: "baseline",
+          marginBottom: "0.1em",
+          opacity: showCursor && !hideCursor ? 1 : 0,   // ← 보일 때만 색/애니메이션, 안 보일 땐 투명
+        }}
+      />
     </span>
   )
 }
@@ -62,6 +64,7 @@ function TypewriterText({ text, delay = 0 }: { text: string; delay?: number }) {
 export function HeroSection() {
   const { t } = useTranslation()
   const [isLoaded, setIsLoaded] = useState(false)
+  const [secondLineStarted, setSecondLineStarted] = useState(false)
 
   useEffect(() => {
     setIsLoaded(true)
@@ -69,6 +72,19 @@ export function HeroSection() {
 
   const title1 = t("hero.title1")
   const title2 = t("hero.title2")
+
+  useEffect(() => {
+    const baseDelay = 500
+    const charInterval = 120
+    const extraDelay = 600
+    const secondLineDelay = baseDelay + title1.length * charInterval + extraDelay
+
+    const timer = setTimeout(() => {
+      setSecondLineStarted(true)
+    }, secondLineDelay)
+
+    return () => clearTimeout(timer)
+  }, [title1])
 
   const scrollToContent = () => {
     window.scrollTo({
@@ -108,7 +124,7 @@ export function HeroSection() {
         {/* Main title with serif font */}
         <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight tracking-wide font-serif">
           <span className="block drop-shadow-lg">
-            <TypewriterText text={title1} delay={500} />
+            <TypewriterText text={title1} delay={500} hideCursor={secondLineStarted} />
           </span>
           <span className="block mt-3 drop-shadow-lg">
             <TypewriterText text={title2} delay={500 + title1.length * 120 + 600} />

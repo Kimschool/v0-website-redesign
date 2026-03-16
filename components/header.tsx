@@ -86,7 +86,7 @@ export function Header() {
         {/* Right side - Language + CTA */}
         <div className="flex items-center gap-3">
           {/* Language Selector */}
-          <DropdownMenu>
+          <DropdownMenu modal={false}>
             <DropdownMenuTrigger asChild>
               <button
                 className={`flex items-center gap-2 text-sm py-2 px-3 rounded-lg transition-all duration-300 ${
