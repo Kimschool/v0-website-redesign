@@ -13,9 +13,7 @@ export default function AboutPage() {
     <>
       <Header />
       <main>
-        <div className="pt-24">
-          <AboutSection />
-        </div>
+        <AboutSection />
       </main>
       <Footer />
       <ScrollToTop />

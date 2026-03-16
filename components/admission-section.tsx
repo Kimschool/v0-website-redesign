@@ -30,16 +30,20 @@ export function AdmissionSection() {
 
   return (
     <section ref={sectionRef} id="admission" className="bg-white">
-      {/* Page Banner */}
-      <div className="relative h-[250px] md:h-[300px] w-full overflow-hidden">
+      {/* Page Banner - Extended to cover navigation area */}
+      <div className="relative h-[350px] md:h-[400px] w-full overflow-hidden">
         <Image
           src="/images/original_from_customer/トップ背景/04_入学案内.jpg"
           alt="入学案内"
           fill
           className="object-cover"
+          priority
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/40 to-black/60 flex items-center justify-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-white">{t("admissionPage.bannerTitle")}</h1>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/60 flex items-center justify-center pt-16">
+          <div className="text-center">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight">{t("admissionPage.bannerTitle")}</h1>
+            <div className="w-20 h-1 bg-white/80 mx-auto mt-6 rounded-full"></div>
+          </div>
         </div>
       </div>
 

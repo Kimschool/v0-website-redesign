@@ -131,16 +131,20 @@ export function SchoolLifePageContent() {
 
   return (
     <section ref={sectionRef} className="bg-white">
-      {/* Page Banner */}
-      <div className="relative h-[250px] md:h-[300px] w-full overflow-hidden">
+      {/* Page Banner - Extended to cover navigation area */}
+      <div className="relative h-[350px] md:h-[400px] w-full overflow-hidden">
         <Image
           src="/images/original_from_customer/トップ背景/03_学校生活.jpg"
           alt="学校生活"
           fill
           className="object-cover object-[center_30%]"
+          priority
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/40 to-black/60 flex items-center justify-center">
-          <h1 className="font-serif text-4xl md:text-5xl font-bold text-white">{t("schoolLifePage.bannerTitle")}</h1>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/60 flex items-center justify-center pt-16">
+          <div className="text-center">
+            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight">{t("schoolLifePage.bannerTitle")}</h1>
+            <div className="w-20 h-1 bg-white/80 mx-auto mt-6 rounded-full"></div>
+          </div>
         </div>
       </div>
       <div className="container mx-auto px-4 md:px-6 max-w-6xl py-16">
