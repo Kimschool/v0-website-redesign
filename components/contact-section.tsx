@@ -182,14 +182,11 @@ export function ContactSection() {
           <div className="text-center max-w-2xl mx-auto">
             <p className="text-xs tracking-[0.3em] uppercase text-[#0085b2] font-semibold mb-4">卒業生・修了生対象</p>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8 font-serif">証明書発行申請フォーム</h2>
-            
+
             <div className="space-y-4 text-gray-600 leading-relaxed">
               <p className="text-base md:text-lg">
                 遠隔地にお住まいで、直接ご来校して証明書を申し込むのが難しい方は、<br className="hidden md:inline" />
                 まず以下のフォームからお申込みください。
-              </p>
-              <p className="text-sm">
-                受付け後、こちらから折り返しご連絡いたします。
               </p>
             </div>
 
@@ -564,25 +561,25 @@ export function ContactSection() {
         <div className={`${isVisible ? "animate-fade-in-up animation-delay-400" : "opacity-0"}`}>
           <div className="bg-gradient-to-br from-[#0085b2]/5 to-[#0085b2]/10 rounded-2xl p-8 md:p-10 border border-[#0085b2]/20 max-w-xl mx-auto">
             <h3 className="text-sm font-semibold text-[#0085b2] tracking-widest uppercase mb-6">学校法人KCP学園</h3>
-            
+
             <div className="space-y-5">
               <div>
                 <p className="text-xs text-gray-500 font-medium mb-1">学校名</p>
                 <p className="text-xl font-bold text-gray-900">KCP地球市民日本語学校</p>
               </div>
-              
+
               <div className="pt-5 border-t border-[#0085b2]/20 grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <p className="text-xs text-gray-500 font-medium mb-1">電話</p>
                   <p className="text-sm text-gray-900 font-medium">+81-3-6825-3388</p>
                 </div>
-                
+
                 <div>
                   <p className="text-xs text-gray-500 font-medium mb-1">メール</p>
                   <a href="mailto:info@kcp.ac.jp" className="text-sm text-[#0085b2] hover:underline font-medium">info@kcp.ac.jp</a>
                 </div>
               </div>
-              
+
               <div className="pt-5 border-t border-[#0085b2]/20">
                 <p className="text-xs text-gray-500 font-medium mb-3">営業時間</p>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 text-sm text-gray-900">
