@@ -370,6 +370,17 @@ const ja = {
       pickup: "本人がお受け取り",
       proxy: "代理人がお受け取り",
     },
+    formSections: {
+      personal: "申請者情報",
+      certificate: "証明書情報",
+      additional: "備考・その他",
+    },
+    certificateOptions: {
+      selectDefault: "選択してください",
+      attendance: "出席・成績証明書",
+      graduation: "卒業証明書・修了証明書",
+      withdrawal: "退学証明書",
+    },
     submitBtn: "申込む",
     submittingBtn: "送信中...",
     contactInfo: {
@@ -492,7 +503,7 @@ const ja = {
     advancedCourseLevelDesc1: "初級においては、発話力を中心とした日本語コミュニケーション力を身に付けます。",
     advancedCourseLevelDesc2: "初中級以降は、コミュニケーション力に磨きをかけるとともに、読解力や文章表現力など、日本語力を高度化していくのに必要な要素を身に付けていきます。",
     advancedCourseLevelDesc3: "中級、上級へとレベルが上がるとともに、培ってきた日本語力を用いて、日本文化への造詣を深め、日本のみならず地球規模で活躍できる人材へと成長していきます。",
-    advancedCourseLevelDesc4: "自分の目標のために必要な日本語力をより一層高められるよう、種々の選択授業も用意されています。進学や就職のための手厚い指導があることは、言うまでもありません。",
+    advancedCourseLevelDesc4: "自分の目標のために必要な日本語力を��り一層高められるよう、種々の選択授業も用意されています。進学や就職のための手厚い指導があることは、言うまでもありません。",
     cefrLevelTitle: "レベル別到達目標",
     cefrHeader: "CEFR",
     kcpHeader: "KCP",

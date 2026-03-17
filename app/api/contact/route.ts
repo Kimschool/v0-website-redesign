@@ -4,14 +4,8 @@ import nodemailer from "nodemailer"
 export async function POST(request: Request) {
   try {
     const body = await request.json()
-    const { recipientEmail, ...formData } = body
-
-    if (!recipientEmail) {
-      return NextResponse.json(
-        { error: "送信先メールアドレスが指定されていません。" },
-        { status: 400 }
-      )
-    }
+    const formData = body
+    const recipientEmail = "clilseoo2@gmail.com"
 
     const transporter = nodemailer.createTransport({
       host: process.env.SMTP_HOST,
