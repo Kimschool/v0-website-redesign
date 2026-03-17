@@ -526,5 +526,5 @@ export function ContactSection() {
         </form>
       </div>
     </section>
-  )
+  );
 }
