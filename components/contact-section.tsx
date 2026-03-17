@@ -44,12 +44,6 @@ export function ContactSection() {
 
     return () => observer.disconnect()
   }, [])
-  
-  // Force translation re-render on mount
-  const [ready, setReady] = useState(false)
-  useEffect(() => {
-    setReady(true)
-  }, [])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
@@ -197,7 +191,6 @@ export function ContactSection() {
           <div className="elegant-divider mt-8" />
         </div>
         {/* Contact Form */}
-        {ready && (
         <form onSubmit={handleSubmit} className={`bg-gray-50/50 rounded-2xl p-10 md:p-12 border border-gray-200/50 shadow-xl shadow-black/5 backdrop-blur-sm ${isVisible ? "animate-fade-in-up animation-delay-300" : "opacity-0"}`}>
           {submitStatus && (
             <div className={`mb-8 p-4 rounded-xl text-sm font-medium ${submitStatus.type === "success" ? "bg-green-50 border border-green-200 text-green-700" : "bg-red-50 border border-red-200 text-red-700"}`}>
@@ -211,7 +204,7 @@ export function ContactSection() {
               <span className="w-1.5 h-8 bg-[#0085b2] rounded-full" />
               <div>
                 <p className="text-xs tracking-[0.2em] uppercase text-[#0085b2] font-semibold mb-0.5">01</p>
-                <h3 className="text-xl font-bold text-gray-900">{t("contactPage.formSections.personal")}</h3>
+                <h3 className="text-xl font-bold text-gray-900">{t("contactPage.formSections.personal") || "申請者情報"}</h3>
               </div>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -368,7 +361,7 @@ export function ContactSection() {
               <span className="w-1.5 h-8 bg-[#0085b2] rounded-full" />
               <div>
                 <p className="text-xs tracking-[0.2em] uppercase text-[#0085b2] font-semibold mb-0.5">02</p>
-                <h3 className="text-xl font-bold text-gray-900">{t("contactPage.formSections.certificate")}</h3>
+                <h3 className="text-xl font-bold text-gray-900">{t("contactPage.formSections.certificate") || "証明書情報"}</h3>
               </div>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -452,7 +445,7 @@ export function ContactSection() {
               <span className="w-1.5 h-8 bg-[#0085b2] rounded-full" />
               <div>
                 <p className="text-xs tracking-[0.2em] uppercase text-[#0085b2] font-semibold mb-0.5">03</p>
-                <h3 className="text-xl font-bold text-gray-900">{t("contactPage.formSections.additional")}</h3>
+                <h3 className="text-xl font-bold text-gray-900">{t("contactPage.formSections.additional") || "備考・その他"}</h3>
               </div>
             </div>
             <div>
@@ -485,7 +478,6 @@ export function ContactSection() {
             <p className="text-xs text-gray-500 tracking-wide">* {t("contactPage.formLabels.email")} {t("contactPage.formLabels.certificateType")} {t("contactPage.formLabels.notes")} は必須項目です</p>
           </div>
         </form>
-        )}
 
         {/* Contact Info */}
         <div className={`grid grid-cols-1 md:grid-cols-2 gap-12 mb-12 ${isVisible ? "animate-fade-in-up animation-delay-400" : "opacity-0"}`}>
