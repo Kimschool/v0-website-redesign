@@ -32,9 +32,10 @@ export function ContactSection() {
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true)
+          observer.disconnect()
         }
       },
-      { threshold: 0 }
+      { threshold: 0.1 }
     )
 
     if (sectionRef.current) {
@@ -42,6 +43,12 @@ export function ContactSection() {
     }
 
     return () => observer.disconnect()
+  }, [])
+  
+  // Force translation re-render on mount
+  const [ready, setReady] = useState(false)
+  useEffect(() => {
+    setReady(true)
   }, [])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
@@ -190,6 +197,7 @@ export function ContactSection() {
           <div className="elegant-divider mt-8" />
         </div>
         {/* Contact Form */}
+        {ready && (
         <form onSubmit={handleSubmit} className={`bg-gray-50/50 rounded-2xl p-10 md:p-12 border border-gray-200/50 shadow-xl shadow-black/5 backdrop-blur-sm ${isVisible ? "animate-fade-in-up animation-delay-300" : "opacity-0"}`}>
           {submitStatus && (
             <div className={`mb-8 p-4 rounded-xl text-sm font-medium ${submitStatus.type === "success" ? "bg-green-50 border border-green-200 text-green-700" : "bg-red-50 border border-red-200 text-red-700"}`}>
@@ -377,10 +385,10 @@ export function ContactSection() {
                   required
                   className="w-full px-4 py-3.5 bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-[#0085b2] focus:shadow-lg focus:shadow-[#0085b2]/10 transition-all duration-200"
                 >
-                  <option value="">{t("contactPage.certificateOptions.selectDefault")}</option>
-                  <option value="attendance">{t("contactPage.certificateOptions.attendance")}</option>
-                  <option value="graduation">{t("contactPage.certificateOptions.graduation")}</option>
-                  <option value="withdrawal">{t("contactPage.certificateOptions.withdrawal")}</option>
+                  <option value="">{t?.("contactPage.certificateOptions.selectDefault") || "選択してください"}</option>
+                  <option value="attendance">{t?.("contactPage.certificateOptions.attendance") || "出席・成績証明書"}</option>
+                  <option value="graduation">{t?.("contactPage.certificateOptions.graduation") || "卒業証明書・修了証明書"}</option>
+                  <option value="withdrawal">{t?.("contactPage.certificateOptions.withdrawal") || "退学証明書"}</option>
                 </select>
               </div>
 
@@ -477,37 +485,28 @@ export function ContactSection() {
             <p className="text-xs text-gray-500 tracking-wide">* {t("contactPage.formLabels.email")} {t("contactPage.formLabels.certificateType")} {t("contactPage.formLabels.notes")} は必須項目です</p>
           </div>
         </form>
+        )}
 
-        {/* Divider */}
-        <div className="w-full h-px bg-gray-300 mb-16" />
-
-        {/* Contact Information Card */}
-        <div className={`mb-16 bg-[#f0ffff] border-l-4 border-[#0085b2] rounded-lg p-8 ${isVisible ? "animate-fade-in-up animation-delay-100" : "opacity-0"}`}>
-          <div className="grid md:grid-cols-2 gap-8">
-            <div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4">{t("contactPage.contactInfo.orgName")}</h3>
-              <p className="text-lg font-semibold text-gray-800 mb-4">{t("contactPage.contactInfo.schoolName")}</p>
-              <div className="space-y-3 text-gray-700">
-                <div>
-                  <p className="font-semibold text-gray-800">{t("contactPage.contactInfo.telLabel")}</p>
-                  <p className="text-base">+81-3-6825-3388</p>
-                </div>
-                <div>
-                  <p className="font-semibold text-gray-800">{t("contactPage.contactInfo.emailLabel")}</p>
-                  <p className="text-base">info@kcp.ac.jp</p>
-                </div>
+        {/* Contact Info */}
+        <div className={`grid grid-cols-1 md:grid-cols-2 gap-12 mb-12 ${isVisible ? "animate-fade-in-up animation-delay-400" : "opacity-0"}`}>
+          <div>
+            <h3 className="text-lg font-bold text-gray-900 mb-6">{t("contactPage.contactInfo.orgName")}</h3>
+            <div className="space-y-6">
+              <div>
+                <p className="font-semibold text-gray-800">{t("contactPage.contactInfo.schoolName")}</p>
+                <p className="text-sm text-gray-600 mt-2">{t("contactPage.contactInfo.telLabel")}: {t("contactPage.contactInfo.telValue")}</p>
+                <p className="text-sm text-gray-600">{t("contactPage.contactInfo.emailLabel")}: {t("contactPage.contactInfo.emailValue")}</p>
               </div>
             </div>
-            <div>
-              <h3 className="text-lg font-bold text-gray-900 mb-4">{t("contactPage.contactInfo.hoursTitle")}</h3>
-              <div className="space-y-2 text-gray-700">
-                <p><span className="font-semibold">{t("contactPage.contactInfo.weekday")}</span> 9:00～18:00</p>
-                <p><span className="font-semibold">{t("contactPage.contactInfo.saturday")}</span> 10:00～17:00</p>
-                <p><span className="font-semibold">{t("contactPage.contactInfo.sundayHoliday")}</span> {t("contactPage.contactInfo.sundayHolidayHours")}</p>
-                <p className="text-sm text-gray-600 mt-4">
-                  {t("contactPage.contactInfo.hoursNote")}
-                </p>
-              </div>
+          </div>
+
+          <div>
+            <h3 className="text-lg font-bold text-gray-900 mb-4">{t("contactPage.contactInfo.hoursTitle")}</h3>
+            <div className="space-y-2 text-gray-700">
+              <p><span className="font-semibold">{t("contactPage.contactInfo.weekday")}</span> {t("contactPage.contactInfo.weekdayHours")}</p>
+              <p><span className="font-semibold">{t("contactPage.contactInfo.saturday")}</span> {t("contactPage.contactInfo.saturdayHours")}</p>
+              <p><span className="font-semibold">{t("contactPage.contactInfo.sundayHoliday")}</span> {t("contactPage.contactInfo.sundayHolidayHours")}</p>
+              <p className="text-sm text-gray-600 mt-4">{t("contactPage.contactInfo.hoursNote")}</p>
             </div>
           </div>
         </div>
