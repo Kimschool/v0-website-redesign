@@ -495,7 +495,7 @@ export function ContactSection() {
         </form>
 
         {/* Overseas Offices Section */}
-        <div className={`mb-16 pt-5 ${isVisible ? "animate-fade-in-up animation-delay-200" : "opacity-0"}`}>
+        <div className={`mb-16 py-10 ${isVisible ? "animate-fade-in-up animation-delay-200" : "opacity-0"}`}>
           <h3 className="text-2xl font-bold text-gray-900 mb-6">{t("contactPage.overseasTitle")}</h3>
           <div className="space-y-3">
             {overseasOffices.map((office, index) => (
