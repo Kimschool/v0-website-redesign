@@ -190,9 +190,9 @@ export function ContactSection() {
               </p>
             </div>
 
-            <div className="mt-8 inline-flex items-center gap-2 px-5 py-2.5 bg-[#0085b2]/10 border border-[#0085b2]/30 rounded-full">
-              <span className="text-[#0085b2] text-sm font-semibold">※</span>
-              <span className="text-sm text-[#0085b2]">発行までには通常3営業日かかります。急ぎの場合はお知らせください。</span>
+            <div className="mt-8 inline-flex items-center gap-2 px-5 py-2.5 bg-amber-50 border border-amber-200 rounded-full">
+              <span className="text-amber-600 text-sm">※</span>
+              <span className="text-sm text-amber-800">発行までには通常3営業日かかります。急ぎの場合はお知らせください。</span>
             </div>
           </div>
         </div>
@@ -200,7 +200,7 @@ export function ContactSection() {
         {/* Divider */}
         <div className="h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent mb-12" />
         {/* Contact Form */}
-        <form onSubmit={handleSubmit} className={`bg-white rounded-2xl p-10 md:p-12 border border-gray-200 shadow-xl shadow-black/5 ${isVisible ? "animate-fade-in-up animation-delay-300" : "opacity-0"}`}>
+        <form onSubmit={handleSubmit} className={`bg-gray-50/50 rounded-2xl p-10 md:p-12 border border-gray-200/50 shadow-xl shadow-black/5 backdrop-blur-sm ${isVisible ? "animate-fade-in-up animation-delay-300" : "opacity-0"}`}>
           {submitStatus && (
             <div className={`mb-8 p-4 rounded-xl text-sm font-medium ${submitStatus.type === "success" ? "bg-green-50 border border-green-200 text-green-700" : "bg-red-50 border border-red-200 text-red-700"}`}>
               {submitStatus.message}
@@ -208,10 +208,13 @@ export function ContactSection() {
           )}
 
           {/* Section 1: Personal Information */}
-          <div className="mb-10 pl-6 border-l-4 border-[#0085b2] bg-gradient-to-r from-[#0085b2]/3 to-transparent rounded-r-lg p-6 -ml-10 md:-ml-12">
+          <div className="mb-10">
             <div className="flex items-center gap-4 mb-8">
-              <div className="w-10 h-10 rounded-full bg-[#0085b2] text-white flex items-center justify-center font-bold text-sm">01</div>
-              <h3 className="text-lg font-bold text-gray-900">{t("contactPage.formSections.personal") || "申請者情報"}</h3>
+              <span className="w-1.5 h-8 bg-[#0085b2] rounded-full" />
+              <div>
+                <p className="text-xs tracking-[0.2em] uppercase text-[#0085b2] font-semibold mb-0.5">01</p>
+                <h3 className="text-xl font-bold text-gray-900">{t("contactPage.formSections.personal") || "申請者情報"}</h3>
+              </div>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* Name (Kanji) */}
@@ -363,13 +366,16 @@ export function ContactSection() {
           </div>
 
           {/* Divider */}
-          <div className="h-px bg-gradient-to-r from-[#0085b2]/20 via-[#0085b2]/10 to-transparent my-10" />
+          <div className="h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent my-10" />
 
           {/* Section 2: Certificate Information */}
-          <div className="mb-10 pl-6 border-l-4 border-[#0085b2] bg-gradient-to-r from-gray-50/50 to-transparent rounded-r-lg p-6 -ml-10 md:-ml-12">
+          <div className="mb-10">
             <div className="flex items-center gap-4 mb-8">
-              <div className="w-10 h-10 rounded-full bg-[#0085b2] text-white flex items-center justify-center font-bold text-sm">02</div>
-              <h3 className="text-lg font-bold text-gray-900">{t("contactPage.formSections.certificate") || "証明書情報"}</h3>
+              <span className="w-1.5 h-8 bg-[#0085b2] rounded-full" />
+              <div>
+                <p className="text-xs tracking-[0.2em] uppercase text-[#0085b2] font-semibold mb-0.5">02</p>
+                <h3 className="text-xl font-bold text-gray-900">{t("contactPage.formSections.certificate") || "証明書情報"}</h3>
+              </div>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* Certificate Type */}
@@ -447,13 +453,16 @@ export function ContactSection() {
           </div>
 
           {/* Divider */}
-          <div className="h-px bg-gradient-to-r from-[#0085b2]/20 via-[#0085b2]/10 to-transparent my-10" />
+          <div className="h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent my-10" />
 
           {/* Section 3: Additional Information */}
-          <div className="mb-12 pl-6 border-l-4 border-[#0085b2] bg-gradient-to-r from-[#0085b2]/3 to-transparent rounded-r-lg p-6 -ml-10 md:-ml-12">
+          <div className="mb-12">
             <div className="flex items-center gap-4 mb-8">
-              <div className="w-10 h-10 rounded-full bg-[#0085b2] text-white flex items-center justify-center font-bold text-sm">03</div>
-              <h3 className="text-lg font-bold text-gray-900">{t("contactPage.formSections.additional") || "備考・その他"}</h3>
+              <span className="w-1.5 h-8 bg-[#0085b2] rounded-full" />
+              <div>
+                <p className="text-xs tracking-[0.2em] uppercase text-[#0085b2] font-semibold mb-0.5">03</p>
+                <h3 className="text-xl font-bold text-gray-900">{t("contactPage.formSections.additional") || "備考・その他"}</h3>
+              </div>
             </div>
             <div>
               {/* Notes */}
