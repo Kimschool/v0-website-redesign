@@ -130,18 +130,20 @@ body {
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground font-medium;
+    @apply bg-background text-foreground;
+    font-weight: 500;
   }
-  p, span, li, div {
-    @apply font-medium;
+  p, span, li {
+    font-weight: 500;
   }
   h1,
   h2,
   h3 {
-    @apply font-serif font-bold;
+    @apply font-serif;
+    font-weight: 700;
   }
   h1 {
-    @apply font-black;
+    font-weight: 800;
   }
 
   /* Hide inner scrollbar of language dropdown (Radix dropdown-menu content) */
