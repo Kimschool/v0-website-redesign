@@ -401,7 +401,6 @@ const en = {
         details: [
           { label: "Address", value: "KCP International USA PO Box 28028　Bellingham, WA 98228-0028" },
           { label: "Phone", value: "360-647-0072" },
-          { label: "Website", value: "https://www.kcpinternational.com/", isLink: true },
         ],
       },
       {
@@ -409,7 +408,6 @@ const en = {
         details: [
           { label: "Address", value: "天津市东丽区嘉春园17号楼1704" },
           { label: "Phone", value: "15802246626" },
-          { label: "Email", value: "1163052333@qq.com", isEmail: true },
         ],
       },
       {
@@ -417,7 +415,6 @@ const en = {
         details: [
           { label: "Address", value: "台中市北区興進路256号5F-5" },
           { label: "Phone", value: "+886-4-22345622" },
-          { label: "Email", value: "taiwan@kcp.ac.jp", isEmail: true },
         ],
       },
       {
@@ -425,7 +422,6 @@ const en = {
         details: [
           { label: "Address", value: "서울시 종로구 종로 19 (종로1가 24) 르메이에르종로타운 B동 1832호" },
           { label: "Phone", value: "02-735-4422" },
-          { label: "Email", value: "kcp@kcpkorea.com", isEmail: true },
         ],
       },
       {
@@ -435,7 +431,6 @@ const en = {
           { label: "Address", value: "No.41-01, Jalan Setia 3/5, Taman Setia Indah, 81100 Johor Bahru, Johor, Malaysia" },
           { label: "Phone", value: "+6012-751 6025" },
           { label: "Email", value: "information@bmj.com.my", isEmail: true },
-          { label: "Facebook", value: "www.facebook.com/www.bmj.com.my", isLink: true },
         ],
       },
     ],

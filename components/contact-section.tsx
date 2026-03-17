@@ -97,7 +97,6 @@ export function ContactSection() {
       details: [
         { label: t("contactPage.offices.0.details.0.label"), value: "KCP International USA PO Box 28028　Bellingham, WA 98228-0028" },
         { label: t("contactPage.offices.0.details.1.label"), value: "360-647-0072" },
-        { label: t("contactPage.offices.0.details.2.label"), value: "https://www.kcpinternational.com/", isLink: true }
       ]
     },
     {
@@ -105,7 +104,6 @@ export function ContactSection() {
       details: [
         { label: t("contactPage.offices.1.details.0.label"), value: "天津市东丽区嘉春园17号楼1704" },
         { label: t("contactPage.offices.1.details.1.label"), value: "15802246626" },
-        { label: t("contactPage.offices.1.details.2.label"), value: "1163052333@qq.com", isEmail: true }
       ]
     },
     {
@@ -113,7 +111,6 @@ export function ContactSection() {
       details: [
         { label: t("contactPage.offices.2.details.0.label"), value: "台中市北区興進路256号5F-5" },
         { label: t("contactPage.offices.2.details.1.label"), value: "+886-4-22345622" },
-        { label: t("contactPage.offices.2.details.2.label"), value: "taiwan@kcp.ac.jp", isEmail: true }
       ]
     },
     {
@@ -121,7 +118,6 @@ export function ContactSection() {
       details: [
         { label: t("contactPage.offices.3.details.0.label"), value: "서울시 종로구 종로 19 (종로1가 24) 르메이에르종로타운 B동 1832호" },
         { label: t("contactPage.offices.3.details.1.label"), value: "02-735-4422" },
-        { label: t("contactPage.offices.3.details.2.label"), value: "kcp@kcpkorea.com", isEmail: true }
       ]
     },
     {
@@ -131,7 +127,6 @@ export function ContactSection() {
         { label: t("contactPage.offices.4.details.1.label"), value: "No.41-01, Jalan Setia 3/5, Taman Setia Indah, 81100 Johor Bahru, Johor, Malaysia" },
         { label: t("contactPage.offices.4.details.2.label"), value: "+6012-751 6025" },
         { label: t("contactPage.offices.4.details.3.label"), value: "information@bmj.com.my", isEmail: true },
-        { label: "Facebook", value: "www.facebook.com/www.bmj.com.my", isLink: true }
       ]
     }
   ]
@@ -182,54 +177,28 @@ export function ContactSection() {
         </div>
       </div>
       <div className="mx-auto max-w-4xl px-6 py-20">
-        {/* Pattern C: 2-Column Info Card */}
-        <div className={`grid grid-cols-1 md:grid-cols-2 gap-8 mb-16 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
-          {/* Left: Form Title & Description */}
-          <div className="flex flex-col justify-center">
-            <p className="text-xs tracking-[0.2em] uppercase text-[#0085b2] font-semibold mb-3">お問い合わせ</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 font-serif">証明書発行申請</h2>
-            <p className="text-sm md:text-base text-gray-700 leading-relaxed">
-              卒業生・修了生の皆様からのご申請をお受けしています。下記のフォームにご入力の上、送信してください。
-            </p>
-          </div>
+        {/* Form Header - Premium Design */}
+        <div className={`mb-16 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
+          <div className="text-center max-w-2xl mx-auto">
+            <p className="text-xs tracking-[0.3em] uppercase text-[#0085b2] font-semibold mb-4">卒業生・修了生対象</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8 font-serif">証明書発行申請フォーム</h2>
 
-          {/* Right: School Info */}
-          <div className="bg-gradient-to-br from-[#0085b2]/5 to-[#0085b2]/10 rounded-2xl p-8 border border-[#0085b2]/20">
-            <h3 className="text-sm font-semibold text-[#0085b2] tracking-widest uppercase mb-6">学校法人KCP学園</h3>
-            
-            <div className="space-y-5">
-              <div>
-                <p className="text-xs text-gray-600 font-medium mb-1">学校名</p>
-                <p className="text-lg font-semibold text-gray-900">KCP地球市民日本語学校</p>
-              </div>
-              
-              <div className="pt-4 border-t border-[#0085b2]/20 space-y-3">
-                <div>
-                  <p className="text-xs text-gray-600 font-medium mb-1">電話</p>
-                  <p className="text-sm text-gray-900 font-medium">+81-3-6825-3388</p>
-                </div>
-                
-                <div>
-                  <p className="text-xs text-gray-600 font-medium mb-1">メール</p>
-                  <p className="text-sm text-gray-900 font-medium break-all">info@kcp.ac.jp</p>
-                </div>
-              </div>
-              
-              <div className="pt-4 border-t border-[#0085b2]/20">
-                <p className="text-xs text-gray-600 font-medium mb-3">営業時間</p>
-                <div className="space-y-1.5 text-sm text-gray-900">
-                  <p><span className="font-semibold">月～金:</span> 9:00～18:00</p>
-                  <p><span className="font-semibold">土:</span> 10:00～17:00</p>
-                  <p><span className="font-semibold">日・祝:</span> 定休日</p>
-                </div>
-                <p className="text-xs text-gray-600 italic mt-3">※日本時間での営業時間です</p>
-              </div>
+            <div className="space-y-4 text-gray-600 leading-relaxed">
+              <p className="text-base md:text-lg">
+                遠隔地にお住まいで、直接ご来校して証明書を申し込むのが難しい方は、<br className="hidden md:inline" />
+                まず以下のフォームからお申込みください。
+              </p>
+            </div>
+
+            <div className="mt-8 inline-flex items-center gap-2 px-5 py-2.5 bg-amber-50 border border-amber-200 rounded-full">
+              <span className="text-amber-600 text-sm">※</span>
+              <span className="text-sm text-amber-800">発行までには通常3営業日かかります。急ぎの場合はお知らせください。</span>
             </div>
           </div>
         </div>
 
         {/* Divider */}
-        <div className="h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent mb-16" />
+        <div className="h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent mb-12" />
         {/* Contact Form */}
         <form onSubmit={handleSubmit} className={`bg-gray-50/50 rounded-2xl p-10 md:p-12 border border-gray-200/50 shadow-xl shadow-black/5 backdrop-blur-sm ${isVisible ? "animate-fade-in-up animation-delay-300" : "opacity-0"}`}>
           {submitStatus && (
@@ -526,7 +495,7 @@ export function ContactSection() {
         </form>
 
         {/* Overseas Offices Section */}
-        <div className={`mb-16 ${isVisible ? "animate-fade-in-up animation-delay-200" : "opacity-0"}`}>
+        <div className={`mb-16 py-10 ${isVisible ? "animate-fade-in-up animation-delay-200" : "opacity-0"}`}>
           <h3 className="text-2xl font-bold text-gray-900 mb-6">{t("contactPage.overseasTitle")}</h3>
           <div className="space-y-3">
             {overseasOffices.map((office, index) => (
@@ -585,6 +554,42 @@ export function ContactSection() {
                 </div>
               </details>
             ))}
+          </div>
+        </div>
+
+        {/* School Info Card - Moved to bottom */}
+        <div className={`${isVisible ? "animate-fade-in-up animation-delay-400" : "opacity-0"}`}>
+          <div className="bg-gradient-to-br from-[#0085b2]/5 to-[#0085b2]/10 rounded-2xl p-8 md:p-10 border border-[#0085b2]/20 max-w-xl mx-auto">
+            <h3 className="text-sm font-semibold text-[#0085b2] tracking-widest uppercase mb-6">学校法人KCP学園</h3>
+
+            <div className="space-y-5">
+              <div>
+                <p className="text-xs text-gray-500 font-medium mb-1">学校名</p>
+                <p className="text-xl font-bold text-gray-900">KCP地球市民日本語学校</p>
+              </div>
+
+              <div className="pt-5 border-t border-[#0085b2]/20 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <p className="text-xs text-gray-500 font-medium mb-1">電話</p>
+                  <p className="text-sm text-gray-900 font-medium">+81-3-6825-3388</p>
+                </div>
+
+                <div>
+                  <p className="text-xs text-gray-500 font-medium mb-1">メール</p>
+                  <a href="mailto:info@kcp.ac.jp" className="text-sm text-[#0085b2] hover:underline font-medium">info@kcp.ac.jp</a>
+                </div>
+              </div>
+
+              <div className="pt-5 border-t border-[#0085b2]/20">
+                <p className="text-xs text-gray-500 font-medium mb-3">営業時間</p>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 text-sm text-gray-900">
+                  <p><span className="font-semibold">月～金:</span> 9:00～18:00</p>
+                  <p><span className="font-semibold">土:</span> 10:00～17:00</p>
+                  <p><span className="font-semibold">日・祝:</span> 定休日</p>
+                </div>
+                <p className="text-xs text-gray-500 italic mt-4">※日本時間での営業時間です</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
