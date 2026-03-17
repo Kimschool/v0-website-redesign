@@ -115,12 +115,6 @@ export function HeroSection() {
 
       {/* Content */}
       <div className="relative z-10 text-center px-6 py-20 max-w-5xl mx-auto">
-        {/* Subtitle badge */}
-        <div className={`inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-5 py-2 mb-8 transition-all duration-700 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
-          <span className="w-2 h-2 bg-accent rounded-full animate-pulse" />
-          <span className="text-sm font-medium text-white/90">KCP地球市民日本語学校</span>
-        </div>
-
         {/* Main title with serif font */}
         <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight tracking-wide font-serif">
           <span className="block drop-shadow-lg">
