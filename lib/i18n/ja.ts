@@ -384,7 +384,7 @@ const ja = {
     submitBtn: "申込む",
     submittingBtn: "送信中...",
     contactInfo: {
-      orgName: "学校法人ウィーアス",
+      orgName: "学校法人KCP学園",
       schoolName: "KCP地球市民日本語学校",
       telLabel: "電話",
       telValue: "+81-3-6825-3388",

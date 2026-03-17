@@ -182,14 +182,54 @@ export function ContactSection() {
         </div>
       </div>
       <div className="mx-auto max-w-4xl px-6 py-20">
-        {/* Section heading */}
-        <div className={`text-center mb-16 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
-          <div className="w-12 h-1 bg-[#0085b2] mx-auto mb-6 rounded-full" />
-          <p className="text-lg md:text-xl text-gray-700 leading-relaxed max-w-3xl mx-auto">
-            {t("contactPage.intro")}
-          </p>
-          <div className="elegant-divider mt-8" />
+        {/* Pattern C: 2-Column Info Card */}
+        <div className={`grid grid-cols-1 md:grid-cols-2 gap-8 mb-16 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
+          {/* Left: Form Title & Description */}
+          <div className="flex flex-col justify-center">
+            <p className="text-xs tracking-[0.2em] uppercase text-[#0085b2] font-semibold mb-3">お問い合わせ</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 font-serif">証明書発行申請</h2>
+            <p className="text-sm md:text-base text-gray-700 leading-relaxed">
+              卒業生・修了生の皆様からのご申請をお受けしています。下記のフォームにご入力の上、送信してください。
+            </p>
+          </div>
+
+          {/* Right: School Info */}
+          <div className="bg-gradient-to-br from-[#0085b2]/5 to-[#0085b2]/10 rounded-2xl p-8 border border-[#0085b2]/20">
+            <h3 className="text-sm font-semibold text-[#0085b2] tracking-widest uppercase mb-6">学校法人KCP学園</h3>
+            
+            <div className="space-y-5">
+              <div>
+                <p className="text-xs text-gray-600 font-medium mb-1">学校名</p>
+                <p className="text-lg font-semibold text-gray-900">KCP地球市民日本語学校</p>
+              </div>
+              
+              <div className="pt-4 border-t border-[#0085b2]/20 space-y-3">
+                <div>
+                  <p className="text-xs text-gray-600 font-medium mb-1">電話</p>
+                  <p className="text-sm text-gray-900 font-medium">+81-3-6825-3388</p>
+                </div>
+                
+                <div>
+                  <p className="text-xs text-gray-600 font-medium mb-1">メール</p>
+                  <p className="text-sm text-gray-900 font-medium break-all">info@kcp.ac.jp</p>
+                </div>
+              </div>
+              
+              <div className="pt-4 border-t border-[#0085b2]/20">
+                <p className="text-xs text-gray-600 font-medium mb-3">営業時間</p>
+                <div className="space-y-1.5 text-sm text-gray-900">
+                  <p><span className="font-semibold">月～金:</span> 9:00～18:00</p>
+                  <p><span className="font-semibold">土:</span> 10:00～17:00</p>
+                  <p><span className="font-semibold">日・祝:</span> 定休日</p>
+                </div>
+                <p className="text-xs text-gray-600 italic mt-3">※日本時間での営業時間です</p>
+              </div>
+            </div>
+          </div>
         </div>
+
+        {/* Divider */}
+        <div className="h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent mb-16" />
         {/* Contact Form */}
         <form onSubmit={handleSubmit} className={`bg-gray-50/50 rounded-2xl p-10 md:p-12 border border-gray-200/50 shadow-xl shadow-black/5 backdrop-blur-sm ${isVisible ? "animate-fade-in-up animation-delay-300" : "opacity-0"}`}>
           {submitStatus && (
@@ -211,7 +251,7 @@ export function ContactSection() {
               {/* Name (Kanji) */}
               <div>
                 <label htmlFor="nameKanji" className="block text-sm font-medium text-gray-700 mb-2.5">
-                  {t("contactPage.formLabels.nameKanji")} <span className="text-[#0085b2] font-bold">*</span>
+                  {t("contactPage.formLabels.nameKanji")} <span className="text-[#0085b2] font-bold"></span>
                 </label>
                 <input
                   type="text"
@@ -219,7 +259,6 @@ export function ContactSection() {
                   name="nameKanji"
                   value={formData.nameKanji}
                   onChange={handleChange}
-                  required
                   className="w-full px-4 py-3.5 bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-[#0085b2] focus:shadow-lg focus:shadow-[#0085b2]/10 transition-all duration-200"
                 />
               </div>
@@ -243,13 +282,14 @@ export function ContactSection() {
               {/* Gender */}
               <div>
                 <label htmlFor="gender" className="block text-sm font-medium text-gray-700 mb-2.5">
-                  {t("contactPage.formLabels.gender")}
+                  {t("contactPage.formLabels.gender")} <span className="text-[#0085b2] font-bold">*</span>
                 </label>
                 <select
                   id="gender"
                   name="gender"
                   value={formData.gender}
                   onChange={handleChange}
+                  required
                   className="w-full px-4 py-3.5 bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-[#0085b2] focus:shadow-lg focus:shadow-[#0085b2]/10 transition-all duration-200"
                 >
                   <option value="">{t("contactPage.genderOptions.selectDefault")}</option>
@@ -262,7 +302,7 @@ export function ContactSection() {
               {/* Nationality */}
               <div>
                 <label htmlFor="nationality" className="block text-sm font-medium text-gray-700 mb-2.5">
-                  {t("contactPage.formLabels.nationality")}
+                  {t("contactPage.formLabels.nationality")} <span className="text-[#0085b2] font-bold">*</span>
                 </label>
                 <input
                   type="text"
@@ -270,6 +310,7 @@ export function ContactSection() {
                   name="nationality"
                   value={formData.nationality}
                   onChange={handleChange}
+                  required
                   className="w-full px-4 py-3.5 bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-[#0085b2] focus:shadow-lg focus:shadow-[#0085b2]/10 transition-all duration-200"
                 />
               </div>
@@ -277,7 +318,7 @@ export function ContactSection() {
               {/* Birth Date */}
               <div>
                 <label htmlFor="birthDate" className="block text-sm font-medium text-gray-700 mb-2.5">
-                  {t("contactPage.formLabels.birthDate")}
+                  {t("contactPage.formLabels.birthDate")} <span className="text-[#0085b2] font-bold">*</span>
                 </label>
                 <input
                   type="date"
@@ -285,6 +326,7 @@ export function ContactSection() {
                   name="birthDate"
                   value={formData.birthDate}
                   onChange={handleChange}
+                  required
                   className="w-full px-4 py-3.5 bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-[#0085b2] focus:shadow-lg focus:shadow-[#0085b2]/10 transition-all duration-200"
                 />
               </div>
@@ -292,7 +334,7 @@ export function ContactSection() {
               {/* Student ID */}
               <div>
                 <label htmlFor="studentId" className="block text-sm font-medium text-gray-700 mb-2.5">
-                  {t("contactPage.formLabels.studentId")}
+                  {t("contactPage.formLabels.studentId")} <span className="text-[#0085b2] font-bold">*</span>
                 </label>
                 <input
                   type="text"
@@ -307,7 +349,7 @@ export function ContactSection() {
               {/* Current Address */}
               <div className="md:col-span-2">
                 <label htmlFor="address" className="block text-sm font-medium text-gray-700 mb-2.5">
-                  {t("contactPage.formLabels.address")}
+                  {t("contactPage.formLabels.address")} <span className="text-[#0085b2] font-bold">*</span>
                 </label>
                 <input
                   type="text"
@@ -315,6 +357,7 @@ export function ContactSection() {
                   name="address"
                   value={formData.address}
                   onChange={handleChange}
+                  required
                   className="w-full px-4 py-3.5 bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-[#0085b2] focus:shadow-lg focus:shadow-[#0085b2]/10 transition-all duration-200"
                 />
               </div>
@@ -322,7 +365,7 @@ export function ContactSection() {
               {/* Phone */}
               <div>
                 <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2.5">
-                  {t("contactPage.formLabels.phone")}
+                  {t("contactPage.formLabels.phone")} <span className="text-[#0085b2] font-bold">*</span>
                 </label>
                 <input
                   type="tel"
@@ -330,6 +373,7 @@ export function ContactSection() {
                   name="phone"
                   value={formData.phone}
                   onChange={handleChange}
+                  required
                   className="w-full px-4 py-3.5 bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-[#0085b2] focus:shadow-lg focus:shadow-[#0085b2]/10 transition-all duration-200"
                 />
               </div>
@@ -388,7 +432,7 @@ export function ContactSection() {
               {/* Purpose */}
               <div>
                 <label htmlFor="purpose" className="block text-sm font-medium text-gray-700 mb-2.5">
-                  {t("contactPage.formLabels.purpose")}
+                  {t("contactPage.formLabels.purpose")} <span className="text-[#0085b2] font-bold">*</span>
                 </label>
                 <input
                   type="text"
@@ -396,6 +440,7 @@ export function ContactSection() {
                   name="purpose"
                   value={formData.purpose}
                   onChange={handleChange}
+                  required
                   className="w-full px-4 py-3.5 bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-[#0085b2] focus:shadow-lg focus:shadow-[#0085b2]/10 transition-all duration-200"
                 />
               </div>
@@ -403,7 +448,7 @@ export function ContactSection() {
               {/* Submission Place */}
               <div>
                 <label htmlFor="submissionPlace" className="block text-sm font-medium text-gray-700 mb-2.5">
-                  {t("contactPage.formLabels.submissionPlace")}
+                  {t("contactPage.formLabels.submissionPlace")} <span className="text-[#0085b2] font-bold">*</span>
                 </label>
                 <input
                   type="text"
@@ -411,6 +456,7 @@ export function ContactSection() {
                   name="submissionPlace"
                   value={formData.submissionPlace}
                   onChange={handleChange}
+                  required
                   className="w-full px-4 py-3.5 bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-[#0085b2] focus:shadow-lg focus:shadow-[#0085b2]/10 transition-all duration-200"
                 />
               </div>
@@ -418,13 +464,14 @@ export function ContactSection() {
               {/* Receive Method */}
               <div>
                 <label htmlFor="receiveMethod" className="block text-sm font-medium text-gray-700 mb-2.5">
-                  {t("contactPage.formLabels.receiveMethod")}
+                  {t("contactPage.formLabels.receiveMethod")} <span className="text-[#0085b2] font-bold">*</span>
                 </label>
                 <select
                   id="receiveMethod"
                   name="receiveMethod"
                   value={formData.receiveMethod}
                   onChange={handleChange}
+                  required
                   className="w-full px-4 py-3.5 bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-[#0085b2] focus:shadow-lg focus:shadow-[#0085b2]/10 transition-all duration-200"
                 >
                   <option value="">{t("contactPage.receiveOptions.selectDefault")}</option>
@@ -451,14 +498,13 @@ export function ContactSection() {
             <div>
               {/* Notes */}
               <label htmlFor="notes" className="block text-sm font-medium text-gray-700 mb-2.5">
-                {t("contactPage.formLabels.notes")} <span className="text-[#0085b2] font-bold">*</span>
+                {t("contactPage.formLabels.notes")}
               </label>
               <textarea
                 id="notes"
                 name="notes"
                 value={formData.notes}
                 onChange={handleChange}
-                required
                 rows={5}
                 className="w-full px-4 py-3.5 bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-[#0085b2] focus:shadow-lg focus:shadow-[#0085b2]/10 transition-all duration-200 resize-none"
               />
@@ -479,73 +525,39 @@ export function ContactSection() {
           </div>
         </form>
 
-        {/* Contact Info */}
-        <div className={`grid grid-cols-1 md:grid-cols-2 gap-12 mb-12 ${isVisible ? "animate-fade-in-up animation-delay-400" : "opacity-0"}`}>
-          <div>
-            <h3 className="text-lg font-bold text-gray-900 mb-6">{t("contactPage.contactInfo.orgName")}</h3>
-            <div className="space-y-6">
-              <div>
-                <p className="font-semibold text-gray-800">{t("contactPage.contactInfo.schoolName")}</p>
-                <p className="text-sm text-gray-600 mt-2">{t("contactPage.contactInfo.telLabel")}: {t("contactPage.contactInfo.telValue")}</p>
-                <p className="text-sm text-gray-600">{t("contactPage.contactInfo.emailLabel")}: {t("contactPage.contactInfo.emailValue")}</p>
-              </div>
-            </div>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-bold text-gray-900 mb-4">{t("contactPage.contactInfo.hoursTitle")}</h3>
-            <div className="space-y-2 text-gray-700">
-              <p><span className="font-semibold">{t("contactPage.contactInfo.weekday")}</span> {t("contactPage.contactInfo.weekdayHours")}</p>
-              <p><span className="font-semibold">{t("contactPage.contactInfo.saturday")}</span> {t("contactPage.contactInfo.saturdayHours")}</p>
-              <p><span className="font-semibold">{t("contactPage.contactInfo.sundayHoliday")}</span> {t("contactPage.contactInfo.sundayHolidayHours")}</p>
-              <p className="text-sm text-gray-600 mt-4">{t("contactPage.contactInfo.hoursNote")}</p>
-            </div>
-          </div>
-        </div>
-
-        {/* Notice Box */}
-        <div className={`mb-12 p-6 bg-yellow-50 border-l-4 border-yellow-500 rounded-lg ${isVisible ? "animate-fade-in-up animation-delay-200" : "opacity-0"}`}>
-          <h3 className="font-semibold text-gray-900 mb-3">{t("contactPage.noticeTitle")}</h3>
-          <ul className="text-sm text-gray-700 space-y-2">
-            <li>• {t("contactPage.noticeItems.0")}</li>
-            <li>• {t("contactPage.noticeItems.1")}</li>
-            <li>• {t("contactPage.noticeItems.2")}</li>
-          </ul>
-        </div>
-
         {/* Overseas Offices Section */}
         <div className={`mb-16 ${isVisible ? "animate-fade-in-up animation-delay-200" : "opacity-0"}`}>
           <h3 className="text-2xl font-bold text-gray-900 mb-6">{t("contactPage.overseasTitle")}</h3>
           <div className="space-y-3">
             {overseasOffices.map((office, index) => (
-              <details key={index} className="group border border-gray-300 rounded-lg overflow-hidden hover:border-[#0085b2] transition">
-                <summary className="flex cursor-pointer items-center justify-between bg-gradient-to-r from-[#f0ffff] to-[#0085b2]/10 px-6 py-4 font-semibold text-gray-800 hover:bg-[#0085b2]/10 transition">
+              <details key={index} className="group border border-gray-200 rounded-xl overflow-hidden hover:border-[#0085b2] transition-all duration-200">
+                <summary className="flex cursor-pointer items-center justify-between bg-gradient-to-r from-gray-50 to-[#0085b2]/5 px-6 py-4 font-semibold text-gray-800 hover:bg-[#0085b2]/10 transition">
                   <span>{office.name}</span>
-                  <span className="text-xl font-bold text-[#0085b2] group-open:rotate-180 transition-transform duration-300">▼</span>
+                  <span className="text-sm text-[#0085b2] group-open:rotate-180 transition-transform duration-300">▼</span>
                 </summary>
 
-                <div className="px-6 py-4 bg-white space-y-3 border-t border-gray-200">
+                <div className="px-6 py-5 bg-white space-y-4 border-t border-gray-100">
                   {office.details.map((detail, idx) => (
                     <div key={idx} className="flex flex-col">
-                      <p className="text-sm font-semibold text-gray-600 mb-1">{detail.label}</p>
+                      <p className="text-xs text-gray-500 font-medium mb-1">{detail.label}</p>
                       {detail.isLink ? (
                         <a
                           href={detail.value}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-[#0085b2] hover:text-[#006794] hover:underline break-all"
+                          className="text-[#0085b2] hover:text-[#006794] hover:underline break-all text-sm"
                         >
                           {detail.value}
                         </a>
                       ) : detail.isEmail ? (
                         <a
                           href={`mailto:${detail.value}`}
-                          className="text-[#0085b2] hover:text-[#006794] hover:underline"
+                          className="text-[#0085b2] hover:text-[#006794] hover:underline text-sm"
                         >
                           {detail.value}
                         </a>
                       ) : (
-                        <p className="text-gray-700">{detail.value}</p>
+                        <p className="text-gray-700 text-sm">{detail.value}</p>
                       )}
                     </div>
                   ))}
@@ -560,16 +572,16 @@ export function ContactSection() {
           <h3 className="text-2xl font-bold text-gray-900 mb-8">{t("contactPage.faqTitle")}</h3>
           <div className="space-y-4">
             {faqItems.map((item, index) => (
-              <details key={index} className="group border border-gray-200 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
-                <summary className="flex cursor-pointer items-center gap-4 bg-[#0085b2]/10 px-6 py-5 hover:bg-[#0085b2]/15 transition">
+              <details key={index} className="group border border-gray-200 rounded-xl overflow-hidden hover:shadow-md transition-all duration-200">
+                <summary className="flex cursor-pointer items-center gap-4 bg-gradient-to-r from-[#0085b2]/5 to-[#0085b2]/10 px-6 py-5 hover:bg-[#0085b2]/15 transition">
                   <span className="flex-shrink-0 w-8 h-8 rounded-full bg-[#0085b2] text-white flex items-center justify-center font-bold text-sm">Q</span>
-                  <span className="flex-1 text-base font-bold text-[#0085b2]">{item.question}</span>
-                  <span className="text-lg font-bold text-[#0085b2] group-open:rotate-180 transition-transform duration-300">▼</span>
+                  <span className="flex-1 text-base font-semibold text-gray-800">{item.question}</span>
+                  <span className="text-sm text-[#0085b2] group-open:rotate-180 transition-transform duration-300">▼</span>
                 </summary>
 
                 <div className="flex gap-4 px-6 py-5 bg-white border-t border-gray-100">
                   <span className="flex-shrink-0 w-8 h-8 rounded-full bg-[#006794] text-white flex items-center justify-center font-bold text-sm">A</span>
-                  <p className="flex-1 text-gray-700 leading-relaxed">{item.answer}</p>
+                  <p className="flex-1 text-gray-700 leading-relaxed text-sm">{item.answer}</p>
                 </div>
               </details>
             ))}
@@ -577,5 +589,5 @@ export function ContactSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }
