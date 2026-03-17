@@ -98,7 +98,7 @@ export function HeroSection() {
       {/* Background image with parallax effect */}
       <div className="absolute inset-0">
         <Image 
-          src="/images/original_from_customer/hero-background.jpg" 
+          src="/images/original_from_customer/KV.jpg" 
           alt="Hero background" 
           fill 
           className={`object-cover transition-transform duration-[1.5s] ${isLoaded ? "scale-100" : "scale-110"}`}
