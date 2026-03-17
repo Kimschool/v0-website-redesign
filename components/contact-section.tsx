@@ -524,6 +524,69 @@ export function ContactSection() {
             <p className="text-xs text-gray-500 tracking-wide">* {t("contactPage.formLabels.email")} {t("contactPage.formLabels.certificateType")} {t("contactPage.formLabels.notes")} は必須項目です</p>
           </div>
         </form>
+
+        {/* Overseas Offices Section */}
+        <div className={`mb-16 ${isVisible ? "animate-fade-in-up animation-delay-200" : "opacity-0"}`}>
+          <h3 className="text-2xl font-bold text-gray-900 mb-6">{t("contactPage.overseasTitle")}</h3>
+          <div className="space-y-3">
+            {overseasOffices.map((office, index) => (
+              <details key={index} className="group border border-gray-200 rounded-xl overflow-hidden hover:border-[#0085b2] transition-all duration-200">
+                <summary className="flex cursor-pointer items-center justify-between bg-gradient-to-r from-gray-50 to-[#0085b2]/5 px-6 py-4 font-semibold text-gray-800 hover:bg-[#0085b2]/10 transition">
+                  <span>{office.name}</span>
+                  <span className="text-sm text-[#0085b2] group-open:rotate-180 transition-transform duration-300">▼</span>
+                </summary>
+
+                <div className="px-6 py-5 bg-white space-y-4 border-t border-gray-100">
+                  {office.details.map((detail, idx) => (
+                    <div key={idx} className="flex flex-col">
+                      <p className="text-xs text-gray-500 font-medium mb-1">{detail.label}</p>
+                      {detail.isLink ? (
+                        <a
+                          href={detail.value}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-[#0085b2] hover:text-[#006794] hover:underline break-all text-sm"
+                        >
+                          {detail.value}
+                        </a>
+                      ) : detail.isEmail ? (
+                        <a
+                          href={`mailto:${detail.value}`}
+                          className="text-[#0085b2] hover:text-[#006794] hover:underline text-sm"
+                        >
+                          {detail.value}
+                        </a>
+                      ) : (
+                        <p className="text-gray-700 text-sm">{detail.value}</p>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
+
+        {/* FAQ Section */}
+        <div className={`mb-16 ${isVisible ? "animate-fade-in-up animation-delay-300" : "opacity-0"}`}>
+          <h3 className="text-2xl font-bold text-gray-900 mb-8">{t("contactPage.faqTitle")}</h3>
+          <div className="space-y-4">
+            {faqItems.map((item, index) => (
+              <details key={index} className="group border border-gray-200 rounded-xl overflow-hidden hover:shadow-md transition-all duration-200">
+                <summary className="flex cursor-pointer items-center gap-4 bg-gradient-to-r from-[#0085b2]/5 to-[#0085b2]/10 px-6 py-5 hover:bg-[#0085b2]/15 transition">
+                  <span className="flex-shrink-0 w-8 h-8 rounded-full bg-[#0085b2] text-white flex items-center justify-center font-bold text-sm">Q</span>
+                  <span className="flex-1 text-base font-semibold text-gray-800">{item.question}</span>
+                  <span className="text-sm text-[#0085b2] group-open:rotate-180 transition-transform duration-300">▼</span>
+                </summary>
+
+                <div className="flex gap-4 px-6 py-5 bg-white border-t border-gray-100">
+                  <span className="flex-shrink-0 w-8 h-8 rounded-full bg-[#006794] text-white flex items-center justify-center font-bold text-sm">A</span>
+                  <p className="flex-1 text-gray-700 leading-relaxed text-sm">{item.answer}</p>
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );
