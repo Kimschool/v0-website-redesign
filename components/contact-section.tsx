@@ -23,7 +23,6 @@ export function ContactSection() {
     receiveMethod: "",
     notes: "",
   })
-  const [recipientEmail, setRecipientEmail] = useState("")
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<{ type: "success" | "error"; message: string } | null>(null)
   const { t } = useTranslation()
@@ -55,17 +54,13 @@ export function ContactSection() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    if (!recipientEmail) {
-      setSubmitStatus({ type: "error", message: t("contactPage.submitErrorEmail") })
-      return
-    }
     setIsSubmitting(true)
     setSubmitStatus(null)
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...formData, recipientEmail }),
+        body: JSON.stringify({ ...formData }),
       })
       const data = await res.json()
       if (!res.ok) {
@@ -204,10 +199,13 @@ export function ContactSection() {
 
           {/* Section 1: Personal Information */}
           <div className="mb-10">
-            <h3 className="text-lg font-semibold text-gray-900 mb-6 flex items-center gap-3">
-              <span className="w-1 h-6 bg-[#0085b2] rounded-full" />
-              {t("contactPage.formSections.personal") || "Personal Information"}
-            </h3>
+            <div className="flex items-center gap-4 mb-8">
+              <span className="w-1.5 h-8 bg-[#0085b2] rounded-full" />
+              <div>
+                <p className="text-xs tracking-[0.2em] uppercase text-[#0085b2] font-semibold mb-0.5">01</p>
+                <h3 className="text-xl font-bold text-gray-900">{t("contactPage.formSections.personal")}</h3>
+              </div>
+            </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* Name (Kanji) */}
               <div>
@@ -358,25 +356,32 @@ export function ContactSection() {
 
           {/* Section 2: Certificate Information */}
           <div className="mb-10">
-            <h3 className="text-lg font-semibold text-gray-900 mb-6 flex items-center gap-3">
-              <span className="w-1 h-6 bg-[#0085b2] rounded-full" />
-              {t("contactPage.formSections.certificate") || "Certificate Information"}
-            </h3>
+            <div className="flex items-center gap-4 mb-8">
+              <span className="w-1.5 h-8 bg-[#0085b2] rounded-full" />
+              <div>
+                <p className="text-xs tracking-[0.2em] uppercase text-[#0085b2] font-semibold mb-0.5">02</p>
+                <h3 className="text-xl font-bold text-gray-900">{t("contactPage.formSections.certificate")}</h3>
+              </div>
+            </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* Certificate Type */}
-              <div>
+              <div className="md:col-span-2">
                 <label htmlFor="certificateType" className="block text-sm font-medium text-gray-700 mb-2.5">
                   {t("contactPage.formLabels.certificateType")} <span className="text-[#0085b2] font-bold">*</span>
                 </label>
-                <input
-                  type="text"
+                <select
                   id="certificateType"
                   name="certificateType"
                   value={formData.certificateType}
                   onChange={handleChange}
                   required
                   className="w-full px-4 py-3.5 bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-[#0085b2] focus:shadow-lg focus:shadow-[#0085b2]/10 transition-all duration-200"
-                />
+                >
+                  <option value="">{t("contactPage.certificateOptions.selectDefault")}</option>
+                  <option value="attendance">{t("contactPage.certificateOptions.attendance")}</option>
+                  <option value="graduation">{t("contactPage.certificateOptions.graduation")}</option>
+                  <option value="withdrawal">{t("contactPage.certificateOptions.withdrawal")}</option>
+                </select>
               </div>
 
               {/* Purpose */}
@@ -435,10 +440,13 @@ export function ContactSection() {
 
           {/* Section 3: Additional Information */}
           <div className="mb-12">
-            <h3 className="text-lg font-semibold text-gray-900 mb-6 flex items-center gap-3">
-              <span className="w-1 h-6 bg-[#0085b2] rounded-full" />
-              {t("contactPage.formSections.additional") || "Additional Information"}
-            </h3>
+            <div className="flex items-center gap-4 mb-8">
+              <span className="w-1.5 h-8 bg-[#0085b2] rounded-full" />
+              <div>
+                <p className="text-xs tracking-[0.2em] uppercase text-[#0085b2] font-semibold mb-0.5">03</p>
+                <h3 className="text-xl font-bold text-gray-900">{t("contactPage.formSections.additional")}</h3>
+              </div>
+            </div>
             <div>
               {/* Notes */}
               <label htmlFor="notes" className="block text-sm font-medium text-gray-700 mb-2.5">
@@ -455,33 +463,18 @@ export function ContactSection() {
               />
             </div>
 
-            {/* Test recipient email field - moved to bottom, made less prominent */}
-            <div className="mt-8 pt-8 border-t border-gray-200/50">
-              <label htmlFor="recipientEmail" className="block text-xs font-medium text-gray-600 mb-2">
-                {t("contactPage.testEmailLabel")}
-              </label>
-              <input
-                type="email"
-                id="recipientEmail"
-                value={recipientEmail}
-                onChange={(e) => setRecipientEmail(e.target.value)}
-                required
-                className="w-full px-4 py-2.5 bg-gray-100 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-[#0085b2] focus:shadow-lg focus:shadow-[#0085b2]/10 transition-all duration-200"
-                placeholder="test@example.com"
-              />
-              <p className="mt-1.5 text-xs text-gray-500">{t("contactPage.testEmailNote")}</p>
-            </div>
           </div>
 
           {/* Submit Button */}
-          <div className="flex justify-center">
+          <div className="flex flex-col items-center gap-4 pt-4">
             <button
               type="submit"
               disabled={isSubmitting}
-              className="px-10 py-3.5 bg-[#0085b2] text-white font-semibold rounded-full hover:bg-[#006794] hover:shadow-lg hover:shadow-[#0085b2]/30 active:scale-95 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:shadow-none"
+              className="group relative px-14 py-4 bg-[#0085b2] text-white font-semibold tracking-widest uppercase text-sm rounded-full hover:bg-[#006794] hover:shadow-xl hover:shadow-[#0085b2]/30 hover:-translate-y-0.5 active:scale-95 active:translate-y-0 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:shadow-none disabled:hover:translate-y-0"
             >
               {isSubmitting ? t("contactPage.submittingBtn") : t("contactPage.submitBtn")}
             </button>
+            <p className="text-xs text-gray-500 tracking-wide">* {t("contactPage.formLabels.email")} {t("contactPage.formLabels.certificateType")} {t("contactPage.formLabels.notes")} は必須項目です</p>
           </div>
         </form>
 
