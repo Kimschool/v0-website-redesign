@@ -98,7 +98,7 @@ export function HeroSection() {
       {/* Background image with parallax effect */}
       <div className="absolute inset-0">
         <Image 
-          src="/images/original_from_customer/TOP基本画像.jpg" 
+          src="/images/original_from_customer/hero-background.jpg" 
           alt="Hero background" 
           fill 
           className={`object-cover transition-transform duration-[1.5s] ${isLoaded ? "scale-100" : "scale-110"}`}
@@ -115,12 +115,6 @@ export function HeroSection() {
 
       {/* Content */}
       <div className="relative z-10 text-center px-6 py-20 max-w-5xl mx-auto">
-        {/* Subtitle badge */}
-        <div className={`inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-5 py-2 mb-8 transition-all duration-700 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
-          <span className="w-2 h-2 bg-accent rounded-full animate-pulse" />
-          <span className="text-sm font-medium text-white/90">KCP地球市民日本語学校</span>
-        </div>
-
         {/* Main title with serif font */}
         <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight tracking-wide font-serif">
           <span className="block drop-shadow-lg">
@@ -130,11 +124,6 @@ export function HeroSection() {
             <TypewriterText text={title2} delay={500 + title1.length * 120 + 600} />
           </span>
         </h1>
-
-        {/* Subtitle */}
-        <p className={`mt-8 text-lg md:text-xl text-white/80 max-w-2xl mx-auto leading-relaxed transition-all duration-700 delay-1000 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
-          {t("hero.subtitle") || "日本語教育を通じて世界をつなぐ"}
-        </p>
 
         {/* CTA Buttons */}
         <div className={`flex flex-col sm:flex-row items-center justify-center gap-4 mt-10 transition-all duration-700 delay-1000 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>

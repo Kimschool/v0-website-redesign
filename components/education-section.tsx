@@ -33,7 +33,7 @@ export function EducationSection() {
       {/* Page Banner - Extended to cover navigation area */}
       <div className="relative h-[350px] md:h-[400px] w-full overflow-hidden">
         <Image
-          src="/images/original_from_customer/トップ背景/02_教育内容（手元にフォーカス）.jpg"
+          src={`/images/original_from_customer/${encodeURIComponent('トップ背景')}/${encodeURIComponent('02_教育内容（手元にフォーカス）')}.jpg`}
           alt="教育内容"
           fill
           className="object-cover object-[center_35%]"
@@ -90,7 +90,7 @@ export function EducationSection() {
                 <div>
                   <div className="relative w-full aspect-[4/3] mb-4 overflow-hidden rounded-lg">
                     <Image
-                      src="/images/original_from_customer/コース紹介.jpg"
+                      src={`/images/original_from_customer/${encodeURIComponent('コース紹介')}.jpg`}
                       alt="進学準備教育コース"
                       fill
                       className="object-cover"
@@ -137,7 +137,7 @@ export function EducationSection() {
                 <div>
                   <div className="relative w-full aspect-[4/3] mb-4 overflow-hidden rounded-lg">
                     <Image
-                      src="/images/original_from_customer/コース紹介_2.jpg"
+                      src={`/images/original_from_customer/${encodeURIComponent('コース紹介_2')}.jpg`}
                       alt="進学高度日本語コース"
                       fill
                       className="object-cover"
