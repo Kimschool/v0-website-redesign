@@ -125,11 +125,6 @@ export function HeroSection() {
           </span>
         </h1>
 
-        {/* Subtitle */}
-        <p className={`mt-8 text-lg md:text-xl text-white/80 max-w-2xl mx-auto leading-relaxed transition-all duration-700 delay-1000 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
-          {t("hero.subtitle") || "日本語教育を通じて世界をつなぐ"}
-        </p>
-
         {/* CTA Buttons */}
         <div className={`flex flex-col sm:flex-row items-center justify-center gap-4 mt-10 transition-all duration-700 delay-1000 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
           <Link
