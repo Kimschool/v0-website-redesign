@@ -94,7 +94,7 @@ export function BasicInfoSection() {
       {/* Page Banner - Extended to cover navigation area */}
       <div className="relative h-[350px] md:h-[400px] w-full overflow-hidden">
         <Image
-          src="/images/original_from_customer/トップ背景/01_KCPとは（拡大して周りの建物があまり見えないように）.jpg"
+          src={`/images/original_from_customer/${encodeURIComponent('トップ背景')}/${encodeURIComponent('01_KCPとは（拡大して周りの建物があまり見えないように）')}.jpg`}
           alt="情報公開"
           fill
           className="object-cover object-center"
@@ -128,7 +128,7 @@ export function BasicInfoSection() {
           <div className="flex justify-center mb-8">
             <div className="relative w-48 h-48">
               <Image
-                src="/images/original_from_customer/認定マーク（留学）/認定マーク（留学）/logo_01色.png"
+                src={`/images/original_from_customer/${encodeURIComponent('認定マーク（留学）')}/${encodeURIComponent('認定マーク（留学）')}/${encodeURIComponent('logo_01色')}.png`}
                 alt="認定日本語教育機関マーク"
                 fill
                 className="object-contain"

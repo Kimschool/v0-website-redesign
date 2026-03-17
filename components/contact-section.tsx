@@ -172,7 +172,7 @@ export function ContactSection() {
       {/* Page Banner - Extended to cover navigation area */}
       <div className="relative h-[350px] md:h-[400px] w-full overflow-hidden">
         <Image
-          src="/images/original_from_customer/トップ背景/05_お問い合わせ.jpg"
+          src={`/images/original_from_customer/${encodeURIComponent('トップ背景')}/${encodeURIComponent('05_お問い合わせ')}.jpg`}
           alt="お問い合わせ"
           fill
           className="object-cover"

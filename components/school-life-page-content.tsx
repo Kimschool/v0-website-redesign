@@ -21,27 +21,27 @@ export function SchoolLifePageContent() {
 
   const scheduleItems = [
     { month: t("schoolLifePage.scheduleItems.0.month"), description: t("schoolLifePage.scheduleItems.0.description"), image: "/images/original_from_customer/nyuugakusiki.jpg", fullWidth: true },
-    { month: t("schoolLifePage.scheduleItems.1.month"), description: t("schoolLifePage.scheduleItems.1.description"), image: "/images/original_from_customer/年間スケジュール/4月お花見.jpg" },
-    { month: t("schoolLifePage.scheduleItems.2.month"), description: t("schoolLifePage.scheduleItems.2.description"), image: "/images/original_from_customer/年間スケジュール/5月端午の節句.JPG" },
-    { month: t("schoolLifePage.scheduleItems.3.month"), description: t("schoolLifePage.scheduleItems.3.description"), image: "/images/original_from_customer/予備/授業風景.jpg" },
-    { month: t("schoolLifePage.scheduleItems.4.month"), description: t("schoolLifePage.scheduleItems.4.description"), image: "/images/original_from_customer/年間スケジュール/7月コトバデー.jpg" },
-    { month: t("schoolLifePage.scheduleItems.5.month"), description: t("schoolLifePage.scheduleItems.5.description"), image: "/images/original_from_customer/年間スケジュール/8月専門学校進学フェア.jpeg" },
-    { month: t("schoolLifePage.scheduleItems.6.month"), description: t("schoolLifePage.scheduleItems.6.description"), image: "/images/original_from_customer/年間スケジュール/9月.jpg" },
-    { month: t("schoolLifePage.scheduleItems.7.month"), description: t("schoolLifePage.scheduleItems.7.description"), image: "/images/original_from_customer/年間スケジュール/10月バーベキュー.JPG" },
-    { month: t("schoolLifePage.scheduleItems.8.month"), description: t("schoolLifePage.scheduleItems.8.description"), image: "/images/original_from_customer/年間スケジュール/11月.jpg" },
-    { month: t("schoolLifePage.scheduleItems.9.month"), description: t("schoolLifePage.scheduleItems.9.description"), image: "/images/original_from_customer/年間スケジュール/12月.JPG" },
-    { month: t("schoolLifePage.scheduleItems.10.month"), description: t("schoolLifePage.scheduleItems.10.description"), image: "/images/original_from_customer/年間スケジュール/1月課外授業（成人を祝う会に、課外授業を追記してください.JPG" },
-    { month: t("schoolLifePage.scheduleItems.11.month"), description: t("schoolLifePage.scheduleItems.11.description"), image: "/images/original_from_customer/年間スケジュール/2月節分.jpg" },
-    { month: t("schoolLifePage.scheduleItems.12.month"), description: t("schoolLifePage.scheduleItems.12.description"), image: "/images/original_from_customer/年間スケジュール/3月卒業式.JPG" },
+    { month: t("schoolLifePage.scheduleItems.1.month"), description: t("schoolLifePage.scheduleItems.1.description"), image: `/images/original_from_customer/${encodeURIComponent('年間スケジュール')}/${encodeURIComponent('4月お花見')}.jpg` },
+    { month: t("schoolLifePage.scheduleItems.2.month"), description: t("schoolLifePage.scheduleItems.2.description"), image: `/images/original_from_customer/${encodeURIComponent('年間スケジュール')}/${encodeURIComponent('5月端午の節句')}.JPG` },
+    { month: t("schoolLifePage.scheduleItems.3.month"), description: t("schoolLifePage.scheduleItems.3.description"), image: `/images/original_from_customer/${encodeURIComponent('予備')}/${encodeURIComponent('授業風景')}.jpg` },
+    { month: t("schoolLifePage.scheduleItems.4.month"), description: t("schoolLifePage.scheduleItems.4.description"), image: `/images/original_from_customer/${encodeURIComponent('年間スケジュール')}/${encodeURIComponent('7月コトバデー')}.jpg` },
+    { month: t("schoolLifePage.scheduleItems.5.month"), description: t("schoolLifePage.scheduleItems.5.description"), image: `/images/original_from_customer/${encodeURIComponent('年間スケジュール')}/${encodeURIComponent('8月専門学校進学フェア')}.jpeg` },
+    { month: t("schoolLifePage.scheduleItems.6.month"), description: t("schoolLifePage.scheduleItems.6.description"), image: `/images/original_from_customer/${encodeURIComponent('年間スケジュール')}/${encodeURIComponent('9月')}.jpg` },
+    { month: t("schoolLifePage.scheduleItems.7.month"), description: t("schoolLifePage.scheduleItems.7.description"), image: `/images/original_from_customer/${encodeURIComponent('年間スケジュール')}/${encodeURIComponent('10月バーベキュー')}.JPG` },
+    { month: t("schoolLifePage.scheduleItems.8.month"), description: t("schoolLifePage.scheduleItems.8.description"), image: `/images/original_from_customer/${encodeURIComponent('年間スケジュール')}/${encodeURIComponent('11月')}.jpg` },
+    { month: t("schoolLifePage.scheduleItems.9.month"), description: t("schoolLifePage.scheduleItems.9.description"), image: `/images/original_from_customer/${encodeURIComponent('年間スケジュール')}/${encodeURIComponent('12月')}.JPG` },
+    { month: t("schoolLifePage.scheduleItems.10.month"), description: t("schoolLifePage.scheduleItems.10.description"), image: `/images/original_from_customer/${encodeURIComponent('年間スケジュール')}/${encodeURIComponent('1月課外授業（成人を祝う会に、課外授業を追記してください')}.JPG` },
+    { month: t("schoolLifePage.scheduleItems.11.month"), description: t("schoolLifePage.scheduleItems.11.description"), image: `/images/original_from_customer/${encodeURIComponent('年間スケジュール')}/${encodeURIComponent('2月節分')}.jpg` },
+    { month: t("schoolLifePage.scheduleItems.12.month"), description: t("schoolLifePage.scheduleItems.12.description"), image: `/images/original_from_customer/${encodeURIComponent('年間スケジュール')}/${encodeURIComponent('3月卒業式')}.JPG` },
   ]
 
   const clubActivities = [
-    { name: t("schoolLifePage.clubItems.0.name"), description: t("schoolLifePage.clubItems.0.description"), image: "/images/original_from_customer/クラブ活動/演劇部.jpg" },
-    { name: t("schoolLifePage.clubItems.1.name"), description: t("schoolLifePage.clubItems.1.description"), image: "/images/original_from_customer/クラブ活動/琴クラブ.jpg" },
-    { name: t("schoolLifePage.clubItems.2.name"), description: t("schoolLifePage.clubItems.2.description"), image: "/images/original_from_customer/クラブ活動/新聞部.jpg" },
-    { name: t("schoolLifePage.clubItems.3.name"), description: t("schoolLifePage.clubItems.3.description"), image: "/images/original_from_customer/クラブ活動/マンガ・アニメクラブ.jpg" },
-    { name: t("schoolLifePage.clubItems.4.name"), description: t("schoolLifePage.clubItems.4.description"), image: "/images/original_from_customer/クラブ活動/茶道クラブ.JPG" },
-    { name: t("schoolLifePage.clubItems.5.name"), description: t("schoolLifePage.clubItems.5.description"), image: "/images/original_from_customer/クラブ活動/読書クラブ.jpg" },
+    { name: t("schoolLifePage.clubItems.0.name"), description: t("schoolLifePage.clubItems.0.description"), image: `/images/original_from_customer/${encodeURIComponent('クラブ活動')}/${encodeURIComponent('演劇部')}.jpg` },
+    { name: t("schoolLifePage.clubItems.1.name"), description: t("schoolLifePage.clubItems.1.description"), image: `/images/original_from_customer/${encodeURIComponent('クラブ活動')}/${encodeURIComponent('琴クラブ')}.jpg` },
+    { name: t("schoolLifePage.clubItems.2.name"), description: t("schoolLifePage.clubItems.2.description"), image: `/images/original_from_customer/${encodeURIComponent('クラブ活動')}/${encodeURIComponent('新聞部')}.jpg` },
+    { name: t("schoolLifePage.clubItems.3.name"), description: t("schoolLifePage.clubItems.3.description"), image: `/images/original_from_customer/${encodeURIComponent('クラブ活動')}/${encodeURIComponent('マンガ・アニメクラブ')}.jpg` },
+    { name: t("schoolLifePage.clubItems.4.name"), description: t("schoolLifePage.clubItems.4.description"), image: `/images/original_from_customer/${encodeURIComponent('クラブ活動')}/${encodeURIComponent('茶道クラブ')}.JPG` },
+    { name: t("schoolLifePage.clubItems.5.name"), description: t("schoolLifePage.clubItems.5.description"), image: `/images/original_from_customer/${encodeURIComponent('クラブ活動')}/${encodeURIComponent('読書クラブ')}.jpg` },
   ]
 
   const stationTabs = [
@@ -77,18 +77,18 @@ export function SchoolLifePageContent() {
   ]
 
   const facilityItems = [
-    { title: t("schoolLifePage.facilityItems.0.title"), caption: t("schoolLifePage.facilityItems.0.caption"), image: "/images/original_from_customer/施設案内/01_校舍全景.jpg" },
-    { title: t("schoolLifePage.facilityItems.1.title"), caption: t("schoolLifePage.facilityItems.1.caption"), image: "/images/original_from_customer/施設案内/02_校庭.jpg" },
-    { title: t("schoolLifePage.facilityItems.2.title"), caption: t("schoolLifePage.facilityItems.2.caption"), image: "/images/original_from_customer/施設案内/03_駐輪場.jpg" },
-    { title: t("schoolLifePage.facilityItems.3.title"), caption: t("schoolLifePage.facilityItems.3.caption"), image: "/images/original_from_customer/施設案内/04_BF1美術室.jpg" },
-    { title: t("schoolLifePage.facilityItems.4.title"), caption: t("schoolLifePage.facilityItems.4.caption"), image: "/images/original_from_customer/施設案内/05_1F職員室.jpg" },
-    { title: t("schoolLifePage.facilityItems.5.title"), caption: t("schoolLifePage.facilityItems.5.caption"), image: "/images/original_from_customer/施設案内/06_2Fラウンジ.jpg" },
-    { title: t("schoolLifePage.facilityItems.6.title"), caption: t("schoolLifePage.facilityItems.6.caption"), image: "/images/original_from_customer/施設案内/07_2F図書室.jpg" },
-    { title: t("schoolLifePage.facilityItems.7.title"), caption: t("schoolLifePage.facilityItems.7.caption"), image: "/images/original_from_customer/施設案内/08_教室(明るく調整してください）.jpg" },
-    { title: t("schoolLifePage.facilityItems.8.title"), caption: t("schoolLifePage.facilityItems.8.caption"), image: "/images/original_from_customer/施設案内/09_教室2.jpg" },
-    { title: t("schoolLifePage.facilityItems.9.title"), caption: t("schoolLifePage.facilityItems.9.caption"), image: "/images/original_from_customer/施設案内/10_6F講堂.jpg" },
-    { title: t("schoolLifePage.facilityItems.10.title"), caption: t("schoolLifePage.facilityItems.10.caption"), image: "/images/original_from_customer/施設案内/11_7F和室.jpg" },
-    { title: t("schoolLifePage.facilityItems.11.title"), caption: t("schoolLifePage.facilityItems.11.caption"), image: "/images/original_from_customer/施設案内/12_日本庭園.jpg" },
+    { title: t("schoolLifePage.facilityItems.0.title"), caption: t("schoolLifePage.facilityItems.0.caption"), image: `/images/original_from_customer/${encodeURIComponent('施設案内')}/${encodeURIComponent('01_校舍全景')}.jpg` },
+    { title: t("schoolLifePage.facilityItems.1.title"), caption: t("schoolLifePage.facilityItems.1.caption"), image: `/images/original_from_customer/${encodeURIComponent('施設案内')}/${encodeURIComponent('02_校庭')}.jpg` },
+    { title: t("schoolLifePage.facilityItems.2.title"), caption: t("schoolLifePage.facilityItems.2.caption"), image: `/images/original_from_customer/${encodeURIComponent('施設案内')}/${encodeURIComponent('03_駐輪場')}.jpg` },
+    { title: t("schoolLifePage.facilityItems.3.title"), caption: t("schoolLifePage.facilityItems.3.caption"), image: `/images/original_from_customer/${encodeURIComponent('施設案内')}/${encodeURIComponent('04_BF1美術室')}.jpg` },
+    { title: t("schoolLifePage.facilityItems.4.title"), caption: t("schoolLifePage.facilityItems.4.caption"), image: `/images/original_from_customer/${encodeURIComponent('施設案内')}/${encodeURIComponent('05_1F職員室')}.jpg` },
+    { title: t("schoolLifePage.facilityItems.5.title"), caption: t("schoolLifePage.facilityItems.5.caption"), image: `/images/original_from_customer/${encodeURIComponent('施設案内')}/${encodeURIComponent('06_2Fラウンジ')}.jpg` },
+    { title: t("schoolLifePage.facilityItems.6.title"), caption: t("schoolLifePage.facilityItems.6.caption"), image: `/images/original_from_customer/${encodeURIComponent('施設案内')}/${encodeURIComponent('07_2F図書室')}.jpg` },
+    { title: t("schoolLifePage.facilityItems.7.title"), caption: t("schoolLifePage.facilityItems.7.caption"), image: `/images/original_from_customer/${encodeURIComponent('施設案内')}/${encodeURIComponent('08_教室(明るく調整してください）')}.jpg` },
+    { title: t("schoolLifePage.facilityItems.8.title"), caption: t("schoolLifePage.facilityItems.8.caption"), image: `/images/original_from_customer/${encodeURIComponent('施設案内')}/${encodeURIComponent('09_教室2')}.jpg` },
+    { title: t("schoolLifePage.facilityItems.9.title"), caption: t("schoolLifePage.facilityItems.9.caption"), image: `/images/original_from_customer/${encodeURIComponent('施設案内')}/${encodeURIComponent('10_6F講堂')}.jpg` },
+    { title: t("schoolLifePage.facilityItems.10.title"), caption: t("schoolLifePage.facilityItems.10.caption"), image: `/images/original_from_customer/${encodeURIComponent('施設案内')}/${encodeURIComponent('11_7F和室')}.jpg` },
+    { title: t("schoolLifePage.facilityItems.11.title"), caption: t("schoolLifePage.facilityItems.11.caption"), image: `/images/original_from_customer/${encodeURIComponent('施設案内')}/${encodeURIComponent('12_日本庭園')}.jpg` },
   ]
 
   const surroundingEnvironment = [

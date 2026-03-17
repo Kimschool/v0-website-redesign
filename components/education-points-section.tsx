@@ -74,7 +74,7 @@ export function EducationPointsSection() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
             <div className="aspect-[16/10] relative rounded-2xl overflow-hidden shadow-2xl group">
               <Image
-                src="/images/original_from_customer/トップページ「コース紹介」.jpg"
+                src={`/images/original_from_customer/${encodeURIComponent('トップページ「コース紹介」')}.jpg`}
                 alt="コース紹介"
                 fill
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
@@ -102,7 +102,7 @@ export function EducationPointsSection() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
             <div className="lg:order-2 aspect-[16/10] relative rounded-2xl overflow-hidden shadow-2xl group">
               <Image
-                src="/images/original_from_customer/トップページ「授業内容」.jpg"
+                src={`/images/original_from_customer/${encodeURIComponent('トップページ「授業内容」')}.jpg`}
                 alt="授業内容"
                 fill
                 className="object-cover transition-transform duration-700 group-hover:scale-105"

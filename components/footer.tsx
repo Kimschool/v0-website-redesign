@@ -9,13 +9,13 @@ const quickLinkHrefs = ["/about", "/education", "/admission", "/school-life", "/
 const relatedLinkHrefs = ["https://www.kcpyosei.com/", "https://www.kcpinternational.com/", "https://www.kcpkorea.com/", "https://www.kcp.ac.jp/blog/", "/basic-info"]
 
 const carouselImages = [
-  "/images/original_from_customer/ローリング/コトバデイー1.jpg",
-  "/images/original_from_customer/ローリング/寿司作り.JPG",
-  "/images/original_from_customer/ローリング/新聞部2.jpg",
-  "/images/original_from_customer/ローリング/浴衣販売.jpg",
-  "/images/original_from_customer/ローリング/演劇部2.jpg",
-  "/images/original_from_customer/ローリング/琴2.JPG",
-  "/images/original_from_customer/ローリング/端午の節句1.JPG",
+  `/images/original_from_customer/${encodeURIComponent('ローリング')}/${encodeURIComponent('コトバデイー1')}.jpg`,
+  `/images/original_from_customer/${encodeURIComponent('ローリング')}/${encodeURIComponent('寿司作り')}.JPG`,
+  `/images/original_from_customer/${encodeURIComponent('ローリング')}/${encodeURIComponent('新聞部2')}.jpg`,
+  `/images/original_from_customer/${encodeURIComponent('ローリング')}/${encodeURIComponent('浴衣販売')}.jpg`,
+  `/images/original_from_customer/${encodeURIComponent('ローリング')}/${encodeURIComponent('演劇部2')}.jpg`,
+  `/images/original_from_customer/${encodeURIComponent('ローリング')}/${encodeURIComponent('琴2')}.JPG`,
+  `/images/original_from_customer/${encodeURIComponent('ローリング')}/${encodeURIComponent('端午の節句1')}.JPG`,
 ]
 
 function FacebookIcon({ className }: { className?: string }) {

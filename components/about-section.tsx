@@ -111,7 +111,7 @@ export function AboutSection() {
       {/* Hero Banner - Full viewport cinematic style */}
       <div className="relative w-full h-[70vh] md:h-[80vh] overflow-hidden">
         <Image
-          src="/images/original_from_customer/トップ背景/01_KCPとは（拡大して周りの建物があまり見えないように）.jpg"
+          src={`/images/original_from_customer/${encodeURIComponent('トップ背景')}/${encodeURIComponent('01_KCPとは（拡大して周りの建物があまり見えないように）')}.jpg`}
           alt="KCPとは"
           fill
           className="object-cover object-center scale-105"
@@ -207,7 +207,7 @@ export function AboutSection() {
             <div className="col-span-12 md:col-span-7 relative group">
               <div className="aspect-[4/5] md:aspect-[4/3] rounded-2xl overflow-hidden">
                 <Image
-                  src="/images/original_from_customer/予備/K.jpg"
+                  src={`/images/original_from_customer/${encodeURIComponent('予備')}/K.jpg`}
                   alt="Student 1"
                   fill
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
@@ -221,7 +221,7 @@ export function AboutSection() {
               <div className="relative group flex-1">
                 <div className="aspect-square md:aspect-auto md:h-full rounded-2xl overflow-hidden">
                   <Image
-                    src="/images/original_from_customer/予備/学生2【予備】.jpg"
+                    src={`/images/original_from_customer/${encodeURIComponent('予備')}/${encodeURIComponent('学生2【予備】')}.jpg`}
                     alt="Student 2"
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
@@ -260,7 +260,7 @@ export function AboutSection() {
               <div className="relative">
                 <div className="aspect-[3/4] rounded-2xl overflow-hidden">
                   <Image
-                    src="/images/original_from_customer/校長先生.jpg"
+                    src={`/images/original_from_customer/${encodeURIComponent('校長先生')}.jpg`}
                     alt="学校長"
                     fill
                     className="object-cover"
@@ -367,7 +367,7 @@ export function AboutSection() {
         {/* Staff Photo Background */}
         <div className="relative min-h-[85vh] md:h-[70vh]">
           <Image
-            src="/images/original_from_customer/KCPとは「集合写真」.jpg"
+            src={`/images/original_from_customer/${encodeURIComponent('KCPとは「集合写真」')}.jpg`}
             alt="KCP地球市民日本語学校の教職員"
             fill
             className="object-cover"

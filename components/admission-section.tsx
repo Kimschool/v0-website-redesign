@@ -33,7 +33,7 @@ export function AdmissionSection() {
       {/* Page Banner - Extended to cover navigation area */}
       <div className="relative h-[350px] md:h-[400px] w-full overflow-hidden">
         <Image
-          src="/images/original_from_customer/トップ背景/04_入学案内.jpg"
+          src={`/images/original_from_customer/${encodeURIComponent('トップ背景')}/${encodeURIComponent('04_入学案内')}.jpg`}
           alt="入学案内"
           fill
           className="object-cover"
