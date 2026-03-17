@@ -395,16 +395,6 @@ export function AboutSection() {
           </div>
         </div>
       </div>
-                <p className="text-white/60 text-sm mt-8 flex items-center gap-2">
-                  <span className="w-8 h-[1px] bg-white/40" />
-                  {t("aboutPage.staffPhoto")}
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
 
     </section>
   )
