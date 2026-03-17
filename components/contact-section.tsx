@@ -195,249 +195,254 @@ export function ContactSection() {
           <div className="elegant-divider mt-8" />
         </div>
         {/* Contact Form */}
-        <form onSubmit={handleSubmit} className={`bg-white rounded-xl p-8 border border-gray-200 shadow-lg ${isVisible ? "animate-fade-in-up animation-delay-300" : "opacity-0"}`}>
-          {/* Test recipient email block */}
-          <div className="mb-6 p-4 bg-yellow-100 border-2 border-yellow-400 rounded-lg">
-            <label htmlFor="recipientEmail" className="block text-sm font-bold text-yellow-800 mb-2">
-              {t("contactPage.testEmailLabel")}
-            </label>
-            <input
-              type="email"
-              id="recipientEmail"
-              value={recipientEmail}
-              onChange={(e) => setRecipientEmail(e.target.value)}
-              required
-              className="w-full px-4 py-2 border border-yellow-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 bg-white"
-              placeholder="test@example.com"
-            />
-            <p className="mt-1 text-xs text-yellow-700">{t("contactPage.testEmailNote")}</p>
-          </div>
-
+        <form onSubmit={handleSubmit} className={`bg-gray-50/50 rounded-2xl p-10 md:p-12 border border-gray-200/50 shadow-xl shadow-black/5 backdrop-blur-sm ${isVisible ? "animate-fade-in-up animation-delay-300" : "opacity-0"}`}>
           {submitStatus && (
-            <div className={`mb-6 p-4 rounded-lg ${submitStatus.type === "success" ? "bg-green-50 border border-green-300 text-green-800" : "bg-red-50 border border-red-300 text-red-800"}`}>
+            <div className={`mb-8 p-4 rounded-xl text-sm font-medium ${submitStatus.type === "success" ? "bg-green-50 border border-green-200 text-green-700" : "bg-red-50 border border-red-200 text-red-700"}`}>
               {submitStatus.message}
             </div>
           )}
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-            {/* Name (Kanji) */}
+          {/* Section 1: Personal Information */}
+          <div className="mb-10">
+            <h3 className="text-lg font-semibold text-gray-900 mb-6 flex items-center gap-3">
+              <span className="w-1 h-6 bg-[#0085b2] rounded-full" />
+              {t("contactPage.formSections.personal") || "Personal Information"}
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* Name (Kanji) */}
+              <div>
+                <label htmlFor="nameKanji" className="block text-sm font-medium text-gray-700 mb-2.5">
+                  {t("contactPage.formLabels.nameKanji")} <span className="text-[#0085b2] font-bold">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="nameKanji"
+                  name="nameKanji"
+                  value={formData.nameKanji}
+                  onChange={handleChange}
+                  required
+                  className="w-full px-4 py-3.5 bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-[#0085b2] focus:shadow-lg focus:shadow-[#0085b2]/10 transition-all duration-200"
+                />
+              </div>
+
+              {/* Name (English) */}
+              <div>
+                <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2.5">
+                  {t("contactPage.formLabels.name")} <span className="text-[#0085b2] font-bold">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
+                  className="w-full px-4 py-3.5 bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-[#0085b2] focus:shadow-lg focus:shadow-[#0085b2]/10 transition-all duration-200"
+                />
+              </div>
+
+              {/* Gender */}
+              <div>
+                <label htmlFor="gender" className="block text-sm font-medium text-gray-700 mb-2.5">
+                  {t("contactPage.formLabels.gender")}
+                </label>
+                <select
+                  id="gender"
+                  name="gender"
+                  value={formData.gender}
+                  onChange={handleChange}
+                  className="w-full px-4 py-3.5 bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-[#0085b2] focus:shadow-lg focus:shadow-[#0085b2]/10 transition-all duration-200"
+                >
+                  <option value="">{t("contactPage.genderOptions.selectDefault")}</option>
+                  <option value="male">{t("contactPage.genderOptions.male")}</option>
+                  <option value="female">{t("contactPage.genderOptions.female")}</option>
+                  <option value="other">{t("contactPage.genderOptions.other")}</option>
+                </select>
+              </div>
+
+              {/* Nationality */}
+              <div>
+                <label htmlFor="nationality" className="block text-sm font-medium text-gray-700 mb-2.5">
+                  {t("contactPage.formLabels.nationality")}
+                </label>
+                <input
+                  type="text"
+                  id="nationality"
+                  name="nationality"
+                  value={formData.nationality}
+                  onChange={handleChange}
+                  className="w-full px-4 py-3.5 bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-[#0085b2] focus:shadow-lg focus:shadow-[#0085b2]/10 transition-all duration-200"
+                />
+              </div>
+
+              {/* Birth Date */}
+              <div>
+                <label htmlFor="birthDate" className="block text-sm font-medium text-gray-700 mb-2.5">
+                  {t("contactPage.formLabels.birthDate")}
+                </label>
+                <input
+                  type="date"
+                  id="birthDate"
+                  name="birthDate"
+                  value={formData.birthDate}
+                  onChange={handleChange}
+                  className="w-full px-4 py-3.5 bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-[#0085b2] focus:shadow-lg focus:shadow-[#0085b2]/10 transition-all duration-200"
+                />
+              </div>
+
+              {/* Student ID */}
+              <div>
+                <label htmlFor="studentId" className="block text-sm font-medium text-gray-700 mb-2.5">
+                  {t("contactPage.formLabels.studentId")}
+                </label>
+                <input
+                  type="text"
+                  id="studentId"
+                  name="studentId"
+                  value={formData.studentId}
+                  onChange={handleChange}
+                  className="w-full px-4 py-3.5 bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-[#0085b2] focus:shadow-lg focus:shadow-[#0085b2]/10 transition-all duration-200"
+                />
+              </div>
+
+              {/* Current Address */}
+              <div className="md:col-span-2">
+                <label htmlFor="address" className="block text-sm font-medium text-gray-700 mb-2.5">
+                  {t("contactPage.formLabels.address")}
+                </label>
+                <input
+                  type="text"
+                  id="address"
+                  name="address"
+                  value={formData.address}
+                  onChange={handleChange}
+                  className="w-full px-4 py-3.5 bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-[#0085b2] focus:shadow-lg focus:shadow-[#0085b2]/10 transition-all duration-200"
+                />
+              </div>
+
+              {/* Phone */}
+              <div>
+                <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2.5">
+                  {t("contactPage.formLabels.phone")}
+                </label>
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  className="w-full px-4 py-3.5 bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-[#0085b2] focus:shadow-lg focus:shadow-[#0085b2]/10 transition-all duration-200"
+                />
+              </div>
+
+              {/* Email */}
+              <div>
+                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2.5">
+                  {t("contactPage.formLabels.email")} <span className="text-[#0085b2] font-bold">*</span>
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                  className="w-full px-4 py-3.5 bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-[#0085b2] focus:shadow-lg focus:shadow-[#0085b2]/10 transition-all duration-200"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Divider */}
+          <div className="h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent my-10" />
+
+          {/* Section 2: Certificate Information */}
+          <div className="mb-10">
+            <h3 className="text-lg font-semibold text-gray-900 mb-6 flex items-center gap-3">
+              <span className="w-1 h-6 bg-[#0085b2] rounded-full" />
+              {t("contactPage.formSections.certificate") || "Certificate Information"}
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* Certificate Type */}
+              <div>
+                <label htmlFor="certificateType" className="block text-sm font-medium text-gray-700 mb-2.5">
+                  {t("contactPage.formLabels.certificateType")} <span className="text-[#0085b2] font-bold">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="certificateType"
+                  name="certificateType"
+                  value={formData.certificateType}
+                  onChange={handleChange}
+                  required
+                  className="w-full px-4 py-3.5 bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-[#0085b2] focus:shadow-lg focus:shadow-[#0085b2]/10 transition-all duration-200"
+                />
+              </div>
+
+              {/* Purpose */}
+              <div>
+                <label htmlFor="purpose" className="block text-sm font-medium text-gray-700 mb-2.5">
+                  {t("contactPage.formLabels.purpose")}
+                </label>
+                <input
+                  type="text"
+                  id="purpose"
+                  name="purpose"
+                  value={formData.purpose}
+                  onChange={handleChange}
+                  className="w-full px-4 py-3.5 bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-[#0085b2] focus:shadow-lg focus:shadow-[#0085b2]/10 transition-all duration-200"
+                />
+              </div>
+
+              {/* Submission Place */}
+              <div>
+                <label htmlFor="submissionPlace" className="block text-sm font-medium text-gray-700 mb-2.5">
+                  {t("contactPage.formLabels.submissionPlace")}
+                </label>
+                <input
+                  type="text"
+                  id="submissionPlace"
+                  name="submissionPlace"
+                  value={formData.submissionPlace}
+                  onChange={handleChange}
+                  className="w-full px-4 py-3.5 bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-[#0085b2] focus:shadow-lg focus:shadow-[#0085b2]/10 transition-all duration-200"
+                />
+              </div>
+
+              {/* Receive Method */}
+              <div>
+                <label htmlFor="receiveMethod" className="block text-sm font-medium text-gray-700 mb-2.5">
+                  {t("contactPage.formLabels.receiveMethod")}
+                </label>
+                <select
+                  id="receiveMethod"
+                  name="receiveMethod"
+                  value={formData.receiveMethod}
+                  onChange={handleChange}
+                  className="w-full px-4 py-3.5 bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-[#0085b2] focus:shadow-lg focus:shadow-[#0085b2]/10 transition-all duration-200"
+                >
+                  <option value="">{t("contactPage.receiveOptions.selectDefault")}</option>
+                  <option value="mail">{t("contactPage.receiveOptions.mail")}</option>
+                  <option value="pickup">{t("contactPage.receiveOptions.pickup")}</option>
+                  <option value="proxy">{t("contactPage.receiveOptions.proxy")}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          {/* Divider */}
+          <div className="h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent my-10" />
+
+          {/* Section 3: Additional Information */}
+          <div className="mb-12">
+            <h3 className="text-lg font-semibold text-gray-900 mb-6 flex items-center gap-3">
+              <span className="w-1 h-6 bg-[#0085b2] rounded-full" />
+              {t("contactPage.formSections.additional") || "Additional Information"}
+            </h3>
             <div>
-              <label htmlFor="nameKanji" className="block text-sm font-semibold text-gray-800 mb-2">
-                {t("contactPage.formLabels.nameKanji")} <span className="text-red-500">*</span>
-              </label>
-              <input
-                type="text"
-                id="nameKanji"
-                name="nameKanji"
-                value={formData.nameKanji}
-                onChange={handleChange}
-                required
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0085b2]"
-              />
-            </div>
-
-            {/* Name (English) */}
-            <div>
-              <label htmlFor="name" className="block text-sm font-semibold text-gray-800 mb-2">
-                {t("contactPage.formLabels.name")} <span className="text-red-500">*</span>
-              </label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                required
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0085b2]"
-              />
-            </div>
-
-            {/* Gender */}
-            <div>
-              <label htmlFor="gender" className="block text-sm font-semibold text-gray-800 mb-2">
-                {t("contactPage.formLabels.gender")}
-              </label>
-              <select
-                id="gender"
-                name="gender"
-                value={formData.gender}
-                onChange={handleChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0085b2]"
-              >
-                <option value="">{t("contactPage.genderOptions.selectDefault")}</option>
-                <option value="male">{t("contactPage.genderOptions.male")}</option>
-                <option value="female">{t("contactPage.genderOptions.female")}</option>
-                <option value="other">{t("contactPage.genderOptions.other")}</option>
-              </select>
-            </div>
-
-            {/* Nationality */}
-            <div>
-              <label htmlFor="nationality" className="block text-sm font-semibold text-gray-800 mb-2">
-                {t("contactPage.formLabels.nationality")}
-              </label>
-              <input
-                type="text"
-                id="nationality"
-                name="nationality"
-                value={formData.nationality}
-                onChange={handleChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0085b2]"
-                placeholder=""
-              />
-            </div>
-
-            {/* Birth Date */}
-            <div>
-              <label htmlFor="birthDate" className="block text-sm font-semibold text-gray-800 mb-2">
-                {t("contactPage.formLabels.birthDate")}
-              </label>
-              <input
-                type="date"
-                id="birthDate"
-                name="birthDate"
-                value={formData.birthDate}
-                onChange={handleChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0085b2]"
-              />
-            </div>
-
-            {/* Student ID */}
-            <div>
-              <label htmlFor="studentId" className="block text-sm font-semibold text-gray-800 mb-2">
-                {t("contactPage.formLabels.studentId")}
-              </label>
-              <input
-                type="text"
-                id="studentId"
-                name="studentId"
-                value={formData.studentId}
-                onChange={handleChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0085b2]"
-                placeholder=""
-              />
-            </div>
-
-            {/* Current Address */}
-            <div className="md:col-span-2">
-              <label htmlFor="address" className="block text-sm font-semibold text-gray-800 mb-2">
-                {t("contactPage.formLabels.address")}
-              </label>
-              <input
-                type="text"
-                id="address"
-                name="address"
-                value={formData.address}
-                onChange={handleChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0085b2]"
-                placeholder=""
-              />
-            </div>
-
-            {/* Phone */}
-            <div>
-              <label htmlFor="phone" className="block text-sm font-semibold text-gray-800 mb-2">
-                {t("contactPage.formLabels.phone")}
-              </label>
-              <input
-                type="tel"
-                id="phone"
-                name="phone"
-                value={formData.phone}
-                onChange={handleChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0085b2]"
-                placeholder=""
-              />
-            </div>
-
-            {/* Email */}
-            <div>
-              <label htmlFor="email" className="block text-sm font-semibold text-gray-800 mb-2">
-                {t("contactPage.formLabels.email")} <span className="text-red-500">*</span>
-              </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                required
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0085b2]"
-                placeholder=""
-              />
-            </div>
-
-            {/* Certificate Type */}
-            <div>
-              <label htmlFor="certificateType" className="block text-sm font-semibold text-gray-800 mb-2">
-                {t("contactPage.formLabels.certificateType")} <span className="text-red-500">*</span>
-              </label>
-              <input
-                type="text"
-                id="certificateType"
-                name="certificateType"
-                value={formData.certificateType}
-                onChange={handleChange}
-                required
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0085b2]"
-              />
-            </div>
-
-            {/* Purpose */}
-            <div>
-              <label htmlFor="purpose" className="block text-sm font-semibold text-gray-800 mb-2">
-                {t("contactPage.formLabels.purpose")}
-              </label>
-              <input
-                type="text"
-                id="purpose"
-                name="purpose"
-                value={formData.purpose}
-                onChange={handleChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0085b2]"
-                placeholder=""
-              />
-            </div>
-
-            {/* Submission Place */}
-            <div>
-              <label htmlFor="submissionPlace" className="block text-sm font-semibold text-gray-800 mb-2">
-                {t("contactPage.formLabels.submissionPlace")}
-              </label>
-              <input
-                type="text"
-                id="submissionPlace"
-                name="submissionPlace"
-                value={formData.submissionPlace}
-                onChange={handleChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0085b2]"
-                placeholder=""
-              />
-            </div>
-
-            {/* Receive Method */}
-            <div>
-              <label htmlFor="receiveMethod" className="block text-sm font-semibold text-gray-800 mb-2">
-                {t("contactPage.formLabels.receiveMethod")}
-              </label>
-              <select
-                id="receiveMethod"
-                name="receiveMethod"
-                value={formData.receiveMethod}
-                onChange={handleChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0085b2]"
-              >
-                <option value="">{t("contactPage.receiveOptions.selectDefault")}</option>
-                <option value="mail">{t("contactPage.receiveOptions.mail")}</option>
-                <option value="pickup">{t("contactPage.receiveOptions.pickup")}</option>
-                <option value="proxy">{t("contactPage.receiveOptions.proxy")}</option>
-              </select>
-            </div>
-
-            {/* Notes */}
-            <div className="md:col-span-2">
-              <label htmlFor="notes" className="block text-sm font-semibold text-gray-800 mb-2">
-                {t("contactPage.formLabels.notes")} <span className="text-red-500">*</span>
+              {/* Notes */}
+              <label htmlFor="notes" className="block text-sm font-medium text-gray-700 mb-2.5">
+                {t("contactPage.formLabels.notes")} <span className="text-[#0085b2] font-bold">*</span>
               </label>
               <textarea
                 id="notes"
@@ -445,10 +450,26 @@ export function ContactSection() {
                 value={formData.notes}
                 onChange={handleChange}
                 required
-                rows={4}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0085b2]"
-                placeholder=""
+                rows={5}
+                className="w-full px-4 py-3.5 bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-[#0085b2] focus:shadow-lg focus:shadow-[#0085b2]/10 transition-all duration-200 resize-none"
               />
+            </div>
+
+            {/* Test recipient email field - moved to bottom, made less prominent */}
+            <div className="mt-8 pt-8 border-t border-gray-200/50">
+              <label htmlFor="recipientEmail" className="block text-xs font-medium text-gray-600 mb-2">
+                {t("contactPage.testEmailLabel")}
+              </label>
+              <input
+                type="email"
+                id="recipientEmail"
+                value={recipientEmail}
+                onChange={(e) => setRecipientEmail(e.target.value)}
+                required
+                className="w-full px-4 py-2.5 bg-gray-100 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-[#0085b2] focus:shadow-lg focus:shadow-[#0085b2]/10 transition-all duration-200"
+                placeholder="test@example.com"
+              />
+              <p className="mt-1.5 text-xs text-gray-500">{t("contactPage.testEmailNote")}</p>
             </div>
           </div>
 
@@ -457,7 +478,7 @@ export function ContactSection() {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="px-12 py-3 bg-[#0085b2] text-white font-semibold rounded-full hover:bg-[#006794] transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="px-10 py-3.5 bg-[#0085b2] text-white font-semibold rounded-full hover:bg-[#006794] hover:shadow-lg hover:shadow-[#0085b2]/30 active:scale-95 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:shadow-none"
             >
               {isSubmitting ? t("contactPage.submittingBtn") : t("contactPage.submitBtn")}
             </button>
