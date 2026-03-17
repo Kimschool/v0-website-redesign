@@ -106,7 +106,7 @@ function Pattern1({ phase, imageVisible }: { phase: Phase; imageVisible: boolean
           }}
         >
           <Image
-            src="/images/original_from_customer/6修正.png"
+            src="/images/original_from_customer/kcp-logo-6.png"
             alt="KCP Logo"
             fill
             className="object-contain"
@@ -238,7 +238,7 @@ function Pattern2({ phase, imageVisible }: { phase: Phase; imageVisible: boolean
           }}
         >
           <Image
-            src="/images/original_from_customer/6修正.png"
+            src="/images/original_from_customer/kcp-logo-6.png"
             alt="KCP Logo"
             fill
             className="object-contain"
@@ -388,7 +388,7 @@ function Pattern3({ phase, imageVisible }: { phase: Phase; imageVisible: boolean
           }}
         >
           <Image
-            src="/images/original_from_customer/6修正.png"
+            src="/images/original_from_customer/kcp-logo-6.png"
             alt="KCP Logo"
             fill
             className="object-contain"
