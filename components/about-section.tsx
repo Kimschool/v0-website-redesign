@@ -7,6 +7,7 @@ import { useTranslation } from "react-i18next"
 
 export function AboutSection() {
   const { t } = useTranslation()
+
   const sectionRef = useRef<HTMLElement>(null)
   const [isVisible, setIsVisible] = useState(false)
   const [visibleItems, setVisibleItems] = useState<Set<number>>(new Set())
