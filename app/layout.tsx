@@ -19,7 +19,6 @@ const notoSerifJP = Noto_Serif_JP({
 export const metadata: Metadata = {
   title: 'KCP地球市民日本語学校 | ともにまなび ともに生きる',
   description: '学校法人KCP学園 KCP地球市民日本語学校 - 日本語教育を通じて世界をつなぐ',
-  generator: 'v0.app',
   icons: {
     icon: [
       {
