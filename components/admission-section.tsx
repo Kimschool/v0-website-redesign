@@ -126,6 +126,30 @@ export function AdmissionSection() {
   }, [pamphletLanguages, selectedPamphletLanguageKey])
 
   useEffect(() => {
+    const isAnyModalOpen = isApplicationModalOpen || isPamphletModalOpen
+    if (!isAnyModalOpen) return
+
+    const scrollY = window.scrollY
+    const originalOverflow = document.body.style.overflow
+    const originalPosition = document.body.style.position
+    const originalTop = document.body.style.top
+    const originalWidth = document.body.style.width
+
+    document.body.style.overflow = "hidden"
+    document.body.style.position = "fixed"
+    document.body.style.top = `-${scrollY}px`
+    document.body.style.width = "100%"
+
+    return () => {
+      document.body.style.overflow = originalOverflow
+      document.body.style.position = originalPosition
+      document.body.style.top = originalTop
+      document.body.style.width = originalWidth
+      window.scrollTo(0, scrollY)
+    }
+  }, [isApplicationModalOpen, isPamphletModalOpen])
+
+  useEffect(() => {
     if (!isApplicationModalOpen && !isPamphletModalOpen) return
 
     function handleKeyDown(event: KeyboardEvent) {
@@ -437,7 +461,7 @@ export function AdmissionSection() {
 
       {isApplicationModalOpen ? (
         <div
-          className="fixed inset-0 z-[60] flex items-center justify-center p-4"
+          className="fixed inset-0 z-[60] overflow-y-auto overscroll-contain p-4"
           role="dialog"
           aria-modal="true"
           aria-label={t("admissionPage.applicationTitle")}
@@ -449,7 +473,7 @@ export function AdmissionSection() {
             onClick={() => setIsApplicationModalOpen(false)}
           />
 
-          <div className="relative w-full max-w-5xl overflow-hidden rounded-2xl bg-white shadow-2xl">
+          <div className="relative w-full max-w-5xl overflow-hidden rounded-2xl bg-white shadow-2xl mx-auto my-auto">
             <div className="flex items-start justify-between gap-4 border-b border-gray-200 px-5 py-4">
               <div>
                 <p className="text-xs font-semibold tracking-[0.2em] text-[#0085b2]">
@@ -550,7 +574,7 @@ export function AdmissionSection() {
 
       {isPamphletModalOpen ? (
         <div
-          className="fixed inset-0 z-[60] flex items-center justify-center p-4"
+          className="fixed inset-0 z-[60] overflow-y-auto overscroll-contain p-4"
           role="dialog"
           aria-modal="true"
           aria-label={t("admissionPage.pamphletTitle")}
@@ -562,7 +586,7 @@ export function AdmissionSection() {
             onClick={() => setIsPamphletModalOpen(false)}
           />
 
-          <div className="relative w-full max-w-5xl overflow-hidden rounded-2xl bg-white shadow-2xl">
+          <div className="relative w-full max-w-5xl overflow-hidden rounded-2xl bg-white shadow-2xl mx-auto my-auto">
             <div className="flex items-start justify-between gap-4 border-b border-gray-200 px-5 py-4">
               <div>
                 <p className="text-xs font-semibold tracking-[0.2em] text-emerald-600">
