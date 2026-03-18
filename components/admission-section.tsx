@@ -62,44 +62,82 @@ export function AdmissionSection() {
             <div className="elegant-divider mt-8" />
           </div>
 
+          {/* Step Flow */}
+          <div className={`mb-20 ${isVisible ? "animate-fade-in-up animation-delay-200" : "opacity-0"}`}>
+            <h2 className="font-serif text-3xl md:text-4xl font-bold text-gray-900 mb-8 flex items-center gap-3">
+              <span className="inline-block w-1.5 h-8 rounded-full bg-[#0085b2]" />
+              {t("admissionPage.flowTitle")}
+            </h2>
+            <div className="grid md:grid-cols-4 gap-4">
+              {[
+                t("admissionPage.flowSteps.0"),
+                t("admissionPage.flowSteps.1"),
+                t("admissionPage.flowSteps.2"),
+                t("admissionPage.flowSteps.3"),
+              ].map((label, index) => (
+                <div
+                  key={index}
+                  className="rounded-2xl bg-white shadow-sm hover:shadow-lg transition-shadow border border-[#0085b2]/10 px-5 py-6 flex flex-col gap-2"
+                >
+                  <span className="inline-flex items-center gap-2 text-xs font-semibold tracking-[0.2em] text-[#0085b2]">
+                    STEP {index + 1}
+                  </span>
+                  <p className="text-sm md:text-base text-gray-800 leading-relaxed">{label}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
           {/* Contact Section */}
-          <Link href="/contact" className="block group mb-16">
-            <div className="relative bg-gradient-to-br from-[#f0ffff] to-[#0085b2]/10 p-8 md:p-12 rounded-xl border-2 border-[#0085b2]/20 cursor-pointer overflow-hidden transition-all duration-300 hover:shadow-2xl hover:border-[#0085b2] hover:scale-105">
-              {/* Background accent */}
-              <div className="absolute top-0 right-0 w-32 h-32 bg-[#0085b2]/20 rounded-full opacity-30 -mr-16 -mt-16 group-hover:scale-110 transition-transform duration-300" />
-              
+          <Link href="/contact" className="block group mb-20">
+            <div className="relative rounded-2xl bg-gradient-to-br from-[#0085b2]/10 via-[#f0ffff] to-[#0cc0df]/5 border border-[#0085b2]/20 cursor-pointer overflow-hidden transition-all duration-500 hover:shadow-2xl hover:border-[#0085b2]/60">
+              {/* Background accents */}
+              <div className="absolute -top-10 -right-10 w-40 h-40 bg-[#0085b2]/15 rounded-full blur-3xl" />
+              <div className="absolute bottom-0 left-0 w-48 h-32 bg-[#0cc0df]/10 rounded-t-full blur-3xl" />
+
               {/* Content */}
-              <div className="relative z-10">
-                {/* Header with icon */}
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="p-3 bg-[#0085b2] rounded-lg">
-                    <MessageCircle className="w-6 h-6 text-white" />
+              <div className="relative z-10 px-8 md:px-12 py-8 md:py-10 flex flex-col md:flex-row gap-8 md:items-center">
+                <div className="flex-1">
+                  <div className="inline-flex items-center gap-2 bg-white/70 backdrop-blur px-3 py-1 rounded-full border border-[#0085b2]/20 mb-4">
+                    <MessageCircle className="w-4 h-4 text-[#0085b2]" />
+                    <span className="text-xs font-semibold text-[#0085b2] tracking-[0.16em]">
+                      {t("admissionPage.contactBadge")}
+                    </span>
                   </div>
-                  <h2 className="text-2xl md:text-3xl font-bold text-gray-900">{t("admissionPage.contactTitle")}</h2>
+                  <h2 className="font-serif text-2xl md:text-3xl font-bold text-gray-900 mb-3">
+                    {t("admissionPage.contactTitle")}
+                  </h2>
+                  <p className="text-sm md:text-base text-gray-700 mb-4 leading-relaxed">
+                    {t("admissionPage.contactDescription")}
+                  </p>
+
+                  <div className="grid sm:grid-cols-2 gap-4 mb-4">
+                    <div className="bg-white/80 backdrop-blur-sm p-4 rounded-xl border border-[#0085b2]/15 shadow-sm">
+                      <p className="text-xs font-semibold text-gray-500 mb-1">
+                        {t("admissionPage.contactEmail")}
+                      </p>
+                      <p className="text-gray-900 font-medium text-sm">info@kcp.ac.jp</p>
+                    </div>
+                    <div className="bg-white/80 backdrop-blur-sm p-4 rounded-xl border border-[#0085b2]/15 shadow-sm">
+                      <p className="text-xs font-semibold text-gray-500 mb-1">
+                        {t("admissionPage.contactHours")}
+                      </p>
+                      <p className="text-gray-900 font-medium text-sm">
+                        {t("admissionPage.contactHoursValue")}
+                      </p>
+                    </div>
+                  </div>
+
+                  <p className="text-xs md:text-sm text-gray-600">
+                    {t("admissionPage.contactCta")}
+                  </p>
                 </div>
 
-                {/* Description */}
-                <p className="text-lg text-gray-700 mb-6 leading-relaxed">
-                  {t("admissionPage.contactDescription")}
-                </p>
-
-                {/* Info cards */}
-                <div className="grid md:grid-cols-2 gap-4 mb-8">
-                  <div className="bg-white/70 backdrop-blur-sm p-4 rounded-lg border border-[#0085b2]/30">
-                    <p className="text-sm font-semibold text-gray-600 mb-1">{t("admissionPage.contactEmail")}</p>
-                    <p className="text-gray-800 font-medium">info@kcp.ac.jp</p>
-                  </div>
-                  <div className="bg-white/70 backdrop-blur-sm p-4 rounded-lg border border-[#0085b2]/30">
-                    <p className="text-sm font-semibold text-gray-600 mb-1">{t("admissionPage.contactHours")}</p>
-                    <p className="text-gray-800 font-medium">{t("admissionPage.contactHoursValue")}</p>
-                  </div>
-                </div>
-
-                {/* CTA Button */}
-                <div className="flex items-center justify-between">
-                  <p className="text-gray-600 font-medium">{t("admissionPage.contactCta")}</p>
-                  <div className="p-2 bg-[#0085b2] rounded-lg group-hover:bg-[#006794] group-hover:translate-x-1 transition-all duration-300">
-                    <ArrowRight className="w-5 h-5 text-white" />
+                <div className="md:w-40 flex md:flex-col items-end justify-between md:items-center gap-4">
+                  <div className="hidden md:block h-16 w-px bg-gradient-to-b from-transparent via-[#0085b2]/40 to-transparent" />
+                  <div className="inline-flex items-center gap-3 rounded-full bg-[#0085b2] text-white px-5 py-3 text-sm font-semibold shadow-lg shadow-[#0085b2]/30 group-hover:bg-[#006794] group-hover:translate-x-1 transition-all">
+                    <span>{t("admissionPage.contactButton")}</span>
+                    <ArrowRight className="w-4 h-4" />
                   </div>
                 </div>
               </div>
@@ -107,51 +145,68 @@ export function AdmissionSection() {
           </Link>
 
           {/* Application Documents */}
-          <div className="mb-16">
-            <h2 className="text-2xl font-bold text-gray-900 mb-8">{t("admissionPage.documentsTitle")}</h2>
+          <div className="mb-20">
+            <h2 className="font-serif text-3xl md:text-4xl font-bold text-gray-900 mb-8 flex items-center gap-3">
+              <span className="inline-block w-1.5 h-8 rounded-full bg-[#0085b2]" />
+              {t("admissionPage.documentsTitle")}
+            </h2>
 
             <div className="grid md:grid-cols-2 gap-8">
               {/* Application Form */}
-              <div className="border border-gray-300 rounded-lg p-6 hover:shadow-lg transition">
-                <h3 className="text-xl font-bold text-gray-800 mb-4">{t("admissionPage.applicationTitle")}</h3>
-                <p className="text-gray-600 mb-4">
+              <div className="rounded-2xl bg-white shadow-md hover:shadow-xl transition-shadow border border-[#0085b2]/10 p-6 md:p-7 flex flex-col h-full">
+                <h3 className="font-serif text-2xl font-bold text-gray-900 mb-3">
+                  {t("admissionPage.applicationTitle")}
+                </h3>
+                <p className="text-sm md:text-base text-gray-700 mb-4 leading-relaxed">
                   {t("admissionPage.applicationDesc")}
                 </p>
-                <div className="space-y-2">
-                  <p className="text-gray-700">
-                    <span className="font-semibold">{t("admissionPage.applicationLangs")}</span><br />
-                    {t("admissionPage.applicationLangsValue")}
-                  </p>
+                <p className="text-sm text-gray-700 mb-2">
+                  <span className="font-semibold">{t("admissionPage.applicationLangs")}</span>
+                  <br />
+                  {t("admissionPage.applicationLangsValue")}
+                </p>
+                <div className="mt-5 flex flex-wrap items-center justify-between gap-3">
+                  <span className="inline-flex items-center rounded-full bg-[#0085b2]/5 text-[#0085b2] px-3 py-1 text-xs font-semibold">
+                    PDF / Form
+                  </span>
+                  <a
+                    href="https://weavus-group.com/kcp/%e9%a1%98%e6%9b%b8%e3%82%bb%e3%83%83%e3%83%88/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2 rounded-full bg-[#0085b2] hover:bg-[#006794] text-white text-sm font-semibold px-6 py-2.5 transition-colors shadow-md shadow-[#0085b2]/30"
+                  >
+                    {t("admissionPage.applicationBtn")}
+                    <ArrowRight className="w-4 h-4" />
+                  </a>
                 </div>
-                <a
-                  href="https://weavus-group.com/kcp/%e9%a1%98%e6%9b%b8%e3%82%bb%e3%83%83%e3%83%88/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block mt-6 w-full bg-[#0085b2] hover:bg-[#006794] text-white font-bold py-3 px-4 rounded-lg transition text-center"
-                >
-                  {t("admissionPage.applicationBtn")}
-                </a>
               </div>
 
               {/* Pamphlet */}
-              <div className="border border-gray-300 rounded-lg p-6 hover:shadow-lg transition">
-                <h3 className="text-xl font-bold text-gray-800 mb-4">{t("admissionPage.pamphletTitle")}</h3>
-                <p className="text-gray-600 mb-4">
+              <div className="rounded-2xl bg-white shadow-md hover:shadow-xl transition-shadow border border-emerald-500/15 p-6 md:p-7 flex flex-col h-full">
+                <h3 className="font-serif text-2xl font-bold text-gray-900 mb-3">
+                  {t("admissionPage.pamphletTitle")}
+                </h3>
+                <p className="text-sm md:text-base text-gray-700 mb-4 leading-relaxed">
                   {t("admissionPage.pamphletDesc")}
                 </p>
-                <div className="space-y-2">
-                  <p className="text-gray-700">
-                    <span className="font-semibold">{t("admissionPage.pamphletFormat")}</span><br />
-                    {t("admissionPage.pamphletFormatValue")}
-                  </p>
+                <p className="text-sm text-gray-700 mb-2">
+                  <span className="font-semibold">{t("admissionPage.pamphletFormat")}</span>
+                  <br />
+                  {t("admissionPage.pamphletFormatValue")}
+                </p>
+                <div className="mt-5 flex flex-wrap items-center justify-between gap-3">
+                  <span className="inline-flex items-center rounded-full bg-emerald-500/5 text-emerald-600 px-3 py-1 text-xs font-semibold">
+                    PDF / Brochure
+                  </span>
+                  <a
+                    href="https://weavus-group.com/kcp/wp-content/uploads/2026/02/KCP%E3%83%91%E3%83%B3%E3%83%95%E3%83%AC%E3%83%83%E3%83%88%E7%A2%BA%E5%AE%9A%E7%89%88.pdf"
+                    download
+                    className="inline-flex items-center justify-center gap-2 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white text-sm font-semibold px-6 py-2.5 transition-colors shadow-md shadow-emerald-500/30"
+                  >
+                    {t("admissionPage.pamphletBtn")}
+                    <ArrowRight className="w-4 h-4" />
+                  </a>
                 </div>
-                <a
-                  href="https://weavus-group.com/kcp/wp-content/uploads/2026/02/KCP%E3%83%91%E3%83%B3%E3%83%95%E3%83%AC%E3%83%83%E3%83%88%E7%A2%BA%E5%AE%9A%E7%89%88.pdf"
-                  download
-                  className="inline-block mt-6 w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-4 rounded-lg transition text-center"
-                >
-                  {t("admissionPage.pamphletBtn")}
-                </a>
               </div>
             </div>
           </div>
@@ -159,85 +214,69 @@ export function AdmissionSection() {
           <div className="w-full h-px bg-gray-300 mb-16" />
 
           {/* Pre-Placement Test */}
-          <div className="mb-16">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">{t("admissionPage.placementTitle")}</h2>
+          <div className="mb-20">
+            <h2 className="font-serif text-3xl md:text-4xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+              <span className="inline-block w-1.5 h-8 rounded-full bg-[#0085b2]" />
+              {t("admissionPage.placementTitle")}
+            </h2>
 
-            <div className="bg-gray-50 p-8 rounded-lg border border-gray-300">
-              <p className="text-gray-700 leading-relaxed mb-6">
+            <div className="rounded-2xl bg-white shadow-md border border-[#0085b2]/10 p-7 md:p-8">
+              <p className="text-sm md:text-base text-gray-700 leading-relaxed mb-6">
                 {t("admissionPage.placementDesc")}
               </p>
 
-              <div className="space-y-4 mb-6">
-                <div className="flex gap-4">
-                  <div className="text-[#0085b2] font-bold text-xl">✓</div>
-                  <div className="text-gray-700">
-                    {t("admissionPage.placementCheck1")}
+              <div className="space-y-3 mb-6">
+                {[0, 1, 2].map((i) => (
+                  <div
+                    key={i}
+                    className="flex items-start gap-3 p-3 rounded-xl bg-white/80 shadow-sm border border-[#0085b2]/10"
+                  >
+                    <span className="mt-1 text-[#0085b2] font-bold text-lg">✓</span>
+                    <p className="text-sm md:text-base text-gray-700">
+                      {t(`admissionPage.placementCheck${i + 1}` as const)}
+                    </p>
                   </div>
-                </div>
-                <div className="flex gap-4">
-                  <div className="text-[#0085b2] font-bold text-xl">✓</div>
-                  <div className="text-gray-700">
-                    {t("admissionPage.placementCheck2")}
-                  </div>
-                </div>
-                <div className="flex gap-4">
-                  <div className="text-[#0085b2] font-bold text-xl">✓</div>
-                  <div className="text-gray-700">
-                    {t("admissionPage.placementCheck3")}
-                  </div>
-                </div>
+                ))}
               </div>
 
-              <p className="text-sm text-gray-600 bg-[#0085b2]/10 border-l-4 border-[#0085b2] p-4 rounded">
-                {t("admissionPage.placementNote")}
-              </p>
+              <div className="mt-4 rounded-2xl bg-[#fff7e6] border border-[#facc6b] p-4">
+                <p className="text-xs font-semibold text-[#a16207] mb-1">NOTE</p>
+                <p className="text-sm text-gray-800">
+                  {t("admissionPage.placementNote")}
+                </p>
+              </div>
             </div>
           </div>
 
           <div className="w-full h-px bg-gray-300 mb-16" />
 
           {/* Learning Management System */}
-          <div className="mb-16">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">{t("admissionPage.lmsTitle")}</h2>
+          <div className="mb-20">
+            <h2 className="font-serif text-3xl md:text-4xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+              <span className="inline-block w-1.5 h-8 rounded-full bg-[#0085b2]" />
+              {t("admissionPage.lmsTitle")}
+            </h2>
 
             <div className="grid md:grid-cols-2 gap-8">
-              <div className="space-y-4 text-gray-700 leading-relaxed">
-                <p>
-                  {t("admissionPage.lmsDesc1")}
-                </p>
-                <p>
-                  {t("admissionPage.lmsDesc2")}
-                </p>
-                <p>
-                  {t("admissionPage.lmsDesc3")}
-                </p>
+              <div className="space-y-4 text-sm md:text-base text-gray-700 leading-relaxed">
+                <p>{t("admissionPage.lmsDesc1")}</p>
+                <p>{t("admissionPage.lmsDesc2")}</p>
+                <p>{t("admissionPage.lmsDesc3")}</p>
                 <p className="font-semibold text-[#0085b2]">
                   {t("admissionPage.lmsNote")}
                 </p>
               </div>
-              <div className="bg-[#f0ffff] p-6 rounded-lg border border-[#0085b2]/20">
-                <h3 className="font-bold text-gray-800 mb-4">{t("admissionPage.lmsFeatureTitle")}</h3>
+              <div className="rounded-2xl bg-[#f0ffff] p-6 md:p-7 border border-[#0085b2]/20 shadow-sm">
+                <h3 className="font-serif text-xl font-bold text-gray-900 mb-4">
+                  {t("admissionPage.lmsFeatureTitle")}
+                </h3>
                 <ul className="space-y-3 text-gray-700 text-sm">
-                  <li className="flex gap-2">
-                    <span className="text-[#0085b2] font-bold">•</span>
-                    <span>{t("admissionPage.lmsFeatures.0")}</span>
-                  </li>
-                  <li className="flex gap-2">
-                    <span className="text-[#0085b2] font-bold">•</span>
-                    <span>{t("admissionPage.lmsFeatures.1")}</span>
-                  </li>
-                  <li className="flex gap-2">
-                    <span className="text-[#0085b2] font-bold">•</span>
-                    <span>{t("admissionPage.lmsFeatures.2")}</span>
-                  </li>
-                  <li className="flex gap-2">
-                    <span className="text-[#0085b2] font-bold">•</span>
-                    <span>{t("admissionPage.lmsFeatures.3")}</span>
-                  </li>
-                  <li className="flex gap-2">
-                    <span className="text-[#0085b2] font-bold">•</span>
-                    <span>{t("admissionPage.lmsFeatures.4")}</span>
-                  </li>
+                  {[0, 1, 2, 3, 4].map((i) => (
+                    <li key={i} className="flex gap-2">
+                      <span className="mt-0.5 inline-block w-1.5 h-1.5 rounded-full bg-[#0085b2]" />
+                      <span>{t(`admissionPage.lmsFeatures.${i}` as const)}</span>
+                    </li>
+                  ))}
                 </ul>
               </div>
             </div>
@@ -246,38 +285,40 @@ export function AdmissionSection() {
           <div className="w-full h-px bg-gray-300 mb-16" />
 
           {/* Scholarship */}
-          <div className="mb-16">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">{t("admissionPage.scholarshipTitle")}</h2>
+          <div className="mb-12">
+            <h2 className="font-serif text-3xl md:text-4xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+              <span className="inline-block w-1.5 h-8 rounded-full bg-[#0085b2]" />
+              {t("admissionPage.scholarshipTitle")}
+            </h2>
 
-            <p className="text-gray-700 leading-relaxed mb-8">
+            <p className="text-sm md:text-base text-gray-700 leading-relaxed mb-6">
               {t("admissionPage.scholarshipDesc")}
             </p>
 
-            <div className="space-y-6">
-              {/* Scholarship 1 */}
-              <div className="border-l-4 border-[#0085b2] pl-6 py-4">
-                <h3 className="text-lg font-bold text-gray-800 mb-2">
+            <div className="space-y-4">
+              <div className="rounded-2xl bg-white shadow-sm border border-[#0085b2]/15 p-5">
+                <h3 className="text-lg font-bold text-gray-900 mb-2">
                   {t("admissionPage.scholarship1Title")}
                 </h3>
-                <p className="text-gray-600">
+                <p className="text-sm md:text-base text-gray-700">
                   {t("admissionPage.scholarship1Desc")}
                 </p>
               </div>
 
-              {/* Scholarship 2 */}
-              <div className="border-l-4 border-green-500 pl-6 py-4">
-                <h3 className="text-lg font-bold text-gray-800 mb-2">
+              <div className="rounded-2xl bg-white shadow-sm border border-emerald-500/20 p-5">
+                <h3 className="text-lg font-bold text-gray-900 mb-2">
                   {t("admissionPage.scholarship2Title")}
                 </h3>
-                <p className="text-gray-600">
+                <p className="text-sm md:text-base text-gray-700">
                   {t("admissionPage.scholarship2Desc")}
                 </p>
               </div>
             </div>
 
-            <div className="mt-8 bg-yellow-50 p-6 rounded-lg border border-yellow-200">
-              <p className="text-gray-700">
-                <strong className="text-gray-800">※</strong> {t("admissionPage.scholarshipNote")}
+            <div className="mt-8 rounded-2xl bg-[#fff7e6] border border-[#facc6b] p-5">
+              <p className="text-xs font-semibold text-[#a16207] mb-1">NOTE</p>
+              <p className="text-sm text-gray-800">
+                {t("admissionPage.scholarshipNote")}
               </p>
             </div>
           </div>
