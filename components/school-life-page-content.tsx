@@ -168,28 +168,42 @@ export function SchoolLifePageContent() {
           </h2>
 
           {/* Grid Layout */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-gray-300 border border-gray-300">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
             {scheduleItems.map((item, index) => (
               <div
                 key={index}
-                className={`relative bg-white overflow-hidden cursor-pointer group ${item.fullWidth ? "md:col-span-2 h-[400px]" : "h-[300px]"
-                  }`}
+                className={`group bg-white rounded-2xl shadow-md hover:shadow-xl transition-shadow overflow-hidden ${
+                  item.fullWidth ? "md:col-span-2" : ""
+                }`}
               >
-                <Image
-                  src={item.image}
-                  alt={item.month}
-                  fill
-                  className="object-cover transition-transform duration-400 ease-out group-hover:scale-105"
-                />
-
-                {/* Top overlay - month */}
-                <div className="absolute top-0 left-0 w-full bg-gray-100/85 text-center py-4 px-4 opacity-0 -translate-y-5 transition-all duration-400 ease-out group-hover:opacity-100 group-hover:translate-y-0 z-10">
-                  <span className="text-2xl font-bold text-gray-900">{item.month}</span>
+                {/* Top text box */}
+                <div className="bg-gray-100 text-center py-4 px-4">
+                  <span className="text-2xl font-bold text-gray-900">
+                    {item.month}
+                  </span>
                 </div>
 
-                {/* Bottom overlay - description */}
-                <div className="absolute bottom-0 left-0 w-full bg-gray-100/85 text-center py-4 px-4 opacity-0 translate-y-5 transition-all duration-400 ease-out group-hover:opacity-100 group-hover:translate-y-0 z-10">
-                  <span className="text-sm text-gray-700">{item.description}</span>
+                {/* Image */}
+                <div
+                  className={
+                    item.fullWidth
+                      ? "relative w-full h-[340px] md:h-[420px] bg-gray-100 overflow-hidden"
+                      : "relative w-full h-[260px] md:h-[300px] bg-gray-100 overflow-hidden"
+                  }
+                >
+                  <Image
+                    src={item.image}
+                    alt={item.month}
+                    fill
+                    className="object-cover transition-transform duration-400 ease-out group-hover:scale-105"
+                  />
+                </div>
+
+                {/* Bottom text box */}
+                <div className="bg-gray-100 text-center py-4 px-4">
+                  <span className="text-sm text-gray-700">
+                    {item.description}
+                  </span>
                 </div>
               </div>
             ))}
@@ -210,27 +224,34 @@ export function SchoolLifePageContent() {
             {t("schoolLifePage.clubTitle")}
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-gray-300 border border-gray-300">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
             {clubActivities.map((club, index) => (
               <div
                 key={index}
-                className="relative bg-white overflow-hidden cursor-pointer group h-[300px]"
+                className="group bg-white rounded-2xl shadow-md hover:shadow-xl transition-shadow overflow-hidden"
               >
-                <Image
-                  src={club.image}
-                  alt={club.name}
-                  fill
-                  className="object-cover transition-transform duration-400 ease-out group-hover:scale-105"
-                />
-
-                {/* Top overlay - name */}
-                <div className="absolute top-0 left-0 w-full bg-gray-100/85 text-center py-4 px-4 opacity-0 -translate-y-5 transition-all duration-400 ease-out group-hover:opacity-100 group-hover:translate-y-0 z-10">
-                  <span className="text-2xl font-bold text-gray-900">{club.name}</span>
+                {/* Top text box */}
+                <div className="bg-gray-100 text-center py-4 px-4">
+                  <span className="text-2xl font-bold text-gray-900">
+                    {club.name}
+                  </span>
                 </div>
 
-                {/* Bottom overlay - description */}
-                <div className="absolute bottom-0 left-0 w-full bg-gray-100/85 text-center py-4 px-4 opacity-0 translate-y-5 transition-all duration-400 ease-out group-hover:opacity-100 group-hover:translate-y-0 z-10">
-                  <span className="text-sm text-gray-700">{club.description}</span>
+                {/* Image */}
+                <div className="relative w-full h-[260px] md:h-[320px] bg-gray-100 overflow-hidden">
+                  <Image
+                    src={club.image}
+                    alt={club.name}
+                    fill
+                    className="object-cover transition-transform duration-400 ease-out group-hover:scale-105"
+                  />
+                </div>
+
+                {/* Bottom text box */}
+                <div className="bg-gray-100 text-center py-4 px-4">
+                  <span className="text-sm text-gray-700">
+                    {club.description}
+                  </span>
                 </div>
               </div>
             ))}

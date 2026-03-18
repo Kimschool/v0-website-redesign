@@ -75,7 +75,7 @@ export function SchoolLifeSection() {
         </div>
 
         {/* 3-card grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-12">
           {cards.map((card, index) => {
             const Icon = card.icon
             return (
@@ -86,31 +86,35 @@ export function SchoolLifeSection() {
                   isVisible ? `animate-fade-in-up animation-delay-${(index + 1) * 200}` : "opacity-0"
                 }`}
               >
+                {/* Title (top text box) */}
+                <div className="px-6 pt-6 pb-4">
+                  <div className="flex items-start justify-between gap-4">
+                    <h3 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors font-serif leading-snug">
+                      {card.titleKey}
+                    </h3>
+                    {/* Icon badge */}
+                    <div className="w-11 h-11 shrink-0 bg-white border border-gray-200 rounded-xl flex items-center justify-center shadow-sm transform transition-all duration-300 group-hover:scale-105 group-hover:rotate-2">
+                      <Icon className="w-5 h-5 text-primary" />
+                    </div>
+                  </div>
+                </div>
+
                 {/* Image */}
-                <div className="aspect-[4/3] relative overflow-hidden">
+                <div className="aspect-[4/3] relative overflow-hidden mx-6 rounded-2xl">
                   <Image
                     src={card.image}
                     alt={card.titleKey}
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-110"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  
-                  {/* Icon badge */}
-                  <div className="absolute top-4 right-4 w-12 h-12 bg-white/90 backdrop-blur-sm rounded-xl flex items-center justify-center shadow-lg transform transition-all duration-300 group-hover:scale-110 group-hover:rotate-3">
-                    <Icon className="w-6 h-6 text-primary" />
-                  </div>
                 </div>
                 
-                {/* Content */}
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors font-serif">
-                    {card.titleKey}
-                  </h3>
-                  <p className="text-sm text-muted-foreground mb-4">
+                {/* Description + CTA (bottom text box) */}
+                <div className="p-6 pt-5">
+                  <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
                     {card.description}
                   </p>
-                  <div className="flex items-center gap-2 text-primary font-semibold text-sm opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
+                  <div className="flex items-center gap-2 text-primary font-semibold text-sm">
                     <span>詳細を見る</span>
                     <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                   </div>
