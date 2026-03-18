@@ -1,15 +1,29 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useMemo, useRef, useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { useTranslation } from "react-i18next"
 import { ArrowRight } from "lucide-react"
 
+type TimetableTone =
+  | "kanji"
+  | "listening"
+  | "comprehensive"
+  | "reading"
+  | "essay"
+  | "prepElective"
+  | "neutral"
+
 export function EducationSection() {
   const { t } = useTranslation()
   const sectionRef = useRef<HTMLElement>(null)
   const [isVisible, setIsVisible] = useState(false)
+  const [activeCourseTab, setActiveCourseTab] = useState<"prep" | "advanced">(
+    "prep"
+  )
+  const [activeCefrStep, setActiveCefrStep] = useState<1 | 2 | 3 | 4 | 5>(3)
+  const [activeClassContentId, setActiveClassContentId] = useState<number>(0)
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -27,6 +41,155 @@ export function EducationSection() {
 
     return () => observer.disconnect()
   }, [])
+
+  const timetableToneStyles = useMemo<Record<TimetableTone, string>>(
+    () => ({
+      kanji: "bg-gray-100 text-gray-900 ring-1 ring-gray-200",
+      listening: "bg-gray-100 text-gray-900 ring-1 ring-gray-200",
+      comprehensive: "bg-gray-100 text-gray-900 ring-1 ring-gray-200",
+      reading: "bg-gray-100 text-gray-900 ring-1 ring-gray-200",
+      essay: "bg-gray-100 text-gray-900 ring-1 ring-gray-200",
+      prepElective: "bg-gray-100 text-gray-900 ring-1 ring-gray-200",
+      neutral: "bg-gray-100 text-gray-900 ring-1 ring-gray-200",
+    }),
+    []
+  )
+
+  const timetableDays = useMemo(
+    () => [
+      { key: "mon", label: t("educationPage.dayMon") },
+      { key: "tue", label: t("educationPage.dayTue") },
+      { key: "wed", label: t("educationPage.dayWed") },
+      { key: "thu", label: t("educationPage.dayThu") },
+      { key: "fri", label: t("educationPage.dayFri") },
+    ],
+    [t]
+  )
+
+  const beginnerTimeSlots = useMemo(
+    () => [
+      t("educationPage.beginnerTimeSlots.0"),
+      t("educationPage.beginnerTimeSlots.1"),
+      t("educationPage.beginnerTimeSlots.2"),
+      t("educationPage.beginnerTimeSlots.3"),
+      t("educationPage.beginnerTimeSlots.4"),
+    ],
+    [t]
+  )
+
+  const intermediateTimeSlots = useMemo(
+    () => [
+      t("educationPage.intermediateTimeSlots.0"),
+      t("educationPage.intermediateTimeSlots.1"),
+      t("educationPage.intermediateTimeSlots.2"),
+      t("educationPage.intermediateTimeSlots.3"),
+    ],
+    [t]
+  )
+
+  const beginnerTones: TimetableTone[][] = useMemo(
+    () => [
+      ["kanji", "listening", "kanji", "listening", "kanji"],
+      ["comprehensive", "comprehensive", "comprehensive", "comprehensive", "comprehensive"],
+      ["comprehensive", "comprehensive", "comprehensive", "comprehensive", "comprehensive"],
+      ["comprehensive", "comprehensive", "comprehensive", "comprehensive", "prepElective"],
+      ["prepElective", "neutral", "prepElective", "neutral", "prepElective"],
+    ],
+    []
+  )
+
+  const intermediateTones: TimetableTone[][] = useMemo(
+    () => [
+      ["kanji", "listening", "kanji", "kanji", "kanji"],
+      ["listening", "comprehensive", "reading", "comprehensive", "listening"],
+      ["essay", "comprehensive", "comprehensive", "comprehensive", "reading"],
+      ["essay", "prepElective", "prepElective", "neutral", "reading"],
+    ],
+    []
+  )
+
+  const cefrRows = useMemo(
+    () => [
+      {
+        step: 1 as const,
+        cefr: "🟢A1",
+        kcp: "Lv.1",
+        goals: [t("educationPage.cefrA1Goal")],
+      },
+      {
+        step: 2 as const,
+        cefr: "🟢A2",
+        kcp: "Lv.2",
+        goals: [t("educationPage.cefrA2Goal")],
+      },
+      {
+        step: 3 as const,
+        cefr: "🟡B1",
+        kcp: "Lv.3 / Lv.4",
+        goals: [t("educationPage.cefrB1Goal1"), t("educationPage.cefrB1Goal2")],
+      },
+      {
+        step: 4 as const,
+        cefr: "🟠B2",
+        kcp: "Lv.5 / Lv.6",
+        goals: [t("educationPage.cefrB2Goal1"), t("educationPage.cefrB2Goal2")],
+      },
+      {
+        step: 5 as const,
+        cefr: "🟣B2",
+        kcp: "Lv.7 / Lv.8",
+        goals: [
+          t("educationPage.cefrB2AdvGoal1"),
+          t("educationPage.cefrB2AdvGoal2"),
+        ],
+      },
+    ],
+    [t]
+  )
+
+  const activeCefrRow = useMemo(() => {
+    return cefrRows.find((row) => row.step === activeCefrStep) ?? cefrRows[0]
+  }, [activeCefrStep, cefrRows])
+
+  const classContentItems = useMemo(
+    () =>
+      Array.from({ length: 12 }).map((_, i) => ({
+        id: i,
+        title: t(`educationPage.classContent.${i}.title` as const),
+        content: t(`educationPage.classContent.${i}.content` as const),
+      })),
+    [t]
+  )
+
+  const activeClassContentItem = useMemo(() => {
+    return (
+      classContentItems.find((item) => item.id === activeClassContentId) ??
+      classContentItems[0]
+    )
+  }, [activeClassContentId, classContentItems])
+
+  function TimetableBadge({
+    text,
+    tone,
+  }: {
+    text: string
+    tone: TimetableTone
+  }) {
+    const value = text?.trim()
+    if (!value) {
+      return <span className="text-gray-300">—</span>
+    }
+    return (
+      <span
+        className={[
+          "inline-flex items-center rounded-full px-2.5 py-1 text-xs font-semibold leading-none",
+          timetableToneStyles[tone],
+        ].join(" ")}
+      >
+        {value}
+      </span>
+    )
+  }
 
   return (
     <section ref={sectionRef} id="education" className="bg-white">
@@ -63,7 +226,10 @@ export function EducationSection() {
 
           {/* 教育理念・教育方針 */}
           <div className="mb-16">
-            <h2 className="text-2xl md:text-3xl font-bold mb-8 text-gray-900">{t("educationPage.philosophyTitle")}</h2>
+            <h2 className="font-serif text-3xl md:text-4xl font-bold text-gray-900 mb-8 flex items-center gap-3">
+              <span className="inline-block w-1.5 h-8 rounded-full bg-[#0085b2]" />
+              {t("educationPage.philosophyTitle")}
+            </h2>
             <div className="space-y-6 text-gray-700 leading-relaxed">
               <p>
                 {t("educationPage.philosophyText1")}
@@ -78,44 +244,148 @@ export function EducationSection() {
 
           {/* コース紹介 */}
           <div className="mb-16" id="course1">
-            <h2 className="text-2xl md:text-3xl font-bold mb-8 text-gray-900">{t("educationPage.courseIntroTitle")}</h2>
+            <h2 className="font-serif text-3xl md:text-4xl font-bold text-gray-900 mb-8 flex items-center gap-3">
+              <span className="inline-block w-1.5 h-8 rounded-full bg-[#0085b2]" />
+              {t("educationPage.courseIntroTitle")}
+            </h2>
 
-            {/* 進学準備教育 */}
-            <div className="mb-12">
-              <h3 className="text-lg font-bold mb-6 text-gray-900">
-                {t("educationPage.prepCourseTitle")}
-              </h3>
-
-              <div className="grid md:grid-cols-2 gap-8 mb-8">
-                <div>
-                  <div className="relative w-full aspect-[4/3] mb-4 overflow-hidden rounded-lg">
-                    <Image
-                      src={`/images/original_from_customer/${encodeURIComponent('コース紹介')}.jpg`}
-                      alt="進学準備教育コース"
-                      fill
-                      className="object-cover"
+            {/* Tabs */}
+            <div className="mb-8">
+              <div
+                role="tablist"
+                aria-label={t("educationPage.courseIntroTitle")}
+                className="border-b border-gray-200"
+              >
+                <div className="flex gap-6">
+                  <button
+                    type="button"
+                    role="tab"
+                    aria-selected={activeCourseTab === "prep"}
+                    aria-controls="course-tabpanel-prep"
+                    id="course-tab-prep"
+                    onClick={() => setActiveCourseTab("prep")}
+                    className={[
+                      "relative -mb-px px-1 pb-4 text-sm md:text-base font-semibold transition-colors",
+                      activeCourseTab === "prep"
+                        ? "text-[#0085b2]"
+                        : "text-gray-600 hover:text-gray-900",
+                    ].join(" ")}
+                  >
+                    {t("educationPage.prepCourseTitle")}
+                    <span
+                      className={[
+                        "absolute left-0 right-0 -bottom-px h-0.5 rounded-full transition-opacity",
+                        activeCourseTab === "prep"
+                          ? "bg-[#0085b2] opacity-100"
+                          : "bg-transparent opacity-0",
+                      ].join(" ")}
                     />
+                  </button>
+                  <button
+                    type="button"
+                    role="tab"
+                    aria-selected={activeCourseTab === "advanced"}
+                    aria-controls="course-tabpanel-advanced"
+                    id="course-tab-advanced"
+                    onClick={() => setActiveCourseTab("advanced")}
+                    className={[
+                      "relative -mb-px px-1 pb-4 text-sm md:text-base font-semibold transition-colors",
+                      activeCourseTab === "advanced"
+                        ? "text-[#0085b2]"
+                        : "text-gray-600 hover:text-gray-900",
+                    ].join(" ")}
+                  >
+                    進学高度日本語（学びと探求）
+                    <span
+                      className={[
+                        "absolute left-0 right-0 -bottom-px h-0.5 rounded-full transition-opacity",
+                        activeCourseTab === "advanced"
+                          ? "bg-[#0085b2] opacity-100"
+                          : "bg-transparent opacity-0",
+                      ].join(" ")}
+                    />
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Tab panels */}
+            {activeCourseTab === "prep" ? (
+              <div
+                role="tabpanel"
+                id="course-tabpanel-prep"
+                aria-labelledby="course-tab-prep"
+                className="mb-12"
+              >
+                <div className="mb-6 flex flex-wrap items-center gap-2">
+                  <span className="text-xs font-semibold tracking-[0.18em] text-gray-500 mr-1">
+                    COURSE
+                  </span>
+                  {["2年課程", "1年6か月課程"].map((label) => (
+                    <span
+                      key={label}
+                      className="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white px-3 py-1.5 text-xs font-semibold text-gray-800 shadow-sm"
+                    >
+                      <span className="inline-block h-1.5 w-1.5 rounded-full bg-[#0085b2]" />
+                      {label}
+                    </span>
+                  ))}
+                </div>
+
+                <div className="grid lg:grid-cols-2 gap-8 mb-10">
+                  <div>
+                    <div className="relative w-full aspect-[4/3] overflow-hidden rounded-2xl shadow-sm border border-gray-200 bg-gray-50">
+                      <Image
+                        src={`/images/original_from_customer/${encodeURIComponent("コース紹介")}.jpg`}
+                        alt="進学準備教育コース"
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
                   </div>
-                  <div className="space-y-4 text-gray-700 leading-relaxed">
-                    <p>
-                      {t("educationPage.prepCourseDesc1")}
-                    </p>
-                    <p>
-                      {t("educationPage.prepCourseDesc2")}
-                    </p>
+
+                  <div className="space-y-4">
+                    <div className="rounded-2xl border border-gray-200 bg-white shadow-sm p-6">
+                      <div className="flex items-center gap-3 mb-3">
+                        <span className="inline-flex items-center rounded-full bg-[#0085b2]/10 text-[#006d94] px-3 py-1 text-xs font-semibold tracking-[0.18em]">
+                          POINT 01
+                        </span>
+                        <div className="h-px flex-1 bg-gray-200" />
+                      </div>
+                      <p className="text-gray-700 leading-relaxed">
+                        {t("educationPage.prepCourseDesc1")}
+                      </p>
+                    </div>
+
+                    <div className="rounded-2xl border border-gray-200 bg-white shadow-sm p-6">
+                      <div className="flex items-center gap-3 mb-3">
+                        <span className="inline-flex items-center rounded-full bg-[#0085b2]/10 text-[#006d94] px-3 py-1 text-xs font-semibold tracking-[0.18em]">
+                          POINT 02
+                        </span>
+                        <div className="h-px flex-1 bg-gray-200" />
+                      </div>
+                      <p className="text-gray-700 leading-relaxed">
+                        {t("educationPage.prepCourseDesc2")}
+                      </p>
+                    </div>
                   </div>
                 </div>
 
-                <div className="space-y-6">
-                  <div className="bg-gray-50 p-6 rounded-lg border border-gray-200">
-                    <h4 className="font-bold text-gray-900 mb-3">{t("educationPage.prepCourseNoteTitle")}</h4>
+                {/* Moved to bottom (was right column) */}
+                <div className="grid lg:grid-cols-2 gap-6">
+                  <div className="rounded-2xl border border-gray-200 bg-gray-50 p-6">
+                    <h4 className="font-bold text-gray-900 mb-3">
+                      {t("educationPage.prepCourseNoteTitle")}
+                    </h4>
                     <p className="text-gray-700 leading-relaxed">
                       {t("educationPage.prepCourseNoteDesc")}
                     </p>
                   </div>
 
-                  <div>
-                    <h4 className="font-bold text-gray-900 mb-4">{t("educationPage.prepCourseLevelTitle")}</h4>
+                  <div className="rounded-2xl border border-gray-200 bg-white shadow-sm p-6">
+                    <h4 className="font-bold text-gray-900 mb-4">
+                      {t("educationPage.prepCourseLevelTitle")}
+                    </h4>
                     <div className="space-y-3 text-gray-700 leading-relaxed text-sm">
                       <p>{t("educationPage.prepCourseLevelDesc1")}</p>
                       <p>{t("educationPage.prepCourseLevelDesc2")}</p>
@@ -125,86 +395,144 @@ export function EducationSection() {
                   </div>
                 </div>
               </div>
-            </div>
+            ) : null}
 
-            {/* 進学高度日本語 */}
-            <div className="mb-12">
-              <h3 className="text-lg font-bold mb-6 text-gray-900">
-                {t("educationPage.advancedCourseTitle")}
-              </h3>
-
-              <div className="grid md:grid-cols-2 gap-8 mb-8">
-                <div>
-                  <div className="relative w-full aspect-[4/3] mb-4 overflow-hidden rounded-lg">
-                    <Image
-                      src={`/images/original_from_customer/${encodeURIComponent('コース紹介_2')}.jpg`}
-                      alt="進学高度日本語コース"
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                  <p className="text-gray-700 leading-relaxed">
-                    {t("educationPage.advancedCourseDesc")}
-                  </p>
+            {activeCourseTab === "advanced" ? (
+              <div
+                role="tabpanel"
+                id="course-tabpanel-advanced"
+                aria-labelledby="course-tab-advanced"
+                className="mb-12"
+              >
+                <div className="mb-6 flex flex-wrap items-center gap-2">
+                  <span className="text-xs font-semibold tracking-[0.18em] text-gray-500 mr-1">
+                    COURSE
+                  </span>
+                  {[
+                    "2年課程",
+                    "1年9か月課程",
+                    "1年6か月課程",
+                    "1年3か月課程",
+                  ].map((label) => (
+                    <span
+                      key={label}
+                      className="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white px-3 py-1.5 text-xs font-semibold text-gray-800 shadow-sm"
+                    >
+                      <span className="inline-block h-1.5 w-1.5 rounded-full bg-[#0085b2]" />
+                      {label}
+                    </span>
+                  ))}
                 </div>
 
-                <div>
-                  <h4 className="font-bold text-gray-900 mb-4">{t("educationPage.advancedCourseLevelTitle")}</h4>
-                  <div className="space-y-3 text-gray-700 leading-relaxed text-sm">
-                    <p>{t("educationPage.advancedCourseLevelDesc1")}</p>
-                    <p>{t("educationPage.advancedCourseLevelDesc2")}</p>
-                    <p>{t("educationPage.advancedCourseLevelDesc3")}</p>
-                    <p>{t("educationPage.advancedCourseLevelDesc4")}</p>
+                <div className="grid lg:grid-cols-2 gap-8 mb-10">
+                  <div>
+                    <div className="relative w-full aspect-[4/3] overflow-hidden rounded-2xl shadow-sm border border-gray-200 bg-gray-50">
+                      <Image
+                        src={`/images/original_from_customer/${encodeURIComponent("コース紹介_2")}.jpg`}
+                        alt="進学高度日本語コース"
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="rounded-2xl border border-gray-200 bg-white shadow-sm p-6">
+                    <div className="flex items-center gap-3 mb-3">
+                      <span className="inline-flex items-center rounded-full bg-[#0085b2]/10 text-[#006d94] px-3 py-1 text-xs font-semibold tracking-[0.18em]">
+                        OVERVIEW
+                      </span>
+                      <div className="h-px flex-1 bg-gray-200" />
+                    </div>
+                    <p className="text-gray-700 leading-relaxed">
+                      {t("educationPage.advancedCourseDesc")}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Moved to bottom */}
+                <div className="rounded-2xl border border-gray-200 bg-white shadow-sm p-6">
+                  <h4 className="font-bold text-gray-900 mb-4">
+                    {t("educationPage.advancedCourseLevelTitle")}
+                  </h4>
+                  <div className="grid md:grid-cols-2 gap-3 text-sm text-gray-700 leading-relaxed">
+                    {[0, 1, 2, 3].map((i) => (
+                      <div
+                        key={i}
+                        className="rounded-xl border border-gray-200 bg-gray-50 px-4 py-3"
+                      >
+                        {t(`educationPage.advancedCourseLevelDesc${i + 1}` as const)}
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
+            ) : null}
 
-              {/* レベル別到達目標 */}
-              <div>
-                <h4 className="font-bold text-gray-900 mb-4">{t("educationPage.cefrLevelTitle")}</h4>
-                <div className="overflow-x-auto">
-                  <table className="w-full border-collapse text-sm">
-                    <thead>
-                      <tr className="bg-gray-100">
-                        <th className="border border-gray-300 p-3 text-left font-bold">{t("educationPage.cefrHeader")}</th>
-                        <th className="border border-gray-300 p-3 text-left font-bold">{t("educationPage.kcpHeader")}</th>
-                        <th className="border border-gray-300 p-3 text-left font-bold">{t("educationPage.goalHeader")}</th>
-                      </tr>
-                    </thead>
-                    <tbody className="text-gray-700">
-                      <tr>
-                        <td className="border border-gray-300 p-3">🟢A1</td>
-                        <td className="border border-gray-300 p-3">Lv.1</td>
-                        <td className="border border-gray-300 p-3">{t("educationPage.cefrA1Goal")}</td>
-                      </tr>
-                      <tr>
-                        <td className="border border-gray-300 p-3">🟢A2</td>
-                        <td className="border border-gray-300 p-3">Lv.2</td>
-                        <td className="border border-gray-300 p-3">{t("educationPage.cefrA2Goal")}</td>
-                      </tr>
-                      <tr>
-                        <td className="border border-gray-300 p-3">🟡B1</td>
-                        <td className="border border-gray-300 p-3">Lv.3<br />Lv.4</td>
-                        <td className="border border-gray-300 p-3">
-                          <p>{t("educationPage.cefrB1Goal1")}</p><p className="mt-2">{t("educationPage.cefrB1Goal2")}</p>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="border border-gray-300 p-3">🟠B2</td>
-                        <td className="border border-gray-300 p-3">Lv.5<br />Lv.6</td>
-                        <td className="border border-gray-300 p-3">
-                          <p>{t("educationPage.cefrB2Goal1")}</p><p className="mt-2">{t("educationPage.cefrB2Goal2")}</p>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="border border-gray-300 p-3">🟣B2</td>
-                        <td className="border border-gray-300 p-3">Lv.7<br />Lv.8</td>
-                        <td className="border border-gray-300 p-3">
-                          <p>{t("educationPage.cefrB2AdvGoal1")}</p><p className="mt-2">{t("educationPage.cefrB2AdvGoal2")}</p>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
+            {/* Common section (not inside tabs) */}
+            <div>
+              <h4 className="font-bold text-gray-900 mb-4">
+                {t("educationPage.cefrLevelTitle")}
+              </h4>
+              <div className="rounded-2xl border border-gray-200 bg-white shadow-sm p-5">
+                <div className="text-xs font-semibold tracking-[0.18em] text-gray-500 mb-3">
+                  KCP LEVEL
+                </div>
+
+                <div className="grid grid-cols-4 sm:grid-cols-8 gap-2 mb-5">
+                  {Array.from({ length: 8 }).map((_, idx) => {
+                    const level = idx + 1
+                    const step =
+                      level <= 1
+                        ? 1
+                        : level <= 2
+                          ? 2
+                          : level <= 4
+                            ? 3
+                            : level <= 6
+                              ? 4
+                              : 5
+                    const isActive = step === activeCefrStep
+                    return (
+                      <button
+                        key={level}
+                        type="button"
+                        onClick={() => setActiveCefrStep(step as 1 | 2 | 3 | 4 | 5)}
+                        className={[
+                          "rounded-xl border px-2 py-3 text-center text-xs font-semibold transition",
+                          isActive
+                            ? "border-[#0085b2] bg-[#0085b2]/10 text-[#006d94]"
+                            : "border-gray-200 bg-gray-50 text-gray-700 hover:bg-gray-100",
+                        ].join(" ")}
+                        aria-label={`Lv.${level}`}
+                      >
+                        Lv.{level}
+                      </button>
+                    )
+                  })}
+                </div>
+
+                <div className="grid md:grid-cols-[220px_1fr] gap-5">
+                  <div className="rounded-2xl border border-gray-200 bg-gray-50 p-4">
+                    <div className="text-sm font-bold text-gray-900">
+                      {activeCefrRow.cefr}
+                    </div>
+                    <div className="mt-1 text-xs font-semibold text-gray-600">
+                      {activeCefrRow.kcp}
+                    </div>
+                    <div className="mt-4 text-xs font-semibold text-gray-500">
+                      STEP {activeCefrRow.step}
+                    </div>
+                  </div>
+                  <div className="rounded-2xl border border-gray-200 bg-white p-4">
+                    <div className="text-sm font-bold text-gray-900 mb-2">
+                      {t("educationPage.goalHeader")}
+                    </div>
+                    <div className="space-y-2 text-sm text-gray-700 leading-relaxed">
+                      {activeCefrRow.goals.map((goal, idx) => (
+                        <p key={idx}>{goal}</p>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -214,42 +542,60 @@ export function EducationSection() {
 
           {/* 授業内容 */}
           <div className="mb-16" id="course2">
-            <h2 className="text-2xl md:text-3xl font-bold mb-8 text-gray-900">{t("educationPage.classContentTitle")}</h2>
+            <h2 className="font-serif text-3xl md:text-4xl font-bold text-gray-900 mb-8 flex items-center gap-3">
+              <span className="inline-block w-1.5 h-8 rounded-full bg-[#0085b2]" />
+              {t("educationPage.classContentTitle")}
+            </h2>
 
-            <div className="grid md:grid-cols-3 gap-6 mb-6">
-              {[0, 1, 2].map((i) => (
-                <div key={i} className="space-y-2 p-4 bg-gray-50 rounded-lg">
-                  <h4 className="font-bold text-gray-900">◆ {t(`educationPage.classContent.${i}.title`)}</h4>
-                  <p className="text-gray-700 leading-relaxed text-sm">{t(`educationPage.classContent.${i}.content`)}</p>
+            <div className="grid lg:grid-cols-[340px_1fr] gap-6">
+              <div className="rounded-2xl border border-gray-200 bg-white shadow-sm overflow-hidden">
+                <div className="bg-gray-50 px-4 py-3 text-sm font-semibold text-gray-900">
+                  項目一覧
                 </div>
-              ))}
-            </div>
+                <div className="divide-y divide-gray-100">
+                  {classContentItems.map((item) => {
+                    const isActive = item.id === activeClassContentId
+                    return (
+                      <button
+                        key={item.id}
+                        type="button"
+                        onClick={() => setActiveClassContentId(item.id)}
+                        className={[
+                          "w-full px-4 py-3 text-left flex items-center justify-between gap-3 hover:bg-gray-50 transition",
+                          isActive ? "bg-[#0085b2]/5" : "bg-white",
+                        ].join(" ")}
+                      >
+                        <div className="min-w-0">
+                          <div className="text-xs font-semibold text-gray-500 mb-1">
+                            {String(item.id + 1).padStart(2, "0")}
+                          </div>
+                          <div className="font-semibold text-gray-900 truncate">
+                            {item.title}
+                          </div>
+                        </div>
+                        <ArrowRight className="h-4 w-4 text-gray-400 shrink-0" />
+                      </button>
+                    )
+                  })}
+                </div>
+              </div>
 
-            <div className="grid md:grid-cols-3 gap-6 mb-6">
-              {[3, 4, 5].map((i) => (
-                <div key={i} className="space-y-2 p-4 bg-gray-50 rounded-lg">
-                  <h4 className="font-bold text-gray-900">◆ {t(`educationPage.classContent.${i}.title`)}</h4>
-                  <p className="text-gray-700 leading-relaxed text-sm">{t(`educationPage.classContent.${i}.content`)}</p>
+              <div className="rounded-2xl border border-gray-200 bg-white shadow-sm p-6">
+                <div className="flex flex-wrap items-center justify-between gap-3 mb-3">
+                  <span className="inline-flex items-center rounded-full border border-gray-200 bg-white px-3 py-1.5 text-xs font-semibold text-gray-800 shadow-sm">
+                    {String(activeClassContentItem.id + 1).padStart(2, "0")}
+                  </span>
+                  <span className="text-xs font-semibold tracking-[0.18em] text-gray-400">
+                    DETAIL
+                  </span>
                 </div>
-              ))}
-            </div>
-
-            <div className="grid md:grid-cols-3 gap-6 mb-6">
-              {[6, 7, 8].map((i) => (
-                <div key={i} className="space-y-2 p-4 bg-gray-50 rounded-lg">
-                  <h4 className="font-bold text-gray-900">◆ {t(`educationPage.classContent.${i}.title`)}</h4>
-                  <p className="text-gray-700 leading-relaxed text-sm">{t(`educationPage.classContent.${i}.content`)}</p>
-                </div>
-              ))}
-            </div>
-
-            <div className="grid md:grid-cols-3 gap-6">
-              {[9, 10, 11].map((i) => (
-                <div key={i} className="space-y-2 p-4 bg-gray-50 rounded-lg">
-                  <h4 className="font-bold text-gray-900">◆ {t(`educationPage.classContent.${i}.title`)}</h4>
-                  <p className="text-gray-700 leading-relaxed text-sm">{t(`educationPage.classContent.${i}.content`)}</p>
-                </div>
-              ))}
+                <h3 className="font-serif text-2xl font-bold text-gray-900 mb-3">
+                  {activeClassContentItem.title}
+                </h3>
+                <p className="text-gray-700 leading-relaxed">
+                  {activeClassContentItem.content}
+                </p>
+              </div>
             </div>
           </div>
 
@@ -257,14 +603,20 @@ export function EducationSection() {
 
           {/* 特別クラス・進路サポート */}
           <div className="mb-16">
-            <h2 className="text-2xl md:text-3xl font-bold mb-8 text-gray-900">{t("educationPage.specialClassTitle")}</h2>
+            <h2 className="font-serif text-3xl md:text-4xl font-bold text-gray-900 mb-8 flex items-center gap-3">
+              <span className="inline-block w-1.5 h-8 rounded-full bg-[#0085b2]" />
+              {t("educationPage.specialClassTitle")}
+            </h2>
 
             <p className="text-gray-700 mb-8 font-semibold">{t("educationPage.specialClassIntro")}</p>
 
             <div className="space-y-8">
               {/* 日本語強化クラス */}
               <div>
-                <pre className="mb-2"><span className="font-bold">{t("educationPage.jpReinforcementTitle")}</span>{t("educationPage.jpReinforcementLevel")}</pre>
+                <div className="mb-2 text-gray-900">
+                  <span className="font-bold">{t("educationPage.jpReinforcementTitle")}</span>
+                  <span className="text-gray-700">{t("educationPage.jpReinforcementLevel")}</span>
+                </div>
                 <p className="text-gray-700 leading-relaxed">
                   {t("educationPage.jpReinforcementDesc")}
                 </p>
@@ -272,7 +624,10 @@ export function EducationSection() {
 
               {/* 日本語プラス */}
               <div>
-                <pre className="mb-4"><span className="font-bold">{t("educationPage.jpPlusTitle")}</span>{t("educationPage.jpPlusLevel")}</pre>
+                <div className="mb-4 text-gray-900">
+                  <span className="font-bold">{t("educationPage.jpPlusTitle")}</span>
+                  <span className="text-gray-700">{t("educationPage.jpPlusLevel")}</span>
+                </div>
                 <p className="font-semibold text-gray-900 mb-4">{t("educationPage.jpPlusExamTitle")}</p>
 
                 <div className="space-y-3 text-gray-700 leading-relaxed">
@@ -335,128 +690,147 @@ export function EducationSection() {
 
           {/* 時間割例 */}
           <div className="mb-16">
-            <h2 className="text-2xl md:text-3xl font-bold mb-8 text-gray-900">{t("educationPage.timetableTitle")}</h2>
+            <h2 className="font-serif text-3xl md:text-4xl font-bold text-gray-900 mb-8 flex items-center gap-3">
+              <span className="inline-block w-1.5 h-8 rounded-full bg-[#0085b2]" />
+              {t("educationPage.timetableTitle")}
+            </h2>
 
             <p className="text-gray-700 mb-4 font-semibold">{t("educationPage.timetableNote")}</p>
 
-            <p className="text-sm text-gray-600 mb-6 flex flex-wrap gap-4">
-              <span><span className="inline-block w-4 h-4 bg-[#0085b2] mr-1 align-middle"></span> {t("educationPage.timetableLegend.kanji")}</span>
-              <span><span className="inline-block w-4 h-4 bg-yellow-400 mr-1 align-middle"></span> {t("educationPage.timetableLegend.listening")}</span>
-              <span><span className="inline-block w-4 h-4 bg-green-400 mr-1 align-middle"></span> {t("educationPage.timetableLegend.comprehensive")}</span>
-              <span><span className="inline-block w-4 h-4 bg-purple-400 mr-1 align-middle"></span> {t("educationPage.timetableLegend.reading")}</span>
-              <span><span className="inline-block w-4 h-4 bg-red-400 mr-1 align-middle"></span> {t("educationPage.timetableLegend.essay")}</span>
-              <span><span className="inline-block w-4 h-4 bg-orange-400 mr-1 align-middle"></span> {t("educationPage.timetableLegend.prepElective")}</span>
-            </p>
+            <div className="mb-6 flex flex-wrap gap-2">
+              <span className={["inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold", timetableToneStyles.kanji].join(" ")}>
+                {t("educationPage.timetableLegend.kanji")}
+              </span>
+              <span className={["inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold", timetableToneStyles.listening].join(" ")}>
+                {t("educationPage.timetableLegend.listening")}
+              </span>
+              <span className={["inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold", timetableToneStyles.comprehensive].join(" ")}>
+                {t("educationPage.timetableLegend.comprehensive")}
+              </span>
+              <span className={["inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold", timetableToneStyles.reading].join(" ")}>
+                {t("educationPage.timetableLegend.reading")}
+              </span>
+              <span className={["inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold", timetableToneStyles.essay].join(" ")}>
+                {t("educationPage.timetableLegend.essay")}
+              </span>
+              <span className={["inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold", timetableToneStyles.prepElective].join(" ")}>
+                {t("educationPage.timetableLegend.prepElective")}
+              </span>
+            </div>
 
             {/* 初級クラス */}
             <div className="mb-8">
-              <div className="overflow-x-auto">
-                <table className="w-full table-fixed border-collapse text-sm">
-                  <thead>
-                    <tr className="bg-gray-100">
-                      <th className="border border-gray-300 p-3 text-left font-bold">{t("educationPage.beginnerClass")}</th>
-                      <th className="border border-gray-300 p-3 text-left font-bold">{t("educationPage.dayMon")}</th>
-                      <th className="border border-gray-300 p-3 text-left font-bold">{t("educationPage.dayTue")}</th>
-                      <th className="border border-gray-300 p-3 text-left font-bold">{t("educationPage.dayWed")}</th>
-                      <th className="border border-gray-300 p-3 text-left font-bold">{t("educationPage.dayThu")}</th>
-                      <th className="border border-gray-300 p-3 text-left font-bold">{t("educationPage.dayFri")}</th>
-                    </tr>
-                  </thead>
-                  <tbody className="text-gray-700">
-                    <tr>
-                      <td className="border border-gray-300 p-3 text-left font-semibold">{t("educationPage.beginnerTimeSlots.0")}</td>
-                      <td className="border border-gray-300 p-3 text-left bg-[#0085b2]/10">{t("educationPage.timetableBeginnerCells.0.0")}</td>
-                      <td className="border border-gray-300 p-3 text-left bg-yellow-100">{t("educationPage.timetableBeginnerCells.0.1")}</td>
-                      <td className="border border-gray-300 p-3 text-left bg-[#0085b2]/10">{t("educationPage.timetableBeginnerCells.0.2")}</td>
-                      <td className="border border-gray-300 p-3 text-left bg-yellow-100">{t("educationPage.timetableBeginnerCells.0.3")}</td>
-                      <td className="border border-gray-300 p-3 text-left bg-[#0085b2]/10">{t("educationPage.timetableBeginnerCells.0.4")}</td>
-                    </tr>
-                    <tr>
-                      <td className="border border-gray-300 p-3 text-left font-semibold">{t("educationPage.beginnerTimeSlots.1")}</td>
-                      <td className="border border-gray-300 p-3 text-left bg-green-100">{t("educationPage.timetableBeginnerCells.1.0")}</td>
-                      <td className="border border-gray-300 p-3 text-left bg-green-100">{t("educationPage.timetableBeginnerCells.1.1")}</td>
-                      <td className="border border-gray-300 p-3 text-left bg-green-100">{t("educationPage.timetableBeginnerCells.1.2")}</td>
-                      <td className="border border-gray-300 p-3 text-left bg-green-100">{t("educationPage.timetableBeginnerCells.1.3")}</td>
-                      <td className="border border-gray-300 p-3 text-left bg-green-100">{t("educationPage.timetableBeginnerCells.1.4")}</td>
-                    </tr>
-                    <tr>
-                      <td className="border border-gray-300 p-3 text-left font-semibold">{t("educationPage.beginnerTimeSlots.2")}</td>
-                      <td className="border border-gray-300 p-3 text-left bg-green-100">{t("educationPage.timetableBeginnerCells.2.0")}</td>
-                      <td className="border border-gray-300 p-3 text-left bg-green-100">{t("educationPage.timetableBeginnerCells.2.1")}</td>
-                      <td className="border border-gray-300 p-3 text-left bg-green-100">{t("educationPage.timetableBeginnerCells.2.2")}</td>
-                      <td className="border border-gray-300 p-3 text-left bg-green-100">{t("educationPage.timetableBeginnerCells.2.3")}</td>
-                      <td className="border border-gray-300 p-3 text-left bg-green-100">{t("educationPage.timetableBeginnerCells.2.4")}</td>
-                    </tr>
-                    <tr>
-                      <td className="border border-gray-300 p-3 text-left font-semibold">{t("educationPage.beginnerTimeSlots.3")}</td>
-                      <td className="border border-gray-300 p-3 text-left bg-green-100">{t("educationPage.timetableBeginnerCells.3.0")}</td>
-                      <td className="border border-gray-300 p-3 text-left bg-green-100">{t("educationPage.timetableBeginnerCells.3.1")}</td>
-                      <td className="border border-gray-300 p-3 text-left bg-green-100">{t("educationPage.timetableBeginnerCells.3.2")}</td>
-                      <td className="border border-gray-300 p-3 text-left bg-green-100">{t("educationPage.timetableBeginnerCells.3.3")}</td>
-                      <td className="border border-gray-300 p-3 text-left bg-orange-100">{t("educationPage.timetableBeginnerCells.3.4")}</td>
-                    </tr>
-                    <tr>
-                      <td className="border border-gray-300 p-3 text-left font-semibold">{t("educationPage.beginnerTimeSlots.4")}</td>
-                      <td className="border border-gray-300 p-3 text-left bg-orange-100">{t("educationPage.timetableBeginnerCells.4.0")}</td>
-                      <td className="border border-gray-300 p-3 text-left">{t("educationPage.timetableBeginnerCells.4.1")}</td>
-                      <td className="border border-gray-300 p-3 text-left bg-orange-100">{t("educationPage.timetableBeginnerCells.4.2")}</td>
-                      <td className="border border-gray-300 p-3 text-left">{t("educationPage.timetableBeginnerCells.4.3")}</td>
-                      <td className="border border-gray-300 p-3 text-left bg-orange-100">{t("educationPage.timetableBeginnerCells.4.4")}</td>
-                    </tr>
-                  </tbody>
-                </table>
+              {/* Desktop table */}
+              <div className="hidden md:block overflow-x-auto">
+                <div className="min-w-[860px] rounded-2xl border border-gray-200 bg-white shadow-sm overflow-hidden">
+                  <table className="w-full text-sm">
+                    <thead className="bg-gray-50">
+                      <tr className="text-left">
+                        <th className="px-4 py-3 font-semibold text-gray-900">{t("educationPage.beginnerClass")}</th>
+                        {timetableDays.map((day) => (
+                          <th key={day.key} className="px-4 py-3 font-semibold text-gray-900">
+                            {day.label}
+                          </th>
+                        ))}
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-gray-100 text-gray-700">
+                      {beginnerTimeSlots.map((slot, rowIndex) => (
+                        <tr key={slot} className="odd:bg-white even:bg-gray-50/40">
+                          <td className="px-4 py-3 font-semibold text-gray-900">{slot}</td>
+                          {timetableDays.map((day, colIndex) => (
+                            <td key={day.key} className="px-4 py-3">
+                              <TimetableBadge
+                                text={t(`educationPage.timetableBeginnerCells.${rowIndex}.${colIndex}` as const)}
+                                tone={beginnerTones[rowIndex][colIndex]}
+                              />
+                            </td>
+                          ))}
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              {/* Mobile cards */}
+              <div className="md:hidden grid gap-4">
+                {timetableDays.map((day, colIndex) => (
+                  <div key={day.key} className="rounded-2xl border border-gray-200 bg-white shadow-sm overflow-hidden">
+                    <div className="bg-gray-50 px-4 py-3 font-semibold text-gray-900">{day.label}</div>
+                    <div className="divide-y divide-gray-100">
+                      {beginnerTimeSlots.map((slot, rowIndex) => (
+                        <div key={slot} className="px-4 py-3 flex items-start justify-between gap-3">
+                          <span className="text-xs font-semibold text-gray-600 shrink-0">{slot}</span>
+                          <div className="text-right">
+                            <TimetableBadge
+                              text={t(`educationPage.timetableBeginnerCells.${rowIndex}.${colIndex}` as const)}
+                              tone={beginnerTones[rowIndex][colIndex]}
+                            />
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
 
             {/* 中級クラス */}
             <div className="mb-8">
-              <div className="overflow-x-auto">
-                <table className="w-full table-fixed border-collapse text-sm">
-                  <thead>
-                    <tr className="bg-gray-100">
-                      <th className="border border-gray-300 p-3 text-left font-bold">{t("educationPage.intermediateClass")}</th>
-                      <th className="border border-gray-300 p-3 text-left font-bold">{t("educationPage.dayMon")}</th>
-                      <th className="border border-gray-300 p-3 text-left font-bold">{t("educationPage.dayTue")}</th>
-                      <th className="border border-gray-300 p-3 text-left font-bold">{t("educationPage.dayWed")}</th>
-                      <th className="border border-gray-300 p-3 text-left font-bold">{t("educationPage.dayThu")}</th>
-                      <th className="border border-gray-300 p-3 text-left font-bold">{t("educationPage.dayFri")}</th>
-                    </tr>
-                  </thead>
-                  <tbody className="text-gray-700">
-                    <tr>
-                      <td className="border border-gray-300 p-3 text-left font-semibold">{t("educationPage.intermediateTimeSlots.0")}</td>
-                      <td className="border border-gray-300 p-3 text-left bg-[#0085b2]/10">{t("educationPage.timetableIntermediateCells.0.0")}</td>
-                      <td className="border border-gray-300 p-3 text-left bg-yellow-100">{t("educationPage.timetableIntermediateCells.0.1")}</td>
-                      <td className="border border-gray-300 p-3 text-left bg-[#0085b2]/10">{t("educationPage.timetableIntermediateCells.0.2")}</td>
-                      <td className="border border-gray-300 p-3 text-left bg-[#0085b2]/10">{t("educationPage.timetableIntermediateCells.0.3")}</td>
-                      <td className="border border-gray-300 p-3 text-left bg-[#0085b2]/10">{t("educationPage.timetableIntermediateCells.0.4")}</td>
-                    </tr>
-                    <tr>
-                      <td className="border border-gray-300 p-3 text-left font-semibold">{t("educationPage.intermediateTimeSlots.1")}</td>
-                      <td className="border border-gray-300 p-3 text-left bg-yellow-100">{t("educationPage.timetableIntermediateCells.1.0")}</td>
-                      <td className="border border-gray-300 p-3 text-left bg-green-100">{t("educationPage.timetableIntermediateCells.1.1")}</td>
-                      <td className="border border-gray-300 p-3 text-left bg-purple-100">{t("educationPage.timetableIntermediateCells.1.2")}</td>
-                      <td className="border border-gray-300 p-3 text-left bg-green-100">{t("educationPage.timetableIntermediateCells.1.3")}</td>
-                      <td className="border border-gray-300 p-3 text-left bg-yellow-100">{t("educationPage.timetableIntermediateCells.1.4")}</td>
-                    </tr>
-                    <tr>
-                      <td className="border border-gray-300 p-3 text-left font-semibold">{t("educationPage.intermediateTimeSlots.2")}</td>
-                      <td className="border border-gray-300 p-3 text-left bg-red-100">{t("educationPage.timetableIntermediateCells.2.0")}</td>
-                      <td className="border border-gray-300 p-3 text-left bg-green-100">{t("educationPage.timetableIntermediateCells.2.1")}</td>
-                      <td className="border border-gray-300 p-3 text-left bg-green-100">{t("educationPage.timetableIntermediateCells.2.2")}</td>
-                      <td className="border border-gray-300 p-3 text-left bg-green-100">{t("educationPage.timetableIntermediateCells.2.3")}</td>
-                      <td className="border border-gray-300 p-3 text-left bg-purple-100">{t("educationPage.timetableIntermediateCells.2.4")}</td>
-                    </tr>
-                    <tr>
-                      <td className="border border-gray-300 p-3 text-left font-semibold">{t("educationPage.intermediateTimeSlots.3")}</td>
-                      <td className="border border-gray-300 p-3 text-left bg-red-100">{t("educationPage.timetableIntermediateCells.3.0")}</td>
-                      <td className="border border-gray-300 p-3 text-left bg-orange-100">{t("educationPage.timetableIntermediateCells.3.1")}</td>
-                      <td className="border border-gray-300 p-3 text-left bg-orange-100">{t("educationPage.timetableIntermediateCells.3.2")}</td>
-                      <td className="border border-gray-300 p-3 text-left bg-sky-100">{t("educationPage.timetableIntermediateCells.3.3")}</td>
-                      <td className="border border-gray-300 p-3 text-left bg-purple-100">{t("educationPage.timetableIntermediateCells.3.4")}</td>
-                    </tr>
-                  </tbody>
-                </table>
+              {/* Desktop table */}
+              <div className="hidden md:block overflow-x-auto">
+                <div className="min-w-[860px] rounded-2xl border border-gray-200 bg-white shadow-sm overflow-hidden">
+                  <table className="w-full text-sm">
+                    <thead className="bg-gray-50">
+                      <tr className="text-left">
+                        <th className="px-4 py-3 font-semibold text-gray-900">{t("educationPage.intermediateClass")}</th>
+                        {timetableDays.map((day) => (
+                          <th key={day.key} className="px-4 py-3 font-semibold text-gray-900">
+                            {day.label}
+                          </th>
+                        ))}
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-gray-100 text-gray-700">
+                      {intermediateTimeSlots.map((slot, rowIndex) => (
+                        <tr key={slot} className="odd:bg-white even:bg-gray-50/40">
+                          <td className="px-4 py-3 font-semibold text-gray-900">{slot}</td>
+                          {timetableDays.map((day, colIndex) => (
+                            <td key={day.key} className="px-4 py-3">
+                              <TimetableBadge
+                                text={t(`educationPage.timetableIntermediateCells.${rowIndex}.${colIndex}` as const)}
+                                tone={intermediateTones[rowIndex][colIndex]}
+                              />
+                            </td>
+                          ))}
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              {/* Mobile cards */}
+              <div className="md:hidden grid gap-4">
+                {timetableDays.map((day, colIndex) => (
+                  <div key={day.key} className="rounded-2xl border border-gray-200 bg-white shadow-sm overflow-hidden">
+                    <div className="bg-gray-50 px-4 py-3 font-semibold text-gray-900">{day.label}</div>
+                    <div className="divide-y divide-gray-100">
+                      {intermediateTimeSlots.map((slot, rowIndex) => (
+                        <div key={slot} className="px-4 py-3 flex items-start justify-between gap-3">
+                          <span className="text-xs font-semibold text-gray-600 shrink-0">{slot}</span>
+                          <div className="text-right">
+                            <TimetableBadge
+                              text={t(`educationPage.timetableIntermediateCells.${rowIndex}.${colIndex}` as const)}
+                              tone={intermediateTones[rowIndex][colIndex]}
+                            />
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
 
@@ -470,37 +844,42 @@ export function EducationSection() {
 
           {/* 合格までのスケジュール */}
           <div className="mb-16">
-            <h2 className="text-2xl md:text-3xl font-bold mb-8 text-gray-900">{t("educationPage.admissionScheduleTitle")}</h2>
+            <h2 className="font-serif text-3xl md:text-4xl font-bold text-gray-900 mb-8 flex items-center gap-3">
+              <span className="inline-block w-1.5 h-8 rounded-full bg-[#0085b2]" />
+              {t("educationPage.admissionScheduleTitle")}
+            </h2>
 
             {/* 1年目 */}
             <div className="mb-10">
               <h3 className="text-xl font-bold mb-4 text-gray-800">{t("educationPage.year1Title")}</h3>
               <div className="overflow-x-auto">
-                <table className="w-full border-collapse text-sm bg-white">
+                <div className="min-w-[720px] rounded-2xl border border-gray-200 bg-white shadow-sm overflow-hidden">
+                  <table className="w-full text-sm">
                   <colgroup>
                     <col className="w-1/4" />
                     <col className="w-3/8" />
                     <col className="w-3/8" />
                   </colgroup>
-                  <thead>
-                    <tr className="bg-[#0085b2]/10">
-                      <th className="border border-gray-300 p-3 font-bold text-left">{t("educationPage.scheduleCategory")}</th>
-                      <th className="border border-gray-300 p-3 font-bold text-left">{t("educationPage.scheduleUni")}</th>
-                      <th className="border border-gray-300 p-3 font-bold text-left">{t("educationPage.scheduleGrad")}</th>
+                  <thead className="bg-gray-50">
+                    <tr>
+                      <th className="px-4 py-3 font-semibold text-left text-gray-900">{t("educationPage.scheduleCategory")}</th>
+                      <th className="px-4 py-3 font-semibold text-left text-gray-900">{t("educationPage.scheduleUni")}</th>
+                      <th className="px-4 py-3 font-semibold text-left text-gray-900">{t("educationPage.scheduleGrad")}</th>
                     </tr>
                   </thead>
-                  <tbody>
-                    <tr className="hover:bg-gray-50">
-                      <td className="border border-gray-300 p-3 font-semibold">{t("educationPage.year1Period")}</td>
-                      <td className="border border-gray-300 p-3 text-gray-700 whitespace-pre-line">
+                  <tbody className="divide-y divide-gray-100 text-gray-700">
+                    <tr className="odd:bg-white even:bg-gray-50/40">
+                      <td className="px-4 py-3 font-semibold text-gray-900">{t("educationPage.year1Period")}</td>
+                      <td className="px-4 py-3 whitespace-pre-line">
                         {t("educationPage.year1Uni")}
                       </td>
-                      <td className="border border-gray-300 p-3 text-gray-700 whitespace-pre-line">
+                      <td className="px-4 py-3 whitespace-pre-line">
                         {t("educationPage.year1Grad")}
                       </td>
                     </tr>
                   </tbody>
-                </table>
+                  </table>
+                </div>
               </div>
             </div>
 
@@ -508,31 +887,33 @@ export function EducationSection() {
             <div className="mb-10">
               <h3 className="text-xl font-bold mb-4 text-gray-800">{t("educationPage.year2FirstTitle")}</h3>
               <div className="overflow-x-auto">
-                <table className="w-full border-collapse text-sm bg-white">
+                <div className="min-w-[720px] rounded-2xl border border-gray-200 bg-white shadow-sm overflow-hidden">
+                  <table className="w-full text-sm">
                   <colgroup>
                     <col className="w-1/4" />
                     <col className="w-3/8" />
                     <col className="w-3/8" />
                   </colgroup>
-                  <thead>
-                    <tr className="bg-green-100">
-                      <th className="border border-gray-300 p-3 font-bold text-left">{t("educationPage.scheduleCategory")}</th>
-                      <th className="border border-gray-300 p-3 font-bold text-left">{t("educationPage.scheduleUni")}</th>
-                      <th className="border border-gray-300 p-3 font-bold text-left">{t("educationPage.scheduleGrad")}</th>
+                  <thead className="bg-gray-50">
+                    <tr>
+                      <th className="px-4 py-3 font-semibold text-left text-gray-900">{t("educationPage.scheduleCategory")}</th>
+                      <th className="px-4 py-3 font-semibold text-left text-gray-900">{t("educationPage.scheduleUni")}</th>
+                      <th className="px-4 py-3 font-semibold text-left text-gray-900">{t("educationPage.scheduleGrad")}</th>
                     </tr>
                   </thead>
-                  <tbody>
-                    <tr className="hover:bg-gray-50">
-                      <td className="border border-gray-300 p-3 font-semibold">{t("educationPage.year2FirstPeriod")}</td>
-                      <td className="border border-gray-300 p-3 text-gray-700 whitespace-pre-line">
+                  <tbody className="divide-y divide-gray-100 text-gray-700">
+                    <tr className="odd:bg-white even:bg-gray-50/40">
+                      <td className="px-4 py-3 font-semibold text-gray-900">{t("educationPage.year2FirstPeriod")}</td>
+                      <td className="px-4 py-3 whitespace-pre-line">
                         {t("educationPage.year2FirstUni")}
                       </td>
-                      <td className="border border-gray-300 p-3 text-gray-700 whitespace-pre-line">
+                      <td className="px-4 py-3 whitespace-pre-line">
                         {t("educationPage.year2FirstGrad")}
                       </td>
                     </tr>
                   </tbody>
-                </table>
+                  </table>
+                </div>
               </div>
             </div>
 
@@ -540,38 +921,43 @@ export function EducationSection() {
             <div>
               <h3 className="text-xl font-bold mb-4 text-gray-800">{t("educationPage.year2SecondTitle")}</h3>
               <div className="overflow-x-auto">
-                <table className="w-full border-collapse text-sm bg-white">
+                <div className="min-w-[720px] rounded-2xl border border-gray-200 bg-white shadow-sm overflow-hidden">
+                  <table className="w-full text-sm">
                   <colgroup>
                     <col className="w-1/4" />
                     <col className="w-3/8" />
                     <col className="w-3/8" />
                   </colgroup>
-                  <thead>
-                    <tr className="bg-purple-100">
-                      <th className="border border-gray-300 p-3 font-bold text-left">{t("educationPage.scheduleCategory")}</th>
-                      <th className="border border-gray-300 p-3 font-bold text-left">{t("educationPage.scheduleUni")}</th>
-                      <th className="border border-gray-300 p-3 font-bold text-left">{t("educationPage.scheduleGrad")}</th>
+                  <thead className="bg-gray-50">
+                    <tr>
+                      <th className="px-4 py-3 font-semibold text-left text-gray-900">{t("educationPage.scheduleCategory")}</th>
+                      <th className="px-4 py-3 font-semibold text-left text-gray-900">{t("educationPage.scheduleUni")}</th>
+                      <th className="px-4 py-3 font-semibold text-left text-gray-900">{t("educationPage.scheduleGrad")}</th>
                     </tr>
                   </thead>
-                  <tbody>
-                    <tr className="hover:bg-gray-50">
-                      <td className="border border-gray-300 p-3 font-semibold">{t("educationPage.year2SecondPeriod")}</td>
-                      <td className="border border-gray-300 p-3 text-gray-700 whitespace-pre-line">
+                  <tbody className="divide-y divide-gray-100 text-gray-700">
+                    <tr className="odd:bg-white even:bg-gray-50/40">
+                      <td className="px-4 py-3 font-semibold text-gray-900">{t("educationPage.year2SecondPeriod")}</td>
+                      <td className="px-4 py-3 whitespace-pre-line">
                         {t("educationPage.year2SecondUni")}
                       </td>
-                      <td className="border border-gray-300 p-3 text-gray-700 whitespace-pre-line">
+                      <td className="px-4 py-3 whitespace-pre-line">
                         {t("educationPage.year2SecondGrad")}
                       </td>
                     </tr>
                   </tbody>
-                </table>
+                  </table>
+                </div>
               </div>
             </div>
           </div>
 
           <div className="w-full h-px bg-gray-300 mb-16" />
           <div className="mb-16">
-            <h2 className="text-2xl md:text-3xl font-bold mb-8 text-gray-900">{t("educationPage.recommendationTitle")}</h2>
+            <h2 className="font-serif text-3xl md:text-4xl font-bold text-gray-900 mb-8 flex items-center gap-3">
+              <span className="inline-block w-1.5 h-8 rounded-full bg-[#0085b2]" />
+              {t("educationPage.recommendationTitle")}
+            </h2>
 
             <p className="text-gray-700 mb-8">
               {t("educationPage.recommendationDesc")}
@@ -613,7 +999,10 @@ export function EducationSection() {
 
           {/* 進学実績 */}
           <div id="course3">
-            <h2 className="text-2xl md:text-3xl font-bold mb-8 text-gray-900">{t("educationPage.recentResultsTitle")}</h2>
+            <h2 className="font-serif text-3xl md:text-4xl font-bold text-gray-900 mb-8 flex items-center gap-3">
+              <span className="inline-block w-1.5 h-8 rounded-full bg-[#0085b2]" />
+              {t("educationPage.recentResultsTitle")}
+            </h2>
 
             <div className="space-y-8">
               {/* 国公立大学/大学院 */}
