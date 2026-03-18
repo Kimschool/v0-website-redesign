@@ -1,15 +1,39 @@
 "use client"
 
-import { useState, useEffect, useRef } from "react"
+import { useEffect, useMemo, useRef, useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowRight, MessageCircle } from "lucide-react"
+import { ArrowRight, MessageCircle, X } from "lucide-react"
 import { useTranslation } from "react-i18next"
+
+type ApplicationDocumentLanguageKey = "en-ja" | "zh" | "ko" | "vi" | "zh-tw"
+
+type ApplicationDocumentLanguage = {
+  key: ApplicationDocumentLanguageKey
+  label: string
+  previewPdfPath: string
+  originalFilePath: string
+  originalFileLabel: string
+}
+
+type PamphletLanguageKey = "ja" | "zh"
+
+type PamphletLanguage = {
+  key: PamphletLanguageKey
+  label: string
+  pdfPath: string
+}
 
 export function AdmissionSection() {
   const { t } = useTranslation()
   const sectionRef = useRef<HTMLElement>(null)
   const [isVisible, setIsVisible] = useState(false)
+  const [isApplicationModalOpen, setIsApplicationModalOpen] = useState(false)
+  const [selectedApplicationLanguageKey, setSelectedApplicationLanguageKey] =
+    useState<ApplicationDocumentLanguageKey>("en-ja")
+  const [isPamphletModalOpen, setIsPamphletModalOpen] = useState(false)
+  const [selectedPamphletLanguageKey, setSelectedPamphletLanguageKey] =
+    useState<PamphletLanguageKey>("ja")
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -27,6 +51,93 @@ export function AdmissionSection() {
 
     return () => observer.disconnect()
   }, [])
+
+  const applicationDocumentLanguages: ApplicationDocumentLanguage[] = useMemo(
+    () => [
+      {
+        key: "en-ja",
+        label: "English",
+        previewPdfPath: "/documents/application/Application-EnglishJapanese.pdf",
+        originalFilePath: "/documents/application/Application-EnglishJapanese.xlsx",
+        originalFileLabel: "Excel (.xlsx)",
+      },
+      {
+        key: "zh",
+        label: "中文",
+        previewPdfPath: "/documents/application/Application-Chinese.pdf",
+        originalFilePath: "/documents/application/中国履歴書などのセット.xlsx",
+        originalFileLabel: "Excel (.xlsx)",
+      },
+      {
+        key: "ko",
+        label: "한국어",
+        previewPdfPath: "/documents/application/Application-Korean.pdf",
+        originalFilePath: "/documents/application/KCP長期韓国語版願書セット.xlsx",
+        originalFileLabel: "Excel (.xlsx)",
+      },
+      {
+        key: "vi",
+        label: "Tiếng Việt",
+        previewPdfPath: "/documents/application/Application-Vietnamese.pdf",
+        originalFilePath: "/documents/application/application-Vietnam Japanese.doc",
+        originalFileLabel: "Word (.doc)",
+      },
+      {
+        key: "zh-tw",
+        label: "中文（台灣）",
+        previewPdfPath: "/documents/application/Application-Taiwan.pdf",
+        originalFilePath: "/documents/application/FORMTAIWAN-new.doc",
+        originalFileLabel: "Word (.doc)",
+      },
+    ],
+    []
+  )
+
+  const selectedApplicationLanguage = useMemo(() => {
+    return (
+      applicationDocumentLanguages.find(
+        (language) => language.key === selectedApplicationLanguageKey
+      ) ?? applicationDocumentLanguages[0]
+    )
+  }, [applicationDocumentLanguages, selectedApplicationLanguageKey])
+
+  const pamphletLanguages: PamphletLanguage[] = useMemo(
+    () => [
+      {
+        key: "ja",
+        label: "日本語",
+        pdfPath: "/documents/templete/KCPパンフレット確定版.pdf",
+      },
+      {
+        key: "zh",
+        label: "中文",
+        pdfPath: "/documents/templete/KCP宣传册.pdf",
+      },
+    ],
+    []
+  )
+
+  const selectedPamphletLanguage = useMemo(() => {
+    return (
+      pamphletLanguages.find(
+        (language) => language.key === selectedPamphletLanguageKey
+      ) ?? pamphletLanguages[0]
+    )
+  }, [pamphletLanguages, selectedPamphletLanguageKey])
+
+  useEffect(() => {
+    if (!isApplicationModalOpen && !isPamphletModalOpen) return
+
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        setIsApplicationModalOpen(false)
+        setIsPamphletModalOpen(false)
+      }
+    }
+
+    document.addEventListener("keydown", handleKeyDown)
+    return () => document.removeEventListener("keydown", handleKeyDown)
+  }, [isApplicationModalOpen, isPamphletModalOpen])
 
   return (
     <section ref={sectionRef} id="admission" className="bg-white">
@@ -169,15 +280,14 @@ export function AdmissionSection() {
                   <span className="inline-flex items-center rounded-full bg-[#0085b2]/5 text-[#0085b2] px-3 py-1 text-xs font-semibold">
                     PDF / Form
                   </span>
-                  <a
-                    href="https://weavus-group.com/kcp/%e9%a1%98%e6%9b%b8%e3%82%bb%e3%83%83%e3%83%88/"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <button
+                    type="button"
+                    onClick={() => setIsApplicationModalOpen(true)}
                     className="inline-flex items-center justify-center gap-2 rounded-full bg-[#0085b2] hover:bg-[#006794] text-white text-sm font-semibold px-6 py-2.5 transition-colors shadow-md shadow-[#0085b2]/30"
                   >
                     {t("admissionPage.applicationBtn")}
                     <ArrowRight className="w-4 h-4" />
-                  </a>
+                  </button>
                 </div>
               </div>
 
@@ -198,14 +308,14 @@ export function AdmissionSection() {
                   <span className="inline-flex items-center rounded-full bg-emerald-500/5 text-emerald-600 px-3 py-1 text-xs font-semibold">
                     PDF / Brochure
                   </span>
-                  <a
-                    href="https://weavus-group.com/kcp/wp-content/uploads/2026/02/KCP%E3%83%91%E3%83%B3%E3%83%95%E3%83%AC%E3%83%83%E3%83%88%E7%A2%BA%E5%AE%9A%E7%89%88.pdf"
-                    download
+                  <button
+                    type="button"
+                    onClick={() => setIsPamphletModalOpen(true)}
                     className="inline-flex items-center justify-center gap-2 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white text-sm font-semibold px-6 py-2.5 transition-colors shadow-md shadow-emerald-500/30"
                   >
                     {t("admissionPage.pamphletBtn")}
                     <ArrowRight className="w-4 h-4" />
-                  </a>
+                  </button>
                 </div>
               </div>
             </div>
@@ -324,6 +434,225 @@ export function AdmissionSection() {
           </div>
         </div>
       </div>
+
+      {isApplicationModalOpen ? (
+        <div
+          className="fixed inset-0 z-[60] flex items-center justify-center p-4"
+          role="dialog"
+          aria-modal="true"
+          aria-label={t("admissionPage.applicationTitle")}
+        >
+          <button
+            type="button"
+            className="absolute inset-0 bg-black/50"
+            aria-label="Close"
+            onClick={() => setIsApplicationModalOpen(false)}
+          />
+
+          <div className="relative w-full max-w-5xl overflow-hidden rounded-2xl bg-white shadow-2xl">
+            <div className="flex items-start justify-between gap-4 border-b border-gray-200 px-5 py-4">
+              <div>
+                <p className="text-xs font-semibold tracking-[0.2em] text-[#0085b2]">
+                  {t("admissionPage.documentsTitle")}
+                </p>
+                <h3 className="font-serif text-xl md:text-2xl font-bold text-gray-900">
+                  {t("admissionPage.applicationTitle")}
+                </h3>
+              </div>
+              <button
+                type="button"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 bg-white text-gray-700 hover:bg-gray-50"
+                onClick={() => setIsApplicationModalOpen(false)}
+                aria-label="Close"
+              >
+                <X className="h-5 w-5" />
+              </button>
+            </div>
+
+            <div className="px-5 py-4">
+              <div className="flex flex-wrap items-center gap-2 mb-4">
+                {applicationDocumentLanguages.map((language) => {
+                  const isSelected =
+                    language.key === selectedApplicationLanguageKey
+                  return (
+                    <button
+                      key={language.key}
+                      type="button"
+                      onClick={() =>
+                        setSelectedApplicationLanguageKey(language.key)
+                      }
+                      className={[
+                        "rounded-full px-4 py-2 text-sm font-semibold border transition-colors",
+                        isSelected
+                          ? "bg-[#0085b2] border-[#0085b2] text-white"
+                          : "bg-white border-gray-200 text-gray-700 hover:bg-gray-50",
+                      ].join(" ")}
+                    >
+                      {language.label}
+                    </button>
+                  )
+                })}
+              </div>
+
+              <div className="grid gap-4 lg:grid-cols-[1fr_320px]">
+                <div className="rounded-2xl border border-gray-200 bg-gray-50 overflow-hidden">
+                  <div className="flex items-center justify-between gap-3 px-4 py-3 border-b border-gray-200 bg-white">
+                    <p className="text-sm font-semibold text-gray-900">
+                      PDF {t("admissionPage.applicationBtn")}
+                    </p>
+                    <a
+                      href={selectedApplicationLanguage.previewPdfPath}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm font-semibold text-[#0085b2] hover:underline"
+                    >
+                      新しいタブで開く
+                    </a>
+                  </div>
+
+                  <div className="h-[60vh] min-h-[420px]">
+                    <iframe
+                      title={`${t("admissionPage.applicationTitle")} - ${selectedApplicationLanguage.label}`}
+                      src={selectedApplicationLanguage.previewPdfPath}
+                      className="h-full w-full"
+                    />
+                  </div>
+                </div>
+
+                <div className="rounded-2xl border border-[#0085b2]/15 bg-white p-5 h-fit">
+                  <p className="text-sm text-gray-700 mb-2">
+                    <span className="font-semibold">選択言語:</span>{" "}
+                    {selectedApplicationLanguage.label}
+                  </p>
+                  <p className="text-sm text-gray-700 mb-5">
+                    <span className="font-semibold">原本形式:</span>{" "}
+                    {selectedApplicationLanguage.originalFileLabel}
+                  </p>
+
+                  <a
+                    href={selectedApplicationLanguage.originalFilePath}
+                    download
+                    className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#0085b2] hover:bg-[#006794] text-white text-sm font-semibold px-4 py-3 transition-colors shadow-md shadow-[#0085b2]/20"
+                  >
+                    原本様式をダウンロード
+                    <ArrowRight className="w-4 h-4" />
+                  </a>
+
+                  <p className="text-xs text-gray-500 mt-3 leading-relaxed">
+                    PDFはプレビュー用です。記入／提出は原本ファイル（Excel/Word）をダウンロードして進めてください。
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      ) : null}
+
+      {isPamphletModalOpen ? (
+        <div
+          className="fixed inset-0 z-[60] flex items-center justify-center p-4"
+          role="dialog"
+          aria-modal="true"
+          aria-label={t("admissionPage.pamphletTitle")}
+        >
+          <button
+            type="button"
+            className="absolute inset-0 bg-black/50"
+            aria-label="Close"
+            onClick={() => setIsPamphletModalOpen(false)}
+          />
+
+          <div className="relative w-full max-w-5xl overflow-hidden rounded-2xl bg-white shadow-2xl">
+            <div className="flex items-start justify-between gap-4 border-b border-gray-200 px-5 py-4">
+              <div>
+                <p className="text-xs font-semibold tracking-[0.2em] text-emerald-600">
+                  {t("admissionPage.documentsTitle")}
+                </p>
+                <h3 className="font-serif text-xl md:text-2xl font-bold text-gray-900">
+                  {t("admissionPage.pamphletTitle")}
+                </h3>
+              </div>
+              <button
+                type="button"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 bg-white text-gray-700 hover:bg-gray-50"
+                onClick={() => setIsPamphletModalOpen(false)}
+                aria-label="Close"
+              >
+                <X className="h-5 w-5" />
+              </button>
+            </div>
+
+            <div className="px-5 py-4">
+              <div className="flex flex-wrap items-center gap-2 mb-4">
+                {pamphletLanguages.map((language) => {
+                  const isSelected = language.key === selectedPamphletLanguageKey
+                  return (
+                    <button
+                      key={language.key}
+                      type="button"
+                      onClick={() => setSelectedPamphletLanguageKey(language.key)}
+                      className={[
+                        "rounded-full px-4 py-2 text-sm font-semibold border transition-colors",
+                        isSelected
+                          ? "bg-emerald-600 border-emerald-600 text-white"
+                          : "bg-white border-gray-200 text-gray-700 hover:bg-gray-50",
+                      ].join(" ")}
+                    >
+                      {language.label}
+                    </button>
+                  )
+                })}
+              </div>
+
+              <div className="grid gap-4 lg:grid-cols-[1fr_320px]">
+                <div className="rounded-2xl border border-gray-200 bg-gray-50 overflow-hidden">
+                  <div className="flex items-center justify-between gap-3 px-4 py-3 border-b border-gray-200 bg-white">
+                    <p className="text-sm font-semibold text-gray-900">
+                      PDF {t("admissionPage.pamphletBtn")}
+                    </p>
+                    <a
+                      href={selectedPamphletLanguage.pdfPath}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm font-semibold text-emerald-700 hover:underline"
+                    >
+                      新しいタブで開く
+                    </a>
+                  </div>
+
+                  <div className="h-[60vh] min-h-[420px]">
+                    <iframe
+                      title={`${t("admissionPage.pamphletTitle")} - ${selectedPamphletLanguage.label}`}
+                      src={selectedPamphletLanguage.pdfPath}
+                      className="h-full w-full"
+                    />
+                  </div>
+                </div>
+
+                <div className="rounded-2xl border border-emerald-500/15 bg-white p-5 h-fit">
+                  <p className="text-sm text-gray-700 mb-5">
+                    <span className="font-semibold">選択言語:</span>{" "}
+                    {selectedPamphletLanguage.label}
+                  </p>
+
+                  <a
+                    href={selectedPamphletLanguage.pdfPath}
+                    download
+                    className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold px-4 py-3 transition-colors shadow-md shadow-emerald-600/20"
+                  >
+                    PDFをダウンロード
+                    <ArrowRight className="w-4 h-4" />
+                  </a>
+
+                  <p className="text-xs text-gray-500 mt-3 leading-relaxed">
+                    まずPDFをプレビューし、必要に応じてダウンロードしてください。
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      ) : null}
     </section>
   )
 }
