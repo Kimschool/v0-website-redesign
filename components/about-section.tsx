@@ -112,7 +112,7 @@ export function AboutSection() {
       <div className="relative h-[350px] md:h-[400px] w-full overflow-hidden">
         <Image
           src={`/images/original_from_customer/${encodeURIComponent('トップ背景')}/${encodeURIComponent('01_KCPとは（拡大して周りの建物があまり見えないように）')}.jpg`}
-          alt="KCPとは"
+          alt={t("aboutPage.bannerTitle")}
           fill
           className="object-cover object-[center_35%]"
           priority
@@ -137,7 +137,7 @@ export function AboutSection() {
                 <div className="relative max-w-4xl mx-auto aspect-[583/336]">
                   <Image
                     src="/images/about-kcp-values.png"
-                    alt="KCP values"
+                    alt={t("aboutPage.bannerTitle")}
                     fill
                     className="object-contain"
                     priority
@@ -159,7 +159,7 @@ export function AboutSection() {
               <div className="aspect-[4/5] md:aspect-[4/3] rounded-2xl overflow-hidden">
                 <Image
                   src={`/images/original_from_customer/${encodeURIComponent('予備')}/K.jpg`}
-                  alt="Student 1"
+                  alt="Student image 1"
                   fill
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
                 />
@@ -173,7 +173,7 @@ export function AboutSection() {
                 <div className="aspect-square md:aspect-auto md:h-full rounded-2xl overflow-hidden">
                   <Image
                     src={`/images/original_from_customer/${encodeURIComponent('予備')}/${encodeURIComponent('学生2【予備】')}.jpg`}
-                    alt="Student 2"
+                    alt="Student image 2"
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
                   />
@@ -184,7 +184,7 @@ export function AboutSection() {
                 <div className="aspect-square md:aspect-auto md:h-full rounded-2xl overflow-hidden">
                   <Image
                     src="/images/original_from_customer/818e60bf0c192652f5fe869245e46afb-1-scaled.jpg"
-                    alt="Student 3"
+                    alt="Student image 3"
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
                   />
@@ -212,7 +212,7 @@ export function AboutSection() {
                 <div className="aspect-[3/4] rounded-2xl overflow-hidden">
                   <Image
                     src={`/images/original_from_customer/${encodeURIComponent('校長先生')}.jpg`}
-                    alt="学校長"
+                    alt={t("aboutPage.principalTitle")}
                     fill
                     className="object-cover"
                   />
@@ -319,7 +319,7 @@ export function AboutSection() {
         <div className="relative min-h-[85vh] md:h-[70vh]">
           <Image
             src={`/images/original_from_customer/${encodeURIComponent('KCPとは「集合写真」')}.jpg`}
-            alt="KCP地球市民日本語学校の教職員"
+            alt={t("aboutPage.staffPhoto")}
             fill
             className="object-cover"
           />
