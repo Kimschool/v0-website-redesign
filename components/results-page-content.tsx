@@ -3,6 +3,7 @@
 import { useState } from "react"
 import Image from "next/image"
 import { useTranslation } from "react-i18next"
+import { PageBreadcrumb } from "@/components/page-breadcrumb"
 
 // 2024年度データ（大学 + 大学院の2階層）
 const data2024 = {
@@ -552,6 +553,13 @@ export function ResultsPageContent() {
           </div>
         </div>
       </div>
+
+    <PageBreadcrumb
+      items={[
+        { label: "教育内容", href: "/education" },
+        { label: "進学実績・卒業生の声" },
+      ]}
+    />
 
       <div className="py-20 px-4 md:px-8 lg:px-16">
         <div className="max-w-5xl mx-auto">

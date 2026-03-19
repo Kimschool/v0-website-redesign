@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef, useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { useTranslation } from "react-i18next"
+import { PageBreadcrumb } from "@/components/page-breadcrumb"
 import {
   ArrowRight,
   BookOpen,
@@ -379,6 +380,8 @@ export function EducationSection() {
           </div>
         </div>
       </div>
+
+      <PageBreadcrumb items={[{ label: "教育内容" }]} />
 
       {/* Content Section */}
       <div className="py-20 px-4 md:px-8 lg:px-16">
