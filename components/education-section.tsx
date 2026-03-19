@@ -4,7 +4,7 @@ import { useEffect, useMemo, useRef, useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { useTranslation } from "react-i18next"
-import { ArrowRight } from "lucide-react"
+import { ArrowRight, BookOpen, GraduationCap, ListChecks, Map, Sparkles, Target } from "lucide-react"
 
 type TimetableTone =
   | "kanji"
@@ -24,6 +24,9 @@ export function EducationSection() {
   )
   const [activeCefrStep, setActiveCefrStep] = useState<1 | 2 | 3 | 4 | 5>(3)
   const [activeClassContentId, setActiveClassContentId] = useState<number>(0)
+  const [activeSpecialSupportId, setActiveSpecialSupportId] = useState<
+    "reinforcement" | "jpplus" | "guidance"
+  >("reinforcement")
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -167,6 +170,140 @@ export function EducationSection() {
       classContentItems[0]
     )
   }, [activeClassContentId, classContentItems])
+
+  const jpPlusExamItems = useMemo(
+    () => [
+      { label: t("educationPage.ejuLabel"), desc: t("educationPage.ejuDesc") },
+      { label: t("educationPage.mathLabel"), desc: t("educationPage.mathDesc") },
+      {
+        label: t("educationPage.scienceLabel"),
+        desc: t("educationPage.scienceDesc"),
+      },
+      {
+        label: t("educationPage.socialLabel"),
+        desc: t("educationPage.socialDesc"),
+      },
+      { label: t("educationPage.jlptLabel"), desc: t("educationPage.jlptDesc") },
+      { label: t("educationPage.toeicLabel"), desc: t("educationPage.toeicDesc") },
+    ],
+    [t]
+  )
+
+  const specialSupportBlocks = useMemo(
+    () => [
+      {
+        id: "reinforcement" as const,
+        icon: Sparkles,
+        eyebrow: "SPECIAL CLASS",
+        title: `${t("educationPage.jpReinforcementTitle")}${t(
+          "educationPage.jpReinforcementLevel"
+        )}`,
+        content: (
+          <p className="text-gray-700 leading-relaxed">
+            {t("educationPage.jpReinforcementDesc")}
+          </p>
+        ),
+      },
+      {
+        id: "jpplus" as const,
+        icon: Target,
+        eyebrow: "SPECIAL CLASS",
+        title: `${t("educationPage.jpPlusTitle")}${t("educationPage.jpPlusLevel")}`,
+        content: (
+          <div className="space-y-4">
+            <p className="font-semibold text-gray-900">
+              {t("educationPage.jpPlusExamTitle")}
+            </p>
+            <div className="grid sm:grid-cols-2 gap-3">
+              {jpPlusExamItems.map((x) => (
+                <div
+                  key={x.label}
+                  className="rounded-xl border border-gray-200 bg-gray-50 px-4 py-3"
+                >
+                  <p className="text-sm font-bold text-gray-900">{x.label}</p>
+                  <p className="text-sm text-gray-700 leading-relaxed">
+                    {x.desc}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        ),
+      },
+      {
+        id: "guidance" as const,
+        icon: Map,
+        eyebrow: "GUIDANCE",
+        title: "進路サポート",
+        content: (
+          <div className="grid md:grid-cols-2 gap-4">
+            <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
+              <div className="flex items-center gap-3 mb-2">
+                <GraduationCap className="h-5 w-5 text-[#0085b2]" />
+                <h4 className="font-bold text-gray-900">
+                  {t("educationPage.uniGuidanceTitle")}
+                </h4>
+              </div>
+              <div className="text-gray-700 leading-relaxed space-y-2 text-sm">
+                <p>
+                  <strong>{t("educationPage.uniHRLabel")}</strong>
+                  {t("educationPage.uniHRDesc")}
+                </p>
+                <p>
+                  <strong>{t("educationPage.gradHRLabel")}</strong>
+                  {t("educationPage.gradHRDesc")}
+                </p>
+              </div>
+            </div>
+
+            <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
+              <div className="flex items-center gap-3 mb-2">
+                <BookOpen className="h-5 w-5 text-[#0085b2]" />
+                <h4 className="font-bold text-gray-900">
+                  {t("educationPage.artGuidanceTitle")}
+                </h4>
+              </div>
+              <p className="text-gray-700 leading-relaxed text-sm">
+                {t("educationPage.artGuidanceDesc")}
+              </p>
+            </div>
+
+            <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
+              <div className="flex items-center gap-3 mb-2">
+                <ListChecks className="h-5 w-5 text-[#0085b2]" />
+                <h4 className="font-bold text-gray-900">
+                  {t("educationPage.individualTitle")}
+                </h4>
+              </div>
+              <p className="text-gray-700 leading-relaxed text-sm">
+                {t("educationPage.individualDesc")}
+              </p>
+            </div>
+
+            <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
+              <div className="flex items-center gap-3 mb-2">
+                <Target className="h-5 w-5 text-[#0085b2]" />
+                <h4 className="font-bold text-gray-900">
+                  {t("educationPage.jobSupportTitle")}
+                </h4>
+              </div>
+              <p className="text-gray-700 leading-relaxed text-sm">
+                {t("educationPage.jobSupportDesc")}
+              </p>
+            </div>
+          </div>
+        ),
+      },
+    ],
+    [jpPlusExamItems, t]
+  )
+
+  const activeSpecialSupportBlock = useMemo(() => {
+    return (
+      specialSupportBlocks.find((b) => b.id === activeSpecialSupportId) ??
+      specialSupportBlocks[0]
+    )
+  }, [activeSpecialSupportId, specialSupportBlocks])
 
   function TimetableBadge({
     text,
@@ -608,80 +745,62 @@ export function EducationSection() {
               {t("educationPage.specialClassTitle")}
             </h2>
 
-            <p className="text-gray-700 mb-8 font-semibold">{t("educationPage.specialClassIntro")}</p>
+            <p className="text-gray-700 mb-8 font-semibold">
+              {t("educationPage.specialClassIntro")}
+            </p>
 
-            <div className="space-y-8">
-              {/* 日本語強化クラス */}
-              <div>
-                <div className="mb-2 text-gray-900">
-                  <span className="font-bold">{t("educationPage.jpReinforcementTitle")}</span>
-                  <span className="text-gray-700">{t("educationPage.jpReinforcementLevel")}</span>
+            <div className="grid lg:grid-cols-[340px_1fr] gap-6">
+              <div className="rounded-2xl border border-gray-200 bg-white shadow-sm overflow-hidden">
+                <div className="bg-gray-50 px-4 py-3 text-sm font-semibold text-gray-900">
+                  セクション
                 </div>
-                <p className="text-gray-700 leading-relaxed">
-                  {t("educationPage.jpReinforcementDesc")}
-                </p>
+                <div className="divide-y divide-gray-100">
+                  {specialSupportBlocks.map((b, idx) => {
+                    const isActive = b.id === activeSpecialSupportId
+                    const Icon = b.icon
+                    return (
+                      <button
+                        key={b.id}
+                        type="button"
+                        onClick={() => setActiveSpecialSupportId(b.id)}
+                        className={[
+                          "w-full px-4 py-3 text-left flex items-center justify-between gap-3 hover:bg-gray-50 transition",
+                          isActive ? "bg-[#0085b2]/5" : "bg-white",
+                        ].join(" ")}
+                      >
+                        <div className="min-w-0 flex items-center gap-3">
+                          <div className="h-9 w-9 rounded-xl border border-gray-200 bg-gray-50 flex items-center justify-center shrink-0">
+                            <Icon className="h-4 w-4 text-[#0085b2]" />
+                          </div>
+                          <div className="min-w-0">
+                            <div className="text-xs font-semibold text-gray-500 mb-0.5">
+                              {String(idx + 1).padStart(2, "0")}
+                            </div>
+                            <div className="font-semibold text-gray-900 truncate">
+                              {b.title}
+                            </div>
+                          </div>
+                        </div>
+                        <ArrowRight className="h-4 w-4 text-gray-400 shrink-0" />
+                      </button>
+                    )
+                  })}
+                </div>
               </div>
 
-              {/* 日本語プラス */}
-              <div>
-                <div className="mb-4 text-gray-900">
-                  <span className="font-bold">{t("educationPage.jpPlusTitle")}</span>
-                  <span className="text-gray-700">{t("educationPage.jpPlusLevel")}</span>
+              <div className="rounded-2xl border border-gray-200 bg-white shadow-sm p-6">
+                <div className="flex flex-wrap items-center justify-between gap-3 mb-3">
+                  <span className="inline-flex items-center rounded-full border border-gray-200 bg-white px-3 py-1.5 text-xs font-semibold text-gray-800 shadow-sm">
+                    {activeSpecialSupportBlock?.eyebrow ?? "DETAIL"}
+                  </span>
+                  <span className="text-xs font-semibold tracking-[0.18em] text-gray-400">
+                    DETAIL
+                  </span>
                 </div>
-                <p className="font-semibold text-gray-900 mb-4">{t("educationPage.jpPlusExamTitle")}</p>
-
-                <div className="space-y-3 text-gray-700 leading-relaxed">
-                  <div>
-                    <p><strong>{t("educationPage.ejuLabel")}</strong>{t("educationPage.ejuDesc")}</p>
-                  </div>
-                  <div>
-                    <p><strong>{t("educationPage.mathLabel")}</strong>{t("educationPage.mathDesc")}</p>
-                  </div>
-                  <div>
-                    <p><strong>{t("educationPage.scienceLabel")}</strong>{t("educationPage.scienceDesc")}</p>
-                  </div>
-                  <div>
-                    <p><strong>{t("educationPage.socialLabel")}</strong>{t("educationPage.socialDesc")}</p>
-                  </div>
-                  <div>
-                    <p><strong>{t("educationPage.jlptLabel")}</strong>{t("educationPage.jlptDesc")}</p>
-                  </div>
-                  <div>
-                    <p><strong>{t("educationPage.toeicLabel")}</strong>{t("educationPage.toeicDesc")}</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* 進路指導グリッド */}
-              <div className="grid md:grid-cols-2 gap-6">
-                <div>
-                  <h4 className="font-bold text-gray-900 mb-2">{t("educationPage.uniGuidanceTitle")}</h4>
-                  <div className="text-gray-700 leading-relaxed space-y-2 text-sm">
-                    <p><strong>{t("educationPage.uniHRLabel")}</strong>{t("educationPage.uniHRDesc")}</p>
-                    <p><strong>{t("educationPage.gradHRLabel")}</strong>{t("educationPage.gradHRDesc")}</p>
-                  </div>
-                </div>
-
-                <div>
-                  <h4 className="font-bold text-gray-900 mb-2">{t("educationPage.artGuidanceTitle")}</h4>
-                  <p className="text-gray-700 leading-relaxed text-sm">
-                    {t("educationPage.artGuidanceDesc")}
-                  </p>
-                </div>
-
-                <div>
-                  <h4 className="font-bold text-gray-900 mb-2">{t("educationPage.individualTitle")}</h4>
-                  <p className="text-gray-700 leading-relaxed text-sm">
-                    {t("educationPage.individualDesc")}
-                  </p>
-                </div>
-
-                <div>
-                  <h4 className="font-bold text-gray-900 mb-2">{t("educationPage.jobSupportTitle")}</h4>
-                  <p className="text-gray-700 leading-relaxed text-sm">
-                    {t("educationPage.jobSupportDesc")}
-                  </p>
-                </div>
+                <h3 className="font-serif text-2xl font-bold text-gray-900 mb-3">
+                  {activeSpecialSupportBlock?.title}
+                </h3>
+                <div className="text-sm">{activeSpecialSupportBlock?.content}</div>
               </div>
             </div>
           </div>
