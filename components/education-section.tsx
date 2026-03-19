@@ -8,6 +8,7 @@ import {
   ArrowRight,
   BookOpen,
   CalendarClock,
+  ChevronDown,
   GraduationCap,
   ListChecks,
   Map,
@@ -315,6 +316,27 @@ export function EducationSection() {
       specialSupportBlocks[0]
     )
   }, [activeSpecialSupportId, specialSupportBlocks])
+
+  const publicUniversityList = useMemo(
+    () => [
+      "東京大学","京都大学","大阪大学","名古屋大学","東北大学","九州大学","北海道大学","一橋大学","東京工業大学","筑波大学","神戸大学","横浜国立大学","千葉大学","東京外国語大学","東京学芸大学","東京都立大学","広島大学","金沢大学","電気通信大学","熊本大学","長崎大学","山口大学","埼玉大学","信州大学","群馬大学","茨城大学","弘前大学","富山大学","山梨大学","宇都宮大学","滋賀大学","上越教育大学","兵庫県立大学","兵庫教育大学","横浜市立大学","大阪公立大学","広島市立大学","名古屋市立大学",
+    ],
+    []
+  )
+
+  const privateUniversityList = useMemo(
+    () => [
+      "早稲田大学","慶應義塾大学","上智大学","明治大学","青山学院大学","立教大学","中央大学","法政大学","立命館大学","関西学院大学","同志社大学","関西大学","東京理科大学","芝浦工業大学","学習院大学","明治学院大学","日本大学","専修大学","東洋大学","駒澤大学","神奈川大学","工学院大学","東京農業大学","東京電機大学","東京工科大学","東京都市大学","帝京大学","国士舘大学","昭和女子大学","武蔵野大学","文教大学","二松学舎大学","拓殖大学","大東文化大学","東海大学","城西大学","国際医療福祉大学","産業医科大学",
+    ],
+    []
+  )
+
+  const artUniversityList = useMemo(
+    () => [
+      "東京藝術大学","多摩美術大学","女子美術大学","武蔵野美術大学","東京造形大学","京都芸術大学","京都精華大学","京都市立芸術大学","名古屋芸術大学","名古屋造形大学","大阪芸術大学","愛知県立芸術大学","神戸芸術工科大学","東北芸術工科大学","秋田公立美術大学","成安造形大学","横浜美術大学","金沢美術工芸大学","武蔵野音楽大学","洗足学園音楽大学","昭和音楽大学","東邦音楽大学","尚美学園大学","文化学園大学","東京工芸大学","日本映画大学",
+    ],
+    []
+  )
 
   function TimetableBadge({
     text,
@@ -1090,118 +1112,102 @@ export function EducationSection() {
           </div>
 
           <div className="w-full h-px bg-gray-300 mb-16" />
-          <div className="mb-16">
+          <div id="course3" className="mb-16">
             <h2 className="font-serif text-3xl md:text-4xl font-bold text-gray-900 mb-8 flex items-center gap-3">
               <span className="inline-block w-1.5 h-8 rounded-full bg-[#0085b2]" />
-              {t("educationPage.recommendationTitle")}
+              {t("educationPage.recommendationTitle")} / {t("educationPage.recentResultsTitle")}
             </h2>
 
             <p className="text-gray-700 mb-8">
               {t("educationPage.recommendationDesc")}
             </p>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
-              {[
-                "法政大学",
-                "東洋大学",
-                "芝浦工業大学",
-                "関西学院大学",
-                "拓殖大学",
-                "昭和女子大学",
-                "尚美学園大学",
-                "フェリス女学院大学",
-                "東京工芸大学",
-                "武蔵野大学",
-                "帝京大学",
-                "駒沢女子大学",
-                "東京情報大学",
-                "横浜商科大学",
-                "明海大学",
-                "文化学園大学",
-                "多摩大学",
-                "関西国際大学"
-              ].map((uni, index) => (
-                <div key={index} className="p-4 bg-[#f0ffff] rounded-lg text-center text-gray-800 font-semibold border border-[#0085b2]/20 hover:bg-[#0085b2]/10 transition">
-                  {uni}
+            <div className="space-y-4">
+              <details className="rounded-2xl border border-gray-200 bg-white shadow-sm">
+                <summary className="cursor-pointer list-none px-5 py-4 flex items-center justify-between gap-4">
+                  <div>
+                    <p className="text-base font-bold text-gray-900">
+                      {t("educationPage.recommendationTitle")}
+                    </p>
+                    <p className="text-xs text-gray-500 mt-1">18校</p>
+                  </div>
+                  <ChevronDown className="h-5 w-5 text-gray-500" />
+                </summary>
+                <div className="px-5 pb-5">
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
+                    {[
+                      "法政大学","東洋大学","芝浦工業大学","関西学院大学","拓殖大学","昭和女子大学","尚美学園大学","フェリス女学院大学","東京工芸大学","武蔵野大学","帝京大学","駒沢女子大学","東京情報大学","横浜商科大学","明海大学","文化学園大学","多摩大学","関西国際大学",
+                    ].map((uni) => (
+                      <div key={uni} className="rounded-lg bg-gray-50 border border-gray-200 px-3 py-2 text-sm text-gray-800">
+                        {uni}
+                      </div>
+                    ))}
+                  </div>
+                  <div className="mt-4 bg-yellow-50 p-4 rounded-xl border border-yellow-200">
+                    <p className="text-sm text-gray-700">{t("educationPage.recommendationNote")}</p>
+                  </div>
                 </div>
-              ))}
-            </div>
+              </details>
 
-            <div className="bg-yellow-50 p-6 rounded-lg border border-yellow-200">
-              <p className="text-sm text-gray-700">
-                {t("educationPage.recommendationNote")}
-              </p>
-            </div>
-          </div>
-
-          {/* 進学実績 */}
-          <div id="course3">
-            <h2 className="font-serif text-3xl md:text-4xl font-bold text-gray-900 mb-8 flex items-center gap-3">
-              <span className="inline-block w-1.5 h-8 rounded-full bg-[#0085b2]" />
-              {t("educationPage.recentResultsTitle")}
-            </h2>
-
-            <div className="space-y-8">
-              {/* 国公立大学/大学院 */}
-              <div className="bg-[#f0ffff] p-8 rounded-lg border border-[#0085b2]/20">
-                <h3 className="text-lg font-bold mb-6 text-[#003d52] text-center border-b-2 border-[#0085b2] pb-4">
-                  {t("educationPage.publicUniSummaryTitle")}
-                </h3>
-                <div className="text-gray-700 text-sm leading-loose text-center space-y-2">
-                  <p>
-                    東京大学、京都大学、大阪大学、名古屋大学、東北大学、九州大学、<br />
-                    北海道大学、一橋大学、東京工業大学、筑波大学、神戸大学、<br />
-                    横浜国立大学、千葉大学、東京外国語大学、東京学芸大学、<br />
-                    東京都立大学、広島大学、金沢大学、電気通信大学、熊本大学、<br />
-                    長崎大学、山口大学、埼玉大学、信州大学、群馬大学、<br />
-                    茨城大学、弘前大学、富山大学、山梨大学、宇都宮大学、<br />
-                    滋賀大学、上越教育大学、兵庫県立大学、兵庫教育大学、<br />
-                    横浜市立大学、大阪公立大学、広島市立大学、名古屋市立大学
-                  </p>
-                  <p className="text-gray-400 italic">{t("educationPage.etcLabel")}</p>
+              <details className="rounded-2xl border border-gray-200 bg-white shadow-sm">
+                <summary className="cursor-pointer list-none px-5 py-4 flex items-center justify-between gap-4">
+                  <div>
+                    <p className="text-base font-bold text-gray-900">{t("educationPage.publicUniSummaryTitle")}</p>
+                    <p className="text-xs text-gray-500 mt-1">国公立</p>
+                  </div>
+                  <ChevronDown className="h-5 w-5 text-gray-500" />
+                </summary>
+                <div className="px-5 pb-5">
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
+                    {publicUniversityList.map((u) => (
+                      <div key={u} className="rounded-lg bg-gray-50 border border-gray-200 px-3 py-2 text-sm text-gray-800">
+                        {u}
+                      </div>
+                    ))}
+                  </div>
+                  <p className="text-gray-400 italic text-sm mt-2">{t("educationPage.etcLabel")}</p>
                 </div>
-              </div>
+              </details>
 
-              {/* 私立大学/大学院 */}
-              <div className="bg-purple-50 p-8 rounded-lg border border-purple-200">
-                <h3 className="text-lg font-bold mb-6 text-purple-900 text-center border-b-2 border-purple-600 pb-4">
-                  {t("educationPage.privateUniSummaryTitle")}
-                </h3>
-                <div className="text-gray-700 text-sm leading-loose text-center space-y-2">
-                  <p>
-                    早稲田大学、慶應義塾大学、上智大学、明治大学、青山学院大学、<br />
-                    立教大学、中央大学、法政大学、立命館大学、関西学院大学、<br />
-                    同志社大学、関西大学、東京理科大学、芝浦工業大学、<br />
-                    学習院大学、明治学院大学、日本大学、専修大学、東洋大学、<br />
-                    駒澤大学、神奈川大学、工学院大学、東京農業大学、<br />
-                    東京電機大学、東京工科大学、東京都市大学、帝京大学、<br />
-                    国士舘大学、昭和女子大学、武蔵野大学、文教大学、<br />
-                    二松学舎大学、拓殖大学、大東文化大学、東海大学、<br />
-                    城西大学、国際医療福祉大学、産業医科大学
-                  </p>
-                  <p className="text-gray-400 italic">{t("educationPage.etcLabel")}</p>
+              <details className="rounded-2xl border border-gray-200 bg-white shadow-sm">
+                <summary className="cursor-pointer list-none px-5 py-4 flex items-center justify-between gap-4">
+                  <div>
+                    <p className="text-base font-bold text-gray-900">{t("educationPage.privateUniSummaryTitle")}</p>
+                    <p className="text-xs text-gray-500 mt-1">私立</p>
+                  </div>
+                  <ChevronDown className="h-5 w-5 text-gray-500" />
+                </summary>
+                <div className="px-5 pb-5">
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
+                    {privateUniversityList.map((u) => (
+                      <div key={u} className="rounded-lg bg-gray-50 border border-gray-200 px-3 py-2 text-sm text-gray-800">
+                        {u}
+                      </div>
+                    ))}
+                  </div>
+                  <p className="text-gray-400 italic text-sm mt-2">{t("educationPage.etcLabel")}</p>
                 </div>
-              </div>
+              </details>
 
-              {/* 芸術系・音楽系大学/大学院 */}
-              <div className="bg-red-50 p-8 rounded-lg border border-red-200">
-                <h3 className="text-lg font-bold mb-6 text-red-900 text-center border-b-2 border-red-600 pb-4">
-                  {t("educationPage.artMusicUniSummaryTitle")}
-                </h3>
-                <div className="text-gray-700 text-sm leading-loose text-center space-y-2">
-                  <p>
-                    東京藝術大学、多摩美術大学、女子美術大学、武蔵野美術大学、<br />
-                    東京造形大学、京都芸術大学、京都精華大学、京都市立芸術大学、<br />
-                    名古屋芸術大学、名古屋造形大学、大阪芸術大学、<br />
-                    愛知県立芸術大学、神戸芸術工科大学、東北芸術工科大学、<br />
-                    秋田公立美術大学、成安造形大学、横浜美術大学、<br />
-                    金沢美術工芸大学、武蔵野音楽大学、洗足学園音楽大学、<br />
-                    昭和音楽大学、東邦音楽大学、尚美学園大学、文化学園大学、<br />
-                    東京工芸大学、日本映画大学
-                  </p>
-                  <p className="text-gray-400 italic">{t("educationPage.etcLabel")}</p>
+              <details className="rounded-2xl border border-gray-200 bg-white shadow-sm">
+                <summary className="cursor-pointer list-none px-5 py-4 flex items-center justify-between gap-4">
+                  <div>
+                    <p className="text-base font-bold text-gray-900">{t("educationPage.artMusicUniSummaryTitle")}</p>
+                    <p className="text-xs text-gray-500 mt-1">芸術・音楽</p>
+                  </div>
+                  <ChevronDown className="h-5 w-5 text-gray-500" />
+                </summary>
+                <div className="px-5 pb-5">
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
+                    {artUniversityList.map((u) => (
+                      <div key={u} className="rounded-lg bg-gray-50 border border-gray-200 px-3 py-2 text-sm text-gray-800">
+                        {u}
+                      </div>
+                    ))}
+                  </div>
+                  <p className="text-gray-400 italic text-sm mt-2">{t("educationPage.etcLabel")}</p>
                 </div>
-              </div>
+              </details>
             </div>
 
             <div className="bg-[#f0ffff] p-6 rounded-lg border border-[#0085b2]/20 mt-8">
