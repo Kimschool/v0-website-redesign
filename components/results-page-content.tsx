@@ -295,116 +295,89 @@ function UniGrid({ universities }: { universities: string[] }) {
   )
 }
 
-function YearTabbedResultsPattern2() {
+function YearResultsAlignedLayout() {
   const { t } = useTranslation()
-  const yearTabs = ["2024", "2023", "2022", "2021", "2020", "2019"] as const
-  const [activeYear, setActiveYear] = useState<(typeof yearTabs)[number]>("2024")
+  const yearOrder = ["2024", "2023", "2022", "2021", "2020", "2019"] as const
 
-  const totalCount =
-    activeYear === "2024"
-      ? data2024.大学.国公立.length +
+  const getTotal = (year: (typeof yearOrder)[number]) => {
+    if (year === "2024") {
+      return (
+        data2024.大学.国公立.length +
         data2024.大学.私立.length +
         data2024.大学.音楽美術.length +
         data2024.大学院.国公立.length +
         data2024.大学院.私立.length +
         data2024.大学院.音楽美術.length
-      : activeYear === "2023"
-        ? data2023.国公立.length + data2023.私立.length
-        : pastYearsData[activeYear].国公立.length + pastYearsData[activeYear].私立.length
+      )
+    }
+    if (year === "2023") return data2023.国公立.length + data2023.私立.length
+    return pastYearsData[year].国公立.length + pastYearsData[year].私立.length
+  }
 
   return (
     <div className="space-y-4">
-      <div className="flex flex-wrap gap-2">
-        {yearTabs.map((year) => (
-          <button
-            key={year}
-            type="button"
-            onClick={() => setActiveYear(year)}
-            className={[
-              "rounded-full px-4 py-2 text-sm font-semibold border transition",
-              activeYear === year
-                ? "bg-[#0085b2] text-white border-[#0085b2]"
-                : "bg-white text-gray-700 border-gray-300 hover:bg-gray-50",
-            ].join(" ")}
-          >
-            {year}
-          </button>
-        ))}
-      </div>
-
-      <div className="rounded-2xl border border-gray-200 bg-white shadow-sm overflow-hidden">
-        <div className="px-6 py-4 bg-gradient-to-r from-[#0085b2] to-[#006794] text-white font-bold text-lg flex items-center justify-between gap-3">
-          <span>{t("educationPage.resultTitle", { year: activeYear })}</span>
-          <span className="text-sm font-semibold text-white/90">{totalCount}校</span>
-        </div>
-
-        <div className="p-6">
-          {activeYear === "2024" ? (
-            <div className="grid lg:grid-cols-2 gap-4">
-              <div className="rounded-xl border border-gray-200 bg-gray-50 p-4">
-                <div className="flex items-center justify-between gap-3 mb-3">
-                  <p className="text-sm font-bold text-gray-900">{t("educationPage.universityHeader")}</p>
-                  <span className="text-xs font-semibold text-gray-500">
-                    {data2024.大学.国公立.length + data2024.大学.私立.length + data2024.大学.音楽美術.length}校
-                  </span>
+      {yearOrder.map((year) => (
+        <details key={year} open={year === "2024"} className="group rounded-2xl border border-gray-200 bg-white shadow-sm overflow-hidden">
+          <summary className="list-none cursor-pointer px-6 py-4 bg-gray-50 border-b border-gray-200 flex items-center justify-between gap-3">
+            <span className="text-lg font-bold text-gray-900">{t("educationPage.resultTitle", { year })}</span>
+            <span className="inline-flex items-center gap-3">
+              <span className="text-xs font-semibold text-gray-500">{getTotal(year)}校</span>
+              <span className="text-gray-400 transition-transform duration-300 group-open:rotate-180">▼</span>
+            </span>
+          </summary>
+          <div className="p-6">
+            {year === "2024" ? (
+              <div className="grid lg:grid-cols-2 gap-4">
+                <div className="rounded-2xl border border-gray-200 bg-gray-50 p-4">
+                  <p className="text-sm font-bold text-gray-900 mb-3">{t("educationPage.universityHeader")}</p>
+                  <div className="space-y-3">
+                    <div>
+                      <p className="text-sm font-semibold text-gray-800 mb-2">{t("educationPage.publicUniTitle")}</p>
+                      <UniGrid universities={data2024.大学.国公立} />
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold text-gray-800 mb-2">{t("educationPage.privateUniTitle")}</p>
+                      <UniGrid universities={data2024.大学.私立} />
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold text-gray-800 mb-2">{t("educationPage.artMusicUniTitle")}</p>
+                      <UniGrid universities={data2024.大学.音楽美術} />
+                    </div>
+                  </div>
                 </div>
-                <div className="space-y-3">
-                  <div>
-                    <p className="text-sm font-semibold text-gray-800 mb-2">{t("educationPage.publicUniTitle")}</p>
-                    <UniGrid universities={data2024.大学.国公立} />
-                  </div>
-                  <div>
-                    <p className="text-sm font-semibold text-gray-800 mb-2">{t("educationPage.privateUniTitle")}</p>
-                    <UniGrid universities={data2024.大学.私立} />
-                  </div>
-                  <div>
-                    <p className="text-sm font-semibold text-gray-800 mb-2">{t("educationPage.artMusicUniTitle")}</p>
-                    <UniGrid universities={data2024.大学.音楽美術} />
+                <div className="rounded-2xl border border-gray-200 bg-gray-50 p-4">
+                  <p className="text-sm font-bold text-gray-900 mb-3">{t("educationPage.graduateSchoolHeader")}</p>
+                  <div className="space-y-3">
+                    <div>
+                      <p className="text-sm font-semibold text-gray-800 mb-2">{t("educationPage.publicGradTitle")}</p>
+                      <UniGrid universities={data2024.大学院.国公立} />
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold text-gray-800 mb-2">{t("educationPage.privateGradTitle")}</p>
+                      <UniGrid universities={data2024.大学院.私立} />
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold text-gray-800 mb-2">{t("educationPage.artMusicGradTitle")}</p>
+                      <UniGrid universities={data2024.大学院.音楽美術} />
+                    </div>
                   </div>
                 </div>
               </div>
-
-              <div className="rounded-xl border border-gray-200 bg-gray-50 p-4">
-                <div className="flex items-center justify-between gap-3 mb-3">
-                  <p className="text-sm font-bold text-gray-900">{t("educationPage.graduateSchoolHeader")}</p>
-                  <span className="text-xs font-semibold text-gray-500">
-                    {data2024.大学院.国公立.length + data2024.大学院.私立.length + data2024.大学院.音楽美術.length}校
-                  </span>
+            ) : (
+              <div className="rounded-2xl border border-gray-200 bg-gray-50 p-4 space-y-4">
+                <div>
+                  <p className="text-sm font-semibold text-gray-800 mb-2">{t("educationPage.publicUniGradTitle")}</p>
+                  <UniGrid universities={year === "2023" ? data2023.国公立 : pastYearsData[year].国公立} />
                 </div>
-                <div className="space-y-3">
-                  <div>
-                    <p className="text-sm font-semibold text-gray-800 mb-2">{t("educationPage.publicGradTitle")}</p>
-                    <UniGrid universities={data2024.大学院.国公立} />
-                  </div>
-                  <div>
-                    <p className="text-sm font-semibold text-gray-800 mb-2">{t("educationPage.privateGradTitle")}</p>
-                    <UniGrid universities={data2024.大学院.私立} />
-                  </div>
-                  <div>
-                    <p className="text-sm font-semibold text-gray-800 mb-2">{t("educationPage.artMusicGradTitle")}</p>
-                    <UniGrid universities={data2024.大学院.音楽美術} />
-                  </div>
+                <div>
+                  <p className="text-sm font-semibold text-gray-800 mb-2">{t("educationPage.privateUniGradTitle")}</p>
+                  <UniGrid universities={year === "2023" ? data2023.私立 : pastYearsData[year].私立} />
                 </div>
               </div>
-            </div>
-          ) : (
-            <div className="rounded-xl border border-gray-200 bg-gray-50 p-4 space-y-4">
-              <div className="flex items-center justify-between gap-3">
-                <p className="text-sm font-bold text-gray-900">{t("educationPage.universityHeader")} / {t("educationPage.graduateSchoolHeader")}</p>
-                <span className="text-xs font-semibold text-gray-500">{totalCount}校</span>
-              </div>
-              <div>
-                <p className="text-sm font-semibold text-gray-800 mb-2">{t("educationPage.publicUniGradTitle")}</p>
-                <UniGrid universities={activeYear === "2023" ? data2023.国公立 : pastYearsData[activeYear].国公立} />
-              </div>
-              <div>
-                <p className="text-sm font-semibold text-gray-800 mb-2">{t("educationPage.privateUniGradTitle")}</p>
-                <UniGrid universities={activeYear === "2023" ? data2023.私立 : pastYearsData[activeYear].私立} />
-              </div>
-            </div>
-          )}
-        </div>
-      </div>
+            )}
+          </div>
+        </details>
+      ))}
     </div>
   )
 }
@@ -519,7 +492,7 @@ export function ResultsPageContent() {
           src={`/images/original_from_customer/${encodeURIComponent('トップ背景')}/${encodeURIComponent('02_教育内容（手元にフォーカス）')}.jpg`}
           alt={t("educationPage.resultsPageTitle")}
           fill
-          className="object-cover object-[center_15%]"
+          className="object-cover object-[center_35%]"
           priority
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/60 flex items-center justify-center pt-16">
@@ -541,16 +514,22 @@ export function ResultsPageContent() {
         <div className="max-w-5xl mx-auto">
           {/* 進学実績一覧 */}
           <div className="mb-16">
-            <h2 className="text-2xl md:text-3xl font-bold mb-8 text-gray-900">{t("educationPage.resultsListTitle")}</h2>
+            <h2 className="font-serif text-3xl md:text-4xl font-bold text-gray-900 mb-8 flex items-center gap-3">
+              <span className="inline-block w-1.5 h-8 rounded-full bg-[#0085b2]" />
+              {t("educationPage.resultsListTitle")}
+            </h2>
 
-            <YearTabbedResultsPattern2 />
+            <YearResultsAlignedLayout />
           </div>
 
           <div className="w-full h-px bg-gray-300 mb-16" />
 
           {/* 卒業生の声 */}
           <div>
-            <h2 className="text-2xl md:text-3xl font-bold mb-12 text-gray-900">{t("educationPage.alumniTitle")}</h2>
+            <h2 className="font-serif text-3xl md:text-4xl font-bold text-gray-900 mb-12 flex items-center gap-3">
+              <span className="inline-block w-1.5 h-8 rounded-full bg-[#0085b2]" />
+              {t("educationPage.alumniTitle")}
+            </h2>
 
             {/* Featured alumni (large cards) */}
             <div className="space-y-16 mb-16">
