@@ -387,8 +387,43 @@ function AlumniCard({ alumni, compact }: { alumni: typeof alumniData[number]; co
   const [expanded, setExpanded] = useState(false)
   const { t } = useTranslation()
 
-  const visibleParagraphs = expanded ? alumni.paragraphs : alumni.paragraphs.slice(0, alumni.previewCount)
-  const hasMore = alumni.paragraphs.length > alumni.previewCount
+  const keyMap: Record<string, { idx: number; textCount: number }> = {
+    "huang-xia": { idx: 1, textCount: 7 },
+    "patrick": { idx: 2, textCount: 4 },
+    "lee": { idx: 3, textCount: 5 },
+    "zhao": { idx: 4, textCount: 3 },
+    "seki": { idx: 5, textCount: 3 },
+    "zhu": { idx: 6, textCount: 3 },
+    "qi": { idx: 7, textCount: 3 },
+    "zhang": { idx: 8, textCount: 2 },
+    "li": { idx: 9, textCount: 3 },
+  }
+  const mapping = keyMap[alumni.id]
+  const idx = mapping?.idx
+  const translatedParagraphs = idx
+    ? Array.from({ length: mapping.textCount }, (_, i) =>
+        t(`educationPage.alumni${idx}Text${i + 1}`, { defaultValue: alumni.paragraphs[i] ?? "" })
+      ).filter((text) => text.trim().length > 0)
+    : alumni.paragraphs
+
+  const displayName = idx
+    ? t(`educationPage.alumni${idx}Name`, { defaultValue: alumni.name })
+    : alumni.name
+  const displaySchool =
+    idx && "school" in alumni && alumni.school
+      ? t(`educationPage.alumni${idx}School`, { defaultValue: alumni.school })
+      : "school" in alumni
+        ? alumni.school
+        : undefined
+  const displayJob =
+    idx && "job" in alumni && alumni.job
+      ? t(`educationPage.alumni${idx}Job`, { defaultValue: alumni.job })
+      : "job" in alumni
+        ? alumni.job
+        : undefined
+
+  const visibleParagraphs = expanded ? translatedParagraphs : translatedParagraphs.slice(0, alumni.previewCount)
+  const hasMore = translatedParagraphs.length > alumni.previewCount
 
   if (compact) {
     return (
@@ -397,7 +432,7 @@ function AlumniCard({ alumni, compact }: { alumni: typeof alumniData[number]; co
           <div className="relative h-48 sm:w-32 sm:min-h-[200px] flex-shrink-0 overflow-hidden sm:self-stretch">
             <Image
               src={alumni.image}
-              alt={alumni.name}
+              alt={displayName}
               fill
               className="object-cover"
               style={("imagePosition" in alumni && alumni.imagePosition) ? { objectPosition: alumni.imagePosition } : undefined}
@@ -405,9 +440,9 @@ function AlumniCard({ alumni, compact }: { alumni: typeof alumniData[number]; co
           </div>
           <div className="p-4 bg-white flex-1 min-w-0">
             <div className="mb-3">
-              <h3 className="text-base font-bold text-gray-900 mb-1">{alumni.name}</h3>
-              {alumni.school && <p className="text-gray-700 font-semibold text-xs">{alumni.school}</p>}
-              {alumni.job && <p className="text-gray-700 font-semibold text-xs">{alumni.job}</p>}
+              <h3 className="text-base font-bold text-gray-900 mb-1">{displayName}</h3>
+              {displaySchool && <p className="text-gray-700 font-semibold text-xs">{displaySchool}</p>}
+              {displayJob && <p className="text-gray-700 font-semibold text-xs">{displayJob}</p>}
             </div>
             <div className="space-y-2 text-gray-700 leading-relaxed text-xs">
               {visibleParagraphs.map((p, i) => (
@@ -448,16 +483,16 @@ function AlumniCard({ alumni, compact }: { alumni: typeof alumniData[number]; co
         <div className="relative h-96 md:col-span-1 overflow-hidden">
           <Image
             src={alumni.image}
-            alt={alumni.name}
+            alt={displayName}
             fill
             className="object-contain"
           />
         </div>
         <div className="md:col-span-2 p-8 bg-white">
           <div className="mb-6">
-            <h3 className="text-xl font-bold text-gray-900 mb-2">{alumni.name}</h3>
-            {alumni.school && <p className="text-gray-700 font-semibold">{alumni.school}</p>}
-            {alumni.job && <p className="text-gray-700 font-semibold">{alumni.job}</p>}
+            <h3 className="text-xl font-bold text-gray-900 mb-2">{displayName}</h3>
+            {displaySchool && <p className="text-gray-700 font-semibold">{displaySchool}</p>}
+            {displayJob && <p className="text-gray-700 font-semibold">{displayJob}</p>}
           </div>
           <div className="space-y-4 text-gray-700 leading-relaxed text-sm">
             {visibleParagraphs.map((p, i) => (
@@ -505,8 +540,8 @@ export function ResultsPageContent() {
 
     <PageBreadcrumb
       items={[
-        { label: "教育内容", href: "/education" },
-        { label: "進学実績・卒業生の声" },
+        { label: t("educationPage.bannerTitle"), href: "/education" },
+        { label: t("educationPage.resultsPageTitle") },
       ]}
     />
 
