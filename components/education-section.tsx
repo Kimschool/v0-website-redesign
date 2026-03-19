@@ -4,7 +4,18 @@ import { useEffect, useMemo, useRef, useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { useTranslation } from "react-i18next"
-import { ArrowRight, BookOpen, GraduationCap, ListChecks, Map, Sparkles, Target } from "lucide-react"
+import {
+  ArrowRight,
+  BookOpen,
+  CalendarClock,
+  GraduationCap,
+  ListChecks,
+  Map,
+  Route,
+  School,
+  Sparkles,
+  Target,
+} from "lucide-react"
 
 type TimetableTone =
   | "kanji"
@@ -968,105 +979,112 @@ export function EducationSection() {
               {t("educationPage.admissionScheduleTitle")}
             </h2>
 
-            {/* 1年目 */}
-            <div className="mb-10">
-              <h3 className="text-xl font-bold mb-4 text-gray-800">{t("educationPage.year1Title")}</h3>
-              <div className="overflow-x-auto">
-                <div className="min-w-[720px] rounded-2xl border border-gray-200 bg-white shadow-sm overflow-hidden">
-                  <table className="w-full text-sm">
-                  <colgroup>
-                    <col className="w-1/4" />
-                    <col className="w-3/8" />
-                    <col className="w-3/8" />
-                  </colgroup>
-                  <thead className="bg-gray-50">
-                    <tr>
-                      <th className="px-4 py-3 font-semibold text-left text-gray-900">{t("educationPage.scheduleCategory")}</th>
-                      <th className="px-4 py-3 font-semibold text-left text-gray-900">{t("educationPage.scheduleUni")}</th>
-                      <th className="px-4 py-3 font-semibold text-left text-gray-900">{t("educationPage.scheduleGrad")}</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-gray-100 text-gray-700">
-                    <tr className="odd:bg-white even:bg-gray-50/40">
-                      <td className="px-4 py-3 font-semibold text-gray-900">{t("educationPage.year1Period")}</td>
-                      <td className="px-4 py-3 whitespace-pre-line">
-                        {t("educationPage.year1Uni")}
-                      </td>
-                      <td className="px-4 py-3 whitespace-pre-line">
-                        {t("educationPage.year1Grad")}
-                      </td>
-                    </tr>
-                  </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
+            <div className="relative">
+              <div className="hidden md:block absolute left-[26px] top-6 bottom-6 w-px bg-gray-200" />
+              <div className="space-y-6">
+                {[
+                  {
+                    id: "year1",
+                    title: t("educationPage.year1Title"),
+                    period: t("educationPage.year1Period"),
+                    uni: t("educationPage.year1Uni"),
+                    grad: t("educationPage.year1Grad"),
+                    accent: "blue" as const,
+                    Icon: CalendarClock,
+                  },
+                  {
+                    id: "year2first",
+                    title: t("educationPage.year2FirstTitle"),
+                    period: t("educationPage.year2FirstPeriod"),
+                    uni: t("educationPage.year2FirstUni"),
+                    grad: t("educationPage.year2FirstGrad"),
+                    accent: "emerald" as const,
+                    Icon: Route,
+                  },
+                  {
+                    id: "year2second",
+                    title: t("educationPage.year2SecondTitle"),
+                    period: t("educationPage.year2SecondPeriod"),
+                    uni: t("educationPage.year2SecondUni"),
+                    grad: t("educationPage.year2SecondGrad"),
+                    accent: "violet" as const,
+                    Icon: GraduationCap,
+                  },
+                ].map((stage, idx, all) => {
+                  const dotColor =
+                    stage.accent === "blue"
+                      ? "bg-[#0085b2]"
+                      : stage.accent === "emerald"
+                        ? "bg-emerald-600"
+                        : "bg-violet-600"
+                  const badgeCls =
+                    stage.accent === "blue"
+                      ? "bg-[#0085b2]/10 text-[#006d94] border-[#0085b2]/20"
+                      : stage.accent === "emerald"
+                        ? "bg-emerald-600/10 text-emerald-800 border-emerald-600/20"
+                        : "bg-violet-600/10 text-violet-800 border-violet-600/20"
 
-            {/* 2年目 前半 */}
-            <div className="mb-10">
-              <h3 className="text-xl font-bold mb-4 text-gray-800">{t("educationPage.year2FirstTitle")}</h3>
-              <div className="overflow-x-auto">
-                <div className="min-w-[720px] rounded-2xl border border-gray-200 bg-white shadow-sm overflow-hidden">
-                  <table className="w-full text-sm">
-                  <colgroup>
-                    <col className="w-1/4" />
-                    <col className="w-3/8" />
-                    <col className="w-3/8" />
-                  </colgroup>
-                  <thead className="bg-gray-50">
-                    <tr>
-                      <th className="px-4 py-3 font-semibold text-left text-gray-900">{t("educationPage.scheduleCategory")}</th>
-                      <th className="px-4 py-3 font-semibold text-left text-gray-900">{t("educationPage.scheduleUni")}</th>
-                      <th className="px-4 py-3 font-semibold text-left text-gray-900">{t("educationPage.scheduleGrad")}</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-gray-100 text-gray-700">
-                    <tr className="odd:bg-white even:bg-gray-50/40">
-                      <td className="px-4 py-3 font-semibold text-gray-900">{t("educationPage.year2FirstPeriod")}</td>
-                      <td className="px-4 py-3 whitespace-pre-line">
-                        {t("educationPage.year2FirstUni")}
-                      </td>
-                      <td className="px-4 py-3 whitespace-pre-line">
-                        {t("educationPage.year2FirstGrad")}
-                      </td>
-                    </tr>
-                  </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
+                  return (
+                    <div key={stage.id} className="flex items-start gap-4">
+                      <div className="shrink-0 pt-2">
+                        <div className="h-14 w-14 rounded-2xl border border-gray-200 bg-white shadow-sm flex items-center justify-center">
+                          <stage.Icon className="h-6 w-6 text-[#0085b2]" />
+                        </div>
+                      </div>
 
-            {/* 2年目 後半 */}
-            <div>
-              <h3 className="text-xl font-bold mb-4 text-gray-800">{t("educationPage.year2SecondTitle")}</h3>
-              <div className="overflow-x-auto">
-                <div className="min-w-[720px] rounded-2xl border border-gray-200 bg-white shadow-sm overflow-hidden">
-                  <table className="w-full text-sm">
-                  <colgroup>
-                    <col className="w-1/4" />
-                    <col className="w-3/8" />
-                    <col className="w-3/8" />
-                  </colgroup>
-                  <thead className="bg-gray-50">
-                    <tr>
-                      <th className="px-4 py-3 font-semibold text-left text-gray-900">{t("educationPage.scheduleCategory")}</th>
-                      <th className="px-4 py-3 font-semibold text-left text-gray-900">{t("educationPage.scheduleUni")}</th>
-                      <th className="px-4 py-3 font-semibold text-left text-gray-900">{t("educationPage.scheduleGrad")}</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-gray-100 text-gray-700">
-                    <tr className="odd:bg-white even:bg-gray-50/40">
-                      <td className="px-4 py-3 font-semibold text-gray-900">{t("educationPage.year2SecondPeriod")}</td>
-                      <td className="px-4 py-3 whitespace-pre-line">
-                        {t("educationPage.year2SecondUni")}
-                      </td>
-                      <td className="px-4 py-3 whitespace-pre-line">
-                        {t("educationPage.year2SecondGrad")}
-                      </td>
-                    </tr>
-                  </tbody>
-                  </table>
-                </div>
+                      <div className="flex-1 rounded-2xl border border-gray-200 bg-white shadow-sm p-6">
+                        <div className="flex flex-wrap items-center justify-between gap-3 mb-3">
+                          <div className="flex items-center gap-3">
+                            <span className={["h-2.5 w-2.5 rounded-full", dotColor].join(" ")} />
+                            <h3 className="font-serif text-xl font-bold text-gray-900">
+                              {stage.title}
+                            </h3>
+                          </div>
+                          <span
+                            className={[
+                              "inline-flex items-center rounded-full border px-3 py-1 text-xs font-semibold",
+                              badgeCls,
+                            ].join(" ")}
+                          >
+                            {stage.period}
+                          </span>
+                        </div>
+
+                        <div className="grid md:grid-cols-2 gap-4">
+                          <div className="rounded-2xl border border-gray-200 bg-gray-50 p-4">
+                            <div className="flex items-center gap-2 mb-2">
+                              <School className="h-4 w-4 text-gray-500" />
+                              <p className="text-sm font-bold text-gray-900">
+                                {t("educationPage.scheduleUni")}
+                              </p>
+                            </div>
+                            <p className="text-sm text-gray-700 whitespace-pre-line leading-relaxed">
+                              {stage.uni}
+                            </p>
+                          </div>
+                          <div className="rounded-2xl border border-gray-200 bg-gray-50 p-4">
+                            <div className="flex items-center gap-2 mb-2">
+                              <GraduationCap className="h-4 w-4 text-gray-500" />
+                              <p className="text-sm font-bold text-gray-900">
+                                {t("educationPage.scheduleGrad")}
+                              </p>
+                            </div>
+                            <p className="text-sm text-gray-700 whitespace-pre-line leading-relaxed">
+                              {stage.grad}
+                            </p>
+                          </div>
+                        </div>
+
+                        {idx < all.length - 1 ? (
+                          <div className="mt-5 inline-flex items-center gap-2 text-[#0085b2] text-sm font-semibold">
+                            次へ
+                            <ArrowRight className="h-4 w-4" />
+                          </div>
+                        ) : null}
+                      </div>
+                    </div>
+                  )
+                })}
               </div>
             </div>
           </div>
