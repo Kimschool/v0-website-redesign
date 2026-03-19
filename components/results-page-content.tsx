@@ -150,7 +150,7 @@ const alumniData = [
     name: "黄 厦さん / 中国出身",
     school: "進学先：東京大学大学院　農学生命科学研究科",
     job: "現  職： P&Gジャパン",
-    image: "https://weavus-group.com/kcp/wp-content/uploads/2026/02/%E9%BB%84-%E5%8E%A6%E3%81%95%E3%82%93.jpg",
+    image: "/images/alumni/huang-xia.png",
     featured: true,
     paragraphs: [
       "KCPで過ごした時間は、私にとって日本語学習以上の意味を持つ、大切な経験でした。勉強だけでなく、人としての姿勢や考え方を学べた場所だと感じています。",
@@ -167,7 +167,7 @@ const alumniData = [
     id: "patrick",
     name: "Patrick Grainger さん / アメリカ出身",
     job: "現  職： 東京防災救急協会",
-    image: "https://weavus-group.com/kcp/wp-content/uploads/2026/02/patric.png",
+    image: "/images/alumni/patrick.png",
     featured: true,
     paragraphs: [
       "大学を卒業した後、さらに日本語の力をしっかりと伸ばしたいと考え、KCP地球市民日本語学校に入学いたしました。現在は、在日外国人を対象とした防災教育の仕事に携わっています。日本で暮らす外国人の方々が安心して生活できるよう支援するこの仕事は、私にとって大きなやりがいとなっています。",
@@ -181,7 +181,7 @@ const alumniData = [
     id: "lee",
     name: "Lee Yit Chang さん / マレーシア出身",
     school: "進学先：早稲田大学 文化構想学部文化構想学科",
-    image: "https://weavus-group.com/kcp/wp-content/uploads/2026/02/leesang.jpg",
+    image: "/images/alumni/lee.png",
     featured: false,
     paragraphs: [
       "私が来日した理由は、英語圏とは異なる文化に強い興味があったからです。私はオーストラリアで育ったため、日本の価値観や生活スタイル、言語などに惹かれ、「実際に日本で生活しながら学んでみたい」と思い来日しました。現在は、日本で社会人として働いています。",
@@ -196,7 +196,7 @@ const alumniData = [
     id: "zhao",
     name: "赵 瑞霄さん / 中国出身",
     school: "進学先：東北大学　農学部",
-    image: "https://weavus-group.com/kcp/wp-content/uploads/2026/02/%E8%B5%B5-%E7%91%9E%E9%9C%84%E3%81%95%E3%82%93-.png",
+    image: "/images/alumni/zhao.png",
     featured: false,
     paragraphs: [
       "KCPの先生方は個性豊かですが、みんな学生一人ひとりを大切にしてくださっています。学習面だけでなく、生活の相談にものってくださって、安心して勉強できる環境だと感じています。",
@@ -213,7 +213,7 @@ const alumniData = [
     id: "seki",
     name: "昔 聖原さん / 韓国出身",
     school: "進学先：法政大学 人間環境学部人間環境学科（指定校推薦）",
-    image: "https://weavus-group.com/kcp/wp-content/uploads/2026/02/%E6%98%94-%E8%81%96%E5%8E%9F-.jpg",
+    image: "/images/alumni/seki.png",
     featured: false,
     paragraphs: [
       "「勉強をして大学に入る」という一般的な受験のプロセスであれば、正直どこでも学べると思います。しかしKCPで私が学んだのは、日本語だけではなく、「態度」でした。KCPには、日本語の指導だけでなく、学生一人ひとりを親身になって支えてくださる先生方がいます。在学中はもちろん、卒業後も日本で日本社会の中で活躍できるよう、さまざまなアドバイスをしてくださいました。",
@@ -225,7 +225,7 @@ const alumniData = [
     id: "zhu",
     name: "朱 瑞婷さん / 中国出身",
     school: "進学先：多摩美術大学 情報デザイン学科情報デザインコース",
-    image: "https://weavus-group.com/kcp/wp-content/uploads/2026/02/%E6%9C%B1-%E7%91%9E%E5%A9%B7%E3%81%95%E3%82%93-.jpg",
+    image: "/images/alumni/zhu.png",
     featured: false,
     paragraphs: [
       "KCPでの学習経験は、私にとって非常に実り多いものでした。中でも最も大きく成長したと感じているのは、作文力です。毎週行われる体系的な作文指導と、先生方の丁寧な添削のおかげで、論文を書く力が大きく向上しました。この経験は、その後の大学入試においても大きな助けとなりました。",
@@ -238,7 +238,7 @@ const alumniData = [
     id: "qi",
     name: "戚笑さん / 中国出身",
     school: "進学先：静岡文化芸術大学大学院 デザイン研究科",
-    image: "https://weavus-group.com/kcp/wp-content/uploads/2026/02/%E6%88%9A%E7%AC%91%E3%81%95%E3%82%93--768x576.jpg",
+    image: "/images/alumni/qi.png",
     imagePosition: "right center",
     featured: false,
     paragraphs: [
@@ -253,7 +253,7 @@ const alumniData = [
     id: "zhang",
     name: "张 首馨さん / 中国出身",
     school: "進学先：東京外国語大学大学院 総合国際学研究科",
-    image: "https://weavus-group.com/kcp/wp-content/uploads/2026/02/%E5%BC%A0-%E9%A6%96%E9%A6%A8%E3%81%95%E3%82%93--768x571.png",
+    image: "/images/alumni/zhang.png",
     featured: false,
     badgeKeys: [
       "educationPage.alumniJpetTitle",
@@ -269,7 +269,7 @@ const alumniData = [
     id: "li",
     name: "李 黛玉さん / 中国出身",
     school: "進学先：東京藝術大学大学院 映像研究科アニメーション専攻",
-    image: "https://weavus-group.com/kcp/wp-content/uploads/2026/02/%E6%9D%8E-%E9%BB%9B%E7%8E%89%E3%81%95%E3%82%93-.png",
+    image: "/images/alumni/lee1.png",
     featured: false,
     paragraphs: [
       "私は中級クラスからKCPでの学習を始めました。母国での勉強は主に試験対策中心だったため、実践的な日本語力がまだ身についていなかったのです。中級クラスでは課題が多く、特に作文の宿題を通して、文の構造を意識しながら書く力を身につけました。",
@@ -280,155 +280,131 @@ const alumniData = [
   },
 ]
 
-// カテゴリ別大学リスト表示
-function UniGrid({ universities, bgColor, borderColor, hoverColor }: {
-  universities: string[]
-  bgColor: string
-  borderColor: string
-  hoverColor: string
-}) {
+function UniGrid({ universities }: { universities: string[] }) {
   return (
     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
       {universities.map((uni, idx) => (
-        <div key={idx} className={`p-3 ${bgColor} rounded-lg border ${borderColor} text-center hover:${hoverColor} transition`}>
-          <p className="text-gray-800 font-semibold text-sm">{uni}</p>
+        <div
+          key={idx}
+          className="rounded-md border border-gray-200 bg-white px-2.5 py-1.5 text-sm text-gray-700 transition hover:bg-gray-50"
+        >
+          <p className="font-medium">{uni}</p>
         </div>
       ))}
     </div>
   )
 }
 
-// 2024年度テーブル（大学 + 大学院の2階層）
-function Year2024Table() {
+function YearTabbedResultsPattern2() {
   const { t } = useTranslation()
+  const yearTabs = ["2024", "2023", "2022", "2021", "2020", "2019"] as const
+  const [activeYear, setActiveYear] = useState<(typeof yearTabs)[number]>("2024")
 
-  return (
-    <div className="border border-gray-300 rounded-lg overflow-hidden">
-      <div className="bg-gradient-to-r from-[#0085b2] to-[#006794] px-6 py-4 text-white font-bold text-lg">
-        {t("educationPage.resultTitle", { year: "2024" })}
-      </div>
-      <div className="p-6 space-y-8">
-        {/* 大学 */}
-        <div>
-          <h3 className="text-xl font-bold text-gray-900 mb-6 pb-2 border-b-2 border-[#0085b2]">
-            {t("educationPage.universityHeader")}
-          </h3>
-          <div className="space-y-6">
-            <div>
-              <h4 className="font-bold text-[#003d52] mb-4">{t("educationPage.publicUniTitle")}</h4>
-              <UniGrid universities={data2024.大学.国公立} bgColor="bg-[#f0ffff]" borderColor="border-[#0085b2]/20" hoverColor="bg-[#0085b2]/10" />
-            </div>
-            <div>
-              <h4 className="font-bold text-purple-900 mb-4">{t("educationPage.privateUniTitle")}</h4>
-              <UniGrid universities={data2024.大学.私立} bgColor="bg-purple-50" borderColor="border-purple-200" hoverColor="bg-purple-100" />
-            </div>
-            <div>
-              <h4 className="font-bold text-red-900 mb-4">{t("educationPage.artMusicUniTitle")}</h4>
-              <UniGrid universities={data2024.大学.音楽美術} bgColor="bg-red-50" borderColor="border-red-200" hoverColor="bg-red-100" />
-            </div>
-          </div>
-        </div>
-
-        {/* 大学院 */}
-        <div>
-          <h3 className="text-xl font-bold text-gray-900 mb-6 pb-2 border-b-2 border-green-600">
-            {t("educationPage.graduateSchoolHeader")}
-          </h3>
-          <div className="space-y-6">
-            <div>
-              <h4 className="font-bold text-[#003d52] mb-4">{t("educationPage.publicGradTitle")}</h4>
-              <UniGrid universities={data2024.大学院.国公立} bgColor="bg-[#f0ffff]" borderColor="border-[#0085b2]/20" hoverColor="bg-[#0085b2]/10" />
-            </div>
-            <div>
-              <h4 className="font-bold text-purple-900 mb-4">{t("educationPage.privateGradTitle")}</h4>
-              <UniGrid universities={data2024.大学院.私立} bgColor="bg-purple-50" borderColor="border-purple-200" hoverColor="bg-purple-100" />
-            </div>
-            <div>
-              <h4 className="font-bold text-red-900 mb-4">{t("educationPage.artMusicGradTitle")}</h4>
-              <UniGrid universities={data2024.大学院.音楽美術} bgColor="bg-red-50" borderColor="border-red-200" hoverColor="bg-red-100" />
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  )
-}
-
-// 2023年度テーブル
-function Year2023Table() {
-  const { t } = useTranslation()
-
-  return (
-    <div className="border border-gray-300 rounded-lg overflow-hidden">
-      <div className="bg-gradient-to-r from-[#0085b2] to-[#006794] px-6 py-4 text-white font-bold text-lg">
-        {t("educationPage.resultTitle", { year: "2023" })}
-      </div>
-      <div className="p-6 space-y-6">
-        <div>
-          <h4 className="font-bold text-[#003d52] mb-4">{t("educationPage.publicUniGradTitle")}</h4>
-          <UniGrid universities={data2023.国公立} bgColor="bg-[#f0ffff]" borderColor="border-[#0085b2]/20" hoverColor="bg-[#0085b2]/10" />
-        </div>
-        <div>
-          <h4 className="font-bold text-purple-900 mb-4">{t("educationPage.privateUniGradTitle")}</h4>
-          <UniGrid universities={data2023.私立} bgColor="bg-purple-50" borderColor="border-purple-200" hoverColor="bg-purple-100" />
-        </div>
-      </div>
-    </div>
-  )
-}
-
-// 過去の年度（折りたたみ）
-function ToggleableYearResults() {
-  const { t } = useTranslation()
-  const [expandedYears, setExpandedYears] = useState<Record<string, boolean>>({})
-
-  const toggleYear = (year: string) => {
-    setExpandedYears(prev => ({ ...prev, [year]: !prev[year] }))
-  }
-
-  const yearOrder = ["2022", "2021", "2020", "2019"]
+  const totalCount =
+    activeYear === "2024"
+      ? data2024.大学.国公立.length +
+        data2024.大学.私立.length +
+        data2024.大学.音楽美術.length +
+        data2024.大学院.国公立.length +
+        data2024.大学院.私立.length +
+        data2024.大学院.音楽美術.length
+      : activeYear === "2023"
+        ? data2023.国公立.length + data2023.私立.length
+        : pastYearsData[activeYear].国公立.length + pastYearsData[activeYear].私立.length
 
   return (
     <div className="space-y-4">
-      {yearOrder.map((year) => (
-        <div key={year} className="border border-gray-300 rounded-lg overflow-hidden">
+      <div className="flex flex-wrap gap-2">
+        {yearTabs.map((year) => (
           <button
-            onClick={() => toggleYear(year)}
-            className="w-full bg-gradient-to-r from-gray-400 to-gray-500 hover:from-gray-500 hover:to-gray-600 px-6 py-4 text-white font-bold text-lg flex items-center justify-between transition"
+            key={year}
+            type="button"
+            onClick={() => setActiveYear(year)}
+            className={[
+              "rounded-full px-4 py-2 text-sm font-semibold border transition",
+              activeYear === year
+                ? "bg-[#0085b2] text-white border-[#0085b2]"
+                : "bg-white text-gray-700 border-gray-300 hover:bg-gray-50",
+            ].join(" ")}
           >
-            <span>{t("educationPage.resultTitle", { year })}</span>
-            <span className={`transform transition-transform ${expandedYears[year] ? "rotate-180" : ""}`}>
-              ▼
-            </span>
+            {year}
           </button>
+        ))}
+      </div>
 
-          {expandedYears[year] && (
-            <div className="p-6 bg-gray-50 space-y-6">
-              <div>
-                <h5 className="font-bold text-[#003d52] mb-3">{t("educationPage.publicUniGradTitle")}</h5>
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
-                  {pastYearsData[year].国公立.map((uni, idx) => (
-                    <div key={idx} className="p-2 bg-white rounded-lg border border-[#0085b2]/30 text-center hover:bg-[#f0ffff] transition">
-                      <p className="text-gray-800 font-semibold text-xs md:text-sm">{uni}</p>
-                    </div>
-                  ))}
+      <div className="rounded-2xl border border-gray-200 bg-white shadow-sm overflow-hidden">
+        <div className="px-6 py-4 bg-gradient-to-r from-[#0085b2] to-[#006794] text-white font-bold text-lg flex items-center justify-between gap-3">
+          <span>{t("educationPage.resultTitle", { year: activeYear })}</span>
+          <span className="text-sm font-semibold text-white/90">{totalCount}校</span>
+        </div>
+
+        <div className="p-6">
+          {activeYear === "2024" ? (
+            <div className="grid lg:grid-cols-2 gap-4">
+              <div className="rounded-xl border border-gray-200 bg-gray-50 p-4">
+                <div className="flex items-center justify-between gap-3 mb-3">
+                  <p className="text-sm font-bold text-gray-900">{t("educationPage.universityHeader")}</p>
+                  <span className="text-xs font-semibold text-gray-500">
+                    {data2024.大学.国公立.length + data2024.大学.私立.length + data2024.大学.音楽美術.length}校
+                  </span>
+                </div>
+                <div className="space-y-3">
+                  <div>
+                    <p className="text-sm font-semibold text-gray-800 mb-2">{t("educationPage.publicUniTitle")}</p>
+                    <UniGrid universities={data2024.大学.国公立} />
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold text-gray-800 mb-2">{t("educationPage.privateUniTitle")}</p>
+                    <UniGrid universities={data2024.大学.私立} />
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold text-gray-800 mb-2">{t("educationPage.artMusicUniTitle")}</p>
+                    <UniGrid universities={data2024.大学.音楽美術} />
+                  </div>
                 </div>
               </div>
 
-              <div>
-                <h5 className="font-bold text-purple-900 mb-3">{t("educationPage.privateUniGradTitle")}</h5>
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
-                  {pastYearsData[year].私立.map((uni, idx) => (
-                    <div key={idx} className="p-2 bg-white rounded-lg border border-purple-300 text-center hover:bg-purple-50 transition">
-                      <p className="text-gray-800 font-semibold text-xs md:text-sm">{uni}</p>
-                    </div>
-                  ))}
+              <div className="rounded-xl border border-gray-200 bg-gray-50 p-4">
+                <div className="flex items-center justify-between gap-3 mb-3">
+                  <p className="text-sm font-bold text-gray-900">{t("educationPage.graduateSchoolHeader")}</p>
+                  <span className="text-xs font-semibold text-gray-500">
+                    {data2024.大学院.国公立.length + data2024.大学院.私立.length + data2024.大学院.音楽美術.length}校
+                  </span>
                 </div>
+                <div className="space-y-3">
+                  <div>
+                    <p className="text-sm font-semibold text-gray-800 mb-2">{t("educationPage.publicGradTitle")}</p>
+                    <UniGrid universities={data2024.大学院.国公立} />
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold text-gray-800 mb-2">{t("educationPage.privateGradTitle")}</p>
+                    <UniGrid universities={data2024.大学院.私立} />
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold text-gray-800 mb-2">{t("educationPage.artMusicGradTitle")}</p>
+                    <UniGrid universities={data2024.大学院.音楽美術} />
+                  </div>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div className="rounded-xl border border-gray-200 bg-gray-50 p-4 space-y-4">
+              <div className="flex items-center justify-between gap-3">
+                <p className="text-sm font-bold text-gray-900">{t("educationPage.universityHeader")} / {t("educationPage.graduateSchoolHeader")}</p>
+                <span className="text-xs font-semibold text-gray-500">{totalCount}校</span>
+              </div>
+              <div>
+                <p className="text-sm font-semibold text-gray-800 mb-2">{t("educationPage.publicUniGradTitle")}</p>
+                <UniGrid universities={activeYear === "2023" ? data2023.国公立 : pastYearsData[activeYear].国公立} />
+              </div>
+              <div>
+                <p className="text-sm font-semibold text-gray-800 mb-2">{t("educationPage.privateUniGradTitle")}</p>
+                <UniGrid universities={activeYear === "2023" ? data2023.私立 : pastYearsData[activeYear].私立} />
               </div>
             </div>
           )}
         </div>
-      ))}
+      </div>
     </div>
   )
 }
@@ -567,11 +543,7 @@ export function ResultsPageContent() {
           <div className="mb-16">
             <h2 className="text-2xl md:text-3xl font-bold mb-8 text-gray-900">{t("educationPage.resultsListTitle")}</h2>
 
-            <div className="space-y-4">
-              <Year2024Table />
-              <Year2023Table />
-              <ToggleableYearResults />
-            </div>
+            <YearTabbedResultsPattern2 />
           </div>
 
           <div className="w-full h-px bg-gray-300 mb-16" />
