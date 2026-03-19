@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
-import { School, User, ArrowRight, Quote } from "lucide-react"
+import { School, User, ArrowRight } from "lucide-react"
 import { useTranslation } from "react-i18next"
 
 export function AboutSection() {
@@ -108,38 +108,21 @@ export function AboutSection() {
 
   return (
     <section ref={sectionRef} id="about" className="bg-background">
-      {/* Hero Banner - Full viewport cinematic style */}
-      <div className="relative w-full h-[70vh] md:h-[80vh] overflow-hidden">
+      {/* Page Banner - aligned with other sections */}
+      <div className="relative h-[350px] md:h-[400px] w-full overflow-hidden">
         <Image
           src={`/images/original_from_customer/${encodeURIComponent('トップ背景')}/${encodeURIComponent('01_KCPとは（拡大して周りの建物があまり見えないように）')}.jpg`}
-          alt="KCPとは"
+          alt={t("aboutPage.bannerTitle")}
           fill
-          className="object-cover object-center scale-105"
+          className="object-cover object-[center_35%]"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70" />
-        
-        {/* Hero Content */}
-        <div className="absolute inset-0 flex flex-col items-center justify-center pt-16 px-4">
-          <div className={`text-center max-w-4xl ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
-            <span className="inline-block text-white/70 text-sm md:text-base tracking-[0.3em] uppercase mb-4">
-              KCP Japanese Language School
-            </span>
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white tracking-tight leading-[1.1] text-balance">
+        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/60 flex items-center justify-center pt-16 px-4">
+          <div className={`text-center ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight">
               {t("aboutPage.bannerTitle")}
             </h1>
-            <div className="flex items-center justify-center gap-4 mt-8">
-              <div className="w-12 h-[2px] bg-white/40" />
-              <span className="text-white/60 text-sm tracking-widest">Since 1983</span>
-              <div className="w-12 h-[2px] bg-white/40" />
-            </div>
-          </div>
-        </div>
-
-        {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-scroll-indicator">
-          <div className="w-6 h-10 rounded-full border-2 border-white/30 flex items-start justify-center p-2">
-            <div className="w-1.5 h-1.5 rounded-full bg-white/60" />
+            <div className="w-20 h-1 bg-white/80 mx-auto mt-6 rounded-full"></div>
           </div>
         </div>
       </div>
@@ -150,50 +133,18 @@ export function AboutSection() {
           <div className={`${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
             {/* Large Philosophy Statement */}
             <div className="max-w-6xl mx-auto mb-20">
-              <div className="grid md:grid-cols-3 gap-8 md:gap-4 mb-16">
-                {/* K */}
-                <div className="group text-center md:text-left">
-                  <div className="inline-flex items-baseline gap-2 md:gap-4">
-                    <span className="text-8xl md:text-9xl lg:text-[12rem] font-bold text-[#0085b2] leading-none tracking-tighter">K</span>
-                    <span className="text-xl md:text-2xl lg:text-3xl font-light text-gray-600 tracking-wide">nowledge</span>
-                  </div>
-                  <p className="mt-4 text-gray-500 text-sm md:text-base max-w-xs mx-auto md:mx-0">
-                    {t("aboutPage.philosophy1").slice(0, 100)}...
-                  </p>
-                </div>
-                {/* C */}
-                <div className="group text-center">
-                  <div className="inline-flex items-baseline gap-2 md:gap-4">
-                    <span className="text-8xl md:text-9xl lg:text-[12rem] font-bold text-[#0085b2] leading-none tracking-tighter">C</span>
-                    <span className="text-xl md:text-2xl lg:text-3xl font-light text-gray-600 tracking-wide">oexistence</span>
-                  </div>
-                  <p className="mt-4 text-gray-500 text-sm md:text-base max-w-xs mx-auto">
-                    {t("aboutPage.philosophy2").slice(0, 100)}...
-                  </p>
-                </div>
-                {/* P */}
-                <div className="group text-center md:text-right">
-                  <div className="inline-flex items-baseline gap-2 md:gap-4">
-                    <span className="text-8xl md:text-9xl lg:text-[12rem] font-bold text-[#0085b2] leading-none tracking-tighter">P</span>
-                    <span className="text-xl md:text-2xl lg:text-3xl font-light text-gray-600 tracking-wide">eace</span>
-                  </div>
-                  <p className="mt-4 text-gray-500 text-sm md:text-base max-w-xs mx-auto md:ml-auto md:mr-0">
-                    {t("aboutPage.philosophy3").slice(0, 100)}...
-                  </p>
+              <div className="mb-16">
+                <div className="relative max-w-4xl mx-auto aspect-[583/336]">
+                  <Image
+                    src="/images/about-kcp-values.png"
+                    alt={t("aboutPage.bannerTitle")}
+                    fill
+                    className="object-contain"
+                    priority
+                  />
                 </div>
               </div>
 
-              {/* Full Philosophy Text */}
-              <div className="max-w-3xl mx-auto">
-                <div className="relative">
-                  <Quote className="absolute -top-4 -left-8 w-16 h-16 text-[#0085b2]/10" />
-                  <div className="space-y-6 text-gray-700 text-lg md:text-xl leading-relaxed text-center">
-                    <p>{t("aboutPage.philosophy1")}</p>
-                    <p>{t("aboutPage.philosophy2")}</p>
-                    <p>{t("aboutPage.philosophy3")}</p>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -208,7 +159,7 @@ export function AboutSection() {
               <div className="aspect-[4/5] md:aspect-[4/3] rounded-2xl overflow-hidden">
                 <Image
                   src={`/images/original_from_customer/${encodeURIComponent('予備')}/K.jpg`}
-                  alt="Student 1"
+                  alt="Student image 1"
                   fill
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
                 />
@@ -222,7 +173,7 @@ export function AboutSection() {
                 <div className="aspect-square md:aspect-auto md:h-full rounded-2xl overflow-hidden">
                   <Image
                     src={`/images/original_from_customer/${encodeURIComponent('予備')}/${encodeURIComponent('学生2【予備】')}.jpg`}
-                    alt="Student 2"
+                    alt="Student image 2"
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
                   />
@@ -233,7 +184,7 @@ export function AboutSection() {
                 <div className="aspect-square md:aspect-auto md:h-full rounded-2xl overflow-hidden">
                   <Image
                     src="/images/original_from_customer/818e60bf0c192652f5fe869245e46afb-1-scaled.jpg"
-                    alt="Student 3"
+                    alt="Student image 3"
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
                   />
@@ -261,7 +212,7 @@ export function AboutSection() {
                 <div className="aspect-[3/4] rounded-2xl overflow-hidden">
                   <Image
                     src={`/images/original_from_customer/${encodeURIComponent('校長先生')}.jpg`}
-                    alt="学校長"
+                    alt={t("aboutPage.principalTitle")}
                     fill
                     className="object-cover"
                   />
@@ -368,7 +319,7 @@ export function AboutSection() {
         <div className="relative min-h-[85vh] md:h-[70vh]">
           <Image
             src={`/images/original_from_customer/${encodeURIComponent('KCPとは「集合写真」')}.jpg`}
-            alt="KCP地球市民日本語学校の教職員"
+            alt={t("aboutPage.staffPhoto")}
             fill
             className="object-cover"
           />
