@@ -6,8 +6,34 @@ const vi = {
     about: "Về KCP",
     education: "Nội dung đào tạo",
     schoolLife: "Đời sống học đường",
+    news: "NEWS",
     admission: "Hướng dẫn nhập học",
     contact: "Liên hệ",
+  },
+  newsPage: {
+    title: "Tin tức",
+    description: "Thông báo mới nhất từ nhà trường.",
+    layoutPicker: "Mẫu bố cục danh sách (chọn phương án)",
+    layout1: "A · Thẻ dọc",
+    layout2: "B · Dòng thời gian",
+    layout3: "C · Nổi bật + danh sách",
+    readMore: "Đọc bài",
+    backToList: "Về danh sách NEWS",
+    articles: {
+      accreditation: {
+        title:
+          "Trường Nhật ngữ KCP được công nhận là “Cơ sở giáo dục tiếng Nhật được công nhận”",
+        excerpt:
+          "Được Bộ GD công nhận theo chế độ — chứng minh chương trình đạt tiêu chuẩn chất lượng.",
+        imageAlt: "Logo cơ sở được công nhận",
+      },
+      schedule2026: {
+        title: "Lịch nghỉ dài năm 2026",
+        excerpt:
+          "Lịch nghỉ xuân, Golden Week, hè, Obon, đông và các đợt nghỉ dài năm học 2026.",
+        imageAlt: "Minh họa lịch nghỉ",
+      },
+    },
   },
   languageSelector: "Chọn ngôn ngữ",
   mobileMenuOpen: "Mở menu",

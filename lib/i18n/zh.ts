@@ -6,8 +6,33 @@ const zh = {
     about: "关于KCP",
     education: "教育内容",
     schoolLife: "学校生活",
+    news: "NEWS",
     admission: "入学指南",
     contact: "联系我们",
+  },
+  newsPage: {
+    title: "通知",
+    description: "发布学校最新信息。",
+    layoutPicker: "列表布局样例（请选择采用方案）",
+    layout1: "A · 卡片列表",
+    layout2: "B · 时间线",
+    layout3: "C · 大图 + 列表",
+    readMore: "阅读全文",
+    backToList: "返回NEWS列表",
+    articles: {
+      accreditation: {
+        title: "KCP地球市民日语学校获认定为「认定日语教育机构」",
+        excerpt:
+          "获文部科学省根据认定制度认证，证明教育课程达到官方质量标准。",
+        imageAlt: "认定日语教育机构标志",
+      },
+      schedule2026: {
+        title: "2026年长期假期日程",
+        excerpt:
+          "刊登2026学年度春假、黄金周、暑假、盂兰盆节、寒假等长期休假安排。",
+        imageAlt: "长期假期日程示意图",
+      },
+    },
   },
   languageSelector: "语言选择",
   mobileMenuOpen: "打开菜单",

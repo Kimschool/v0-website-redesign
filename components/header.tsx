@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
+import { usePathname } from "next/navigation"
 import { Menu, X, Globe, ChevronDown, ArrowRight } from "lucide-react"
 import { useTranslation } from "react-i18next"
 import {
@@ -24,14 +25,20 @@ const languageOptions = [
 export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const pathname = usePathname()
   const { t, i18n } = useTranslation()
   const currentLanguage =
     languageOptions.find((language) => language.code === i18n.resolvedLanguage) ?? languageOptions[0]
+
+  /** NEWS系ページは常に明るい背景のため、未スクロールでもヘッダーを「固体」表示にする */
+  const lightTopPage = pathname?.startsWith("/news") ?? false
+  const solidNav = scrolled || lightTopPage
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50)
     }
+    handleScroll()
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
@@ -40,6 +47,7 @@ export function Header() {
     { label: t("nav.about"), href: "/about" },
     { label: t("nav.education"), href: "/education" },
     { label: t("nav.schoolLife"), href: "/school-life" },
+    { label: t("nav.news"), href: "/news" },
     { label: t("nav.admission"), href: "/admission" },
     { label: t("nav.contact"), href: "/contact" },
   ]
@@ -47,7 +55,7 @@ export function Header() {
   return (
     <header 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled 
+        solidNav 
           ? "bg-white/95 backdrop-blur-xl shadow-lg shadow-black/[0.03] py-2" 
           : "bg-transparent py-4"
       }`}
@@ -55,13 +63,13 @@ export function Header() {
       <div className="mx-auto max-w-7xl flex items-center justify-between px-6">
         {/* Logo */}
         <Link href="/" className="flex flex-col group relative">
-          <div className={`transition-all duration-300 ${scrolled ? "" : "drop-shadow-lg"}`}>
+          <div className={`transition-all duration-300 ${solidNav ? "" : "drop-shadow-lg"}`}>
             <Image
               src="/images/original_from_customer/4-e1764725157523.png"
               alt="KCP地球市民日本語学校"
               width={200}
               height={40}
-              className={`h-8 w-auto transition-all duration-300 ${!scrolled ? "brightness-0 invert" : ""}`}
+              className={`h-8 w-auto transition-all duration-300 ${!solidNav ? "brightness-0 invert" : ""}`}
             />
           </div>
         </Link>
@@ -73,7 +81,7 @@ export function Header() {
               key={item.href}
               href={item.href}
               className={`nav-link text-sm font-medium px-4 py-2 rounded-lg transition-all duration-300 ${
-                scrolled 
+                solidNav 
                   ? "text-foreground hover:text-primary hover:bg-primary/5" 
                   : "text-white/90 hover:text-white hover:bg-white/10"
               }`}
@@ -90,7 +98,7 @@ export function Header() {
             <DropdownMenuTrigger asChild>
               <button
                 className={`flex items-center gap-2 text-sm py-2 px-3 rounded-lg transition-all duration-300 ${
-                  scrolled 
+                  solidNav 
                     ? "text-muted-foreground hover:text-foreground hover:bg-muted" 
                     : "text-white/80 hover:text-white hover:bg-white/10"
                 }`}
@@ -119,7 +127,7 @@ export function Header() {
           <Link
             href="/admission"
             className={`hidden lg:flex items-center gap-2 text-sm font-semibold px-5 py-2.5 rounded-full transition-all duration-300 shimmer ${
-              scrolled 
+              solidNav 
                 ? "bg-primary text-white hover:bg-primary/90 shadow-lg shadow-primary/20" 
                 : "bg-white text-primary hover:bg-white/90"
             }`}
@@ -131,7 +139,7 @@ export function Header() {
           {/* Mobile Menu Button */}
           <button
             className={`lg:hidden p-2 rounded-lg transition-all duration-300 ${
-              scrolled 
+              solidNav 
                 ? "text-foreground hover:bg-muted" 
                 : "text-white hover:bg-white/10"
             }`}

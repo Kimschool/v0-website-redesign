@@ -6,8 +6,34 @@ const ja = {
     about: "KCPとは",
     education: "教育内容",
     schoolLife: "学校生活",
+    news: "NEWS",
     admission: "入学案内",
     contact: "お問い合わせ",
+  },
+  newsPage: {
+    title: "お知らせ",
+    description: "学校からの最新情報を掲載しています。",
+    layoutPicker: "一覧のレイアウト見本（採用案をお選びください）",
+    layout1: "A · カード一覧",
+    layout2: "B · タイムライン",
+    layout3: "C · 見出し＋リスト",
+    readMore: "記事を読む",
+    backToList: "NEWS一覧へ戻る",
+    articles: {
+      accreditation: {
+        title:
+          "KCP地球市民日本語学校が「認定日本語教育機関」に認定されました！",
+        excerpt:
+          "文部科学省より認定日本語教育機関として認定。教育プログラムの質が公的基準を満たした証です。",
+        imageAlt: "認定日本語教育機関（留学）認定マーク",
+      },
+      schedule2026: {
+        title: "2026年長期休みのスケジュール",
+        excerpt:
+          "2026年度の春休み・GW・夏休み・お盆・冬休みなど長期休みの日程を掲載しています。",
+        imageAlt: "長期休みスケジュールのイメージ",
+      },
+    },
   },
   languageSelector: "言語選択",
   mobileMenuOpen: "メニューを開く",

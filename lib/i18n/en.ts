@@ -6,8 +6,34 @@ const en = {
     about: "About KCP",
     education: "Education",
     schoolLife: "School Life",
+    news: "NEWS",
     admission: "Admissions",
     contact: "Contact",
+  },
+  newsPage: {
+    title: "News",
+    description: "Latest announcements from the school.",
+    layoutPicker: "Layout samples (choose a pattern)",
+    layout1: "A · Card list",
+    layout2: "B · Timeline",
+    layout3: "C · Featured + list",
+    readMore: "Read article",
+    backToList: "Back to NEWS",
+    articles: {
+      accreditation: {
+        title:
+          "KCP International Japanese Language School certified as a “Accredited Japanese Language School”",
+        excerpt:
+          "Certified by MEXT under the accreditation scheme—evidence that our programs meet official quality standards.",
+        imageAlt: "Accredited Japanese Language School mark",
+      },
+      schedule2026: {
+        title: "2026 long-term holiday schedule",
+        excerpt:
+          "Spring break, Golden Week, summer break, Obon, winter break, and other dates for the 2026 academic year.",
+        imageAlt: "Holiday schedule illustration",
+      },
+    },
   },
   languageSelector: "Language selector",
   mobileMenuOpen: "Open menu",
