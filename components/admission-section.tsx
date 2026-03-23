@@ -530,7 +530,7 @@ export function AdmissionSection() {
                       rel="noopener noreferrer"
                       className="text-sm font-semibold text-[#0085b2] hover:underline"
                     >
-                      新しいタブで開く
+                      {t("admissionPage.docOpenInNewTab")}
                     </a>
                   </div>
 
@@ -545,11 +545,15 @@ export function AdmissionSection() {
 
                 <div className="rounded-2xl border border-[#0085b2]/15 bg-white p-5 h-fit">
                   <p className="text-sm text-gray-700 mb-2">
-                    <span className="font-semibold">選択言語:</span>{" "}
+                    <span className="font-semibold">
+                      {t("admissionPage.docSelectedLanguage")}
+                    </span>{" "}
                     {selectedApplicationLanguage.label}
                   </p>
                   <p className="text-sm text-gray-700 mb-5">
-                    <span className="font-semibold">原本形式:</span>{" "}
+                    <span className="font-semibold">
+                      {t("admissionPage.docOriginalFormat")}
+                    </span>{" "}
                     {selectedApplicationLanguage.originalFileLabel}
                   </p>
 
@@ -558,12 +562,12 @@ export function AdmissionSection() {
                     download
                     className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#0085b2] hover:bg-[#006794] text-white text-sm font-semibold px-4 py-3 transition-colors shadow-md shadow-[#0085b2]/20"
                   >
-                    原本様式をダウンロード
+                    {t("admissionPage.docDownloadOriginalTemplate")}
                     <ArrowRight className="w-4 h-4" />
                   </a>
 
                   <p className="text-xs text-gray-500 mt-3 leading-relaxed">
-                    PDFはプレビュー用です。記入／提出は原本ファイル（Excel/Word）をダウンロードして進めてください。
+                    {t("admissionPage.docApplicationPdfHint")}
                   </p>
                 </div>
               </div>
@@ -640,7 +644,7 @@ export function AdmissionSection() {
                       rel="noopener noreferrer"
                       className="text-sm font-semibold text-emerald-700 hover:underline"
                     >
-                      新しいタブで開く
+                      {t("admissionPage.docOpenInNewTab")}
                     </a>
                   </div>
 
@@ -655,7 +659,9 @@ export function AdmissionSection() {
 
                 <div className="rounded-2xl border border-emerald-500/15 bg-white p-5 h-fit">
                   <p className="text-sm text-gray-700 mb-5">
-                    <span className="font-semibold">選択言語:</span>{" "}
+                    <span className="font-semibold">
+                      {t("admissionPage.docSelectedLanguage")}
+                    </span>{" "}
                     {selectedPamphletLanguage.label}
                   </p>
 
@@ -664,12 +670,12 @@ export function AdmissionSection() {
                     download
                     className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold px-4 py-3 transition-colors shadow-md shadow-emerald-600/20"
                   >
-                    PDFをダウンロード
+                    {t("admissionPage.docDownloadPdf")}
                     <ArrowRight className="w-4 h-4" />
                   </a>
 
                   <p className="text-xs text-gray-500 mt-3 leading-relaxed">
-                    まずPDFをプレビューし、必要に応じてダウンロードしてください。
+                    {t("admissionPage.docPamphletHint")}
                   </p>
                 </div>
               </div>

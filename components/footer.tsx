@@ -135,9 +135,13 @@ export function Footer() {
       <div className="py-6 bg-primary/5 border-y border-primary/10">
         <div className="mx-auto max-w-7xl px-6 text-center">
           <h2 className="text-xl md:text-2xl font-bold text-foreground font-serif">
-            KCP地球市民日本語学校
+            {t("logoBottom")}
           </h2>
-          <p className="text-sm text-muted-foreground mt-1">ともにまなび ともに生きる</p>
+          <p className="text-sm text-muted-foreground mt-1">
+            {t("hero.title1")}
+            {t("hero.titleHighlight")}
+            {t("hero.title2")}
+          </p>
         </div>
       </div>
 

@@ -164,7 +164,7 @@ export function ContactSection() {
       <div className="relative h-[350px] md:h-[400px] w-full overflow-hidden">
         <Image
           src={`/images/original_from_customer/${encodeURIComponent('トップ背景')}/${encodeURIComponent('05_お問い合わせ')}.jpg`}
-          alt="お問い合わせ"
+          alt={t("contactPage.bannerAlt")}
           fill
           className="object-cover"
           priority
@@ -180,19 +180,26 @@ export function ContactSection() {
         {/* Form Header - Premium Design */}
         <div className={`mb-16 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
           <div className="text-center max-w-2xl mx-auto">
-            <p className="text-xs tracking-[0.3em] uppercase text-[#0085b2] font-semibold mb-4">卒業生・修了生対象</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8 font-serif">証明書発行申請フォーム</h2>
+            <p className="text-xs tracking-[0.3em] uppercase text-[#0085b2] font-semibold mb-4">
+              {t("contactPage.certificateFormAudienceLabel")}
+            </p>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8 font-serif">
+              {t("contactPage.certificateFormTitle")}
+            </h2>
 
             <div className="space-y-4 text-gray-600 leading-relaxed">
               <p className="text-base md:text-lg">
-                遠隔地にお住まいで、直接ご来校して証明書を申し込むのが難しい方は、<br className="hidden md:inline" />
-                まず以下のフォームからお申込みください。
+                {t("contactPage.certificateFormIntroLine1")}
+                <br className="hidden md:inline" />
+                {t("contactPage.certificateFormIntroLine2")}
               </p>
             </div>
 
             <div className="mt-8 inline-flex items-center gap-2 px-5 py-2.5 bg-amber-50 border border-amber-200 rounded-full">
               <span className="text-amber-600 text-sm">※</span>
-              <span className="text-sm text-amber-800">発行までには通常3営業日かかります。急ぎの場合はお知らせください。</span>
+              <span className="text-sm text-amber-800">
+                {t("contactPage.certificateFormProcessingNote")}
+              </span>
             </div>
           </div>
         </div>
@@ -374,7 +381,9 @@ export function ContactSection() {
               <span className="w-1.5 h-8 bg-[#0085b2] rounded-full" />
               <div>
                 <p className="text-xs tracking-[0.2em] uppercase text-[#0085b2] font-semibold mb-0.5">02</p>
-                <h3 className="text-xl font-bold text-gray-900">{t("contactPage.formSections.certificate") || "証明書情報"}</h3>
+                <h3 className="text-xl font-bold text-gray-900">
+                  {t("contactPage.formSections.certificate")}
+                </h3>
               </div>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -391,10 +400,10 @@ export function ContactSection() {
                   required
                   className="w-full px-4 py-3.5 bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-[#0085b2] focus:shadow-lg focus:shadow-[#0085b2]/10 transition-all duration-200"
                 >
-                  <option value="">{t?.("contactPage.certificateOptions.selectDefault") || "選択してください"}</option>
-                  <option value="attendance">{t?.("contactPage.certificateOptions.attendance") || "出席・成績証明書"}</option>
-                  <option value="graduation">{t?.("contactPage.certificateOptions.graduation") || "卒業証明書・修了証明書"}</option>
-                  <option value="withdrawal">{t?.("contactPage.certificateOptions.withdrawal") || "退学証明書"}</option>
+                  <option value="">{t("contactPage.certificateOptions.selectDefault")}</option>
+                  <option value="attendance">{t("contactPage.certificateOptions.attendance")}</option>
+                  <option value="graduation">{t("contactPage.certificateOptions.graduation")}</option>
+                  <option value="withdrawal">{t("contactPage.certificateOptions.withdrawal")}</option>
                 </select>
               </div>
 
@@ -490,7 +499,9 @@ export function ContactSection() {
             >
               {isSubmitting ? t("contactPage.submittingBtn") : t("contactPage.submitBtn")}
             </button>
-            <p className="text-xs text-gray-500 tracking-wide">* {t("contactPage.formLabels.email")} {t("contactPage.formLabels.certificateType")} {t("contactPage.formLabels.notes")} は必須項目です</p>
+            <p className="text-xs text-gray-500 tracking-wide">
+              {t("contactPage.requiredFieldsNote")}
+            </p>
           </div>
         </form>
 
@@ -560,34 +571,64 @@ export function ContactSection() {
         {/* School Info Card - Moved to bottom */}
         <div className={`${isVisible ? "animate-fade-in-up animation-delay-400" : "opacity-0"}`}>
           <div className="bg-gradient-to-br from-[#0085b2]/5 to-[#0085b2]/10 rounded-2xl p-8 md:p-10 border border-[#0085b2]/20 max-w-xl mx-auto">
-            <h3 className="text-sm font-semibold text-[#0085b2] tracking-widest uppercase mb-6">学校法人KCP学園</h3>
+            <h3 className="text-sm font-semibold text-[#0085b2] tracking-widest uppercase mb-6">
+              {t("contactPage.contactInfo.orgName")}
+            </h3>
 
             <div className="space-y-5">
               <div>
-                <p className="text-xs text-gray-500 font-medium mb-1">学校名</p>
-                <p className="text-xl font-bold text-gray-900">KCP地球市民日本語学校</p>
+                <p className="text-xs text-gray-500 font-medium mb-1">
+                  {t("contactPage.contactInfo.schoolNameLabel")}
+                </p>
+                <p className="text-xl font-bold text-gray-900">
+                  {t("contactPage.contactInfo.schoolName")}
+                </p>
               </div>
 
               <div className="pt-5 border-t border-[#0085b2]/20 grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <p className="text-xs text-gray-500 font-medium mb-1">電話</p>
-                  <p className="text-sm text-gray-900 font-medium">+81-3-6825-3388</p>
+                  <p className="text-xs text-gray-500 font-medium mb-1">
+                    {t("contactPage.contactInfo.telLabel")}
+                  </p>
+                  <p className="text-sm text-gray-900 font-medium">
+                    {t("contactPage.contactInfo.telValue")}
+                  </p>
                 </div>
 
                 <div>
-                  <p className="text-xs text-gray-500 font-medium mb-1">メール</p>
-                  <a href="mailto:info@kcp.ac.jp" className="text-sm text-[#0085b2] hover:underline font-medium">info@kcp.ac.jp</a>
+                  <p className="text-xs text-gray-500 font-medium mb-1">
+                    {t("contactPage.contactInfo.emailLabel")}
+                  </p>
+                  <a
+                    href={`mailto:${t("contactPage.contactInfo.emailValue")}`}
+                    className="text-sm text-[#0085b2] hover:underline font-medium"
+                  >
+                    {t("contactPage.contactInfo.emailValue")}
+                  </a>
                 </div>
               </div>
 
               <div className="pt-5 border-t border-[#0085b2]/20">
-                <p className="text-xs text-gray-500 font-medium mb-3">営業時間</p>
+                <p className="text-xs text-gray-500 font-medium mb-3">
+                  {t("contactPage.contactInfo.hoursTitle")}
+                </p>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 text-sm text-gray-900">
-                  <p><span className="font-semibold">月～金:</span> 9:00～18:00</p>
-                  <p><span className="font-semibold">土:</span> 10:00～17:00</p>
-                  <p><span className="font-semibold">日・祝:</span> 定休日</p>
+                  <p>
+                    <span className="font-semibold">{t("contactPage.contactInfo.weekday")}</span>{" "}
+                    {t("contactPage.contactInfo.weekdayHours")}
+                  </p>
+                  <p>
+                    <span className="font-semibold">{t("contactPage.contactInfo.saturday")}</span>{" "}
+                    {t("contactPage.contactInfo.saturdayHours")}
+                  </p>
+                  <p>
+                    <span className="font-semibold">{t("contactPage.contactInfo.sundayHoliday")}</span>{" "}
+                    {t("contactPage.contactInfo.sundayHolidayHours")}
+                  </p>
                 </div>
-                <p className="text-xs text-gray-500 italic mt-4">※日本時間での営業時間です</p>
+                <p className="text-xs text-gray-500 italic mt-4">
+                  {t("contactPage.contactInfo.hoursNote")}
+                </p>
               </div>
             </div>
           </div>

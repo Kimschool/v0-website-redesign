@@ -135,7 +135,7 @@ export function SchoolLifePageContent() {
       <div className="relative h-[350px] md:h-[400px] w-full overflow-hidden">
         <Image
           src="/images/original_from_customer/トップ背景/03_学校生活.jpg"
-          alt="学校生活"
+          alt={t("nav.schoolLife")}
           fill
           className="object-cover object-[center_30%]"
           priority
