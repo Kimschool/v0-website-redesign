@@ -5,7 +5,6 @@ export async function POST(request: Request) {
   try {
     const body = await request.json()
     const formData = body
-    const recipientEmail = "clilseoo2@gmail.com"
 
     const transporter = nodemailer.createTransport({
       host: process.env.SMTP_HOST,
@@ -69,7 +68,7 @@ export async function POST(request: Request) {
 
     await transporter.sendMail({
       from: process.env.SMTP_FROM,
-      to: recipientEmail,
+      to: process.env.SMTP_TO,
       replyTo: formData.email,
       subject: "【KCP】証明書発行申込み",
       html,
