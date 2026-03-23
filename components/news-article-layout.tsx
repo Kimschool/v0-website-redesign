@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import { useTranslation } from "react-i18next"
 import { ArrowLeft, Calendar, RefreshCw } from "lucide-react"
 
 interface RelatedNews {
@@ -26,6 +27,7 @@ export function NewsArticleLayout({
   children,
   relatedNews = [],
 }: NewsArticleLayoutProps) {
+  const { t } = useTranslation()
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="pt-24 pb-16">
@@ -34,11 +36,11 @@ export function NewsArticleLayout({
           <div className="mb-8">
             {/* Back link */}
             <Link
-              href="/#news"
+              href="/news"
               className="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-[#0085b2] transition-colors mb-6"
             >
               <ArrowLeft className="w-4 h-4" />
-              トップページに戻る
+              {t("newsPage.backToList")}
             </Link>
 
             {/* Category badge + dates */}

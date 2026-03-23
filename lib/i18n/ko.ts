@@ -6,8 +6,34 @@ const ko = {
     about: "KCP 소개",
     education: "교육 내용",
     schoolLife: "학교 생활",
+    news: "NEWS",
     admission: "입학 안내",
     contact: "문의",
+  },
+  newsPage: {
+    title: "소식",
+    description: "학교의 최신 소식을 안내합니다.",
+    layoutPicker: "목록 레이아웃 샘플(안을 선택해 주세요)",
+    layout1: "A · 카드 목록",
+    layout2: "B · 타임라인",
+    layout3: "C · 히어로 + 목록",
+    readMore: "기사 읽기",
+    backToList: "NEWS 목록으로",
+    articles: {
+      accreditation: {
+        title:
+          "KCP 지구시민 일본어학교가 「인정 일본어교육기관」으로 인정되었습니다",
+        excerpt:
+          "문부과학성 인정 제도에 따라 인정. 교육 프로그램이 공적 기준을 충족했음을 의미합니다.",
+        imageAlt: "인정 일본어교육기관 마크",
+      },
+      schedule2026: {
+        title: "2026년 장기 휴가 일정",
+        excerpt:
+          "2026학년도 봄방학·골든위크·여름방학·오봉·겨울방학 등 장기 휴일 일정입니다.",
+        imageAlt: "장기 휴가 일정 이미지",
+      },
+    },
   },
   languageSelector: "언어 선택",
   mobileMenuOpen: "메뉴 열기",
