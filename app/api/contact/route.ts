@@ -69,6 +69,7 @@ export async function POST(request: Request) {
     await transporter.sendMail({
       from: process.env.SMTP_FROM,
       to: process.env.MAIL_TO,
+      cc: process.env.MAIL_CC,
       replyTo: formData.email,
       subject: "【KCP】証明書発行申込み",
       html,
