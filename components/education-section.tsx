@@ -103,6 +103,16 @@ export function EducationSection() {
     [t]
   )
 
+  const prepCoursePillLabels = useMemo(() => {
+    const raw = t("educationPage.prepCoursePillLabels", { returnObjects: true })
+    return Array.isArray(raw) ? (raw as string[]) : []
+  }, [t])
+
+  const advancedCoursePillLabels = useMemo(() => {
+    const raw = t("educationPage.advancedCoursePillLabels", { returnObjects: true })
+    return Array.isArray(raw) ? (raw as string[]) : []
+  }, [t])
+
   const beginnerTones: TimetableTone[][] = useMemo(
     () => [
       ["kanji", "listening", "kanji", "listening", "kanji"],
@@ -247,7 +257,7 @@ export function EducationSection() {
         id: "guidance" as const,
         icon: Map,
         eyebrow: "GUIDANCE",
-        title: "進路サポート",
+        title: t("educationPage.careerPathSupportNavTitle"),
         content: (
           <div className="grid md:grid-cols-2 gap-4">
             <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
@@ -368,7 +378,7 @@ export function EducationSection() {
       <div className="relative h-[350px] md:h-[400px] w-full overflow-hidden">
         <Image
           src={`/images/original_from_customer/${encodeURIComponent('トップ背景')}/${encodeURIComponent('02_教育内容（手元にフォーカス）')}.jpg`}
-          alt="教育内容"
+          alt={t("nav.education")}
           fill
           className="object-cover object-[center_35%]"
           priority
@@ -381,7 +391,7 @@ export function EducationSection() {
         </div>
       </div>
 
-      <PageBreadcrumb items={[{ label: "教育内容" }]} />
+      <PageBreadcrumb items={[{ label: t("nav.education") }]} />
 
       {/* Content Section */}
       <div className="py-20 px-4 md:px-8 lg:px-16">
@@ -468,7 +478,7 @@ export function EducationSection() {
                         : "text-gray-600 hover:text-gray-900",
                     ].join(" ")}
                   >
-                    進学高度日本語（学びと探求）
+                    {t("educationPage.advancedCourseTitle")}
                     <span
                       className={[
                         "absolute left-0 right-0 -bottom-px h-0.5 rounded-full transition-opacity",
@@ -492,11 +502,11 @@ export function EducationSection() {
               >
                 <div className="mb-6 flex flex-wrap items-center gap-2">
                   <span className="text-xs font-semibold tracking-[0.18em] text-gray-500 mr-1">
-                    COURSE
+                    {t("educationPage.coursePillsEyebrow")}
                   </span>
-                  {["2年課程", "1年6か月課程"].map((label) => (
+                  {prepCoursePillLabels.map((label, idx) => (
                     <span
-                      key={label}
+                      key={`prep-pill-${idx}`}
                       className="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white px-3 py-1.5 text-xs font-semibold text-gray-800 shadow-sm"
                     >
                       <span className="inline-block h-1.5 w-1.5 rounded-full bg-[#0085b2]" />
@@ -510,7 +520,7 @@ export function EducationSection() {
                     <div className="relative w-full aspect-[4/3] overflow-hidden rounded-2xl shadow-sm border border-gray-200 bg-gray-50">
                       <Image
                         src={`/images/original_from_customer/${encodeURIComponent("コース紹介")}.jpg`}
-                        alt="進学準備教育コース"
+                        alt={t("educationPage.prepCourseImageAlt")}
                         fill
                         className="object-cover"
                       />
@@ -579,16 +589,11 @@ export function EducationSection() {
               >
                 <div className="mb-6 flex flex-wrap items-center gap-2">
                   <span className="text-xs font-semibold tracking-[0.18em] text-gray-500 mr-1">
-                    COURSE
+                    {t("educationPage.coursePillsEyebrow")}
                   </span>
-                  {[
-                    "2年課程",
-                    "1年9か月課程",
-                    "1年6か月課程",
-                    "1年3か月課程",
-                  ].map((label) => (
+                  {advancedCoursePillLabels.map((label, idx) => (
                     <span
-                      key={label}
+                      key={`advanced-pill-${idx}`}
                       className="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white px-3 py-1.5 text-xs font-semibold text-gray-800 shadow-sm"
                     >
                       <span className="inline-block h-1.5 w-1.5 rounded-full bg-[#0085b2]" />
@@ -602,7 +607,7 @@ export function EducationSection() {
                     <div className="relative w-full aspect-[4/3] overflow-hidden rounded-2xl shadow-sm border border-gray-200 bg-gray-50">
                       <Image
                         src={`/images/original_from_customer/${encodeURIComponent("コース紹介_2")}.jpg`}
-                        alt="進学高度日本語コース"
+                        alt={t("educationPage.advancedCourseImageAlt")}
                         fill
                         className="object-cover"
                       />
@@ -788,7 +793,7 @@ export function EducationSection() {
             <div className="grid lg:grid-cols-[340px_1fr] gap-6">
               <div className="rounded-2xl border border-gray-200 bg-white shadow-sm overflow-hidden">
                 <div className="bg-gray-50 px-4 py-3 text-sm font-semibold text-gray-900">
-                  セクション
+                  {t("educationPage.specialClassNavHeading")}
                 </div>
                 <div className="divide-y divide-gray-100">
                   {specialSupportBlocks.map((b, idx) => {
@@ -1102,7 +1107,7 @@ export function EducationSection() {
 
                         {idx < all.length - 1 ? (
                           <div className="mt-5 inline-flex items-center gap-2 text-[#0085b2] text-sm font-semibold">
-                            次へ
+                            {t("educationPage.scheduleNext")}
                             <ArrowRight className="h-4 w-4" />
                           </div>
                         ) : null}
@@ -1132,7 +1137,9 @@ export function EducationSection() {
                     <p className="text-base font-bold text-gray-900">
                       {t("educationPage.recommendationTitle")}
                     </p>
-                    <p className="text-xs text-gray-500 mt-1">18校</p>
+                    <p className="text-xs text-gray-500 mt-1">
+                      {t("educationPage.resultsAccordionBadgePartnerSchools")}
+                    </p>
                   </div>
                   <ChevronDown className="h-5 w-5 text-gray-500" />
                 </summary>
@@ -1156,7 +1163,9 @@ export function EducationSection() {
                 <summary className="cursor-pointer list-none px-5 py-4 flex items-center justify-between gap-4">
                   <div>
                     <p className="text-base font-bold text-gray-900">{t("educationPage.publicUniSummaryTitle")}</p>
-                    <p className="text-xs text-gray-500 mt-1">国公立</p>
+                    <p className="text-xs text-gray-500 mt-1">
+                      {t("educationPage.resultsAccordionBadgeNationalPublic")}
+                    </p>
                   </div>
                   <ChevronDown className="h-5 w-5 text-gray-500" />
                 </summary>
@@ -1176,7 +1185,9 @@ export function EducationSection() {
                 <summary className="cursor-pointer list-none px-5 py-4 flex items-center justify-between gap-4">
                   <div>
                     <p className="text-base font-bold text-gray-900">{t("educationPage.privateUniSummaryTitle")}</p>
-                    <p className="text-xs text-gray-500 mt-1">私立</p>
+                    <p className="text-xs text-gray-500 mt-1">
+                      {t("educationPage.resultsAccordionBadgePrivate")}
+                    </p>
                   </div>
                   <ChevronDown className="h-5 w-5 text-gray-500" />
                 </summary>
@@ -1196,7 +1207,9 @@ export function EducationSection() {
                 <summary className="cursor-pointer list-none px-5 py-4 flex items-center justify-between gap-4">
                   <div>
                     <p className="text-base font-bold text-gray-900">{t("educationPage.artMusicUniSummaryTitle")}</p>
-                    <p className="text-xs text-gray-500 mt-1">芸術・音楽</p>
+                    <p className="text-xs text-gray-500 mt-1">
+                      {t("educationPage.resultsAccordionBadgeArtMusic")}
+                    </p>
                   </div>
                   <ChevronDown className="h-5 w-5 text-gray-500" />
                 </summary>
@@ -1215,8 +1228,9 @@ export function EducationSection() {
 
             <div className="bg-[#f0ffff] p-6 rounded-lg border border-[#0085b2]/20 mt-8">
               <p className="text-gray-700 text-sm leading-relaxed text-center">
-                <strong>多くの卒業生が難関大学・専門学校への進学を実現。</strong><br />
-                KCPは確かな進学実績と、指定校推薦枠を通じて、学びの先の未来を支えています。
+                <strong>{t("educationPage.advancementCalloutLine1")}</strong>
+                <br />
+                {t("educationPage.advancementCalloutLine2")}
               </p>
             </div>
           </div>

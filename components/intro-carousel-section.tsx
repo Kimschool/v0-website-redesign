@@ -1,56 +1,47 @@
 "use client"
 
-import { useState, useEffect, useCallback } from "react"
+import { useState, useEffect, useCallback, useMemo } from "react"
 import Image from "next/image"
 import Link from "next/link"
+import { useTranslation } from "react-i18next"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 
-const carouselItems = [
-  {
-    image: "https://weavus-group.com/kcp/wp-content/uploads/2025/11/EJU.jpg",
-    caption: "EJU・日本語科目で最高得点者を輩出",
-  },
-  {
-    image: "https://weavus-group.com/kcp/wp-content/uploads/2025/07/31e0362326d434d6dbc1d2390aa01eff.jpg",
-    caption: "多国籍の学生が集うKCPでグローバルに考える視点を養う",
-  },
-  {
-    image: "https://weavus-group.com/kcp/wp-content/uploads/2025/11/2aaf315dd8c8254983b5ed098691efcd-rotated.jpg",
-    caption: "日本をより深く知るための楽しいプログラムも満載",
-  },
-  {
-    image: "https://weavus-group.com/kcp/wp-content/uploads/2025/11/1f9820d2152d8e9bcc962b8600ef019d.jpg",
-    caption: "経験豊かなベテラン教師がきめ細かい指導",
-  },
-  {
-    image: "https://weavus-group.com/kcp/wp-content/uploads/2025/11/c6d0b891872831f84c0c747a5da2a261.jpg",
-    caption: "アメリカの大学の単位認定プログラムもあり",
-  },
-  {
-    image: "https://weavus-group.com/kcp/wp-content/uploads/2025/07/f3680d56ae6dfb979b5be7961e73155c.jpg",
-    caption: "公共性の高い教育機関として公的に認知",
-  },
-  {
-    image: "https://weavus-group.com/kcp/wp-content/uploads/2025/07/1c279b72c09a930d753cc9f263d78c88.jpg",
-    caption: "充実した教育設備",
-  },
-]
+/** Slide order maps to features.featureTexts indices (same meaning as former hardcoded captions) */
+const CAROUSEL_SLIDES = [
+  { image: "https://weavus-group.com/kcp/wp-content/uploads/2025/11/EJU.jpg", featureTextIndex: 0 },
+  { image: "https://weavus-group.com/kcp/wp-content/uploads/2025/07/31e0362326d434d6dbc1d2390aa01eff.jpg", featureTextIndex: 2 },
+  { image: "https://weavus-group.com/kcp/wp-content/uploads/2025/11/2aaf315dd8c8254983b5ed098691efcd-rotated.jpg", featureTextIndex: 4 },
+  { image: "https://weavus-group.com/kcp/wp-content/uploads/2025/11/1f9820d2152d8e9bcc962b8600ef019d.jpg", featureTextIndex: 1 },
+  { image: "https://weavus-group.com/kcp/wp-content/uploads/2025/11/c6d0b891872831f84c0c747a5da2a261.jpg", featureTextIndex: 6 },
+  { image: "https://weavus-group.com/kcp/wp-content/uploads/2025/07/f3680d56ae6dfb979b5be7961e73155c.jpg", featureTextIndex: 5 },
+  { image: "https://weavus-group.com/kcp/wp-content/uploads/2025/07/1c279b72c09a930d753cc9f263d78c88.jpg", featureTextIndex: 3 },
+] as const
 
 export function IntroCarouselSection() {
+  const { t, i18n } = useTranslation()
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isAutoPlaying, setIsAutoPlaying] = useState(true)
+
+  const carouselItems = useMemo(
+    () =>
+      CAROUSEL_SLIDES.map((slide) => ({
+        image: slide.image,
+        caption: t(`features.featureTexts.${slide.featureTextIndex}`),
+      })),
+    [t, i18n.language]
+  )
 
   const nextSlide = useCallback(() => {
     setCurrentIndex((prevIndex) =>
       prevIndex === carouselItems.length - 1 ? 0 : prevIndex + 1
     )
-  }, [])
+  }, [carouselItems.length])
 
   const prevSlide = useCallback(() => {
     setCurrentIndex((prevIndex) =>
       prevIndex === 0 ? carouselItems.length - 1 : prevIndex - 1
     )
-  }, [])
+  }, [carouselItems.length])
 
   const goToSlide = (index: number) => {
     setCurrentIndex(index)
@@ -74,16 +65,25 @@ export function IntroCarouselSection() {
         {/* Title */}
         <div className="text-center mb-8">
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 leading-relaxed">
-            日本語だけじゃない
-            <br />
-            「進む力」を育てる
+            {(() => {
+              const title = t("features.title")
+              const i = title.indexOf("「")
+              if (i <= 0) return title
+              return (
+                <>
+                  {title.slice(0, i)}
+                  <br />
+                  {title.slice(i)}
+                </>
+              )
+            })()}
           </h2>
         </div>
 
         {/* Description */}
         <div className="text-center mb-12">
           <p className="text-gray-700 text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
-            KCPには、世界中から集まっている「本気の学び」と、それを支える確かな指導がある。
+            {t("features.description")}
           </p>
         </div>
 
@@ -167,7 +167,7 @@ export function IntroCarouselSection() {
             href="/about"
             className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-4 rounded-lg shadow-lg transition-all hover:shadow-xl hover:-translate-y-0.5"
           >
-            KCPとは
+            {t("nav.about")}
           </Link>
         </div>
       </div>

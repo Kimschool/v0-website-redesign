@@ -125,6 +125,58 @@ const en = {
     cta: "Learn More",
   },
 
+  educationPointsSection: {
+    label: "EDUCATION",
+    title: "Education",
+    subtitle: "A rich curriculum and thorough support to help you reach your goals",
+    point1: "POINT 1",
+    point2: "POINT 2",
+    point3: "POINT 3",
+    courseIntroTitle: "Course Introduction",
+    courseIntroBody:
+      "KCP offers a variety of courses tailored to each student's goals. You can study with a curriculum best suited to your path—university, graduate school, vocational school, or employment.",
+    lessonContentTitle: "Curriculum",
+    lessonContentBody:
+      "High-quality classes from experienced instructors. We offer EJU and JLPT preparation as well as lessons focused on practical communication skills.",
+    resultsTitle: "Advancement Results",
+    resultsBody:
+      "KCP graduates go on to many of Japan's leading universities and graduate schools, including national/public universities, competitive private universities, and art and music schools.",
+    viewDetails: "View details",
+    viewMoreResults: "See more advancement results",
+    representativeNote: "The above is a partial list of representative destinations",
+    altCourseImage: "Course introduction",
+    altLessonImage: "Class content",
+    highlights: [
+      {
+        category: "National / Public Universities & Graduate Schools",
+        subtitle: "Main destinations",
+        schools: [
+          "The University of Tokyo",
+          "Kyoto University",
+          "Osaka University",
+          "Hitotsubashi University",
+          "Tokyo Institute of Technology",
+        ],
+      },
+      {
+        category: "Private Universities & Graduate Schools",
+        subtitle: "Main destinations",
+        schools: ["Waseda University", "Keio University", "Sophia University", "Meiji University", "Aoyama Gakuin University"],
+      },
+      {
+        category: "Art & Music",
+        subtitle: "Universities / Graduate schools — main destinations",
+        schools: [
+          "Tokyo University of the Arts",
+          "Tama Art University",
+          "Musashino Art University",
+          "Kyoto City University of Arts",
+          "Aichi University of the Arts",
+        ],
+      },
+    ],
+  },
+
   // School Life (top page)
   schoolLife: {
     label: "Campus Life",
@@ -242,12 +294,21 @@ const en = {
     bannerTitle: "Admissions",
     intro: "The admission process to KCP is handled through overseas partner offices in your country or region. We provide comprehensive support from application to visa acquisition and pre-departure preparation, so if you wish to enroll, please contact your nearest overseas office first.",
     introNote: "* For those who do not need a visa due to their residence status, or who have special circumstances, we will provide individual guidance, so please contact the school directly.",
+    flowTitle: "Admission Flow",
+    flowSteps: [
+      "Contact the overseas partner office in your region.",
+      "Submit the application form and required documents, and complete the screening process.",
+      "After acceptance, apply for your visa and complete pre-departure preparation.",
+      "Complete enrollment procedures, attend orientation, and begin your studies.",
+    ],
+    contactBadge: "Get in touch",
     contactTitle: "Contact Us",
     contactDescription: "If you have any questions or concerns about admission, please feel free to contact us.",
     contactEmail: "Email",
     contactHours: "Business Hours",
     contactHoursValue: "Mon-Fri 9:00-18:00 JST",
     contactCta: "Go to Contact Page",
+    contactButton: "Contact",
     documentsTitle: "Application Form & Pamphlet",
     applicationTitle: "Application Form",
     applicationDesc: "You can download the application form in the following languages.",
@@ -259,6 +320,14 @@ const en = {
     pamphletFormat: "File Format:",
     pamphletFormatValue: "PDF format (downloadable)",
     pamphletBtn: "Download Pamphlet",
+    docOpenInNewTab: "Open in new tab",
+    docSelectedLanguage: "Selected language:",
+    docOriginalFormat: "Original file format:",
+    docDownloadOriginalTemplate: "Download original template",
+    docApplicationPdfHint:
+      "The PDF is for preview only. To fill out and submit, please download and use the original file (Excel/Word).",
+    docDownloadPdf: "Download PDF",
+    docPamphletHint: "Preview the PDF first, then download it if you need a copy.",
     placementTitle: "Pre-Enrollment Placement Test",
     placementDesc: "At KCP, after your enrollment is confirmed, you will take a Japanese placement test.",
     placementCheck1: "The test schedule will be communicated in advance. Please participate on the designated date.",
@@ -335,6 +404,7 @@ const en = {
   // Contact Page
   contactPage: {
     bannerTitle: "Contact Us",
+    bannerAlt: "Contact Us",
     intro: "Graduates and completers who wish to have certificates issued, please use the application form below. For other inquiries, please contact a nearby office or call us.",
     testEmailLabel: "⚠ Test Recipient Email Address (Development/Testing Only)",
     testEmailPlaceholder: "test@example.com",
@@ -373,7 +443,8 @@ const en = {
     submitBtn: "Submit",
     submittingBtn: "Submitting...",
     contactInfo: {
-      orgName: "Weavus Educational Foundation",
+      orgName: "Educational Corporation KCP Gakuen",
+      schoolNameLabel: "School name",
       schoolName: "KCP International Japanese Language School",
       telLabel: "Phone",
       telValue: "+81-3-6825-3388",
@@ -489,6 +560,27 @@ const en = {
     advancedCourseLevelDesc2: "From pre-intermediate level onward, students refine their communication skills while developing essential elements for advancing their Japanese, including reading comprehension and written expression.",
     advancedCourseLevelDesc3: "As students progress to intermediate and advanced levels, they use their cultivated Japanese skills to deepen their understanding of Japanese culture and grow into individuals who can succeed on a global scale.",
     advancedCourseLevelDesc4: "Various elective classes are available to further enhance the Japanese skills needed for individual goals. It goes without saying that thorough guidance for university advancement and employment is also provided.",
+    prepCoursePillLabels: ["2-Year Program", "1 Year 6 Months Program"],
+    advancedCoursePillLabels: [
+      "2-Year Program",
+      "1 Year 9 Months Program",
+      "1 Year 6 Months Program",
+      "1 Year 3 Months Program",
+    ],
+    coursePillsEyebrow: "COURSE",
+    prepCourseImageAlt: "Preparatory education course",
+    advancedCourseImageAlt: "Advanced Japanese for university studies course",
+    specialClassNavHeading: "Section",
+    careerPathSupportNavTitle: "Career support",
+    resultsAccordionBadgePartnerSchools: "18 partner schools",
+    resultsAccordionBadgeNationalPublic: "National / public",
+    resultsAccordionBadgePrivate: "Private",
+    resultsAccordionBadgeArtMusic: "Art & music",
+    advancementCalloutLine1:
+      "Many graduates go on to prestigious universities and vocational schools.",
+    advancementCalloutLine2:
+      "KCP supports your future beyond the classroom through solid advancement results and designated school recommendation slots.",
+    scheduleNext: "Next",
     cefrLevelTitle: "Level Achievement Goals",
     cefrHeader: "CEFR",
     kcpHeader: "KCP",
