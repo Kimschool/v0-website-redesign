@@ -256,12 +256,6 @@ export function Footer() {
               {t("footer.copyright")}
             </p>
             <div className="flex items-center gap-6">
-              <Link href="#" className="text-xs text-muted-foreground hover:text-primary transition-colors">
-                {t("footer.privacy")}
-              </Link>
-              <Link href="#" className="text-xs text-muted-foreground hover:text-primary transition-colors">
-                {t("footer.terms")}
-              </Link>
               <Link href="/basic-info" className="text-xs text-muted-foreground hover:text-primary transition-colors">
                 {t("footer.disclosure")}
               </Link>
