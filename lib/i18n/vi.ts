@@ -284,6 +284,14 @@ const vi = {
   // About Page
   aboutPage: {
     bannerTitle: "Về KCP",
+    philosophyTagline: "Cùng học, cùng sống",
+    kcpKnowledgeWord: "Knowledge",
+    kcpKnowledgeSub: "Kiến thức",
+    kcpCoexistenceWord: "Coexistence",
+    kcpCoexistenceSub: "Cùng tồn tại",
+    kcpPeaceWord: "Peace",
+    kcpPeaceSub: "Hòa bình",
+    studentGalleryAlt: "Học viên KCP",
     philosophy1: "Tại KCP, thông qua giáo dục tiếng Nhật, chúng tôi hướng tới việc trang bị kiến thức rộng rãi,",
     philosophy2: "và thúc đẩy sự phát triển nhân cách thông qua các hoạt động và văn hóa đa dạng trên toàn thế giới.",
     philosophy3: "Cùng học, cùng sống — đó là lý tưởng giáo dục của KCP.",

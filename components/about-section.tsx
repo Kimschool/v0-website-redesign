@@ -2,8 +2,32 @@
 
 import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
-import { School, User, ArrowRight } from "lucide-react"
+import { School, User } from "lucide-react"
 import { useTranslation } from "react-i18next"
+
+/** KCP philosophy caption: gray brackets, teal English, navy serif subline */
+function KcpBracketCaption({ word, sub }: { word: string; sub: string }) {
+  const bracketClass =
+    "select-none text-[#d1d5db] font-serif text-[clamp(1.85rem,5.5vw,2.85rem)] font-extralight leading-none flex items-stretch"
+  return (
+    <div className="mt-5 md:mt-7 flex items-stretch justify-center gap-0">
+      <span aria-hidden className={`${bracketClass} pr-0.5`}>
+        [
+      </span>
+      <div className="flex flex-col items-center justify-center px-1 sm:px-1.5 min-w-0 py-0.5">
+        <span className="font-sans text-[0.62rem] sm:text-xs md:text-sm font-medium text-[#0088b3] tracking-wide text-center leading-tight max-w-[7.5rem] sm:max-w-none">
+          {word}
+        </span>
+        <span className="font-serif text-[2.625rem] md:text-[2rem] font-semibold text-[#1d3557] text-center leading-snug">
+          {sub}
+        </span>
+      </div>
+      <span aria-hidden className={`${bracketClass} pl-0.5`}>
+        ]
+      </span>
+    </div>
+  )
+}
 
 export function AboutSection() {
   const { t } = useTranslation()
@@ -127,126 +151,117 @@ export function AboutSection() {
         </div>
       </div>
 
-      {/* Philosophy Section - Bold typographic approach */}
+      {/* Philosophy — tagline, KCP letters, intro copy (타이틀: Noto Serif JP / 컬러: #1d3557 · #0088b3 · #d1d5db) */}
       <div className="relative bg-white">
-        <div className="container mx-auto px-4 md:px-6 py-24 md:py-32">
-          <div className={`${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
-            {/* Large Philosophy Statement */}
-            <div className="max-w-6xl mx-auto mb-20">
-              <div className="mb-16">
-                <div className="relative max-w-4xl mx-auto aspect-[583/336]">
-                  <Image
-                    src="/images/about-kcp-values.png"
-                    alt={t("aboutPage.bannerTitle")}
-                    fill
-                    className="object-contain"
-                    priority
-                  />
-                </div>
-              </div>
+        <div className="container mx-auto px-4 md:px-6 py-24 md:py-16">
+          <div className={`max-w-5xl mx-auto text-center ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
+            <p className="font-serif text-[2.25rem] md:text-[2.5rem] leading-tight text-[#1d3557] tracking-wide mb-16 md:mb-5 font-medium">
+              {t("aboutPage.philosophyTagline")}
+            </p>
 
+            <div className="inline-grid grid-cols-3 justify-items-center gap-0.5 sm:gap-2 md:gap-[0.85rem] lg:gap-[3.15rem] mb-16 md:mb-20 mx-auto">
+              {(
+                [
+                  { letter: "K", word: t("aboutPage.kcpKnowledgeWord"), sub: t("aboutPage.kcpKnowledgeSub") },
+                  { letter: "C", word: t("aboutPage.kcpCoexistenceWord"), sub: t("aboutPage.kcpCoexistenceSub") },
+                  { letter: "P", word: t("aboutPage.kcpPeaceWord"), sub: t("aboutPage.kcpPeaceSub") },
+                ] as const
+              ).map(({ letter, word, sub }) => (
+                <div key={letter} className="flex flex-col items-center min-w-0">
+                  <span className="font-serif text-[clamp(5.5rem,24vw,13rem)] leading-none text-[#0088b3]">
+                    {letter}
+                  </span>
+                  <KcpBracketCaption word={word} sub={sub} />
+                </div>
+              ))}
+            </div>
+
+            <div className="text-center font-sans text-[#1d3557] text-base md:text-lg leading-relaxed space-y-5 max-w-3xl mx-auto">
+              <p>{t("aboutPage.philosophy1")}</p>
+              <p>{t("aboutPage.philosophy2")}</p>
+              <p>{t("aboutPage.philosophy3")}</p>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Student Photos - Asymmetric Grid */}
-      <div className="bg-[#f8fafb] py-24 md:py-32 overflow-hidden">
+      {/* Student photos — three portrait tiles */}
+      <div className="bg-white py-16 md:py-5 overflow-hidden border-t border-gray-100">
         <div className="container mx-auto px-4 md:px-6">
-          <div className="grid grid-cols-12 gap-4 md:gap-6 max-w-7xl mx-auto">
-            {/* Large Image */}
-            <div className="col-span-12 md:col-span-7 relative group">
-              <div className="aspect-[4/5] md:aspect-[4/3] rounded-2xl overflow-hidden">
-                <Image
-                  src={`/images/original_from_customer/${encodeURIComponent('予備')}/K.jpg`}
-                  alt="Student image 1"
-                  fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              </div>
-            </div>
-            
-            {/* Stacked Images */}
-            <div className="col-span-12 md:col-span-5 flex flex-col gap-4 md:gap-6">
-              <div className="relative group flex-1">
-                <div className="aspect-square md:aspect-auto md:h-full rounded-2xl overflow-hidden">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 md:gap-6 max-w-6xl mx-auto">
+            {[
+              `/images/original_from_customer/${encodeURIComponent("予備")}/K.jpg`,
+              `/images/original_from_customer/${encodeURIComponent("予備")}/${encodeURIComponent("学生2【予備】")}.jpg`,
+              "/images/original_from_customer/818e60bf0c192652f5fe869245e46afb-1-scaled.jpg",
+            ].map((src, i) => (
+              <div key={src} className="relative group">
+                <div className="relative aspect-[3/4] rounded-3xl overflow-hidden shadow-sm border border-gray-100">
                   <Image
-                    src={`/images/original_from_customer/${encodeURIComponent('予備')}/${encodeURIComponent('学生2【予備】')}.jpg`}
-                    alt="Student image 2"
+                    src={src}
+                    alt={`${t("aboutPage.studentGalleryAlt")} ${i + 1}`}
                     fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    className="object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+                    sizes="(max-width: 640px) 100vw, 33vw"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 </div>
               </div>
-              <div className="relative group flex-1">
-                <div className="aspect-square md:aspect-auto md:h-full rounded-2xl overflow-hidden">
-                  <Image
-                    src="/images/original_from_customer/818e60bf0c192652f5fe869245e46afb-1-scaled.jpg"
-                    alt="Student image 3"
-                    fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </div>
 
-      {/* Principal Section - Magazine Style */}
-      <div className="bg-white py-24 md:py-32">
+      <div className="bg-white">
         <div className="container mx-auto px-4 md:px-6">
-          <div className="max-w-7xl mx-auto">
-            {/* Section Header */}
-            <div className="flex items-center gap-4 mb-16">
-              <span className="text-[#0085b2] text-sm tracking-[0.2em] uppercase font-medium">Message</span>
-              <div className="flex-1 h-[1px] bg-gradient-to-r from-[#0085b2]/30 to-transparent" />
-            </div>
+          <hr className="mx-auto max-w-6xl border-0 border-t border-gray-200" />
+        </div>
+      </div>
 
-            <div className="grid md:grid-cols-2 gap-12 md:gap-20 items-start">
-              {/* Principal Photo */}
-              <div className="relative">
-                <div className="aspect-[3/4] rounded-2xl overflow-hidden">
+      {/* Principal — centered title, photo + profile / body */}
+      <div className="bg-white py-20 md:py-28">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="max-w-6xl mx-auto">
+            <h2 className="font-serif text-3xl md:text-4xl font-bold text-gray-900 text-center mb-12 md:mb-16">
+              {t("aboutPage.principalTitle")}
+            </h2>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12 lg:gap-14 items-start">
+              <aside className="w-full max-w-xl mx-auto md:max-w-none md:mx-0">
+                <div className="relative aspect-[3/2] rounded-2xl overflow-hidden shadow-md border border-gray-100 mb-8">
                   <Image
-                    src={`/images/original_from_customer/${encodeURIComponent('校長先生')}.jpg`}
+                    src={`/images/original_from_customer/${encodeURIComponent("校長先生")}.jpg`}
                     alt={t("aboutPage.principalTitle")}
                     fill
-                    className="object-cover"
+                    className="object-cover object-[center_28%]"
+                    sizes="(max-width: 768px) 100vw, 50vw"
                   />
                 </div>
-                {/* Info Card */}
-                <div className="absolute -bottom-8 -right-4 md:-right-8 bg-white rounded-xl shadow-xl p-6 max-w-xs border border-gray-100">
-                  <div className="space-y-3">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-full bg-[#0085b2]/10 flex items-center justify-center">
-                        <School className="w-5 h-5 text-[#0085b2]" />
-                      </div>
-                      <span className="text-sm text-gray-700">{t("aboutPage.schoolFoundation")}</span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-full bg-[#0085b2]/10 flex items-center justify-center">
-                        <User className="w-5 h-5 text-[#0085b2]" />
-                      </div>
-                      <span className="text-sm text-gray-700 font-medium">{t("aboutPage.principalName")}</span>
-                    </div>
+                <div className="space-y-4 text-sm md:text-base text-gray-800">
+                  <div className="flex items-start gap-3">
+                    <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#0085b2]/10">
+                      <School className="h-4 w-4 text-[#0085b2]" aria-hidden />
+                    </span>
+                    <span className="leading-snug pt-1">{t("aboutPage.schoolFoundation")}</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#0085b2]/10">
+                      <School className="h-4 w-4 text-[#0085b2]" aria-hidden />
+                    </span>
+                    <span className="leading-snug pt-1">{t("aboutPage.schoolName")}</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#0085b2]/10">
+                      <User className="h-4 w-4 text-[#0085b2]" aria-hidden />
+                    </span>
+                    <span className="leading-snug pt-1 font-medium">{t("aboutPage.principalName")}</span>
                   </div>
                 </div>
-              </div>
+              </aside>
 
-              {/* Principal Message */}
-              <div className="md:pt-12">
-                <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-8 leading-tight">
-                  {t("aboutPage.principalTitle")}
-                </h2>
-                <div className="space-y-6 text-gray-600 text-base md:text-lg leading-relaxed">
-                  <p>{t("aboutPage.principalMessage1")}</p>
-                  <p>{t("aboutPage.principalMessage2")}</p>
-                  <p>{t("aboutPage.principalMessage3")}</p>
-                  <p>{t("aboutPage.principalMessage4")}</p>
-                </div>
+              <div className="w-full space-y-6 text-gray-600 text-base md:text-lg leading-relaxed md:min-w-0">
+                <p>{t("aboutPage.principalMessage1")}</p>
+                <p>{t("aboutPage.principalMessage2")}</p>
+                <p>{t("aboutPage.principalMessage3")}</p>
+                <p>{t("aboutPage.principalMessage4")}</p>
               </div>
             </div>
           </div>

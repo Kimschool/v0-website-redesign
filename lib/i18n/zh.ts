@@ -271,6 +271,14 @@ const zh = {
   // About Page
   aboutPage: {
     bannerTitle: "关于KCP",
+    philosophyTagline: "共同学习，共同生活",
+    kcpKnowledgeWord: "Knowledge",
+    kcpKnowledgeSub: "知识",
+    kcpCoexistenceWord: "Coexistence",
+    kcpCoexistenceSub: "共生",
+    kcpPeaceWord: "Peace",
+    kcpPeaceSub: "和平",
+    studentGalleryAlt: "KCP学生",
     philosophy1: "在KCP，通过日语教育广泛掌握知识的同时，",
     philosophy2: "通过世界各国的各种文化·活动，致力于促进人的成长。",
     philosophy3: "共同学习，共同生活——这是KCP的教育理念。",

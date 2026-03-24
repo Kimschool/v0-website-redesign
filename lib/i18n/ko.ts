@@ -272,6 +272,14 @@ const ko = {
   // About Page
   aboutPage: {
     bannerTitle: "KCP 소개",
+    philosophyTagline: "함께 배우고 함께 살아갑니다",
+    kcpKnowledgeWord: "Knowledge",
+    kcpKnowledgeSub: "지식",
+    kcpCoexistenceWord: "Coexistence",
+    kcpCoexistenceSub: "공생",
+    kcpPeaceWord: "Peace",
+    kcpPeaceSub: "평화",
+    studentGalleryAlt: "KCP 학생들",
     philosophy1: "KCP에서는 일본어 교육을 통해 폭넓은 지식을 갖추는 동시에,",
     philosophy2: "세계 각국의 다양한 문화·활동을 통해 인간적 성장을 촉진하는 것을 목표로 합니다.",
     philosophy3: "함께 배우고, 함께 살아가다 — 이것이 KCP의 교육 이념입니다.",
