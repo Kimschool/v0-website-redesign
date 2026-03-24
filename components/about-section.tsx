@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
-import { School, User } from "lucide-react"
+import { ExternalLink, School, User } from "lucide-react"
 import { useTranslation } from "react-i18next"
 
 /** KCP philosophy caption: gray brackets, teal English, navy serif subline */
@@ -210,14 +210,14 @@ export function AboutSection() {
         </div>
       </div>
 
-      <div className="bg-white">
+      <div className="bg-white pt-20">
         <div className="container mx-auto px-4 md:px-6">
           <hr className="mx-auto max-w-6xl border-0 border-t border-gray-200" />
         </div>
       </div>
 
       {/* Principal — centered title, photo + profile / body */}
-      <div className="bg-white py-20 md:py-28">
+      <div className="bg-white py-10 md:py-14">
         <div className="container mx-auto px-4 md:px-6">
           <div className="max-w-6xl mx-auto">
             <h2 className="font-serif text-3xl md:text-4xl font-bold text-gray-900 text-center mb-12 md:mb-16">
@@ -253,6 +253,19 @@ export function AboutSection() {
                       <User className="h-4 w-4 text-[#0085b2]" aria-hidden />
                     </span>
                     <span className="leading-snug pt-1 font-medium">{t("aboutPage.principalName")}</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#0085b2]/10">
+                      <ExternalLink className="h-4 w-4 text-[#0085b2]" aria-hidden />
+                    </span>
+                    <a
+                      href="https://www.kcp.ac.jp/blog/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="leading-snug pt-1 font-medium text-[#0085b2] hover:underline"
+                    >
+                      {t("aboutPage.principalBlog")}
+                    </a>
                   </div>
                 </div>
               </aside>
