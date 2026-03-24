@@ -284,6 +284,14 @@ const en = {
   // About Page
   aboutPage: {
     bannerTitle: "About KCP",
+    philosophyTagline: "Learn together, live together",
+    kcpKnowledgeWord: "Knowledge",
+    kcpKnowledgeSub: "知識",
+    kcpCoexistenceWord: "Coexistence",
+    kcpCoexistenceSub: "共生",
+    kcpPeaceWord: "Peace",
+    kcpPeaceSub: "平和",
+    studentGalleryAlt: "KCP students",
     philosophy1: "At KCP, through Japanese language education, we aim to cultivate broad knowledge,",
     philosophy2: "and promote personal growth through various cultures and activities around the world.",
     philosophy3: "Learning together, living together — these are the educational ideals of KCP.",

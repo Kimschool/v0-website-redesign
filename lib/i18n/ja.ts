@@ -273,6 +273,14 @@ const ja = {
   // About Page
   aboutPage: {
     bannerTitle: "KCPとは",
+    philosophyTagline: "ともにまなび ともに生きる",
+    kcpKnowledgeWord: "Knowledge",
+    kcpKnowledgeSub: "知識",
+    kcpCoexistenceWord: "Coexistence",
+    kcpCoexistenceSub: "共生",
+    kcpPeaceWord: "Peace",
+    kcpPeaceSub: "平和",
+    studentGalleryAlt: "KCPの学生",
     philosophy1: "KCPでは、日本語教育を通じて広く知識を備えるとともに、",
     philosophy2: "世界中の様々な文化・活動を通して、人間的成長を促すことを目指しています。",
     philosophy3: "ともに学び、ともに生きる――それぞれがKCPの教育理念です。",

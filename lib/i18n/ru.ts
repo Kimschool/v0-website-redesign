@@ -284,6 +284,14 @@ const ru = {
   // About Page
   aboutPage: {
     bannerTitle: "О KCP",
+    philosophyTagline: "Учимся вместе, живём вместе",
+    kcpKnowledgeWord: "Knowledge",
+    kcpKnowledgeSub: "Знание",
+    kcpCoexistenceWord: "Coexistence",
+    kcpCoexistenceSub: "Сосуществование",
+    kcpPeaceWord: "Peace",
+    kcpPeaceSub: "Мир",
+    studentGalleryAlt: "Студенты KCP",
     philosophy1: "В KCP через обучение японскому языку мы стремимся обеспечить широкие знания,",
     philosophy2: "а через различные культуры и деятельность со всего мира — содействовать личностному росту.",
     philosophy3: "Учиться вместе, жить вместе — таковы образовательные идеалы KCP.",
