@@ -150,7 +150,7 @@ const alumniData = [
     name: "黄 厦さん / 中国出身",
     school: "進学先：東京大学大学院　農学生命科学研究科",
     job: "現  職： P&Gジャパン",
-    image: "/images/alumni/huang-xia.png",
+    image: "/images/alumni/qi.png",
     featured: true,
     paragraphs: [
       "KCPで過ごした時間は、私にとって日本語学習以上の意味を持つ、大切な経験でした。勉強だけでなく、人としての姿勢や考え方を学べた場所だと感じています。",
@@ -196,7 +196,7 @@ const alumniData = [
     id: "zhao",
     name: "赵 瑞霄さん / 中国出身",
     school: "進学先：東北大学　農学部",
-    image: "/images/alumni/zhao.png",
+    image: "/images/alumni/zhu.png",
     featured: false,
     paragraphs: [
       "KCPの先生方は個性豊かですが、みんな学生一人ひとりを大切にしてくださっています。学習面だけでなく、生活の相談にものってくださって、安心して勉強できる環境だと感じています。",
@@ -213,7 +213,7 @@ const alumniData = [
     id: "seki",
     name: "昔 聖原さん / 韓国出身",
     school: "進学先：法政大学 人間環境学部人間環境学科（指定校推薦）",
-    image: "/images/alumni/seki.png",
+    image: "/images/alumni/zhang.png",
     featured: false,
     paragraphs: [
       "「勉強をして大学に入る」という一般的な受験のプロセスであれば、正直どこでも学べると思います。しかしKCPで私が学んだのは、日本語だけではなく、「態度」でした。KCPには、日本語の指導だけでなく、学生一人ひとりを親身になって支えてくださる先生方がいます。在学中はもちろん、卒業後も日本で日本社会の中で活躍できるよう、さまざまなアドバイスをしてくださいました。",
@@ -225,7 +225,7 @@ const alumniData = [
     id: "zhu",
     name: "朱 瑞婷さん / 中国出身",
     school: "進学先：多摩美術大学 情報デザイン学科情報デザインコース",
-    image: "/images/alumni/zhu.png",
+    image: "/images/alumni/zhao.png",
     featured: false,
     paragraphs: [
       "KCPでの学習経験は、私にとって非常に実り多いものでした。中でも最も大きく成長したと感じているのは、作文力です。毎週行われる体系的な作文指導と、先生方の丁寧な添削のおかげで、論文を書く力が大きく向上しました。この経験は、その後の大学入試においても大きな助けとなりました。",
@@ -238,7 +238,7 @@ const alumniData = [
     id: "qi",
     name: "戚笑さん / 中国出身",
     school: "進学先：静岡文化芸術大学大学院 デザイン研究科",
-    image: "/images/alumni/qi.png",
+    image: "/images/alumni/huang-xia.png",
     imagePosition: "right center",
     featured: false,
     paragraphs: [
@@ -253,7 +253,7 @@ const alumniData = [
     id: "zhang",
     name: "张 首馨さん / 中国出身",
     school: "進学先：東京外国語大学大学院 総合国際学研究科",
-    image: "/images/alumni/zhang.png",
+    image: "/images/alumni/seki.png",
     featured: false,
     badgeKeys: [
       "educationPage.alumniJpetTitle",

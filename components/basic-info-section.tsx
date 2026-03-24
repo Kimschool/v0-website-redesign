@@ -2,75 +2,36 @@
 
 import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
+import { Check } from "lucide-react"
 import { useTranslation } from "react-i18next"
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
+import { PdfCanvasViewerLazy } from "@/components/pdf-canvas-viewer-lazy"
+
+const GAKUSOKU_PDF_URL = "/api/basic-info/gakusoku"
+
+const SELF_EVAL_PDF_HREFS = [
+  "https://weavus-group.com/kcp/wp-content/uploads/2025/11/evaluation20251029.pdf",
+  "https://weavus-group.com/kcp/wp-content/uploads/2025/11/evaluation20241028.pdf",
+  "https://weavus-group.com/kcp/wp-content/uploads/2025/11/kateishuryo-japanese20250526.pdf",
+] as const
+
+type InfoItem = { label: string; value: string; href?: string }
 
 export function BasicInfoSection() {
   const { t } = useTranslation()
 
-  const basicInfo = [
-    { label: t("basicInfoPage.infoItems.0.label"), value: t("basicInfoPage.infoItems.0.value") },
-    { label: t("basicInfoPage.infoItems.1.label"), value: t("basicInfoPage.infoItems.1.value") },
-    { label: t("basicInfoPage.infoItems.2.label"), value: t("basicInfoPage.infoItems.2.value") },
-    { label: t("basicInfoPage.infoItems.3.label"), value: t("basicInfoPage.infoItems.3.value") },
-    { label: t("basicInfoPage.infoItems.4.label"), value: t("basicInfoPage.infoItems.4.value") },
-    { label: t("basicInfoPage.infoItems.5.label"), value: t("basicInfoPage.infoItems.5.value") },
-    { label: t("basicInfoPage.infoItems.6.label"), value: t("basicInfoPage.infoItems.6.value") },
-    { label: t("basicInfoPage.infoItems.7.label"), value: t("basicInfoPage.infoItems.7.value") },
-    { label: t("basicInfoPage.infoItems.8.label"), value: t("basicInfoPage.infoItems.8.value") },
-    { label: t("basicInfoPage.infoItems.9.label"), value: t("basicInfoPage.infoItems.9.value") },
-    { label: t("basicInfoPage.infoItems.10.label"), value: t("basicInfoPage.infoItems.10.value") },
-    { label: t("basicInfoPage.infoItems.11.label"), value: t("basicInfoPage.infoItems.11.value") },
-  ]
+  const infoItems = t("basicInfoPage.infoItems", { returnObjects: true }) as InfoItem[]
+  const selfEvalLabels = t("basicInfoPage.selfEvalLinks", { returnObjects: true }) as string[]
 
-  const disclosureItems = [
-    {
-      category: t("basicInfoPage.disclosureCategories.0.category"),
-      items: [
-        t("basicInfoPage.disclosureCategories.0.items.0"),
-        t("basicInfoPage.disclosureCategories.0.items.1"),
-        t("basicInfoPage.disclosureCategories.0.items.2"),
-        t("basicInfoPage.disclosureCategories.0.items.3"),
-      ]
-    },
-    {
-      category: t("basicInfoPage.disclosureCategories.1.category"),
-      items: [
-        t("basicInfoPage.disclosureCategories.1.items.0"),
-        t("basicInfoPage.disclosureCategories.1.items.1"),
-        t("basicInfoPage.disclosureCategories.1.items.2"),
-        t("basicInfoPage.disclosureCategories.1.items.3"),
-      ]
-    },
-    {
-      category: t("basicInfoPage.disclosureCategories.2.category"),
-      items: [
-        t("basicInfoPage.disclosureCategories.2.items.0"),
-        t("basicInfoPage.disclosureCategories.2.items.1"),
-        t("basicInfoPage.disclosureCategories.2.items.2"),
-        t("basicInfoPage.disclosureCategories.2.items.3"),
-      ]
-    },
-    {
-      category: t("basicInfoPage.disclosureCategories.3.category"),
-      items: [
-        t("basicInfoPage.disclosureCategories.3.items.0"),
-        t("basicInfoPage.disclosureCategories.3.items.1"),
-        t("basicInfoPage.disclosureCategories.3.items.2"),
-        t("basicInfoPage.disclosureCategories.3.items.3"),
-      ]
-    },
-    {
-      category: t("basicInfoPage.disclosureCategories.4.category"),
-      items: [
-        t("basicInfoPage.disclosureCategories.4.items.0"),
-        t("basicInfoPage.disclosureCategories.4.items.1"),
-        t("basicInfoPage.disclosureCategories.4.items.2"),
-        t("basicInfoPage.disclosureCategories.4.items.3"),
-      ]
-    }
-  ]
   const sectionRef = useRef<HTMLElement>(null)
   const [isVisible, setIsVisible] = useState(false)
+  const [gakusokuOpen, setGakusokuOpen] = useState(false)
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -89,106 +50,136 @@ export function BasicInfoSection() {
     return () => observer.disconnect()
   }, [])
 
+  const renderValue = (item: InfoItem) => {
+    if (item.href) {
+      return (
+        <a
+          href={item.href}
+          className="text-[#0E4A94] hover:opacity-70 hover:underline transition-opacity"
+          {...(item.href.startsWith("http")
+            ? { target: "_blank", rel: "noopener noreferrer" }
+            : {})}
+        >
+          {item.value}
+        </a>
+      )
+    }
+    return <span className="text-gray-800">{item.value}</span>
+  }
+
   return (
     <section ref={sectionRef} className="bg-white">
-      {/* Page Banner - Extended to cover navigation area */}
       <div className="relative h-[350px] md:h-[400px] w-full overflow-hidden">
         <Image
-          src={`/images/original_from_customer/${encodeURIComponent('トップ背景')}/${encodeURIComponent('01_KCPとは（拡大して周りの建物があまり見えないように）')}.jpg`}
-          alt="情報公開"
+          src={`/images/original_from_customer/${encodeURIComponent("トップ背景")}/${encodeURIComponent("01_KCPとは（拡大して周りの建物があまり見えないように）")}.jpg`}
+          alt={t("basicInfoPage.bannerTitle")}
           fill
           className="object-cover object-center"
           priority
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/60 flex items-center justify-center pt-16">
           <div className="text-center">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight">{t("basicInfoPage.bannerTitle")}</h1>
-            <div className="w-20 h-1 bg-white/80 mx-auto mt-6 rounded-full"></div>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight">
+              {t("basicInfoPage.bannerTitle")}
+            </h1>
+            <div className="w-20 h-1 bg-white/80 mx-auto mt-6 rounded-full" />
           </div>
         </div>
       </div>
 
-      <div className="container mx-auto px-4 md:px-6 max-w-5xl py-16">
-        {/* Introduction */}
-        <div className={`text-center mb-16 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
-          <div className="w-12 h-1 bg-[#0085b2] mx-auto mb-6 rounded-full" />
-          <p className="text-lg text-gray-600">
-            {t("basicInfoPage.subtitle")}
-          </p>
-          <div className="elegant-divider mt-8" />
-        </div>
+      <div className="container mx-auto px-4 md:px-6 max-w-4xl py-12 md:py-16">
+        <p
+          className={`text-center text-gray-600 mb-12 md:mb-16 text-base md:text-lg ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}
+        >
+          {t("basicInfoPage.subtitle")}
+        </p>
 
-        {/* Divider */}
-        <div className="w-full h-px bg-gray-300 mb-16" />
+        {/* 基本情報 */}
+        <div className={`mb-14 md:mb-20 ${isVisible ? "animate-fade-in-up animation-delay-100" : "opacity-0"}`}>
+          <h2 className="text-2xl md:text-3xl font-bold text-[#0085b2] mb-8 md:mb-10">
+            {t("basicInfoPage.basicInfoTitle")}
+          </h2>
 
-        {/* Basic Info Table */}
-        <div className={`mb-20 ${isVisible ? "animate-fade-in-up animation-delay-100" : "opacity-0"}`}>
-          <h2 className="text-3xl font-bold text-gray-900 mb-8">{t("basicInfoPage.basicInfoTitle")}</h2>
-
-          <div className="flex justify-center mb-8">
-            <div className="relative w-48 h-48">
-              <Image
-                src={`/images/original_from_customer/${encodeURIComponent('認定マーク（留学）')}/${encodeURIComponent('認定マーク（留学）')}/${encodeURIComponent('logo_01色')}.png`}
-                alt="認定日本語教育機関マーク"
-                fill
-                className="object-contain"
-              />
-            </div>
-          </div>
-
-          <div className="border border-gray-300 rounded-lg overflow-hidden">
-            {basicInfo.map((item, index) => (
-              <div
-                key={index}
-                className={`grid grid-cols-3 md:grid-cols-4 ${index !== basicInfo.length - 1 ? "border-b border-gray-300" : ""}`}
-              >
-                <div className="col-span-1 bg-[#f0ffff] px-6 py-4 font-semibold text-gray-800 border-r border-gray-300">
-                  {item.label}
-                </div>
-                <div className="col-span-2 md:col-span-3 px-6 py-4 text-gray-700">
-                  {item.value === "info@kcp.ac.jp" ? (
-                    <a href={`mailto:${item.value}`} className="text-[#0085b2] hover:underline">
-                      {item.value}
-                    </a>
-                  ) : (
-                    item.value
-                  )}
-                </div>
-              </div>
-            ))}
+          <div className="overflow-x-auto rounded-sm border border-gray-200">
+            <table className="w-full border-collapse text-[15px] leading-relaxed border-t-2 border-t-gray-800 border-b border-b-gray-200">
+              <tbody>
+                {infoItems.map((item, index) => (
+                  <tr key={index} className="border-b border-gray-200 last:border-b-0">
+                    <th
+                      scope="row"
+                      className="w-[32%] min-w-[7.5rem] align-middle bg-[#f8f9fa] px-4 py-4 md:px-5 text-left font-semibold text-gray-900 whitespace-nowrap border-r border-gray-200"
+                    >
+                      {item.label}
+                    </th>
+                    <td className="align-middle px-4 py-4 md:px-5 text-gray-800">{renderValue(item)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
 
-        {/* Divider */}
-        <div className="w-full h-px bg-gray-300 mb-16" />
+        <hr className="border-gray-200 mb-14 md:mb-20" />
 
-        {/* Information Disclosure */}
-        <div className={`mb-20 ${isVisible ? "animate-fade-in-up animation-delay-200" : "opacity-0"}`}>
-          <h2 className="text-3xl font-bold text-gray-900 mb-8">{t("basicInfoPage.disclosureTitle")}</h2>
+        {/* 学則 */}
+        <div className={`mb-14 md:mb-20 ${isVisible ? "animate-fade-in-up animation-delay-200" : "opacity-0"}`}>
+          <h2 className="text-2xl md:text-3xl font-bold text-[#0085b2] mb-6 md:mb-8">
+            {t("basicInfoPage.regulationsTitle")}
+          </h2>
+          <ul className="space-y-3">
+            <li>
+              <Dialog open={gakusokuOpen} onOpenChange={setGakusokuOpen}>
+                <DialogTrigger asChild>
+                  <button
+                    type="button"
+                    className="inline-flex items-center gap-2 text-[#0085b2] hover:text-[#006794] hover:underline text-left"
+                  >
+                    <Check className="h-5 w-5 shrink-0 text-[#0085b2]" aria-hidden />
+                    <span>{t("basicInfoPage.regulationsLinkLabel")}</span>
+                  </button>
+                </DialogTrigger>
+                <DialogContent
+                  className="flex max-h-[min(90vh,900px)] w-[calc(100%-1.5rem)] max-w-4xl flex-col gap-0 overflow-hidden p-0 sm:max-w-4xl"
+                  showCloseButton
+                >
+                  <DialogHeader className="shrink-0 border-b border-border px-5 py-4 pr-12 text-left">
+                    <DialogTitle className="text-base font-semibold text-foreground">
+                      {t("basicInfoPage.regulationsLinkLabel")}
+                    </DialogTitle>
+                  </DialogHeader>
+                  <div className="min-h-0 flex-1 overflow-y-auto px-3 py-4 md:px-4">
+                    {gakusokuOpen ? (
+                      <PdfCanvasViewerLazy pdfUrl={GAKUSOKU_PDF_URL} />
+                    ) : null}
+                  </div>
+                </DialogContent>
+              </Dialog>
+            </li>
+          </ul>
+        </div>
 
-          <div className="space-y-6">
-            {disclosureItems.map((section, index) => (
-              <div key={index} className="border border-gray-300 rounded-lg overflow-hidden">
-                <div className="bg-gradient-to-r from-[#0085b2] to-[#006794] px-6 py-4">
-                  <h3 className="text-lg font-bold text-white">{section.category}</h3>
-                </div>
-                <div className="p-6">
-                  <ul className="space-y-3">
-                    {section.items.map((item, idx) => (
-                      <li key={idx} className="flex items-start gap-3 text-gray-700">
-                        <span className="text-[#0085b2] mt-1">●</span>
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
+        <hr className="border-gray-200 mb-14 md:mb-20" />
+
+        {/* 自己点検・評価の結果 */}
+        <div className={`${isVisible ? "animate-fade-in-up animation-delay-300" : "opacity-0"}`}>
+          <h2 className="text-2xl md:text-3xl font-bold text-[#0085b2] mb-6 md:mb-8">
+            {t("basicInfoPage.selfEvalTitle")}
+          </h2>
+          <ul className="space-y-3">
+            {selfEvalLabels.map((label, index) => (
+              <li key={index}>
+                <a
+                  href={SELF_EVAL_PDF_HREFS[index]}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-[#0085b2] hover:text-[#006794] hover:underline"
+                >
+                  <Check className="h-5 w-5 shrink-0 text-[#0085b2]" aria-hidden />
+                  <span>{label}</span>
+                </a>
+              </li>
             ))}
-          </div>
-
-          <p className="mt-8 text-sm text-gray-500 text-center">
-            {t("basicInfoPage.disclosureNote")}
-          </p>
+          </ul>
         </div>
       </div>
     </section>
