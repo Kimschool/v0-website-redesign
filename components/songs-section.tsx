@@ -3,11 +3,13 @@
 import { useEffect, useRef, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { Music } from "lucide-react"
+import {
+  YouTubeEmbed,
+  KCP_SCHOOL_SONG_YOUTUBE_ID,
+  KCP_CHEERING_SONG_YOUTUBE_ID,
+} from "@/components/youtube-embed"
 
-const songVideos = [
-  "",
-  "",
-]
+const songYoutubeIds = [KCP_SCHOOL_SONG_YOUTUBE_ID, KCP_CHEERING_SONG_YOUTUBE_ID] as const
 
 export function SongsSection() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -60,20 +62,8 @@ export function SongsSection() {
                 isVisible ? `animate-fade-in-up animation-delay-${(index + 1) * 200}` : "opacity-0"
               }`}
             >
-              <div className="rounded-2xl overflow-hidden bg-foreground/5 shadow-xl border border-border/50 group">
-                <div className="relative">
-                  <video
-                    controls
-                    preload="metadata"
-                    className="w-full aspect-video"
-                    poster=""
-                  >
-                    {songVideos[index] && (
-                      <source src={songVideos[index]} type="video/mp4" />
-                    )}
-                    Your browser does not support the video tag.
-                  </video>
-                </div>
+              <div className="rounded-2xl overflow-hidden bg-foreground/5 shadow-xl border border-border/50">
+                <YouTubeEmbed videoId={songYoutubeIds[index]} title={song.title} />
               </div>
               <div className="mt-5 text-center">
                 <p className="text-xs text-muted-foreground font-medium mb-1 uppercase tracking-wider">{song.subtitle}</p>
