@@ -168,6 +168,8 @@ const alumniData = [
     name: "Patrick Grainger さん / アメリカ出身",
     job: "現  職： 東京防災救急協会",
     image: "/images/alumni/patrick.png",
+    /** 横長・人物左寄り：右の余白を切り、他卒業生カードと同じ縦枠で顔が見えるようにする */
+    imageCropLeftWide: true,
     featured: true,
     paragraphs: [
       "大学を卒業した後、さらに日本語の力をしっかりと伸ばしたいと考え、KCP地球市民日本語学校に入学いたしました。現在は、在日外国人を対象とした防災教育の仕事に携わっています。日本で暮らす外国人の方々が安心して生活できるよう支援するこの仕事は、私にとって大きなやりがいとなっています。",
@@ -425,18 +427,39 @@ function AlumniCard({ alumni, compact }: { alumni: typeof alumniData[number]; co
   const visibleParagraphs = expanded ? translatedParagraphs : translatedParagraphs.slice(0, alumni.previewCount)
   const hasMore = translatedParagraphs.length > alumni.previewCount
 
+  const cropLeftWide =
+    "imageCropLeftWide" in alumni && (alumni as { imageCropLeftWide?: boolean }).imageCropLeftWide === true
+
   if (compact) {
     return (
       <div className="border border-gray-300 rounded-lg overflow-hidden">
         <div className="flex flex-col sm:flex-row gap-0">
-          <div className="relative h-48 sm:w-32 sm:min-h-[200px] flex-shrink-0 overflow-hidden sm:self-stretch">
-            <Image
-              src={alumni.image}
-              alt={displayName}
-              fill
-              className="object-cover"
-              style={("imagePosition" in alumni && alumni.imagePosition) ? { objectPosition: alumni.imagePosition } : undefined}
-            />
+          <div className="relative h-48 sm:w-32 sm:min-h-[200px] flex-shrink-0 overflow-hidden sm:self-stretch bg-gray-100">
+            {cropLeftWide ? (
+              <div className="absolute inset-0 overflow-hidden">
+                <div className="absolute inset-y-0 left-0 w-[175%] max-w-none">
+                  <Image
+                    src={alumni.image}
+                    alt={displayName}
+                    fill
+                    className="object-cover object-left"
+                    sizes="128px"
+                  />
+                </div>
+              </div>
+            ) : (
+              <Image
+                src={alumni.image}
+                alt={displayName}
+                fill
+                className="object-cover"
+                style={
+                  "imagePosition" in alumni && typeof alumni.imagePosition === "string"
+                    ? { objectPosition: alumni.imagePosition }
+                    : undefined
+                }
+              />
+            )}
           </div>
           <div className="p-4 bg-white flex-1 min-w-0">
             <div className="mb-3">
@@ -480,13 +503,33 @@ function AlumniCard({ alumni, compact }: { alumni: typeof alumniData[number]; co
   return (
     <div className="border border-gray-300 rounded-lg overflow-hidden">
       <div className="grid md:grid-cols-3 gap-0">
-        <div className="relative h-96 md:col-span-1 overflow-hidden">
-          <Image
-            src={alumni.image}
-            alt={displayName}
-            fill
-            className="object-contain"
-          />
+        <div className="relative h-96 md:col-span-1 overflow-hidden bg-gray-100">
+          {cropLeftWide ? (
+            <div className="absolute inset-0 overflow-hidden">
+              <div className="absolute inset-y-0 left-0 w-[175%] max-w-none">
+                <Image
+                  src={alumni.image}
+                  alt={displayName}
+                  fill
+                  className="object-cover object-left"
+                  sizes="(max-width: 768px) 100vw, 400px"
+                />
+              </div>
+            </div>
+          ) : (
+            <Image
+              src={alumni.image}
+              alt={displayName}
+              fill
+              className="object-cover"
+              style={
+                "imagePosition" in alumni && typeof alumni.imagePosition === "string"
+                  ? { objectPosition: alumni.imagePosition }
+                  : undefined
+              }
+              sizes="(max-width: 768px) 100vw, 400px"
+            />
+          )}
         </div>
         <div className="md:col-span-2 p-8 bg-white">
           <div className="mb-6">
