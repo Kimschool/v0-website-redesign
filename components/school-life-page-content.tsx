@@ -12,6 +12,8 @@ import {
   CarouselPrevious,
   CarouselNext,
 } from "@/components/ui/carousel"
+import { getFacilitySlides } from "@/lib/school-life-facility"
+import { FacilityCarouselPattern3 } from "@/components/school-life-facility-carousel-showcases"
 
 export function SchoolLifePageContent() {
   const [activeTab, setActiveTab] = useState("marunouchi")
@@ -76,20 +78,7 @@ export function SchoolLifePageContent() {
     }
   ]
 
-  const facilityItems = [
-    { title: t("schoolLifePage.facilityItems.0.title"), caption: t("schoolLifePage.facilityItems.0.caption"), image: `/images/original_from_customer/${encodeURIComponent('施設案内')}/${encodeURIComponent('01_校舍全景')}.jpg` },
-    { title: t("schoolLifePage.facilityItems.1.title"), caption: t("schoolLifePage.facilityItems.1.caption"), image: `/images/original_from_customer/${encodeURIComponent('施設案内')}/${encodeURIComponent('02_校庭')}.jpg` },
-    { title: t("schoolLifePage.facilityItems.2.title"), caption: t("schoolLifePage.facilityItems.2.caption"), image: `/images/original_from_customer/${encodeURIComponent('施設案内')}/${encodeURIComponent('03_駐輪場')}.jpg` },
-    { title: t("schoolLifePage.facilityItems.3.title"), caption: t("schoolLifePage.facilityItems.3.caption"), image: `/images/original_from_customer/${encodeURIComponent('施設案内')}/${encodeURIComponent('04_BF1美術室')}.jpg` },
-    { title: t("schoolLifePage.facilityItems.4.title"), caption: t("schoolLifePage.facilityItems.4.caption"), image: `/images/original_from_customer/${encodeURIComponent('施設案内')}/${encodeURIComponent('05_1F職員室')}.jpg` },
-    { title: t("schoolLifePage.facilityItems.5.title"), caption: t("schoolLifePage.facilityItems.5.caption"), image: `/images/original_from_customer/${encodeURIComponent('施設案内')}/${encodeURIComponent('06_2Fラウンジ')}.jpg` },
-    { title: t("schoolLifePage.facilityItems.6.title"), caption: t("schoolLifePage.facilityItems.6.caption"), image: `/images/original_from_customer/${encodeURIComponent('施設案内')}/${encodeURIComponent('07_2F図書室')}.jpg` },
-    { title: t("schoolLifePage.facilityItems.7.title"), caption: t("schoolLifePage.facilityItems.7.caption"), image: `/images/original_from_customer/${encodeURIComponent('施設案内')}/${encodeURIComponent('08_教室(明るく調整してください）')}.jpg` },
-    { title: t("schoolLifePage.facilityItems.8.title"), caption: t("schoolLifePage.facilityItems.8.caption"), image: `/images/original_from_customer/${encodeURIComponent('施設案内')}/${encodeURIComponent('09_教室2')}.jpg` },
-    { title: t("schoolLifePage.facilityItems.9.title"), caption: t("schoolLifePage.facilityItems.9.caption"), image: `/images/original_from_customer/${encodeURIComponent('施設案内')}/${encodeURIComponent('10_6F講堂')}.jpg` },
-    { title: t("schoolLifePage.facilityItems.10.title"), caption: t("schoolLifePage.facilityItems.10.caption"), image: `/images/original_from_customer/${encodeURIComponent('施設案内')}/${encodeURIComponent('11_7F和室')}.jpg` },
-    { title: t("schoolLifePage.facilityItems.11.title"), caption: t("schoolLifePage.facilityItems.11.caption"), image: `/images/original_from_customer/${encodeURIComponent('施設案内')}/${encodeURIComponent('12_日本庭園')}.jpg` },
-  ]
+  const facilityItems = getFacilitySlides(t)
 
   const surroundingEnvironment = [
     { title: t("schoolLifePage.surroundingItems.0.title"), image: "/images/original_from_customer/Shinjuku-gyoemmae-station-Exit1-1-scaled.jpg" },
@@ -109,7 +98,9 @@ export function SchoolLifePageContent() {
       if (autoplay) autoplay.reset()
     }
     surroundingApi.on("select", onSelect)
-    return () => { surroundingApi.off("select", onSelect) }
+    return () => {
+      surroundingApi.off("select", onSelect)
+    }
   }, [surroundingApi])
 
   useEffect(() => {
@@ -261,38 +252,12 @@ export function SchoolLifePageContent() {
         {/* Divider */}
         <div className="w-full h-px bg-gray-300 mb-16" />
 
-        {/* Facility Guide Section */}
+        {/* Facility Guide Section — 自動スライド（1枚大きく表示） */}
         <div className="mb-20">
           <h2 className="font-serif text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
             {t("schoolLifePage.facilityTitle")}
           </h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {facilityItems.map((facility, index) => (
-              <div key={index} className="group bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow">
-                {/* Image Container */}
-                <div className="relative w-full h-64 bg-gray-100 overflow-hidden">
-                  <Image
-                    src={facility.image}
-                    alt={facility.title}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-300"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  />
-                </div>
-
-                {/* Text Content */}
-                <div className="p-5">
-                  <h3 className="font-serif text-lg font-bold text-gray-900 mb-2">
-                    {facility.title}
-                  </h3>
-                  <p className="text-sm text-gray-700 leading-relaxed">
-                    {facility.caption}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
+          <FacilityCarouselPattern3 items={facilityItems} />
         </div>
 
         {/* Divider */}
