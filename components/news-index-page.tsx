@@ -30,17 +30,20 @@ function NewsCardList({ items }: { items: NewsIndexItem[] }) {
             <div className="grid md:grid-cols-[minmax(0,280px)_1fr] gap-0">
               <Link
                 href={item.href}
-                className="relative block aspect-[16/10] md:aspect-auto md:min-h-[200px] bg-gradient-to-br from-[#0085b2]/10 to-[#0cc0df]/10"
+                className="relative flex min-h-[220px] w-full items-center justify-center bg-gradient-to-br from-[#0085b2]/10 to-[#0cc0df]/10 px-5 py-6 sm:px-6 sm:py-7 md:min-h-[300px] md:px-2 md:py-2"
               >
                 {item.imageSrc ? (
-                  <Image
-                    src={item.imageSrc}
-                    alt={imageAlt}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
+                  <div className="relative h-[200px] w-full sm:h-[220px] md:h-[260px]">
+                    <Image
+                      src={item.imageSrc}
+                      alt={imageAlt}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 280px"
+                      className="object-contain object-center"
+                    />
+                  </div>
                 ) : (
-                  <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="flex h-40 w-full items-center justify-center md:h-48">
                     <Calendar className="h-16 w-16 text-[#0085b2]/40" strokeWidth={1.25} />
                   </div>
                 )}
