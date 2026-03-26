@@ -13,7 +13,23 @@ import {
   CarouselNext,
 } from "@/components/ui/carousel"
 import { getFacilitySlides } from "@/lib/school-life-facility"
-import { FacilityCarouselPattern3 } from "@/components/school-life-facility-carousel-showcases"
+import { FacilityShowcaseHero } from "@/components/school-life-facility-carousel-showcases"
+
+/** 東京都新宿区新宿1-29-12 付近（WGS84・lat,lng）— 百度地图 URI API / marker 用 */
+const KCP_SCHOOL_LAT_LNG_WGS84 = "35.68932,139.71245"
+
+/** 百度地图「地点详情」出力（output=html）。旧 map.baidu.com 直リンクは JSON が返ることがあるため非推奨。 */
+function getBaiduMapMarkerPageUrl() {
+  return `https://api.map.baidu.com/marker?${new URLSearchParams({
+    location: KCP_SCHOOL_LAT_LNG_WGS84,
+    title: "KCP地球市民日语学校",
+    content: "〒160-0022 东京都新宿区新宿1-29-12",
+    output: "html",
+    coord_type: "wgs84",
+    zoom: "18",
+    src: "kcp_ac_jp",
+  })}`
+}
 
 export function SchoolLifePageContent() {
   const [activeTab, setActiveTab] = useState("marunouchi")
@@ -252,12 +268,12 @@ export function SchoolLifePageContent() {
         {/* Divider */}
         <div className="w-full h-px bg-gray-300 mb-16" />
 
-        {/* Facility Guide Section — 自動スライド（1枚大きく表示） */}
+        {/* Facility Guide Section — 大判ヒーロースライド（周辺環境と同型UI） */}
         <div className="mb-20">
-          <h2 className="font-serif text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
-            {t("schoolLifePage.facilityTitle")}
-          </h2>
-          <FacilityCarouselPattern3 items={facilityItems} />
+          <FacilityShowcaseHero
+            items={facilityItems}
+            title={t("schoolLifePage.facilityTitle")}
+          />
         </div>
 
         {/* Divider */}
@@ -274,29 +290,45 @@ export function SchoolLifePageContent() {
             <strong>{t("schoolLifePage.accessDesc2")}</strong>
           </p>
 
-          {/* Map - Baidu for Chinese users, Google for others */}
-          <div className="w-full h-[450px] bg-gray-100 rounded-lg overflow-hidden mb-8">
-            {i18n.language === "zh" ? (
-              <iframe
-                src="https://map.baidu.com/?newmap=1&reqflag=pcmap&biz=1&from=webmap&da_from=webmap&qt=s&c=12955284.05,4224430.25&z=18"
-                width="100%"
-                height="450"
-                style={{ border: 0 }}
-                allowFullScreen
-                loading="lazy"
-                title="KCP地球市民日本語学校 所在地 (百度地图)"
-              />
+          {/* Map — 中国語: 百度地图 marker API（html）／その他: Google 埋め込み */}
+          <div className="mb-8">
+            {i18n.language.startsWith("zh") ? (
+              <>
+                <div className="w-full h-[450px] bg-gray-100 rounded-lg overflow-hidden">
+                  <iframe
+                    src={getBaiduMapMarkerPageUrl()}
+                    width="100%"
+                    height="450"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    loading="lazy"
+                    title="KCP地球市民日本語学校 所在地（百度地图）"
+                  />
+                </div>
+                <p className="mt-3 text-center text-sm text-gray-600">
+                  <a
+                    href={getBaiduMapMarkerPageUrl()}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[#0085b2] hover:underline"
+                  >
+                    若地图无法显示，请在百度地图中打开
+                  </a>
+                </p>
+              </>
             ) : (
-              <iframe
-                src="https://www.google.com/maps?q=東京都新宿区新宿1-29-12&z=18&output=embed"
-                width="100%"
-                height="450"
-                style={{ border: 0 }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title="KCP地球市民日本語学校 所在地"
-              />
+              <div className="w-full h-[450px] bg-gray-100 rounded-lg overflow-hidden">
+                <iframe
+                  src="https://www.google.com/maps?q=東京都新宿区新宿1-29-12&z=18&output=embed"
+                  width="100%"
+                  height="450"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="KCP地球市民日本語学校 所在地"
+                />
+              </div>
             )}
           </div>
 
