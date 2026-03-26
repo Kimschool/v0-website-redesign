@@ -3,6 +3,11 @@
 import { useTranslation } from '@/hooks/use-translation'
 import { Button } from '@/components/ui/button'
 import Image from 'next/image'
+import {
+  YouTubeEmbed,
+  KCP_SCHOOL_SONG_YOUTUBE_ID,
+  KCP_CHEERING_SONG_YOUTUBE_ID,
+} from '@/components/youtube-embed'
 
 export const TopPage = () => {
   const t = useTranslation()
@@ -167,38 +172,40 @@ export const TopPage = () => {
 
           <div className="grid md:grid-cols-2 gap-12">
             {/* School Song */}
-            <div className="group cursor-pointer">
-              <div className="relative overflow-hidden rounded-lg mb-6 h-64 bg-gray-200 group-hover:shadow-lg transition">
-                <div className="w-full h-full bg-gradient-to-br from-[#0085b2] to-[#0cc0df] flex items-center justify-center">
-                  <span className="text-white text-6xl">🎵</span>
-                </div>
-              </div>
+            <div>
+              <YouTubeEmbed videoId={KCP_SCHOOL_SONG_YOUTUBE_ID} title="KCP校歌「今ここに」" className="mb-6" />
               <h3 className="text-2xl font-bold text-[#0085b2] mb-2">
                 校歌「今ここに」
               </h3>
               <p className="text-gray-700 mb-4">
                 KCPの校歌「今ここに」は、学校の理念と想いを込めた歌です。
               </p>
-              <a href="#" className="text-[#0cc0df] font-semibold hover:underline">
-                詳細を見る →
+              <a
+                href={`https://www.youtube.com/watch?v=${KCP_SCHOOL_SONG_YOUTUBE_ID}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#0cc0df] font-semibold hover:underline"
+              >
+                YouTubeで開く →
               </a>
             </div>
 
             {/* Cheering Song */}
-            <div className="group cursor-pointer">
-              <div className="relative overflow-hidden rounded-lg mb-6 h-64 bg-gray-200 group-hover:shadow-lg transition">
-                <div className="w-full h-full bg-gradient-to-br from-[#0cc0df] to-[#0085b2] flex items-center justify-center">
-                  <span className="text-white text-6xl">🎶</span>
-                </div>
-              </div>
+            <div>
+              <YouTubeEmbed videoId={KCP_CHEERING_SONG_YOUTUBE_ID} title="KCP応援歌「そらとほしと」" className="mb-6" />
               <h3 className="text-2xl font-bold text-[#0085b2] mb-2">
                 応援歌「そらとほしと」
               </h3>
               <p className="text-gray-700 mb-4">
                 応援歌「そらとほしと」は、KCPの活動を応援する歌です。
               </p>
-              <a href="#" className="text-[#0cc0df] font-semibold hover:underline">
-                詳細を見る →
+              <a
+                href={`https://www.youtube.com/watch?v=${KCP_CHEERING_SONG_YOUTUBE_ID}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#0cc0df] font-semibold hover:underline"
+              >
+                YouTubeで開く →
               </a>
             </div>
           </div>
