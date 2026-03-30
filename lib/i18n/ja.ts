@@ -787,7 +787,7 @@ const ja = {
     intro:
       "KCPでの生活は、教室の中だけにとどまりません。\n年間を通じてのイベントやクラブ活動——多国籍の仲間とともに過ごす日々の中で、日本語力だけでなく、人との関わり方や文化理解も自然と深まっていきます。",
     scheduleTitle: "年間スケジュール",
-    scheduleNote: "* 課外授業は、BBQや運動会、コトバデー、バス旅行、小旅行などがあり、学期によって異なります。",
+    scheduleNote: "課外授業は、BBQや運動会、コトバデー、バス旅行、小旅行などがあり、学期によって異なります。",
     scheduleItems: [
       { month: "入学式", description: "入学式" },
       { month: "4月", description: "お花見" },
@@ -799,7 +799,7 @@ const ja = {
       { month: "10月", description: "健康診断、課外授業" },
       { month: "11月", description: "第二回EJU、中間試験" },
       { month: "12月", description: "第二回JLPT、期末試験" },
-      { month: "1月", description: "成人を祝う会" },
+      { month: "1月", description: "課外授業" },
       { month: "2月", description: "節分、中間試験、卒業認定試験" },
       { month: "3月", description: "ひな祭り、卒業式、期末試験" },
     ],
@@ -830,6 +830,9 @@ const ja = {
     accessTitle: "アクセス・周辺環境",
     accessDesc1: "新宿御苑前駅から徒歩3分、通学や買い物にも便利です。",
     accessDesc2: "周辺にはコンビニや飲食店だけでなく、新宿御苑や新宿の繁華街も近く、都心生活を満喫できます。",
+    mapIframeTitle: "KCP地球市民日本語学校 所在地",
+    mapIframeTitleAmap: "KCP地球市民日本語学校 所在地（高德地図・中国語表示時）",
+    mapOpenAmapHint: "地図をブラウザで開く（高德地図）",
     schoolAddress: "学校法人KCP学園 KCP地球市民日本語学校",
     schoolAddressDetail: "〒160-0022　東京都新宿区新宿1-29-12",
     schoolContact: "連絡先：03-3356-2359 / Fax: 03-3356-2559 / Email：",
