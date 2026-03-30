@@ -128,7 +128,7 @@ export function FeaturesSection() {
               {[...featureItems, ...featureItems].map((item, index) => (
                 <div
                   key={index}
-                  className="group relative flex-shrink-0 w-[320px] md:w-[380px] overflow-hidden rounded-2xl cursor-pointer card-glow"
+                  className="relative flex-shrink-0 w-[320px] md:w-[380px] overflow-hidden rounded-2xl"
                 >
                   <div className="aspect-[480/306] relative overflow-hidden">
                     <Image
@@ -137,22 +137,16 @@ export function FeaturesSection() {
                       fill
                       sizes="(max-width: 768px) 320px, 380px"
                       loading={index < 4 ? "eager" : "lazy"}
-                      className="object-cover transition-transform duration-700 group-hover:scale-[1.15]"
+                      className="object-cover"
                       style={{ objectPosition: item.objectPosition }}
                     />
                     {/* Gradient overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-300" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80" />
                     {/* Title overlay */}
                     <div className="absolute inset-0 flex flex-col justify-end p-5">
-                      <div className="transform transition-transform duration-300 group-hover:-translate-y-2">
-                        <h3 className="text-base md:text-lg font-bold text-white drop-shadow-lg leading-snug">
-                          {item.text}
-                        </h3>
-                        <div className="flex items-center gap-1 mt-2 text-sm text-white/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                          <span>詳細を見る</span>
-                          <ArrowRight className="w-4 h-4" />
-                        </div>
-                      </div>
+                      <h3 className="text-base md:text-lg font-bold text-white drop-shadow-lg leading-snug">
+                        {item.text}
+                      </h3>
                     </div>
                   </div>
                 </div>
