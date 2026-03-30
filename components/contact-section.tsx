@@ -45,6 +45,24 @@ export function ContactSection() {
     return () => observer.disconnect()
   }, [])
 
+  useEffect(() => {
+    if (typeof window === "undefined") return
+    const scrollToOverseasHash = () => {
+      const id = window.location.hash.replace(/^#/, "")
+      if (id !== "overseas-offices") return
+      const el = document.getElementById("overseas-offices")
+      if (!el) return
+      el.scrollIntoView({ behavior: "smooth", block: "start" })
+    }
+    scrollToOverseasHash()
+    const t = window.setTimeout(scrollToOverseasHash, 250)
+    window.addEventListener("hashchange", scrollToOverseasHash)
+    return () => {
+      window.clearTimeout(t)
+      window.removeEventListener("hashchange", scrollToOverseasHash)
+    }
+  }, [])
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
     setFormData((prev) => ({
@@ -180,7 +198,7 @@ export function ContactSection() {
         {/* Form Header - Premium Design */}
         <div className={`mb-16 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
           <div className="text-center max-w-2xl mx-auto">
-            <p className="text-xs tracking-[0.3em] uppercase text-[#0085b2] font-semibold mb-4">
+            <p className="text-md tracking-[0.3em] uppercase text-[#0085b2] font-semibold mb-4">
               {t("contactPage.certificateFormAudienceLabel")}
             </p>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8 font-serif">
@@ -310,7 +328,7 @@ export function ContactSection() {
               {/* Student ID */}
               <div>
                 <label htmlFor="studentId" className="block text-sm font-medium text-gray-700 mb-2.5">
-                  {t("contactPage.formLabels.studentId")} <span className="text-[#0085b2] font-bold">*</span>
+                  {t("contactPage.formLabels.studentId")} <span className="text-[#0085b2] font-bold"></span>
                 </label>
                 <input
                   type="text"
@@ -404,6 +422,7 @@ export function ContactSection() {
                   <option value="attendance">{t("contactPage.certificateOptions.attendance")}</option>
                   <option value="graduation">{t("contactPage.certificateOptions.graduation")}</option>
                   <option value="withdrawal">{t("contactPage.certificateOptions.withdrawal")}</option>
+                  <option value="other">{t("contactPage.certificateOptions.other")}</option>
                 </select>
               </div>
 
@@ -506,7 +525,10 @@ export function ContactSection() {
         </form>
 
         {/* Overseas Offices Section */}
-        <div className={`mb-16 py-10 ${isVisible ? "animate-fade-in-up animation-delay-200" : "opacity-0"}`}>
+        <div
+          id="overseas-offices"
+          className={`scroll-mt-24 md:scroll-mt-28 mb-16 py-10 ${isVisible ? "animate-fade-in-up animation-delay-200" : "opacity-0"}`}
+        >
           <h3 className="text-2xl font-bold text-gray-900 mb-6">{t("contactPage.overseasTitle")}</h3>
           <div className="space-y-3">
             {overseasOffices.map((office, index) => (
@@ -612,14 +634,10 @@ export function ContactSection() {
                 <p className="text-xs text-gray-500 font-medium mb-3">
                   {t("contactPage.contactInfo.hoursTitle")}
                 </p>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 text-sm text-gray-900">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm text-gray-900">
                   <p>
                     <span className="font-semibold">{t("contactPage.contactInfo.weekday")}</span>{" "}
                     {t("contactPage.contactInfo.weekdayHours")}
-                  </p>
-                  <p>
-                    <span className="font-semibold">{t("contactPage.contactInfo.saturday")}</span>{" "}
-                    {t("contactPage.contactInfo.saturdayHours")}
                   </p>
                   <p>
                     <span className="font-semibold">{t("contactPage.contactInfo.sundayHoliday")}</span>{" "}

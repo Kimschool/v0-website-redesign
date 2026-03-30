@@ -224,7 +224,7 @@ export function AdmissionSection() {
           </div>
 
           {/* Contact Section */}
-          <Link href="/contact" className="block group mb-20">
+          <Link href="/contact#overseas-offices" className="block group mb-20">
             <div className="relative rounded-2xl bg-gradient-to-br from-[#0085b2]/10 via-[#f0ffff] to-[#0cc0df]/5 border border-[#0085b2]/20 cursor-pointer overflow-hidden transition-all duration-500 hover:shadow-2xl hover:border-[#0085b2]/60">
               {/* Background accents */}
               <div className="absolute -top-10 -right-10 w-40 h-40 bg-[#0085b2]/15 rounded-full blur-3xl" />
@@ -242,29 +242,8 @@ export function AdmissionSection() {
                   <h2 className="font-serif text-2xl md:text-3xl font-bold text-gray-900 mb-3">
                     {t("admissionPage.contactTitle")}
                   </h2>
-                  <p className="text-sm md:text-base text-gray-700 mb-4 leading-relaxed">
+                  <p className="text-sm md:text-base text-gray-700 leading-relaxed">
                     {t("admissionPage.contactDescription")}
-                  </p>
-
-                  <div className="grid sm:grid-cols-2 gap-4 mb-4">
-                    <div className="bg-white/80 backdrop-blur-sm p-4 rounded-xl border border-[#0085b2]/15 shadow-sm">
-                      <p className="text-xs font-semibold text-gray-500 mb-1">
-                        {t("admissionPage.contactEmail")}
-                      </p>
-                      <p className="text-gray-900 font-medium text-sm">info@kcp.ac.jp</p>
-                    </div>
-                    <div className="bg-white/80 backdrop-blur-sm p-4 rounded-xl border border-[#0085b2]/15 shadow-sm">
-                      <p className="text-xs font-semibold text-gray-500 mb-1">
-                        {t("admissionPage.contactHours")}
-                      </p>
-                      <p className="text-gray-900 font-medium text-sm">
-                        {t("admissionPage.contactHoursValue")}
-                      </p>
-                    </div>
-                  </div>
-
-                  <p className="text-xs md:text-sm text-gray-600">
-                    {t("admissionPage.contactCta")}
                   </p>
                 </div>
 
@@ -405,7 +384,7 @@ export function AdmissionSection() {
                   {t("admissionPage.lmsFeatureTitle")}
                 </h3>
                 <ul className="space-y-3 text-gray-700 text-sm">
-                  {[0, 1, 2, 3, 4].map((i) => (
+                  {[0, 1, 2, 3].map((i) => (
                     <li key={i} className="flex gap-2">
                       <span className="mt-0.5 inline-block w-1.5 h-1.5 rounded-full bg-[#0085b2]" />
                       <span>{t(`admissionPage.lmsFeatures.${i}` as const)}</span>
@@ -431,21 +410,15 @@ export function AdmissionSection() {
 
             <div className="space-y-4">
               <div className="rounded-2xl bg-white shadow-sm border border-[#0085b2]/15 p-5">
-                <h3 className="text-lg font-bold text-gray-900 mb-2">
+                <h3 className="text-lg font-bold text-gray-900">
                   {t("admissionPage.scholarship1Title")}
                 </h3>
-                <p className="text-sm md:text-base text-gray-700">
-                  {t("admissionPage.scholarship1Desc")}
-                </p>
               </div>
 
               <div className="rounded-2xl bg-white shadow-sm border border-emerald-500/20 p-5">
-                <h3 className="text-lg font-bold text-gray-900 mb-2">
+                <h3 className="text-lg font-bold text-gray-900">
                   {t("admissionPage.scholarship2Title")}
                 </h3>
-                <p className="text-sm md:text-base text-gray-700">
-                  {t("admissionPage.scholarship2Desc")}
-                </p>
               </div>
             </div>
 
