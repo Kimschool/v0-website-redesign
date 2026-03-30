@@ -46,6 +46,19 @@ function parseKcpLevelLabels(kcp: string): string[] {
   return kcp.split(/\s*\/\s*/).map((s) => s.trim()).filter(Boolean)
 }
 
+/** 合格スケジュール：上から下へ実力が深まるイメージで水色が段階的に濃くなる */
+const admissionScheduleHeaderBands = [
+  "bg-sky-50",
+  "bg-sky-100",
+  "bg-sky-200",
+] as const
+
+const admissionSchedulePeriodPills = [
+  "border-sky-200/80 bg-white/85 text-sky-950 shadow-sm",
+  "border-sky-300/75 bg-white/80 text-sky-950 shadow-sm",
+  "border-sky-400/70 bg-white/75 text-sky-950 shadow-sm",
+] as const
+
 export function EducationSection() {
   const { t } = useTranslation()
   const sectionRef = useRef<HTMLElement>(null)
@@ -1011,8 +1024,8 @@ export function EducationSection() {
             </h2>
 
             <div className="relative">
-              <div className="hidden md:block absolute left-[26px] top-6 bottom-6 w-px bg-gray-200" />
-              <div className="space-y-6">
+              <div className="pointer-events-none hidden md:block absolute left-[26px] top-6 bottom-6 z-0 w-px bg-gray-200" />
+              <div className="relative z-10 space-y-6">
                 {[
                   {
                     id: "year1",
@@ -1041,46 +1054,51 @@ export function EducationSection() {
                     accent: "violet" as const,
                     Icon: GraduationCap,
                   },
-                ].map((stage, idx, all) => {
+                ].map((stage, idx) => {
                   const dotColor =
                     stage.accent === "blue"
                       ? "bg-[#0085b2]"
                       : stage.accent === "emerald"
                         ? "bg-emerald-600"
                         : "bg-violet-600"
-                  const badgeCls =
-                    stage.accent === "blue"
-                      ? "bg-[#0085b2]/10 text-[#006d94] border-[#0085b2]/20"
-                      : stage.accent === "emerald"
-                        ? "bg-emerald-600/10 text-emerald-800 border-emerald-600/20"
-                        : "bg-violet-600/10 text-violet-800 border-violet-600/20"
-
                   return (
                     <div key={stage.id} className="flex items-start gap-4">
-                      <div className="shrink-0 pt-2">
+                      <div className="relative z-10 shrink-0 pt-2">
                         <div className="h-14 w-14 rounded-2xl border border-gray-200 bg-white shadow-sm flex items-center justify-center">
                           <stage.Icon className="h-6 w-6 text-[#0085b2]" />
                         </div>
                       </div>
 
-                      <div className="flex-1 rounded-2xl border border-gray-200 bg-white shadow-sm p-6">
-                        <div className="flex flex-wrap items-center justify-between gap-3 mb-3">
-                          <div className="flex items-center gap-3">
-                            <span className={["h-2.5 w-2.5 rounded-full", dotColor].join(" ")} />
-                            <h3 className="font-serif text-xl font-bold text-gray-900">
-                              {stage.title}
-                            </h3>
+                      <div className="relative z-10 min-w-0 flex-1 overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
+                        <div
+                          className={[
+                            "border-b border-sky-300/25 px-6 pt-6 pb-4",
+                            admissionScheduleHeaderBands[idx],
+                          ].join(" ")}
+                        >
+                          <div className="space-y-2.5">
+                            <div className="flex items-center gap-3">
+                              <span
+                                className={["h-2.5 w-2.5 shrink-0 rounded-full", dotColor].join(
+                                  " "
+                                )}
+                              />
+                              <h3 className="font-serif text-xl font-bold text-gray-900">
+                                {stage.title}
+                              </h3>
+                            </div>
+                            <span
+                              className={[
+                                "inline-flex items-center rounded-full border px-3 py-1.5 text-xs font-semibold md:text-sm",
+                                admissionSchedulePeriodPills[idx],
+                              ].join(" ")}
+                            >
+                              {stage.period}
+                            </span>
                           </div>
-                          <span
-                            className={[
-                              "inline-flex items-center rounded-full border px-3 py-1 text-xs font-semibold",
-                              badgeCls,
-                            ].join(" ")}
-                          >
-                            {stage.period}
-                          </span>
                         </div>
 
+                        <div className="px-6 pb-6 pt-5">
                         <div className="grid md:grid-cols-2 gap-4">
                           <div className="rounded-2xl border border-gray-200 bg-gray-50 p-4">
                             <div className="flex items-center gap-2 mb-2">
@@ -1105,13 +1123,7 @@ export function EducationSection() {
                             </p>
                           </div>
                         </div>
-
-                        {idx < all.length - 1 ? (
-                          <div className="mt-5 inline-flex items-center gap-2 text-[#0085b2] text-sm font-semibold">
-                            {t("educationPage.scheduleNext")}
-                            <ArrowRight className="h-4 w-4" />
-                          </div>
-                        ) : null}
+                        </div>
                       </div>
                     </div>
                   )
@@ -1127,27 +1139,47 @@ export function EducationSection() {
               {t("educationPage.recommendationTitle")} / {t("educationPage.recentResultsTitle")}
             </h2>
 
-            <p className="text-gray-700 mb-8">
-              {t("educationPage.recommendationDesc")}
-            </p>
+            <div className="text-gray-700 mb-8 space-y-2 leading-relaxed">
+              <p className="font-semibold text-gray-900">
+                {t("educationPage.advancementCalloutLine1")}
+              </p>
+              <p>{t("educationPage.advancementCalloutLine2")}</p>
+            </div>
 
             <div className="space-y-4">
               <details className="rounded-2xl border border-gray-200 bg-white shadow-sm">
                 <summary className="cursor-pointer list-none px-5 py-4 flex items-center justify-between gap-4">
-                  <div>
+                  <div className="min-w-0 pr-2">
                     <p className="text-base font-bold text-gray-900">
                       {t("educationPage.recommendationTitle")}
                     </p>
-                    <p className="text-xs text-gray-500 mt-1">
-                      {t("educationPage.resultsAccordionBadgePartnerSchools")}
+                    <p className="text-sm text-gray-600 mt-1.5 leading-snug">
+                      {t("educationPage.recommendationDesc")}
                     </p>
                   </div>
-                  <ChevronDown className="h-5 w-5 text-gray-500" />
+                  <ChevronDown className="h-5 w-5 shrink-0 text-gray-500" />
                 </summary>
                 <div className="px-5 pb-5">
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
                     {[
-                      "法政大学","東洋大学","芝浦工業大学","関西学院大学","拓殖大学","昭和女子大学","尚美学園大学","フェリス女学院大学","東京工芸大学","武蔵野大学","帝京大学","駒沢女子大学","東京情報大学","横浜商科大学","明海大学","文化学園大学","多摩大学","関西国際大学",
+                      "法政大学",
+                      "東洋大学",
+                      "芝浦工業大学",
+                      "関西学院大学",
+                      "拓殖大学",
+                      "昭和女子大学",
+                      "尚美学園大学",
+                      "フェリス女学院大学",
+                      "東京工芸大学",
+                      "武蔵野大学",
+                      "帝京大学",
+                      "駒沢女子大学",
+                      "東京情報大学",
+                      "横浜商科大学",
+                      "明海大学",
+                      "文化学園大学",
+                      "多摩大学",
+                      "関西国際大学など",
                     ].map((uni) => (
                       <div key={uni} className="rounded-lg bg-gray-50 border border-gray-200 px-3 py-2 text-sm text-gray-800">
                         {uni}
@@ -1225,14 +1257,6 @@ export function EducationSection() {
                   <p className="text-gray-400 italic text-sm mt-2">{t("educationPage.etcLabel")}</p>
                 </div>
               </details>
-            </div>
-
-            <div className="bg-[#f0ffff] p-6 rounded-lg border border-[#0085b2]/20 mt-8">
-              <p className="text-gray-700 text-sm leading-relaxed text-center">
-                <strong>{t("educationPage.advancementCalloutLine1")}</strong>
-                <br />
-                {t("educationPage.advancementCalloutLine2")}
-              </p>
             </div>
           </div>
 
