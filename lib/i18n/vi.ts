@@ -241,7 +241,7 @@ const vi = {
     description: "Yêu cầu tài liệu hoặc liên hệ với chúng tôi tại đây",
     admission: {
       title: "Hướng dẫn nhập học",
-      description: "Bạn có thể xem thông tin chi tiết về thủ tục nhập học. Nếu có bất kỳ thắc mắc nào, xin đừng ngần ngại liên hệ với chúng tôi.",
+      description: "Bạn có thể xem thông tin chi tiết về thủ tục nhập học. Nếu có thắc mắc, xin hãy liên hệ với chúng tôi.",
     },
     contact: {
       title: "Liên hệ",
@@ -272,6 +272,39 @@ const vi = {
     privacy: "Chính sách bảo mật",
     terms: "Điều khoản sử dụng",
     disclosure: "Công bố thông tin",
+  },
+
+  privacyPage: {
+    backHome: "Về trang chủ",
+    title: "Chính sách bảo mật",
+    lastUpdated: "(Cập nhật lần cuối: tháng 3/2026)",
+    lead: "Tập đoàn giáo dục KCP, Trường Nhật ngữ KCP Global Citizen (\"Nhà trường\") nhận thức tầm quan trọng của thông tin cá nhân do người truy cập website, người dự định nhập học, học viên và các bên liên quan (\"bạn\") cung cấp. Chúng tôi tuân thủ Luật Bảo vệ Thông tin Cá nhân của Nhật Bản và các quy định liên quan, thu thập, sử dụng và quản lý thông tin một cách phù hợp. Chính sách này mô tả cách xử lý thông tin thu được qua website do Nhà trường vận hành (\"Trang web\").",
+    sections: [
+      {
+        title: "1. Thông tin thu thập",
+        text: "Chúng tôi có thể thu thập họ tên, ngày sinh, quốc tịch, địa chỉ, số điện thoại, email, học lực và các thông tin cần thiết khi tiếp nhận yêu cầu tư liệu, đơn nhập học, thủ tục nhập học, cấp chứng nhận, v.v.\nTrang web có thể dùng cookie và công nghệ tương tự để phân tích lượt truy cập và tối ưu hiển thị. Bạn có thể tắt cookie trong trình duyệt; một số chức năng có thể không hoạt động.",
+      },
+      {
+        title: "2. Mục đích sử dụng",
+        text: "Thông tin cá nhân chỉ được dùng trong phạm vi:\n・Tuyển sinh, xét tuyển, thủ tục nhập học, quản lý tình trạng học và các hoạt động giáo dục khác\n・Trả lời câu hỏi và yêu cầu tư liệu\n・Liên lạc và gửi thông báo quan trọng\n・Lập thống kê (ở dạng không nhận diện được cá nhân)\nNếu dùng cho mục đích khác, chúng tôi sẽ xin sự đồng ý của bạn trừ khi pháp luật cho phép.",
+      },
+      {
+        title: "3. Cung cấp cho bên thứ ba và giao phó",
+        text: "Chúng tôi không cung cấp thông tin cá nhân cho bên thứ ba nếu không có sự đồng ý của bạn, ngoại trừ các trường hợp pháp luật quy định (ví dụ yêu cầu công bố theo luật, hoặc cần thiết để bảo vệ tính mạng, cơ thể hoặc tài sản và khó xin đồng ý).\nKhi giao phó một phần công việc và xử lý thông tin cá nhân cho nhà thầu, chúng tôi ký hợp đồng phù hợp và giám sát.",
+      },
+      {
+        title: "4. An toàn bảo mật",
+        text: "Chúng tôi áp dụng các biện pháp tổ chức, nhân sự, vật lý và kỹ thuật để ngăn rò rỉ, mất mát hoặc hư hại thông tin cá nhân và bảo vệ ở mức thích hợp.",
+      },
+      {
+        title: "5. Tiết lộ, chỉnh sửa, ngừng sử dụng",
+        text: "Khi bạn yêu cầu tiết lộ, chỉnh sửa, bổ sung, xóa hoặc ngừng sử dụng thông tin cá nhân mà Nhà trường lưu giữ, chúng tôi sẽ xử lý theo pháp luật. Vui lòng liên hệ qua kênh hỏi đáp của Nhà trường để biết thủ tục.",
+      },
+      {
+        title: "6. Thay đổi chính sách và liên hệ",
+        text: "Chúng tôi có thể sửa đổi chính sách này khi pháp luật hoặc hoạt động thay đổi. Bản sửa đổi có hiệu lực khi đăng trên Trang web.\nMọi thắc mắc về xử lý thông tin cá nhân, vui lòng dùng thông tin liên hệ tại trang Liên hệ của Nhà trường.",
+      },
+    ],
   },
 
   // Loading Screen
@@ -797,7 +830,8 @@ const vi = {
   // School Life Page
   schoolLifePage: {
     bannerTitle: "Đời sống học đường",
-    intro: "Cuộc sống tại KCP không chỉ giới hạn trong lớp học. Qua các sự kiện quanh năm, hoạt động câu lạc bộ và những ngày bên bạn bè đa quốc gia",
+    intro:
+      "Cuộc sống tại KCP không chỉ diễn ra trong lớp học.\nQua các sự kiện quanh năm, hoạt động câu lạc bộ—và những ngày sống cùng bạn đến từ nhiều quốc gia—không chỉ tiếng Nhật mà cách giao tiếp và hiểu biết văn hóa cũng dần sâu sắc một cách tự nhiên.",
     scheduleTitle: "Lịch trình năm",
     scheduleNote: "* Các hoạt động ngoại khóa bao gồm BBQ, hội thao, Kotoba Day, du lịch xe buýt, du ngoạn, v.v., và thay đổi theo học kỳ.",
     scheduleItems: [
