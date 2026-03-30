@@ -641,6 +641,9 @@ const zh = {
     recommendationTitle: "指定校推荐",
     recommendationDesc: "KCP凭借稳定的升学实绩和教育内容获得认可，已获得以下大学的指定校推荐名额。",
     recommendationNote: "※每年情况可能有所变化，建议有意向的同学尽早进行升学咨询。将根据成绩·出勤率·品行评价等进行校内选拔。",
+    advancementCalloutLine1: "众多毕业生成功考入名牌大学和专门学校。",
+    advancementCalloutLine2:
+      "KCP通过稳定的升学实绩和指定校推荐名额，支撑学生的未来。",
     recentResultsTitle: "近5年升学实绩",
     resultTitle: "{{year}}年度 升学实绩",
     publicUniTitle: "【国公立大学】",
