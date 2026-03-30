@@ -85,10 +85,10 @@ function Pattern1({ phase, imageVisible }: { phase: Phase; imageVisible: boolean
           {[...Array(4)].map((_, i) => (
             <div
               key={i}
-              className="absolute rounded-full border-2 border-white/20"
+              className="absolute rounded-full border-[3px] border-white/20"
               style={{
-                width: `${150 + i * 120}px`,
-                height: `${150 + i * 120}px`,
+                width: `${225 + i * 180}px`,
+                height: `${225 + i * 180}px`,
                 opacity: imageVisible ? 1 : 0,
                 transform: imageVisible ? "scale(1)" : "scale(0.5)",
                 transition: `all 800ms ease-out ${i * 150}ms`,
@@ -96,9 +96,9 @@ function Pattern1({ phase, imageVisible }: { phase: Phase; imageVisible: boolean
             />
           ))}
         </div>
-        {/* 로고 */}
+        {/* 로고（認定マーク＋KCP など合成画像・1.5倍） */}
         <div
-          className="relative w-[280px] h-[280px] md:w-[400px] md:h-[400px] z-10"
+          className="relative w-[420px] h-[420px] md:w-[600px] md:h-[600px] z-10"
           style={{
             opacity: imageVisible ? 1 : 0,
             transform: imageVisible ? "scale(1)" : "scale(0.8)",
@@ -228,12 +228,12 @@ function Pattern2({ phase, imageVisible }: { phase: Phase; imageVisible: boolean
             transition: "transform 800ms ease-out 200ms",
           }}
         />
-        {/* 로고 */}
+        {/* 로고（1.5倍） */}
         <div
-          className="relative w-[280px] h-[280px] md:w-[400px] md:h-[400px] z-10"
+          className="relative w-[420px] h-[420px] md:w-[600px] md:h-[600px] z-10"
           style={{
             opacity: imageVisible ? 1 : 0,
-            transform: imageVisible ? "translateY(0)" : "translateY(30px)",
+            transform: imageVisible ? "translateY(0)" : "translateY(45px)",
             transition: "all 700ms ease-out 400ms",
           }}
         >
@@ -378,9 +378,9 @@ function Pattern3({ phase, imageVisible }: { phase: Phase; imageVisible: boolean
             }}
           />
         </div>
-        {/* 로고 */}
+        {/* 로고（1.5倍） */}
         <div
-          className="relative w-[280px] h-[280px] md:w-[400px] md:h-[400px] z-10"
+          className="relative w-[420px] h-[420px] md:w-[600px] md:h-[600px] z-10"
           style={{
             opacity: imageVisible ? 1 : 0,
             transform: imageVisible ? "rotate(0deg) scale(1)" : "rotate(-10deg) scale(0.9)",

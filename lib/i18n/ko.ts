@@ -11,6 +11,10 @@ const ko = {
     access: "오시는 길",
     contact: "문의",
   },
+  newsBar: {
+    expandList: "목록 보기 (최신 3건)",
+    collapseList: "닫기",
+  },
   newsPage: {
     title: "소식",
     description: "학교의 최신 소식을 안내합니다.",

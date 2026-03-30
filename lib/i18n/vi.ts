@@ -11,6 +11,10 @@ const vi = {
     access: "Chỉ đường",
     contact: "Liên hệ",
   },
+  newsBar: {
+    expandList: "Xem danh sách (tối đa 3)",
+    collapseList: "Đóng",
+  },
   newsPage: {
     title: "Tin tức",
     description: "Thông báo mới nhất từ nhà trường.",

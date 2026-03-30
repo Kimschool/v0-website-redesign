@@ -11,6 +11,10 @@ const ja = {
     access: "アクセス",
     contact: "お問い合わせ",
   },
+  newsBar: {
+    expandList: "一覧を表示（最新3件）",
+    collapseList: "閉じる",
+  },
   newsPage: {
     title: "お知らせ",
     description: "学校からの最新情報を掲載しています。",

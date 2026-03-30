@@ -94,7 +94,7 @@ export function FeaturesSection() {
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground leading-tight font-serif">
             {t("features.title")}
           </h2>
-          <p className="mt-6 text-base md:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+          <p className="mt-6 text-base md:text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             {t("features.description")}
           </p>
         </div>

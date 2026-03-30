@@ -11,6 +11,10 @@ const en = {
     access: "Access",
     contact: "Contact",
   },
+  newsBar: {
+    expandList: "Show latest (up to 3)",
+    collapseList: "Close",
+  },
   newsPage: {
     title: "News",
     description: "Latest announcements from the school.",
