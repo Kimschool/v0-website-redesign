@@ -15,22 +15,24 @@ import {
 import { getFacilitySlides } from "@/lib/school-life-facility"
 import { FacilityShowcaseHero } from "@/components/school-life-facility-carousel-showcases"
 
-/** 東京都新宿区新宿1-29-12 付近（WGS84・lat,lng）— 百度地图 URI API / marker 用 */
-const KCP_SCHOOL_LAT_LNG_WGS84 = "35.68932,139.71245"
-
 /** ヘッダー・トップカードからの /school-life#... スクロール先 */
 const SCHOOL_LIFE_SECTION_HASH_IDS = new Set(["access", "schedule", "clubs", "facilities"])
 
-/** 百度地图「地点详情」出力（output=html）。旧 map.baidu.com 直リンクは JSON が返ることがあるため非推奨。 */
-function getBaiduMapMarkerPageUrl() {
-  return `https://api.map.baidu.com/marker?${new URLSearchParams({
-    location: KCP_SCHOOL_LAT_LNG_WGS84,
-    title: "KCP地球市民日语学校",
-    content: "〒160-0022 东京都新宿区新宿1-29-12",
-    output: "html",
-    coord_type: "wgs84",
-    zoom: "18",
+/** 学校所在地 — Google 埋め込み（非中国語） */
+const KCP_GOOGLE_MAPS_EMBED_SRC =
+  "https://www.google.com/maps?q=東京都新宿区新宿1-29-12&z=18&output=embed"
+
+/** 東京都新宿区新宿1-29-12 付近（WGS84・経度,緯度）— 高德 URI マーカー用 */
+const KCP_AMAP_POSITION = "139.71245,35.68932"
+
+/** 高德地图 URI API（中国語 UI 時。海外座標は coordinate=wgs84） */
+function getAmapMarkerUriUrl() {
+  return `https://uri.amap.com/marker?${new URLSearchParams({
+    position: KCP_AMAP_POSITION,
+    name: "KCP地球市民日本语学校",
     src: "kcp_ac_jp",
+    coordinate: "wgs84",
+    callnative: "0",
   })}`
 }
 
@@ -39,6 +41,7 @@ export function SchoolLifePageContent() {
   const sectionRef = useRef<HTMLElement>(null)
   const [isVisible, setIsVisible] = useState(false)
   const { t, i18n } = useTranslation()
+  const isZh = i18n.language.startsWith("zh")
 
   const scheduleItems = [
     { month: t("schoolLifePage.scheduleItems.0.month"), description: t("schoolLifePage.scheduleItems.0.description"), image: "/images/original_from_customer/nyuugakusiki.jpg", fullWidth: true },
@@ -315,43 +318,44 @@ export function SchoolLifePageContent() {
             <strong>{t("schoolLifePage.accessDesc2")}</strong>
           </p>
 
-          {/* Map — 中国語: 百度地图 marker API（html）／その他: Google 埋め込み */}
+          {/* Map — 中国語: 高德地图 URI／その他: Google 埋め込み */}
           <div className="mb-8">
-            {i18n.language.startsWith("zh") ? (
+            {isZh ? (
               <>
                 <div className="w-full h-[450px] bg-gray-100 rounded-lg overflow-hidden">
                   <iframe
-                    src={getBaiduMapMarkerPageUrl()}
+                    src={getAmapMarkerUriUrl()}
                     width="100%"
                     height="450"
                     style={{ border: 0 }}
                     allowFullScreen
                     loading="lazy"
-                    title="KCP地球市民日本語学校 所在地（百度地图）"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title={t("schoolLifePage.mapIframeTitleAmap")}
                   />
                 </div>
                 <p className="mt-3 text-center text-sm text-gray-600">
                   <a
-                    href={getBaiduMapMarkerPageUrl()}
+                    href={getAmapMarkerUriUrl()}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-[#0085b2] hover:underline"
                   >
-                    若地图无法显示，请在百度地图中打开
+                    {t("schoolLifePage.mapOpenAmapHint")}
                   </a>
                 </p>
               </>
             ) : (
               <div className="w-full h-[450px] bg-gray-100 rounded-lg overflow-hidden">
                 <iframe
-                  src="https://www.google.com/maps?q=東京都新宿区新宿1-29-12&z=18&output=embed"
+                  src={KCP_GOOGLE_MAPS_EMBED_SRC}
                   width="100%"
                   height="450"
                   style={{ border: 0 }}
                   allowFullScreen
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
-                  title="KCP地球市民日本語学校 所在地"
+                  title={t("schoolLifePage.mapIframeTitle")}
                 />
               </div>
             )}

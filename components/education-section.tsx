@@ -400,7 +400,7 @@ export function EducationSection() {
           src={`/images/original_from_customer/${encodeURIComponent('トップ背景')}/${encodeURIComponent('02_教育内容（手元にフォーカス）')}.jpg`}
           alt={t("nav.education")}
           fill
-          className="object-cover object-[center_35%]"
+          className="object-cover object-[center_68%]"
           priority
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/60 flex items-center justify-center pt-16">

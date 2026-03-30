@@ -159,7 +159,7 @@ const alumniData = [
       "KCPは、私にとって堅苦しい学校というより、実家のような場所でした（笑）。",
       "KCPで学んだことは、大きく分けて二つあります。一つは、場面に応じた正しい日本語の使い分け、もう一つは日本のカルチャーです。",
       "一つ目の日本語についてですが、特に書き言葉と話し言葉の違いを学びました。この二つを間違えて使うと、相手にあまりよくない印象を与えてしまうことがあります。私はこの二つを意識して使い分けてきたことで、学業や仕事、日常生活でも誤解なく自分の考えを伝えられるようになりました。",
-      "もう一つは、日本のカルチャーです。日本社会では、ルール以上に「空気を共有できるか」が大切にされますが、KCPでその感覚を学んだことで、日本人の輪にも自然に溶け込めたと感じています。こうした経験は、大学生活を経て社会に出た今も、私の大きな支え��なっています。",
+      "もう一つは、日本のカルチャーです。日本社会では、ルール以上に「空気を共有できるか」が大切にされますが、KCPでその感覚を学んだことで、日本人の輪にも自然に溶け込めたと感じています。こうした経験は、大学生活を経て社会に出た今も、私の大きな支えになっています。",
     ],
     previewCount: 2,
   },
@@ -196,7 +196,7 @@ const alumniData = [
   },
   {
     id: "zhao",
-    name: "赵 瑞霄さん / 中国出身",
+    name: "趙 瑞霄さん / 中国出身",
     school: "進学先：東北大学　農学部",
     image: "/images/alumni/zhu.png",
     featured: false,
@@ -245,7 +245,7 @@ const alumniData = [
     featured: false,
     paragraphs: [
       "私がKCPに通っていた時期はコロナ禍だったため、みんなで参加できるイベントがあまり多くありませんでした。その中でも特に印象に残っているのがスピーチ大会です。私はクラスメートと一緒に応援動画を作成し、クラスメート全員の似顔絵を描きました。",
-      "大学院の進学準備は正直言ってとても順調とは言えませんでした。教授との面談で研究テーマを厳しく批判され、モチベーションを完全に失い、何も手につかない状態になったこともありました。そのとき、諸永先生が何度も面接練習をしてくださり、安楽先生が毎回授業後に相談に乗ってくださったおかげで、最終的に気持ちを奮い立たせ、無事に大学院に合格することができ��した。",
+      "大学院の進学準備は正直言ってとても順調とは言えませんでした。教授との面談で研究テーマを厳しく批判され、モチベーションを完全に失い、何も手につかない状態になったこともありました。そのとき、諸永先生が何度も面接練習をしてくださり、安楽先生が毎回授業後に相談に乗ってくださったおかげで、最終的に気持ちを奮い立たせ、無事に大学院に合格することができました。",
       "KCPで私が得た最大の成果は確実な日本語の基礎力だと思います。学校では宿題や試験が多く大変でしたが、一つ一つを真剣に準備したおかげで、自分の日本語能力が確実に伸びているのを実感できました。",
       "少し自慢話になるかもしれませんが、私は授業外で特別にEJUやJLPTの勉強をすることなく、授業内容をしっかり理解するだけで非常に良い成績を取ることができました。その中でもEJUの高得点は大学院入試でも強みとなり、大きな助けとなりました。会社に入ったばかりの頃、同僚たちは私が日本に来てからまだ4年しか経っていないことに驚いていたのも、KCPでの学びが基盤となっていたからだと思います。",
     ],
@@ -253,7 +253,7 @@ const alumniData = [
   },
   {
     id: "zhang",
-    name: "张 首馨さん / 中国出身",
+    name: "張 首馨さん / 中国出身",
     school: "進学先：東京外国語大学大学院 総合国際学研究科",
     image: "/images/alumni/seki.png",
     featured: false,
@@ -301,35 +301,17 @@ function YearResultsAlignedLayout() {
   const { t } = useTranslation()
   const yearOrder = ["2024", "2023", "2022", "2021", "2020", "2019"] as const
 
-  const getTotal = (year: (typeof yearOrder)[number]) => {
-    if (year === "2024") {
-      return (
-        data2024.大学.国公立.length +
-        data2024.大学.私立.length +
-        data2024.大学.音楽美術.length +
-        data2024.大学院.国公立.length +
-        data2024.大学院.私立.length +
-        data2024.大学院.音楽美術.length
-      )
-    }
-    if (year === "2023") return data2023.国公立.length + data2023.私立.length
-    return pastYearsData[year].国公立.length + pastYearsData[year].私立.length
-  }
-
   return (
     <div className="space-y-4">
       {yearOrder.map((year) => (
         <details key={year} open={year === "2024"} className="group rounded-2xl border border-gray-200 bg-white shadow-sm overflow-hidden">
           <summary className="list-none cursor-pointer px-6 py-4 bg-gray-50 border-b border-gray-200 flex items-center justify-between gap-3">
             <span className="text-lg font-bold text-gray-900">{t("educationPage.resultTitle", { year })}</span>
-            <span className="inline-flex items-center gap-3">
-              <span className="text-xs font-semibold text-gray-500">{getTotal(year)}校</span>
-              <span className="text-gray-400 transition-transform duration-300 group-open:rotate-180">▼</span>
-            </span>
+            <span className="shrink-0 text-gray-400 transition-transform duration-300 group-open:rotate-180">▼</span>
           </summary>
           <div className="p-6">
             {year === "2024" ? (
-              <div className="grid lg:grid-cols-2 gap-4">
+              <div className="space-y-4">
                 <div className="rounded-2xl border border-gray-200 bg-gray-50 p-4">
                   <p className="text-sm font-bold text-gray-900 mb-3">{t("educationPage.universityHeader")}</p>
                   <div className="space-y-3">
@@ -472,12 +454,6 @@ function AlumniCard({ alumni, compact }: { alumni: typeof alumniData[number]; co
                 <p key={i}>{p}</p>
               ))}
             </div>
-            {"additionalInfo" in alumni && alumni.additionalInfo && expanded && (
-              <div className="mt-3 p-3 bg-yellow-50 rounded-lg border border-yellow-200 text-xs">
-                <p className="font-semibold text-gray-800">{alumni.additionalInfo.acceptances}</p>
-                <p className="text-gray-700 mt-1">{alumni.additionalInfo.scholarship}</p>
-              </div>
-            )}
             {hasMore && (
               <button
                 onClick={() => setExpanded(!expanded)}
@@ -485,6 +461,12 @@ function AlumniCard({ alumni, compact }: { alumni: typeof alumniData[number]; co
               >
                 {expanded ? t("educationPage.showLess") : t("educationPage.readMore")}
               </button>
+            )}
+            {"additionalInfo" in alumni && alumni.additionalInfo && (
+              <div className="mt-3 p-3 bg-yellow-50 rounded-lg border border-yellow-200 text-xs">
+                <p className="font-semibold text-gray-800">{alumni.additionalInfo.acceptances}</p>
+                <p className="text-gray-700 mt-1">{alumni.additionalInfo.scholarship}</p>
+              </div>
             )}
             {"badgeKeys" in alumni && alumni.badgeKeys && (
               <div className="mt-3 space-y-0.5">
@@ -570,7 +552,7 @@ export function ResultsPageContent() {
           src={`/images/original_from_customer/${encodeURIComponent('トップ背景')}/${encodeURIComponent('02_教育内容（手元にフォーカス）')}.jpg`}
           alt={t("educationPage.resultsPageTitle")}
           fill
-          className="object-cover object-[center_35%]"
+          className="object-cover object-[center_68%]"
           priority
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/60 flex items-center justify-center pt-16">
