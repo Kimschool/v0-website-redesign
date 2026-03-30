@@ -45,6 +45,13 @@ export async function POST(request: Request) {
       proxy: "代理人がお受け取り",
     }
 
+    const certificateTypeMap: Record<string, string> = {
+      attendance: "出席・成績証明書",
+      graduation: "卒業証明書・修了証明書",
+      withdrawal: "退学証明書",
+      other: "その他",
+    }
+
     const rows = Object.entries(formData)
       .filter(([, value]) => value)
       .map(([key, value]) => {
@@ -52,6 +59,7 @@ export async function POST(request: Request) {
         let displayValue = value as string
         if (key === "gender") displayValue = genderMap[displayValue] || displayValue
         if (key === "receiveMethod") displayValue = receiveMethodMap[displayValue] || displayValue
+        if (key === "certificateType") displayValue = certificateTypeMap[displayValue] || displayValue
         return `<tr><td style="padding:8px 12px;border:1px solid #ddd;font-weight:bold;background:#f8f9fa;white-space:nowrap">${label}</td><td style="padding:8px 12px;border:1px solid #ddd">${displayValue}</td></tr>`
       })
       .join("")
