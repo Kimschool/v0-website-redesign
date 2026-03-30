@@ -175,7 +175,7 @@ export function EducationPointsSection() {
           </div>
           <div className="mt-10 text-center">
             <Link
-              href="/education#course3"
+              href="/education/results"
               className="group inline-flex items-center gap-3 bg-white border-2 border-primary text-primary hover:bg-primary hover:text-white font-bold text-base px-8 py-4 rounded-full shadow-lg transition-all duration-300 hover:-translate-y-1"
             >
               {t("educationPointsSection.viewMoreResults")}
