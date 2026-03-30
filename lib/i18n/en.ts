@@ -6,7 +6,7 @@ const en = {
     about: "About KCP",
     education: "Education",
     schoolLife: "School Life",
-    news: "NEWS",
+    news: "News",
     admission: "Admissions",
     contact: "Contact",
   },
@@ -255,6 +255,7 @@ const en = {
     relatedLinks: "Related Links",
     follow: "Follow Us",
     quickLinks: [
+      { label: "News" },
       { label: "About KCP" },
       { label: "Education" },
       { label: "Admissions" },

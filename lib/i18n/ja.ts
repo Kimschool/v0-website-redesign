@@ -6,7 +6,7 @@ const ja = {
     about: "KCPとは",
     education: "教育内容",
     schoolLife: "学校生活",
-    news: "NEWS",
+    news: "お知らせ",
     admission: "入学案内",
     contact: "お問い合わせ",
   },
@@ -244,6 +244,7 @@ const ja = {
     relatedLinks: "関連リンク",
     follow: "フォローする",
     quickLinks: [
+      { label: "お知らせ" },
       { label: "KCPとは" },
       { label: "教育内容" },
       { label: "入学案内" },

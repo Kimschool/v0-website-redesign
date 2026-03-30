@@ -6,7 +6,7 @@ const ru = {
     about: "О KCP",
     education: "Обучение",
     schoolLife: "Жизнь в школе",
-    news: "NEWS",
+    news: "Новости",
     admission: "Поступление",
     contact: "Контакты",
   },
@@ -255,6 +255,7 @@ const ru = {
     relatedLinks: "Связанные ссылки",
     follow: "Подписаться",
     quickLinks: [
+      { label: "Новости" },
       { label: "О KCP" },
       { label: "Обучение" },
       { label: "Поступление" },
