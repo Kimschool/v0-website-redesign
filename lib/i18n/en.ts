@@ -241,7 +241,7 @@ const en = {
     description: "Request information or contact us here",
     admission: {
       title: "Admissions",
-      description: "You can check detailed information about admission procedures. If you have any questions, please feel free to contact us anytime.",
+      description: "You can check detailed information about admission procedures. If you have any questions, please contact us.",
     },
     contact: {
       title: "Contact Us",
@@ -272,6 +272,39 @@ const en = {
     privacy: "Privacy Policy",
     terms: "Terms of Use",
     disclosure: "Information Disclosure",
+  },
+
+  privacyPage: {
+    backHome: "Back to home",
+    title: "Privacy Policy",
+    lastUpdated: "(Last updated: March 2026)",
+    lead: "KCP Educational Foundation, KCP International Japanese Language School (\"the School\") recognizes the importance of personal information provided by website visitors, prospective students, enrolled students, and others (\"you\"). We comply with the Act on the Protection of Personal Information of Japan and related laws and guidelines, and handle personal information appropriately. This policy describes how we handle information obtained through our website (\"the Site\").",
+    sections: [
+      {
+        title: "1. Information we collect",
+        text: "We may collect your name, date of birth, nationality, address, phone number, email address, educational background, and other information necessary for inquiries, document requests, admission applications, certificate requests, and similar procedures.\nThe Site may use cookies and similar technologies to analyze usage and improve display. You can disable cookies in your browser settings; some features may not work if you do so.",
+      },
+      {
+        title: "2. Purposes of use",
+        text: "We use personal information only for the following purposes:\n・Recruitment and selection of students, admission procedures, enrollment management, and other educational operations\n・Responding to inquiries and document requests\n・Contacting you and sending important notices\n・Creating statistics (in a form that does not identify individuals)\nIf we use your information for other purposes, we will obtain your consent except where permitted by law.",
+      },
+      {
+        title: "3. Sharing and outsourcing",
+        text: "We do not provide personal information to third parties without your consent, except as required by law (e.g., legal disclosure requests, or cases where necessary to protect life, body, or property and consent is difficult to obtain).\nWhen we outsource part of our operations and entrust handling of personal information to contractors, we enter into appropriate agreements and supervise them as necessary.",
+      },
+      {
+        title: "4. Security",
+        text: "We implement organizational, personnel, physical, and technical safeguards to prevent leakage, loss, or damage of personal information and protect it at an appropriate level.",
+      },
+      {
+        title: "5. Disclosure, correction, and suspension",
+        text: "If you request disclosure, correction, addition, deletion, or suspension of use of your personal information held by us, we will respond in accordance with applicable laws. Please contact us through the inquiry channel below for procedures.",
+      },
+      {
+        title: "6. Changes and contact",
+        text: "We may revise this policy in response to legal changes or changes in our operations. The revised policy takes effect when posted on the Site.\nFor questions about our handling of personal information, please use the contact information on our Contact page.",
+      },
+    ],
   },
 
   // Loading Screen
@@ -799,7 +832,8 @@ const en = {
   // School Life Page
   schoolLifePage: {
     bannerTitle: "School Life",
-    intro: "Life at KCP extends beyond the classroom. Through year-round events, club activities, and daily life with multinational friends",
+    intro:
+      "Life at KCP is not confined to the classroom.\nThrough year-round events and club activities—and the days you spend with classmates from many countries—not only your Japanese but also how you connect with others and understand culture deepens naturally.",
     scheduleTitle: "Annual Schedule",
     scheduleNote: "* Extracurricular activities include BBQ, sports day, Kotoba Day, bus trips, excursions, etc., and vary by semester.",
     scheduleItems: [

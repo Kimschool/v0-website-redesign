@@ -18,6 +18,9 @@ import { FacilityShowcaseHero } from "@/components/school-life-facility-carousel
 /** 東京都新宿区新宿1-29-12 付近（WGS84・lat,lng）— 百度地图 URI API / marker 用 */
 const KCP_SCHOOL_LAT_LNG_WGS84 = "35.68932,139.71245"
 
+/** ヘッダー・トップカードからの /school-life#... スクロール先 */
+const SCHOOL_LIFE_SECTION_HASH_IDS = new Set(["access", "schedule", "clubs", "facilities"])
+
 /** 百度地图「地点详情」出力（output=html）。旧 map.baidu.com 直リンクは JSON が返ることがあるため非推奨。 */
 function getBaiduMapMarkerPageUrl() {
   return `https://api.map.baidu.com/marker?${new URLSearchParams({
@@ -136,23 +139,24 @@ export function SchoolLifePageContent() {
     return () => observer.disconnect()
   }, [])
 
-  const scrollToAccessHash = useCallback(() => {
+  const scrollToSectionHash = useCallback(() => {
     if (typeof window === "undefined") return
-    if (window.location.hash !== "#access") return
-    const el = document.getElementById("access")
+    const id = window.location.hash.replace(/^#/, "")
+    if (!id || !SCHOOL_LIFE_SECTION_HASH_IDS.has(id)) return
+    const el = document.getElementById(id)
     if (!el) return
     el.scrollIntoView({ behavior: "smooth", block: "start" })
   }, [])
 
   useEffect(() => {
-    scrollToAccessHash()
-    const t = window.setTimeout(scrollToAccessHash, 250)
-    window.addEventListener("hashchange", scrollToAccessHash)
+    scrollToSectionHash()
+    const t = window.setTimeout(scrollToSectionHash, 250)
+    window.addEventListener("hashchange", scrollToSectionHash)
     return () => {
       window.clearTimeout(t)
-      window.removeEventListener("hashchange", scrollToAccessHash)
+      window.removeEventListener("hashchange", scrollToSectionHash)
     }
-  }, [scrollToAccessHash])
+  }, [scrollToSectionHash])
 
   return (
     <section ref={sectionRef} className="bg-white">
@@ -180,14 +184,17 @@ export function SchoolLifePageContent() {
   }`}
 >
   <div className="w-12 h-1 bg-[#0085b2] mx-auto mb-6 rounded-full" />
-  <p className="text-lg md:text-xl text-gray-700 leading-relaxed max-w-3xl mx-auto">
+  <p className="text-lg md:text-xl text-gray-700 leading-relaxed max-w-3xl mx-auto whitespace-pre-line">
     {t("schoolLifePage.intro")}
   </p>
   <div className="elegant-divider mt-8" />
 </div>
 
-        {/* Annual Schedule Section */}
-        <div className={`mb-20 ${isVisible ? "animate-fade-in-up animation-delay-200" : "opacity-0"}`}>
+        {/* Annual Schedule Section — /school-life#schedule */}
+        <div
+          id="schedule"
+          className={`scroll-mt-24 md:scroll-mt-28 mb-20 ${isVisible ? "animate-fade-in-up animation-delay-200" : "opacity-0"}`}
+        >
           <h2 className="font-serif text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
             {t("schoolLifePage.scheduleTitle")}
           </h2>
@@ -243,8 +250,8 @@ export function SchoolLifePageContent() {
         {/* Divider */}
         <div className="w-full h-px bg-gray-300 mb-16" />
 
-        {/* Club Activities Section */}
-        <div className="mb-20">
+        {/* Club Activities Section — /school-life#clubs */}
+        <div id="clubs" className="scroll-mt-24 md:scroll-mt-28 mb-20">
           <h2 className="font-serif text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
             {t("schoolLifePage.clubTitle")}
           </h2>
@@ -286,8 +293,8 @@ export function SchoolLifePageContent() {
         {/* Divider */}
         <div className="w-full h-px bg-gray-300 mb-16" />
 
-        {/* Facility Guide Section — 大判ヒーロースライド（周辺環境と同型UI） */}
-        <div className="mb-20">
+        {/* Facility Guide Section — /school-life#facilities */}
+        <div id="facilities" className="scroll-mt-24 md:scroll-mt-28 mb-20">
           <FacilityShowcaseHero
             items={facilityItems}
             title={t("schoolLifePage.facilityTitle")}

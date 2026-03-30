@@ -255,9 +255,12 @@ export function Footer() {
             <p className="text-xs text-muted-foreground">
               {t("footer.copyright")}
             </p>
-            <div className="flex items-center gap-6">
+            <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 md:justify-end">
               <Link href="/basic-info" className="text-xs text-muted-foreground hover:text-primary transition-colors">
                 {t("footer.disclosure")}
+              </Link>
+              <Link href="/privacy" className="text-xs text-muted-foreground hover:text-primary transition-colors">
+                {t("footer.privacy")}
               </Link>
             </div>
           </div>
