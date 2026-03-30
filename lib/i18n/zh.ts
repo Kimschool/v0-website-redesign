@@ -11,6 +11,10 @@ const zh = {
     access: "交通位置",
     contact: "联系我们",
   },
+  newsBar: {
+    expandList: "展开列表（最新3条）",
+    collapseList: "收起",
+  },
   languageSelector: "语言选择",
   mobileMenuOpen: "打开菜单",
   mobileMenuClose: "关闭菜单",

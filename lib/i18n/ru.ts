@@ -11,6 +11,10 @@ const ru = {
     access: "Как добраться",
     contact: "Контакты",
   },
+  newsBar: {
+    expandList: "Показать список (до 3)",
+    collapseList: "Свернуть",
+  },
   newsPage: {
     title: "Новости",
     description: "Последние объявления школы.",
