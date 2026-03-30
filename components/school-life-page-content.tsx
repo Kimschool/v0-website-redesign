@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect, useRef, useCallback } from "react"
 import Image from "next/image"
 import { useTranslation } from "react-i18next"
 import Autoplay from "embla-carousel-autoplay"
@@ -135,6 +135,24 @@ export function SchoolLifePageContent() {
 
     return () => observer.disconnect()
   }, [])
+
+  const scrollToAccessHash = useCallback(() => {
+    if (typeof window === "undefined") return
+    if (window.location.hash !== "#access") return
+    const el = document.getElementById("access")
+    if (!el) return
+    el.scrollIntoView({ behavior: "smooth", block: "start" })
+  }, [])
+
+  useEffect(() => {
+    scrollToAccessHash()
+    const t = window.setTimeout(scrollToAccessHash, 250)
+    window.addEventListener("hashchange", scrollToAccessHash)
+    return () => {
+      window.clearTimeout(t)
+      window.removeEventListener("hashchange", scrollToAccessHash)
+    }
+  }, [scrollToAccessHash])
 
   return (
     <section ref={sectionRef} className="bg-white">
@@ -279,8 +297,8 @@ export function SchoolLifePageContent() {
         {/* Divider */}
         <div className="w-full h-px bg-gray-300 mb-16" />
 
-        {/* Access Section */}
-        <div className="mb-20">
+        {/* Access Section — ヘッダー CTA /school-life#access */}
+        <div id="access" className="mb-20 scroll-mt-24 md:scroll-mt-28">
           <h2 className="font-serif text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
             {t("schoolLifePage.accessTitle")}
           </h2>
