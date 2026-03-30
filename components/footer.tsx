@@ -45,7 +45,6 @@ function WeiboIcon({ className }: { className?: string }) {
 const socialLinks = [
   { icon: FacebookIcon, label: "Facebook", href: "https://www.facebook.com/kcpchikyushimin/?locale=ja_JP" },
   { icon: InstagramIcon, label: "Instagram", href: "https://www.instagram.com/kcp_yosei/" },
-  { icon: FacebookIcon, label: "Facebook2", href: "https://www.facebook.com/kcpchikyushimin" },
   { icon: WeiboIcon, label: "Weibo", href: "https://passport.weibo.com/visitor/visitor?entry=miniblog&a=enter&url=https%3A%2F%2Fweibo.com%2Fkcp30&domain=weibo.com" },
 ]
 
