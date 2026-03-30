@@ -125,7 +125,7 @@ export function EducationPointsSection() {
             </span>
             <h3 className="text-2xl md:text-3xl font-bold font-serif">{t("educationPointsSection.resultsTitle")}</h3>
           </div>
-          <p className="text-muted-foreground leading-relaxed text-lg max-w-3xl mb-10 whitespace-pre-line">
+          <p className="text-muted-foreground leading-relaxed text-lg max-w-5xl mb-10 whitespace-pre-line">
             {t("educationPointsSection.resultsBody")}
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
