@@ -22,19 +22,16 @@ const SCHOOL_LIFE_SECTION_HASH_IDS = new Set(["access", "schedule", "clubs", "fa
 const KCP_GOOGLE_MAPS_EMBED_SRC =
   "https://www.google.com/maps?q=東京都新宿区新宿1-29-12&z=18&output=embed"
 
-/** 東京都新宿区新宿1-29-12 付近（WGS84・経度,緯度）— 高德 URI マーカー用 */
-const KCP_AMAP_POSITION = "139.71245,35.68932"
+/** 新宿校舎 WGS84（OpenStreetMap embed / リンク用） */
+const KCP_LAT = 35.68932
+const KCP_LNG = 139.71245
 
-/** 高德地图 URI API（中国語 UI 時。海外座標は coordinate=wgs84） */
-function getAmapMarkerUriUrl() {
-  return `https://uri.amap.com/marker?${new URLSearchParams({
-    position: KCP_AMAP_POSITION,
-    name: "KCP地球市民日本语学校",
-    src: "kcp_ac_jp",
-    coordinate: "wgs84",
-    callnative: "0",
-  })}`
-}
+/** 中国語 UI 用：百度・高德の埋め込みを避け、OSM 埋め込み（キー不要・ブラウザでそのまま表示） */
+const KCP_OSM_EMBED_SRC = `https://www.openstreetmap.org/export/embed.html?bbox=${encodeURIComponent(
+  `${KCP_LNG - 0.01},${KCP_LAT - 0.008},${KCP_LNG + 0.01},${KCP_LAT + 0.008}`
+)}&layer=mapnik&marker=${encodeURIComponent(`${KCP_LAT},${KCP_LNG}`)}`
+
+const KCP_OSM_VIEW_URL = `https://www.openstreetmap.org/?mlat=${KCP_LAT}&mlon=${KCP_LNG}#map=18/${KCP_LAT}/${KCP_LNG}`
 
 export function SchoolLifePageContent() {
   const [activeTab, setActiveTab] = useState("marunouchi")
@@ -318,30 +315,30 @@ export function SchoolLifePageContent() {
             <strong>{t("schoolLifePage.accessDesc2")}</strong>
           </p>
 
-          {/* Map — 中国語: 高德地图 URI／その他: Google 埋め込み */}
+          {/* Map — 中国語: OpenStreetMap 埋め込み（国内向けに百度・高德の強いアプリ誘導を避ける）／その他: Google */}
           <div className="mb-8">
             {isZh ? (
               <>
                 <div className="w-full h-[450px] bg-gray-100 rounded-lg overflow-hidden">
                   <iframe
-                    src={getAmapMarkerUriUrl()}
+                    src={KCP_OSM_EMBED_SRC}
                     width="100%"
                     height="450"
                     style={{ border: 0 }}
                     allowFullScreen
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
-                    title={t("schoolLifePage.mapIframeTitleAmap")}
+                    title={t("schoolLifePage.mapIframeTitle")}
                   />
                 </div>
                 <p className="mt-3 text-center text-sm text-gray-600">
                   <a
-                    href={getAmapMarkerUriUrl()}
+                    href={KCP_OSM_VIEW_URL}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-[#0085b2] hover:underline"
                   >
-                    {t("schoolLifePage.mapOpenAmapHint")}
+                    {t("schoolLifePage.mapOpenOsmHint")}
                   </a>
                 </p>
               </>
