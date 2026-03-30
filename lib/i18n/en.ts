@@ -8,6 +8,7 @@ const en = {
     schoolLife: "School Life",
     news: "News",
     admission: "Admissions",
+    access: "Access",
     contact: "Contact",
   },
   newsPage: {

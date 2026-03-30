@@ -32,14 +32,14 @@ function useAutoplayReset(api: CarouselApi | undefined) {
 type FacilityHeroProps = {
   items: FacilitySlide[]
   title: string
-  intro: string
+  intro?: string
   className?: string
 }
 
 /**
  * 施設案内 — 周辺環境ヒーローと同型の大判スライド（自動再生・ドット・矢印）
  */
-export function FacilityShowcaseHero({ items, title, intro, className }: FacilityHeroProps) {
+export function FacilityShowcaseHero({ items, title, intro = "", className }: FacilityHeroProps) {
   const [api, setApi] = useState<CarouselApi>()
   const [current, setCurrent] = useState(0)
   useAutoplayReset(api)
@@ -71,7 +71,9 @@ export function FacilityShowcaseHero({ items, title, intro, className }: Facilit
           Facility
         </span>
         <h2 className="font-serif text-3xl font-bold tracking-tight text-gray-900 md:text-4xl">{title}</h2>
-        <p className="mt-3 text-sm text-gray-600 md:text-base">{intro}</p>
+        {intro ? (
+          <p className="mt-3 text-sm text-gray-600 md:text-base">{intro}</p>
+        ) : null}
       </div>
 
       <Carousel

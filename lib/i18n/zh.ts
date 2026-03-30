@@ -8,6 +8,7 @@ const zh = {
     schoolLife: "学校生活",
     news: "通知",
     admission: "入学指南",
+    access: "交通位置",
     contact: "联系我们",
   },
   languageSelector: "语言选择",

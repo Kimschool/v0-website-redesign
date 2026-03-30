@@ -8,6 +8,7 @@ const ko = {
     schoolLife: "학교 생활",
     news: "공지",
     admission: "입학 안내",
+    access: "오시는 길",
     contact: "문의",
   },
   newsPage: {

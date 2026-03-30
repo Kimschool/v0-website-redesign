@@ -8,6 +8,7 @@ const ru = {
     schoolLife: "Жизнь в школе",
     news: "Новости",
     admission: "Поступление",
+    access: "Как добраться",
     contact: "Контакты",
   },
   newsPage: {

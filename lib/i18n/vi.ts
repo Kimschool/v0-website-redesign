@@ -8,6 +8,7 @@ const vi = {
     schoolLife: "Đời sống học đường",
     news: "Thông báo",
     admission: "Hướng dẫn nhập học",
+    access: "Chỉ đường",
     contact: "Liên hệ",
   },
   newsPage: {

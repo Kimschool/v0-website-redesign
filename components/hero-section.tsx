@@ -2,9 +2,8 @@
 
 import { useEffect, useState } from "react"
 import Image from "next/image"
-import Link from "next/link"
 import { useTranslation } from "react-i18next"
-import { ArrowRight, ChevronDown } from "lucide-react"
+import { ChevronDown } from "lucide-react"
 
 function TypewriterText({ text, delay = 0, hideCursor = false }: { text: string; delay?: number; hideCursor?: boolean }) {
   const [displayedText, setDisplayedText] = useState("")
@@ -124,23 +123,6 @@ export function HeroSection() {
             <TypewriterText text={title2} delay={500 + title1.length * 120 + 600} />
           </span>
         </h1>
-
-        {/* CTA Buttons */}
-        <div className={`flex flex-col sm:flex-row items-center justify-center gap-4 mt-10 transition-all duration-700 delay-1000 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
-          <Link
-            href="/admission"
-            className="group flex items-center gap-3 bg-white text-primary font-bold text-base px-8 py-4 rounded-full shadow-2xl hover:shadow-white/20 transition-all duration-300 hover:-translate-y-1 shimmer"
-          >
-            {t("nav.admission") || "入学案内"}
-            <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
-          </Link>
-          <Link
-            href="/about"
-            className="group flex items-center gap-3 bg-white/10 backdrop-blur-sm border border-white/30 text-white font-semibold text-base px-8 py-4 rounded-full hover:bg-white/20 transition-all duration-300"
-          >
-            {t("about.label") || "KCPについて"}
-          </Link>
-        </div>
       </div>
 
       {/* Scroll indicator */}

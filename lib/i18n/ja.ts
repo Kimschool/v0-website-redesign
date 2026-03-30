@@ -8,6 +8,7 @@ const ja = {
     schoolLife: "学校生活",
     news: "お知らせ",
     admission: "入学案内",
+    access: "アクセス",
     contact: "お問い合わせ",
   },
   newsPage: {

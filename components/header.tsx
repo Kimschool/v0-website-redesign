@@ -125,14 +125,14 @@ export function Header() {
 
           {/* CTA Button - Desktop */}
           <Link
-            href="/admission"
+            href="/school-life#access"
             className={`hidden lg:flex items-center gap-2 text-sm font-semibold px-5 py-2.5 rounded-full transition-all duration-300 shimmer ${
               solidNav 
                 ? "bg-primary text-white hover:bg-primary/90 shadow-lg shadow-primary/20" 
                 : "bg-white text-primary hover:bg-white/90"
             }`}
           >
-            {t("nav.admission")}
+            {t("nav.access")}
             <ArrowRight className="w-4 h-4" />
           </Link>
 
@@ -172,11 +172,11 @@ export function Header() {
 
             {/* Mobile CTA */}
             <Link
-              href="/admission"
+              href="/school-life#access"
               className="mt-4 flex items-center justify-center gap-2 bg-primary text-white font-semibold py-4 px-6 rounded-xl shadow-lg shadow-primary/20"
               onClick={() => setMobileOpen(false)}
             >
-              {t("nav.admission")}
+              {t("nav.access")}
               <ArrowRight className="w-4 h-4" />
             </Link>
 
