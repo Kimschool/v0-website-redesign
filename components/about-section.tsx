@@ -134,13 +134,19 @@ export function AboutSection() {
     <section ref={sectionRef} id="about" className="bg-background">
       {/* Page Banner - aligned with other sections */}
       <div className="relative h-[350px] md:h-[400px] w-full overflow-hidden">
-        <Image
-          src={`/images/original_from_customer/${encodeURIComponent('トップ背景')}/${encodeURIComponent('01_KCPとは（拡大して周りの建物があまり見えないように）')}.jpg`}
-          alt={t("aboutPage.bannerTitle")}
-          fill
-          className="object-cover object-[center_35%]"
-          priority
-        />
+        {/* 写真の左70%のみ表示（右30%の別建物をカット）— 幅100/0.7で左寄せし親でクリップ */}
+        <div className="absolute inset-0 overflow-hidden" aria-hidden>
+          <div className="absolute inset-y-0 left-0 h-full w-[142.857%] min-w-0">
+            <Image
+              src={`/images/original_from_customer/${encodeURIComponent('トップ背景')}/${encodeURIComponent('01_KCPとは（拡大して周りの建物があまり見えないように）')}.jpg`}
+              alt={t("aboutPage.bannerTitle")}
+              fill
+              className="object-cover object-left"
+              sizes="100vw"
+              priority
+            />
+          </div>
+        </div>
         <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/60 flex items-center justify-center pt-16 px-4">
           <div className={`text-center ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight">
@@ -320,9 +326,9 @@ export function AboutSection() {
                       <div className={`flex-1 pl-12 md:pl-0 ${isEven ? 'md:pr-16 md:text-right' : 'md:pl-16 md:text-left'}`}>
                         <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10 hover:bg-white/10 transition-colors duration-300">
                           <span className="text-3xl md:text-4xl font-bold text-[#0cc0df] block mb-2">{item.year}</span>
-                          <h3 className="text-lg md:text-xl font-semibold text-white mb-2">{item.title}</h3>
+                          <h3 className="text-lg md:text-xs font-semibold text-white mb-2">{item.title}</h3>
                           {item.description && (
-                            <p className="text-white/60 text-sm">{item.description}</p>
+                            <p className="text-white/60 text-xs">{item.description}</p>
                           )}
                         </div>
                       </div>

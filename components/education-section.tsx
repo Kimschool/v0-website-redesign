@@ -432,63 +432,47 @@ export function EducationSection() {
               {t("educationPage.courseIntroTitle")}
             </h2>
 
-            {/* Tabs */}
+            {/* Tabs — セグメント型で「タブ」と分かるUI */}
             <div className="mb-8">
               <div
                 role="tablist"
                 aria-label={t("educationPage.courseIntroTitle")}
-                className="border-b border-gray-200"
+                className="flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:items-stretch rounded-2xl border border-gray-200 bg-gray-100/90 p-1.5 shadow-inner"
               >
-                <div className="flex gap-6">
-                  <button
-                    type="button"
-                    role="tab"
-                    aria-selected={activeCourseTab === "prep"}
-                    aria-controls="course-tabpanel-prep"
-                    id="course-tab-prep"
-                    onClick={() => setActiveCourseTab("prep")}
-                    className={[
-                      "relative -mb-px px-1 pb-4 text-sm md:text-base font-semibold transition-colors",
-                      activeCourseTab === "prep"
-                        ? "text-[#0085b2]"
-                        : "text-gray-600 hover:text-gray-900",
-                    ].join(" ")}
-                  >
-                    {t("educationPage.prepCourseTitle")}
-                    <span
-                      className={[
-                        "absolute left-0 right-0 -bottom-px h-0.5 rounded-full transition-opacity",
-                        activeCourseTab === "prep"
-                          ? "bg-[#0085b2] opacity-100"
-                          : "bg-transparent opacity-0",
-                      ].join(" ")}
-                    />
-                  </button>
-                  <button
-                    type="button"
-                    role="tab"
-                    aria-selected={activeCourseTab === "advanced"}
-                    aria-controls="course-tabpanel-advanced"
-                    id="course-tab-advanced"
-                    onClick={() => setActiveCourseTab("advanced")}
-                    className={[
-                      "relative -mb-px px-1 pb-4 text-sm md:text-base font-semibold transition-colors",
-                      activeCourseTab === "advanced"
-                        ? "text-[#0085b2]"
-                        : "text-gray-600 hover:text-gray-900",
-                    ].join(" ")}
-                  >
-                    {t("educationPage.advancedCourseTitle")}
-                    <span
-                      className={[
-                        "absolute left-0 right-0 -bottom-px h-0.5 rounded-full transition-opacity",
-                        activeCourseTab === "advanced"
-                          ? "bg-[#0085b2] opacity-100"
-                          : "bg-transparent opacity-0",
-                      ].join(" ")}
-                    />
-                  </button>
-                </div>
+                <button
+                  type="button"
+                  role="tab"
+                  aria-selected={activeCourseTab === "prep"}
+                  aria-controls="course-tabpanel-prep"
+                  id="course-tab-prep"
+                  onClick={() => setActiveCourseTab("prep")}
+                  className={[
+                    "min-h-[48px] flex-1 rounded-xl px-4 py-3 text-left text-sm font-semibold leading-snug transition-all duration-200 md:text-base md:px-5",
+                    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0085b2] focus-visible:ring-offset-2",
+                    activeCourseTab === "prep"
+                      ? "bg-white text-[#0085b2] shadow-md shadow-[#0085b2]/10 ring-2 ring-[#0085b2]/25"
+                      : "border border-transparent bg-transparent text-gray-600 hover:border-gray-200 hover:bg-white/80 hover:text-gray-900",
+                  ].join(" ")}
+                >
+                  {t("educationPage.prepCourseTitle")}
+                </button>
+                <button
+                  type="button"
+                  role="tab"
+                  aria-selected={activeCourseTab === "advanced"}
+                  aria-controls="course-tabpanel-advanced"
+                  id="course-tab-advanced"
+                  onClick={() => setActiveCourseTab("advanced")}
+                  className={[
+                    "min-h-[48px] flex-1 rounded-xl px-4 py-3 text-left text-sm font-semibold leading-snug transition-all duration-200 md:text-base md:px-5",
+                    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0085b2] focus-visible:ring-offset-2",
+                    activeCourseTab === "advanced"
+                      ? "bg-white text-[#0085b2] shadow-md shadow-[#0085b2]/10 ring-2 ring-[#0085b2]/25"
+                      : "border border-transparent bg-transparent text-gray-600 hover:border-gray-200 hover:bg-white/80 hover:text-gray-900",
+                  ].join(" ")}
+                >
+                  {t("educationPage.advancedCourseTitle")}
+                </button>
               </div>
             </div>
 
@@ -554,28 +538,27 @@ export function EducationSection() {
                   </div>
                 </div>
 
-                {/* Moved to bottom (was right column) */}
-                <div className="grid lg:grid-cols-2 gap-6">
-                  <div className="rounded-2xl border border-gray-200 bg-gray-50 p-6">
-                    <h4 className="font-bold text-gray-900 mb-3">
+                <div className="rounded-2xl border border-gray-200 bg-white shadow-sm p-6">
+                  <h4 className="font-bold text-gray-900 mb-4">
+                    {t("educationPage.prepCourseLevelTitle")}
+                  </h4>
+                  <div className="space-y-3 text-gray-700 leading-relaxed text-sm">
+                    <p>{t("educationPage.prepCourseLevelDesc1")}</p>
+                    <p>{t("educationPage.prepCourseLevelDesc2")}</p>
+                    <p>{t("educationPage.prepCourseLevelDesc3")}</p>
+                    <p>{t("educationPage.prepCourseLevelDesc4")}</p>
+                  </div>
+                  <aside
+                    className="mt-6 border-t border-gray-100 pt-4"
+                    aria-label={t("educationPage.prepCourseNoteTitle")}
+                  >
+                    <p className="text-[10px] leading-snug font-semibold text-gray-600 sm:text-[13px]">
                       {t("educationPage.prepCourseNoteTitle")}
-                    </h4>
-                    <p className="text-gray-700 leading-relaxed">
+                    </p>
+                    <p className="mt-1.5 text-[10px] leading-relaxed text-gray-500 sm:text-[13px]">
                       {t("educationPage.prepCourseNoteDesc")}
                     </p>
-                  </div>
-
-                  <div className="rounded-2xl border border-gray-200 bg-white shadow-sm p-6">
-                    <h4 className="font-bold text-gray-900 mb-4">
-                      {t("educationPage.prepCourseLevelTitle")}
-                    </h4>
-                    <div className="space-y-3 text-gray-700 leading-relaxed text-sm">
-                      <p>{t("educationPage.prepCourseLevelDesc1")}</p>
-                      <p>{t("educationPage.prepCourseLevelDesc2")}</p>
-                      <p>{t("educationPage.prepCourseLevelDesc3")}</p>
-                      <p>{t("educationPage.prepCourseLevelDesc4")}</p>
-                    </div>
-                  </div>
+                  </aside>
                 </div>
               </div>
             ) : null}
