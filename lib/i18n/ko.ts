@@ -6,7 +6,7 @@ const ko = {
     about: "KCP 소개",
     education: "교육 내용",
     schoolLife: "학교 생활",
-    news: "NEWS",
+    news: "공지",
     admission: "입학 안내",
     contact: "문의",
   },
@@ -243,6 +243,7 @@ const ko = {
     relatedLinks: "관련 링크",
     follow: "팔로우하기",
     quickLinks: [
+      { label: "공지" },
       { label: "KCP 소개" },
       { label: "교육 내용" },
       { label: "입학 안내" },

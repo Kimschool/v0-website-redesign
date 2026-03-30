@@ -5,7 +5,7 @@ import Image from "next/image"
 import { FileText, HelpCircle, ArrowRight, MapPin, Phone, Mail } from "lucide-react"
 import { useTranslation } from "react-i18next"
 
-const quickLinkHrefs = ["/about", "/education", "/admission", "/school-life", "/contact"]
+const quickLinkHrefs = ["/news", "/about", "/education", "/admission", "/school-life", "/contact"]
 const relatedLinkHrefs = ["https://www.kcpyosei.com/", "https://www.kcpinternational.com/", "https://www.kcpkorea.com/", "https://www.kcp.ac.jp/blog/", "/basic-info"]
 
 const carouselImages = [

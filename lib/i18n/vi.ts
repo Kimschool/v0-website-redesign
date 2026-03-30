@@ -6,7 +6,7 @@ const vi = {
     about: "Về KCP",
     education: "Nội dung đào tạo",
     schoolLife: "Đời sống học đường",
-    news: "NEWS",
+    news: "Thông báo",
     admission: "Hướng dẫn nhập học",
     contact: "Liên hệ",
   },
@@ -255,6 +255,7 @@ const vi = {
     relatedLinks: "Liên kết liên quan",
     follow: "Theo dõi",
     quickLinks: [
+      { label: "Thông báo" },
       { label: "Về KCP" },
       { label: "Nội dung đào tạo" },
       { label: "Tuyển sinh" },

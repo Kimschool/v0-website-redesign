@@ -6,6 +6,7 @@ const zh = {
     about: "关于KCP",
     education: "教育内容",
     schoolLife: "学校生活",
+    news: "通知",
     admission: "入学指南",
     contact: "联系我们",
   },
@@ -177,6 +178,7 @@ const zh = {
     relatedLinks: "相关链接",
     follow: "关注我们",
     quickLinks: [
+      { label: "通知" },
       { label: "关于KCP" },
       { label: "教育内容" },
       { label: "入学指南" },
