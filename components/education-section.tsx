@@ -15,7 +15,6 @@ import {
   Map,
   Route,
   School,
-  Sparkles,
   Target,
 } from "lucide-react"
 
@@ -28,6 +27,25 @@ type TimetableTone =
   | "prepElective"
   | "neutral"
 
+/** 項目一覧：全角「（」または半角「(」の直前で改行し、括弧以降を2行目にする */
+function splitClassContentNavTitle(title: string): { main: string; paren?: string } {
+  const iWide = title.indexOf("（")
+  const iAscii = title.indexOf("(")
+  let i = -1
+  if (iWide >= 0 && (iAscii < 0 || iWide <= iAscii)) i = iWide
+  else if (iAscii >= 0) i = iAscii
+  if (i <= 0) return { main: title }
+  const main = title.slice(0, i).trimEnd()
+  const paren = title.slice(i).trim()
+  if (!main) return { main: title }
+  return { main, paren }
+}
+
+/** 「Lv.3 / Lv.4」形式の kcp 文言を、到達目標の各行に対応するラベル配列に分解する */
+function parseKcpLevelLabels(kcp: string): string[] {
+  return kcp.split(/\s*\/\s*/).map((s) => s.trim()).filter(Boolean)
+}
+
 export function EducationSection() {
   const { t } = useTranslation()
   const sectionRef = useRef<HTMLElement>(null)
@@ -38,8 +56,8 @@ export function EducationSection() {
   const [activeCefrStep, setActiveCefrStep] = useState<1 | 2 | 3 | 4 | 5>(3)
   const [activeClassContentId, setActiveClassContentId] = useState<number>(0)
   const [activeSpecialSupportId, setActiveSpecialSupportId] = useState<
-    "reinforcement" | "jpplus" | "guidance"
-  >("reinforcement")
+    "jpplus" | "guidance"
+  >("jpplus")
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -177,6 +195,11 @@ export function EducationSection() {
     return cefrRows.find((row) => row.step === activeCefrStep) ?? cefrRows[0]
   }, [activeCefrStep, cefrRows])
 
+  const cefrGoalLevelLabels = useMemo(
+    () => parseKcpLevelLabels(activeCefrRow.kcp),
+    [activeCefrRow.kcp]
+  )
+
   const classContentItems = useMemo(
     () =>
       Array.from({ length: 12 }).map((_, i) => ({
@@ -215,28 +238,12 @@ export function EducationSection() {
   const specialSupportBlocks = useMemo(
     () => [
       {
-        id: "reinforcement" as const,
-        icon: Sparkles,
-        eyebrow: "SPECIAL CLASS",
-        title: `${t("educationPage.jpReinforcementTitle")}${t(
-          "educationPage.jpReinforcementLevel"
-        )}`,
-        content: (
-          <p className="text-gray-700 leading-relaxed">
-            {t("educationPage.jpReinforcementDesc")}
-          </p>
-        ),
-      },
-      {
         id: "jpplus" as const,
         icon: Target,
-        eyebrow: "SPECIAL CLASS",
+        eyebrow: "EXAM PREP",
         title: `${t("educationPage.jpPlusTitle")}${t("educationPage.jpPlusLevel")}`,
         content: (
           <div className="space-y-4">
-            <p className="font-semibold text-gray-900">
-              {t("educationPage.jpPlusExamTitle")}
-            </p>
             <div className="grid sm:grid-cols-2 gap-3">
               {jpPlusExamItems.map((x) => (
                 <div
@@ -256,7 +263,7 @@ export function EducationSection() {
       {
         id: "guidance" as const,
         icon: Map,
-        eyebrow: "GUIDANCE",
+        eyebrow: "SUPPORT",
         title: t("educationPage.careerPathSupportNavTitle"),
         content: (
           <div className="grid md:grid-cols-2 gap-4">
@@ -685,12 +692,14 @@ export function EducationSection() {
                     </div>
                   </div>
                   <div className="rounded-2xl border border-gray-200 bg-white p-4">
-                    <div className="text-sm font-bold text-gray-900 mb-2">
-                      {t("educationPage.goalHeader")}
-                    </div>
-                    <div className="space-y-2 text-sm text-gray-700 leading-relaxed">
+                    <div className="space-y-4 text-sm text-gray-700 leading-relaxed">
                       {activeCefrRow.goals.map((goal, idx) => (
-                        <p key={idx}>{goal}</p>
+                        <div key={idx}>
+                          <div className="text-sm font-bold text-gray-900 mb-1.5">
+                            {cefrGoalLevelLabels[idx] ?? activeCefrRow.kcp}
+                          </div>
+                          <p>{goal}</p>
+                        </div>
                       ))}
                     </div>
                   </div>
@@ -709,20 +718,22 @@ export function EducationSection() {
             </h2>
 
             <div className="grid lg:grid-cols-[340px_1fr] gap-6">
-              <div className="rounded-2xl border border-gray-200 bg-white shadow-sm overflow-hidden">
-                <div className="bg-gray-50 px-4 py-3 text-sm font-semibold text-gray-900">
+              <div className="rounded-2xl border border-gray-200 bg-white shadow-sm overflow-hidden flex flex-col min-h-0">
+                <div className="shrink-0 bg-gray-50 px-4 py-3 text-sm font-semibold text-gray-900 border-b border-gray-100">
                   項目一覧
                 </div>
-                <div className="divide-y divide-gray-100">
+                {/* 約3件分の高さまで表示し、以降はスクロール */}
+                <div className="max-h-[13.5rem] sm:max-h-[15rem] overflow-y-auto overscroll-y-contain divide-y divide-gray-100 [scrollbar-gutter:stable]">
                   {classContentItems.map((item) => {
                     const isActive = item.id === activeClassContentId
+                    const { main, paren } = splitClassContentNavTitle(item.title)
                     return (
                       <button
                         key={item.id}
                         type="button"
                         onClick={() => setActiveClassContentId(item.id)}
                         className={[
-                          "w-full px-4 py-3 text-left flex items-center justify-between gap-3 hover:bg-gray-50 transition",
+                          "w-full px-4 py-3 text-left flex items-start justify-between gap-3 hover:bg-gray-50 transition",
                           isActive ? "bg-[#0085b2]/5" : "bg-white",
                         ].join(" ")}
                       >
@@ -730,11 +741,14 @@ export function EducationSection() {
                           <div className="text-xs font-semibold text-gray-500 mb-1">
                             {String(item.id + 1).padStart(2, "0")}
                           </div>
-                          <div className="font-semibold text-gray-900 truncate">
-                            {item.title}
+                          <div className="font-semibold text-gray-900 leading-snug break-words">
+                            <span className="block">{main}</span>
+                            {paren ? (
+                              <span className="block mt-0.5">{paren}</span>
+                            ) : null}
                           </div>
                         </div>
-                        <ArrowRight className="h-4 w-4 text-gray-400 shrink-0" />
+                        <ArrowRight className="h-4 w-4 text-gray-400 shrink-0 mt-1" />
                       </button>
                     )
                   })}
@@ -769,7 +783,7 @@ export function EducationSection() {
               {t("educationPage.specialClassTitle")}
             </h2>
 
-            <p className="text-gray-700 mb-8 font-semibold">
+            <p className="text-gray-700 mb-8 font-semibold whitespace-pre-line">
               {t("educationPage.specialClassIntro")}
             </p>
 
@@ -840,27 +854,6 @@ export function EducationSection() {
 
             <p className="text-gray-700 mb-4 font-semibold">{t("educationPage.timetableNote")}</p>
 
-            <div className="mb-6 flex flex-wrap gap-2">
-              <span className={["inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold", timetableToneStyles.kanji].join(" ")}>
-                {t("educationPage.timetableLegend.kanji")}
-              </span>
-              <span className={["inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold", timetableToneStyles.listening].join(" ")}>
-                {t("educationPage.timetableLegend.listening")}
-              </span>
-              <span className={["inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold", timetableToneStyles.comprehensive].join(" ")}>
-                {t("educationPage.timetableLegend.comprehensive")}
-              </span>
-              <span className={["inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold", timetableToneStyles.reading].join(" ")}>
-                {t("educationPage.timetableLegend.reading")}
-              </span>
-              <span className={["inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold", timetableToneStyles.essay].join(" ")}>
-                {t("educationPage.timetableLegend.essay")}
-              </span>
-              <span className={["inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold", timetableToneStyles.prepElective].join(" ")}>
-                {t("educationPage.timetableLegend.prepElective")}
-              </span>
-            </div>
-
             {/* 初級クラス */}
             <div className="mb-8">
               {/* Desktop table */}
@@ -868,10 +861,15 @@ export function EducationSection() {
                 <div className="min-w-[860px] rounded-2xl border border-gray-200 bg-white shadow-sm overflow-hidden">
                   <table className="w-full text-sm">
                     <thead className="bg-gray-50">
-                      <tr className="text-left">
-                        <th className="px-4 py-3 font-semibold text-gray-900">{t("educationPage.beginnerClass")}</th>
+                      <tr>
+                        <th className="px-4 py-3 text-left font-semibold text-gray-900">
+                          {t("educationPage.beginnerClass")}
+                        </th>
                         {timetableDays.map((day) => (
-                          <th key={day.key} className="px-4 py-3 font-semibold text-gray-900">
+                          <th
+                            key={day.key}
+                            className="px-4 py-3 text-center font-semibold text-gray-900"
+                          >
                             {day.label}
                           </th>
                         ))}
@@ -882,7 +880,7 @@ export function EducationSection() {
                         <tr key={slot} className="odd:bg-white even:bg-gray-50/40">
                           <td className="px-4 py-3 font-semibold text-gray-900">{slot}</td>
                           {timetableDays.map((day, colIndex) => (
-                            <td key={day.key} className="px-4 py-3">
+                            <td key={day.key} className="px-4 py-3 text-center">
                               <TimetableBadge
                                 text={t(`educationPage.timetableBeginnerCells.${rowIndex}.${colIndex}` as const)}
                                 tone={beginnerTones[rowIndex][colIndex]}
@@ -897,7 +895,12 @@ export function EducationSection() {
               </div>
 
               {/* Mobile cards */}
-              <div className="md:hidden grid gap-4">
+              <div className="md:hidden">
+                <h3 className="font-serif text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                  <span className="inline-block w-1 h-6 rounded-full bg-[#0085b2]" />
+                  {t("educationPage.beginnerClass")}
+                </h3>
+                <div className="grid gap-4">
                 {timetableDays.map((day, colIndex) => (
                   <div key={day.key} className="rounded-2xl border border-gray-200 bg-white shadow-sm overflow-hidden">
                     <div className="bg-gray-50 px-4 py-3 font-semibold text-gray-900">{day.label}</div>
@@ -916,6 +919,11 @@ export function EducationSection() {
                     </div>
                   </div>
                 ))}
+                </div>
+              </div>
+
+              <div className="mt-4 text-xs text-gray-500">
+                <p>{t("educationPage.timetableFootnote1")}</p>
               </div>
             </div>
 
@@ -926,10 +934,15 @@ export function EducationSection() {
                 <div className="min-w-[860px] rounded-2xl border border-gray-200 bg-white shadow-sm overflow-hidden">
                   <table className="w-full text-sm">
                     <thead className="bg-gray-50">
-                      <tr className="text-left">
-                        <th className="px-4 py-3 font-semibold text-gray-900">{t("educationPage.intermediateClass")}</th>
+                      <tr>
+                        <th className="px-4 py-3 text-left font-semibold text-gray-900">
+                          {t("educationPage.intermediateClass")}
+                        </th>
                         {timetableDays.map((day) => (
-                          <th key={day.key} className="px-4 py-3 font-semibold text-gray-900">
+                          <th
+                            key={day.key}
+                            className="px-4 py-3 text-center font-semibold text-gray-900"
+                          >
                             {day.label}
                           </th>
                         ))}
@@ -940,7 +953,7 @@ export function EducationSection() {
                         <tr key={slot} className="odd:bg-white even:bg-gray-50/40">
                           <td className="px-4 py-3 font-semibold text-gray-900">{slot}</td>
                           {timetableDays.map((day, colIndex) => (
-                            <td key={day.key} className="px-4 py-3">
+                            <td key={day.key} className="px-4 py-3 text-center">
                               <TimetableBadge
                                 text={t(`educationPage.timetableIntermediateCells.${rowIndex}.${colIndex}` as const)}
                                 tone={intermediateTones[rowIndex][colIndex]}
@@ -955,7 +968,12 @@ export function EducationSection() {
               </div>
 
               {/* Mobile cards */}
-              <div className="md:hidden grid gap-4">
+              <div className="md:hidden">
+                <h3 className="font-serif text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                  <span className="inline-block w-1 h-6 rounded-full bg-[#0085b2]" />
+                  {t("educationPage.intermediateClass")}
+                </h3>
+                <div className="grid gap-4">
                 {timetableDays.map((day, colIndex) => (
                   <div key={day.key} className="rounded-2xl border border-gray-200 bg-white shadow-sm overflow-hidden">
                     <div className="bg-gray-50 px-4 py-3 font-semibold text-gray-900">{day.label}</div>
@@ -974,12 +992,12 @@ export function EducationSection() {
                     </div>
                   </div>
                 ))}
+                </div>
               </div>
-            </div>
 
-            <div className="mt-4 space-y-1 text-xs text-gray-500">
-              <p>{t("educationPage.timetableFootnote1")}</p>
-              <p>{t("educationPage.timetableFootnote2")}</p>
+              <div className="mt-4 text-xs text-gray-500">
+                <p>{t("educationPage.timetableFootnote2")}</p>
+              </div>
             </div>
           </div>
 
