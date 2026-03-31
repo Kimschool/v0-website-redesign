@@ -114,14 +114,14 @@ export function ContactSection() {
       name: t("contactPage.offices.0.name"),
       details: [
         { label: t("contactPage.offices.0.details.0.label"), value: "KCP International USA PO Box 28028　Bellingham, WA 98228-0028" },
-        { label: t("contactPage.offices.0.details.1.label"), value: "360-647-0072" },
+        { label: t("contactPage.offices.0.details.1.label"), value: "+1360-647-0072" },
       ]
     },
     {
       name: t("contactPage.offices.1.name"),
       details: [
         { label: t("contactPage.offices.1.details.0.label"), value: "天津市东丽区嘉春园17号楼1704" },
-        { label: t("contactPage.offices.1.details.1.label"), value: "15802246626" },
+        { label: t("contactPage.offices.1.details.1.label"), value: "+8615802246626" },
       ]
     },
     {
@@ -135,7 +135,7 @@ export function ContactSection() {
       name: t("contactPage.offices.3.name"),
       details: [
         { label: t("contactPage.offices.3.details.0.label"), value: "서울시 종로구 종로 19 (종로1가 24) 르메이에르종로타운 B동 1832호" },
-        { label: t("contactPage.offices.3.details.1.label"), value: "02-735-4422" },
+        { label: t("contactPage.offices.3.details.1.label"), value: "+822-735-4422" },
       ]
     },
     {

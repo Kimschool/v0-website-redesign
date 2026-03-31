@@ -389,10 +389,10 @@ export function AdmissionSection() {
                   {t("admissionPage.lmsFeatureTitle")}
                 </h3>
                 <ul className="space-y-3 text-gray-700 text-sm">
-                  {[0, 1, 2, 3].map((i) => (
-                    <li key={i} className="flex gap-2">
-                      <span className="mt-0.5 inline-block w-1.5 h-1.5 rounded-full bg-[#0085b2]" />
-                      <span>{t(`admissionPage.lmsFeatures.${i}` as const)}</span>
+                  {[0, 1, 2].map((i) => (
+                    <li key={i} className="flex items-center gap-2">
+                      <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#0085b2]" />
+                      <span className="leading-relaxed">{t(`admissionPage.lmsFeatures.${i}` as const)}</span>
                     </li>
                   ))}
                 </ul>

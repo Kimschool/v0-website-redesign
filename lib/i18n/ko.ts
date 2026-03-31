@@ -399,7 +399,6 @@ const ko = {
     lmsFeatures: [
       "수업 스케줄·자료 확인",
       "숙제·과제 제출",
-      "성적·진도 상황 확인",
       "학교 공지 수신",
     ],
     scholarshipTitle: "장학금",
@@ -416,7 +415,7 @@ const ko = {
     basicInfoTitle: "기본 정보",
     infoItems: [
       { label: "학교명", value: "KCP 지구시민 일본어학교" },
-      { label: "소재지", value: "〒160-0022 도쿄도 신주쿠구 신주쿠 1-29-12 KCP 본관" },
+      { label: "소재지", value: "〒160-0022 도쿄도 신주쿠구 신주쿠 1-29-12" },
       { label: "전화번호", value: "03-3356-2359" },
       { label: "FAX번호", value: "03-3356-0257" },
       { label: "URL", value: "http://www.kcp.ac.jp", href: "http://www.kcp.ac.jp" },
@@ -428,7 +427,7 @@ const ko = {
       { label: "일본어교육 개시 연월일", value: "1983년 4월 1일" },
       { label: "학교교육법상 지위", value: "각종학교（정규 과정）" },
       { label: "교원수", value: "20명（전임：15명）" },
-      { label: "수용 정원", value: "760명（2부제）" },
+      { label: "수용 정원", value: "760명（정원·2부제）" },
       { label: "입학 자격", value: "12년 과정 수료 이상 및 이와 동등 수준인 자" },
       { label: "입학 선발 방법", value: "서류 심사, 본인 및 보증인 면접" },
     ],
@@ -530,7 +529,7 @@ const ko = {
         name: "미국 사무소",
         details: [
           { label: "주소", value: "KCP International USA PO Box 28028　Bellingham, WA 98228-0028" },
-          { label: "전화", value: "360-647-0072" },
+          { label: "전화", value: "+1-360-647-0072" },
           { label: "웹사이트", value: "https://www.kcpinternational.com/", isLink: true },
         ],
       },
@@ -538,7 +537,7 @@ const ko = {
         name: "중국 사무소",
         details: [
           { label: "주소", value: "天津市东丽区嘉春园17号楼1704" },
-          { label: "전화", value: "15802246626" },
+          { label: "전화", value: "+86-15802246626" },
           { label: "이메일", value: "1163052333@qq.com", isEmail: true },
         ],
       },
@@ -554,7 +553,7 @@ const ko = {
         name: "한국 사무소",
         details: [
           { label: "주소", value: "서울시 종로구 종로 19 (종로1가 24) 르메이에르종로타운 B동 1832호" },
-          { label: "전화", value: "02-735-4422" },
+          { label: "전화", value: "+822-735-4422" },
           { label: "이메일", value: "kcp@kcpkorea.com", isEmail: true },
         ],
       },
@@ -860,7 +859,7 @@ const ko = {
     mapOpenOsmHint: "OpenStreetMap에서 큰 지도 보기",
     schoolAddress: "학교법인 KCP학원 KCP 지구시민 일본어학교",
     schoolAddressDetail: "〒160-0022 도쿄도 신주쿠구 신주쿠 1-29-12",
-    schoolContact: "연락처: 03-3356-2359 / Fax: 03-3356-2559 / Email: ",
+    schoolContact: "연락처: 03-3356-2359 / Email: ",
     stationTitle: "최근역",
     stationTabs: [
       {

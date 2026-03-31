@@ -321,7 +321,6 @@ const zh = {
     lmsFeatures: [
       "查看课程安排·资料",
       "提交作业·课题",
-      "查看成绩·进度情况",
       "接收学校通知",
     ],
     scholarshipTitle: "奖学金",
@@ -449,14 +448,14 @@ const zh = {
         name: "美国事务所",
         details: [
           { label: "地址", value: "KCP International USA PO Box 28028　Bellingham, WA 98228-0028" },
-          { label: "电话", value: "360-647-0072" },
+          { label: "电话", value: "+1-360-647-0072" },
         ],
       },
       {
         name: "中国事务所",
         details: [
           { label: "地址", value: "天津市东丽区嘉春园17号楼1704" },
-          { label: "电话", value: "15802246626" },
+          { label: "电话", value: "+86-15802246626" },
         ],
       },
       {
@@ -470,7 +469,7 @@ const zh = {
         name: "韩国事务所",
         details: [
           { label: "地址", value: "서울시 종로구 종로 19 (종로1가 24) 르메이에르종로타운 B동 1832호" },
-          { label: "电话", value: "02-735-4422" },
+          { label: "电话", value: "+822-735-4422" },
         ],
       },
       {
@@ -756,7 +755,7 @@ const zh = {
     mapOpenOsmHint: "在 OpenStreetMap 中放大地图查看",
     schoolAddress: "学校法人KCP学园 KCP地球市民日语学校",
     schoolAddressDetail: "〒160-0022 东京都新宿区新宿1-29-12",
-    schoolContact: "联系方式：03-3356-2359 / Fax: 03-3356-2559 / Email：",
+    schoolContact: "联系方式：03-3356-2359 / Email：",
     stationTitle: "最近车站",
     stationTabs: [
       {

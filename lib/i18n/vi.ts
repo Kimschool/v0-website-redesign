@@ -411,7 +411,6 @@ const vi = {
     lmsFeatures: [
       "Xem lịch học và tài liệu",
       "Nộp bài tập",
-      "Kiểm tra điểm và tiến độ",
       "Nhận thông báo từ trường",
     ],
     scholarshipTitle: "Học bổng",
@@ -428,7 +427,7 @@ const vi = {
     basicInfoTitle: "Thông tin cơ bản",
     infoItems: [
       { label: "Tên trường", value: "Trường Nhật ngữ KCP Global Citizen" },
-      { label: "Địa chỉ", value: "〒160-0022 Tòa KCP chính, 1-29-12 Shinjuku, Shinjuku-ku, Tokyo" },
+      { label: "Địa chỉ", value: "〒160-0022 1-29-12 Shinjuku, Shinjuku-ku, Tokyo" },
       { label: "Điện thoại", value: "03-3356-2359" },
       { label: "FAX", value: "03-3356-0257" },
       { label: "URL", value: "http://www.kcp.ac.jp", href: "http://www.kcp.ac.jp" },
@@ -440,7 +439,7 @@ const vi = {
       { label: "Ngày bắt đầu giảng dạy tiếng Nhật", value: "1 tháng 4 năm 1983" },
       { label: "Vị trí theo Luật Giáo dục", value: "Trường đa dạng (khóa chính quy)" },
       { label: "Số giáo viên", value: "20 (toàn thời gian: 15)" },
-      { label: "Chỉ tiêu", value: "760 (hệ hai ca)" },
+      { label: "Chỉ tiêu", value: "760 (chỉ tiêu; hệ hai ca)" },
       { label: "Điều kiện nhập học", value: "Tốt nghiệp 12 năm học hoặc tương đương" },
       { label: "Phương thức tuyển chọn", value: "Xét hồ sơ; phỏng vấn thí sinh và người bảo lãnh" },
     ],
@@ -542,7 +541,7 @@ const vi = {
         name: "Văn phòng Mỹ",
         details: [
           { label: "Địa chỉ", value: "KCP International USA PO Box 28028　Bellingham, WA 98228-0028" },
-          { label: "Điện thoại", value: "360-647-0072" },
+          { label: "Điện thoại", value: "+1-360-647-0072" },
           { label: "Website", value: "https://www.kcpinternational.com/", isLink: true },
         ],
       },
@@ -550,7 +549,7 @@ const vi = {
         name: "Văn phòng Trung Quốc",
         details: [
           { label: "Địa chỉ", value: "天津市东丽区嘉春园17号楼1704" },
-          { label: "Điện thoại", value: "15802246626" },
+          { label: "Điện thoại", value: "+86-15802246626" },
           { label: "Email", value: "1163052333@qq.com", isEmail: true },
         ],
       },
@@ -566,7 +565,7 @@ const vi = {
         name: "Văn phòng Hàn Quốc",
         details: [
           { label: "Địa chỉ", value: "서울시 종로구 종로 19 (종로1가 24) 르메이에르종로타운 B동 1832호" },
-          { label: "Điện thoại", value: "02-735-4422" },
+          { label: "Điện thoại", value: "+822-735-4422" },
           { label: "Email", value: "kcp@kcpkorea.com", isEmail: true },
         ],
       },
@@ -877,7 +876,7 @@ const vi = {
     mapOpenOsmHint: "Xem bản đồ lớn trên OpenStreetMap",
     schoolAddress: "Tập đoàn giáo dục KCP, Trường Nhật ngữ KCP Global Citizen",
     schoolAddressDetail: "〒160-0022 1-29-12 Shinjuku, Shinjuku-ku, Tokyo",
-    schoolContact: "Liên hệ: 03-3356-2359 / Fax: 03-3356-2559 / Email: ",
+    schoolContact: "Liên hệ: 03-3356-2359 / Email: ",
     stationTitle: "Ga gần nhất",
     stationTabs: [
       {

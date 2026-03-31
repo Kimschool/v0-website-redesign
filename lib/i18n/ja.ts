@@ -400,7 +400,6 @@ const ja = {
     lmsFeatures: [
       "授業スケジュール・資料の確認",
       "宿題・課題の提出",
-      "成績・進捗状況の確認",
       "学校からのお知らせ受信",
     ],
     scholarshipTitle: "奨学金",
@@ -417,14 +416,14 @@ const ja = {
     basicInfoTitle: "基本情報",
     infoItems: [
       { label: "学校名", value: "KCP地球市民日本語学校" },
-      { label: "所在地", value: "〒160-0022 東京都新宿区新宿1-29-12 KCP本館" },
+      { label: "所在地", value: "〒160-0022 東京都新宿区新宿1-29-12" },
       { label: "電話番号", value: "03-3356-2359" },
       { label: "FAX番号", value: "03-3356-0257" },
       { label: "設置者名", value: "学校法人 KCP学園" },
       { label: "代表者名", value: "木下 卓輔" },
       { label: "校長名", value: "金原 宏" },
       { label: "教員数", value: "47名" },
-      { label: "生徒数", value: "760名" },
+      { label: "生徒数", value: "760名（定員）" },
     ],
     regulationsTitle: "学則",
     regulationsLinkLabel: "学則について",
@@ -523,15 +522,14 @@ const ja = {
         name: "アメリカ事務所",
         details: [
           { label: "住所", value: "KCP International USA PO Box 28028　Bellingham, WA 98228-0028" },
-          { label: "電話", value: "360-647-0072" },
-          { label: "ウェブサイト", value: "https://www.kcpinternational.com/", isLink: true },
+          { label: "電話", value: "+1-360-647-0072" },
         ],
       },
       {
         name: "中国事務所",
         details: [
           { label: "住所", value: "天津市东丽区嘉春园17号楼1704" },
-          { label: "電話", value: "15802246626" },
+          { label: "電話", value: "+86-15802246626" },
           { label: "メール", value: "1163052333@qq.com", isEmail: true },
         ],
       },
@@ -547,7 +545,7 @@ const ja = {
         name: "韓国事務所",
         details: [
           { label: "住所", value: "서울시 종로구 종로 19 (종로1가 24) 르메이에르종로타운 B동 1832호" },
-          { label: "電話", value: "02-735-4422" },
+          { label: "電話", value: "+822-735-4422" },
           { label: "メール", value: "kcp@kcpkorea.com", isEmail: true },
         ],
       },
@@ -823,7 +821,7 @@ const ja = {
     mapOpenOsmHint: "OpenStreetMap で拡大地図を表示",
     schoolAddress: "学校法人KCP学園 KCP地球市民日本語学校",
     schoolAddressDetail: "〒160-0022　東京都新宿区新宿1-29-12",
-    schoolContact: "連絡先：03-3356-2359 / Fax: 03-3356-2559 / Email：",
+    schoolContact: "連絡先：03-3356-2359 / Email：",
     stationTitle: "最寄り駅",
     stationTabs: [
       {

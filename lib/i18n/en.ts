@@ -411,7 +411,6 @@ const en = {
     lmsFeatures: [
       "Check class schedules and materials",
       "Submit homework and assignments",
-      "Check grades and progress",
       "Receive school notifications",
     ],
     scholarshipTitle: "Scholarships",
@@ -428,7 +427,7 @@ const en = {
     basicInfoTitle: "Basic Information",
     infoItems: [
       { label: "School Name", value: "KCP International Japanese Language School" },
-      { label: "Address", value: "〒160-0022 KCP Main Building, 1-29-12 Shinjuku, Shinjuku-ku, Tokyo" },
+      { label: "Address", value: "〒160-0022 1-29-12 Shinjuku, Shinjuku-ku, Tokyo" },
       { label: "Phone", value: "03-3356-2359" },
       { label: "FAX", value: "03-3356-0257" },
       { label: "URL", value: "http://www.kcp.ac.jp", href: "http://www.kcp.ac.jp" },
@@ -440,7 +439,7 @@ const en = {
       { label: "Japanese language education start date", value: "April 1, 1983" },
       { label: "Status under the School Education Act", value: "Miscellaneous school (regular course)" },
       { label: "Number of teachers", value: "20 (full-time: 15)" },
-      { label: "Enrollment capacity", value: "760 (two-shift system)" },
+      { label: "Enrollment capacity", value: "760 (capacity; two-shift system)" },
       { label: "Admission requirements", value: "Completion of 12 years of schooling or equivalent" },
       { label: "Selection method", value: "Document screening; interview with applicant and guarantor" },
     ],
@@ -529,14 +528,14 @@ const en = {
         name: "USA Office",
         details: [
           { label: "Address", value: "KCP International USA PO Box 28028　Bellingham, WA 98228-0028" },
-          { label: "Phone", value: "360-647-0072" },
+          { label: "Phone", value: "+1-360-647-0072" },
         ],
       },
       {
         name: "China Office",
         details: [
           { label: "Address", value: "天津市东丽区嘉春园17号楼1704" },
-          { label: "Phone", value: "15802246626" },
+          { label: "Phone", value: "+86-15802246626" },
         ],
       },
       {
@@ -550,7 +549,7 @@ const en = {
         name: "Korea Office",
         details: [
           { label: "Address", value: "서울시 종로구 종로 19 (종로1가 24) 르메이에르종로타운 B동 1832호" },
-          { label: "Phone", value: "02-735-4422" },
+          { label: "Phone", value: "+822-735-4422" },
         ],
       },
       {
@@ -885,7 +884,7 @@ const en = {
     mapOpenOsmHint: "View larger map on OpenStreetMap",
     schoolAddress: "KCP Educational Foundation, KCP International Japanese Language School",
     schoolAddressDetail: "〒160-0022 1-29-12 Shinjuku, Shinjuku-ku, Tokyo",
-    schoolContact: "Contact: 03-3356-2359 / Fax: 03-3356-2559 / Email: ",
+    schoolContact: "Contact: 03-3356-2359 / Email: ",
     stationTitle: "Nearest Stations",
     stationTabs: [
       {
