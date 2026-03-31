@@ -349,8 +349,8 @@ export function AdmissionSection() {
                     key={i}
                     className="flex items-start gap-3 p-3 rounded-xl bg-white/80 shadow-sm border border-[#0085b2]/10"
                   >
-                    <span className="mt-1 text-[#0085b2] font-bold text-lg">✓</span>
-                    <p className="text-sm md:text-base text-gray-700">
+                    <span className="mt-[2px] text-[#0085b2] font-bold text-lg leading-none">✓</span>
+                    <p className="text-sm md:text-base text-gray-700 leading-relaxed">
                       {t(`admissionPage.placementCheck${i + 1}` as const)}
                     </p>
                   </div>
