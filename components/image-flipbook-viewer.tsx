@@ -240,7 +240,7 @@ export function ImageFlipbookViewer({
      * 높이가 넘치더라도 스크롤로 보게 하면 된다.
      * spread 모드에서 layoutFudge 를 낮추면 raw가 커져(대략 2 근처) 화면을 더 꽉 채운다.
      */
-    const layoutFudge = isCoarsePointer && !usePortraitLayout ? 0.4 : 0.8
+    const layoutFudge = isCoarsePointer && !usePortraitLayout ? 0.4 : 0.7
     const logicalSpreadW = usePortraitLayout ? pageCssWidth : pageCssWidth * 2
     const targetW = logicalSpreadW * layoutFudge
     const targetH = bookHeight * layoutFudge
