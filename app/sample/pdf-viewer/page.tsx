@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import Link from "next/link"
 import { PdfCanvasViewerLazy } from "@/components/pdf-canvas-viewer-lazy"
 
 export const metadata: Metadata = {
@@ -17,7 +18,12 @@ export default function SamplePdfViewerPage() {
         <h1 className="font-serif text-2xl font-bold text-gray-900 md:text-3xl">
           PDF.js キャンバス表示サンプル（学則）
         </h1>
-        <p className="mt-2 text-sm text-[#0085b2]">/sample/pdf-viewer · デモ・検証用</p>
+        <p className="mt-2 text-sm text-[#0085b2]">
+          /sample/pdf-viewer · デモ・検証用 ·{" "}
+          <Link href="/sample/pdf-flipbook" className="font-medium hover:underline">
+            ページめくり（react-pageflip）サンプル →
+          </Link>
+        </p>
 
         <div className="mt-8 space-y-4 text-sm leading-relaxed text-gray-700">
           <p>

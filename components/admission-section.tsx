@@ -5,6 +5,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { ArrowRight, MessageCircle, X } from "lucide-react"
 import { useTranslation } from "react-i18next"
+import { PdfFlipbookViewerLazy } from "@/components/pdf-flipbook-viewer-lazy"
 
 type ApplicationDocumentLanguageKey = "en-ja" | "zh" | "ko" | "vi" | "zh-tw"
 
@@ -626,11 +627,12 @@ export function AdmissionSection() {
                     </a>
                   </div>
 
-                  <div className="h-[60vh] min-h-[420px]">
-                    <iframe
-                      title={`${t("admissionPage.pamphletTitle")} - ${selectedPamphletLanguage.label}`}
-                      src={selectedPamphletLanguage.pdfPath}
-                      className="h-full w-full"
+                  <div className="min-h-[420px] max-h-[75vh] overflow-y-auto overflow-x-hidden p-3 md:p-4 bg-neutral-900/5">
+                    <PdfFlipbookViewerLazy
+                      key={selectedPamphletLanguageKey}
+                      pdfUrl={`/api/admission/pamphlet-pdf?lang=${selectedPamphletLanguageKey}`}
+                      pageCssWidth={420}
+                      showFooterHint={false}
                     />
                   </div>
                 </div>
