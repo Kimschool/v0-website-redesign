@@ -719,7 +719,7 @@ const en = {
       ["Kanji/Vocab", "Listening", "Kanji/Vocab", "Kanji/Vocab", "Kanji/Vocab"],
       ["Listening", "Integrated", "Reading", "Integrated", "Listening"],
       ["Essay", "Integrated", "Integrated", "Integrated", "Reading"],
-      ["Essay", "Elective 1", "Elective 2", "★JLPT Prep", "Reading"],
+      ["Essay", "Elective 1", "Elective 2", "JLPT Prep", "Reading"],
     ],
     beginnerTimeSlots: ["13:30-14:15", "14:15-15:00", "15:15-16:00", "16:00-16:45", "17:00-17:45"],
     intermediateTimeSlots: ["09:00-09:45", "09:45-10:30", "10:45-11:30", "11:30-12:15"],

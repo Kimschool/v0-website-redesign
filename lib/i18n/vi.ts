@@ -742,7 +742,7 @@ const vi = {
       ["Kanji/Từ", "Nghe", "Kanji/Từ", "Kanji/Từ", "Kanji/Từ"],
       ["Nghe", "Học tổng hợp", "Đọc", "Học tổng hợp", "Nghe"],
       ["Luận văn", "Học tổng hợp", "Học tổng hợp", "Học tổng hợp", "Đọc"],
-      ["Luận văn", "Tự chọn 1", "Tự chọn 2", "★JLPT ôn thi", "Đọc"],
+      ["Luận văn", "Tự chọn 1", "Tự chọn 2", "JLPT ôn thi", "Đọc"],
     ],
     beginnerTimeSlots: ["13:30-14:15", "14:15-15:00", "15:15-16:00", "16:00-16:45", "17:00-17:45"],
     intermediateTimeSlots: ["09:00-09:45", "09:45-10:30", "10:45-11:30", "11:30-12:15"],

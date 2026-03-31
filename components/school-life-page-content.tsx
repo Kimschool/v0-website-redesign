@@ -33,6 +33,14 @@ const KCP_OSM_EMBED_SRC = `https://www.openstreetmap.org/export/embed.html?bbox=
 
 const KCP_OSM_VIEW_URL = `https://www.openstreetmap.org/?mlat=${KCP_LAT}&mlon=${KCP_LNG}#map=18/${KCP_LAT}/${KCP_LNG}`
 
+/** 中国語 UI 用：百度地図（中国本土で開けるリンク） */
+const KCP_BAIDU_MAP_URL =
+  "https://map.baidu.com/search/%E5%AD%A6%E6%A0%A1%E6%B3%95%E4%BA%BAkcp%E5%AD%A6%E5%9B%AD%20kcp%E5%9C%B0%E7%90%83%E5%B8%82%E6%B0%91%E6%97%A5%E8%AF%AD%E5%AD%A6%E6%A0%A1/@15552946.371003646,4232999.896335445,19z?querytype=s&da_src=shareurl&wd=%E5%AD%A6%E6%A0%A1%E6%B3%95%E4%BA%BAKCP%E5%AD%A6%E5%9B%AD%20KCP%E5%9C%B0%E7%90%83%E5%B8%82%E6%B0%91%E6%97%A5%E8%AF%AD%E5%AD%A6%E6%A0%A1&c=26041&src=0&pn=0&sug=0&l=19&b=(15552787.033853773,4232913.539814976;15553057.491579957,4233062.119719292)&from=webmap&biz_forward=%7B%22scaler%22:2,%22styles%22:%22pl%22%7D&device_ratio=2"
+
+/** `kcp-baidu-map.png` の実寸（低解像度を全幅に引き伸ばさないため。画像差し替え時は合わせて更新） */
+const KCP_BAIDU_MAP_IMG_WIDTH = 1024
+const KCP_BAIDU_MAP_IMG_HEIGHT = 560
+
 export function SchoolLifePageContent() {
   const [activeTab, setActiveTab] = useState("marunouchi")
   const sectionRef = useRef<HTMLElement>(null)
@@ -316,30 +324,34 @@ export function SchoolLifePageContent() {
             <strong>{t("schoolLifePage.accessDesc2")}</strong>
           </p>
 
-          {/* Map — 中国語: OpenStreetMap 埋め込み（国内向けに百度・高德の強いアプリ誘導を避ける）／その他: Google */}
+          {/* Map — 中国語: 画像 + Baidu で開く（中国本土での表示対策）／その他: Google */}
           <div className="mb-8">
             {isZh ? (
               <>
-                <div className="w-full h-[450px] bg-gray-100 rounded-lg overflow-hidden">
-                  <iframe
-                    src={KCP_OSM_EMBED_SRC}
-                    width="100%"
-                    height="450"
-                    style={{ border: 0 }}
-                    allowFullScreen
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                    title={t("schoolLifePage.mapIframeTitle")}
+                <a
+                  href={KCP_BAIDU_MAP_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block w-full max-w-[1024px] mx-auto bg-gray-100 rounded-lg overflow-hidden"
+                  aria-label={t("schoolLifePage.mapIframeTitle")}
+                >
+                  <Image
+                    src="/images/maps/kcp-baidu-map.png"
+                    alt={t("schoolLifePage.mapIframeTitle")}
+                    width={KCP_BAIDU_MAP_IMG_WIDTH}
+                    height={KCP_BAIDU_MAP_IMG_HEIGHT}
+                    className="w-full h-auto align-middle"
+                    sizes="(max-width: 1024px) 100vw, 1024px"
                   />
-                </div>
+                </a>
                 <p className="mt-3 text-center text-sm text-gray-600">
                   <a
-                    href={KCP_OSM_VIEW_URL}
+                    href={KCP_BAIDU_MAP_URL}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-[#0085b2] hover:underline"
                   >
-                    {t("schoolLifePage.mapOpenOsmHint")}
+                    Baidu で地図を開く
                   </a>
                 </p>
               </>
