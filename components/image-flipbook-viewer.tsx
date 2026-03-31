@@ -101,6 +101,7 @@ export function ImageFlipbookViewer({
   const [isFullscreen, setIsFullscreen] = useState(false)
   const [fullscreenScale, setFullscreenScale] = useState(1)
   const [usePortraitLayout, setUsePortraitLayout] = useState(false)
+  const [isFullscreenSupported, setIsFullscreenSupported] = useState(true)
 
   const [status, setStatus] = useState<"idle" | "loading" | "ready" | "error">(
     "idle"
@@ -116,6 +117,18 @@ export function ImageFlipbookViewer({
     syncPortrait()
     mq.addEventListener("change", syncPortrait)
     return () => mq.removeEventListener("change", syncPortrait)
+  }, [])
+
+  useEffect(() => {
+    if (typeof document === "undefined") return
+    const doc = document as Document & { webkitFullscreenEnabled?: boolean }
+    const enabled =
+      typeof document.fullscreenEnabled === "boolean"
+        ? document.fullscreenEnabled
+        : typeof doc.webkitFullscreenEnabled === "boolean"
+          ? doc.webkitFullscreenEnabled
+          : false
+    setIsFullscreenSupported(enabled)
   }, [])
 
   useEffect(() => {
@@ -327,7 +340,7 @@ export function ImageFlipbookViewer({
             {t("admissionPage.pamphletFlipbookNext")}
           </button>
 
-          {showFullscreenButton ? (
+          {showFullscreenButton && isFullscreenSupported && !usePortraitLayout ? (
             <button
               type="button"
               onClick={toggleFullscreen}
