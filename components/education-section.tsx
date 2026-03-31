@@ -66,7 +66,7 @@ export function EducationSection() {
   const [activeCourseTab, setActiveCourseTab] = useState<"prep" | "advanced">(
     "prep"
   )
-  const [activeCefrStep, setActiveCefrStep] = useState<1 | 2 | 3 | 4 | 5>(3)
+  const [activeKcpLevel, setActiveKcpLevel] = useState<1 | 2 | 3 | 4 | 5 | 6 | 7 | 8>(3)
   const [activeClassContentId, setActiveClassContentId] = useState<number>(0)
   const [activeSpecialSupportId, setActiveSpecialSupportId] = useState<
     "jpplus" | "guidance"
@@ -168,50 +168,68 @@ export function EducationSection() {
   const cefrRows = useMemo(
     () => [
       {
+        level: 1 as const,
         step: 1 as const,
         cefr: "🟢A1",
         kcp: "Lv.1",
-        goals: [t("educationPage.cefrA1Goal")],
+        goal: t("educationPage.cefrA1Goal"),
       },
       {
+        level: 2 as const,
         step: 2 as const,
         cefr: "🟢A2",
         kcp: "Lv.2",
-        goals: [t("educationPage.cefrA2Goal")],
+        goal: t("educationPage.cefrA2Goal"),
       },
       {
+        level: 3 as const,
         step: 3 as const,
         cefr: "🟡B1",
-        kcp: "Lv.3 / Lv.4",
-        goals: [t("educationPage.cefrB1Goal1"), t("educationPage.cefrB1Goal2")],
+        kcp: "Lv.3",
+        goal: t("educationPage.cefrB1Goal1"),
       },
       {
+        level: 4 as const,
+        step: 3 as const,
+        cefr: "🟡B1",
+        kcp: "Lv.4",
+        goal: t("educationPage.cefrB1Goal2"),
+      },
+      {
+        level: 5 as const,
         step: 4 as const,
         cefr: "🟠B2",
-        kcp: "Lv.5 / Lv.6",
-        goals: [t("educationPage.cefrB2Goal1"), t("educationPage.cefrB2Goal2")],
+        kcp: "Lv.5",
+        goal: t("educationPage.cefrB2Goal1"),
       },
       {
+        level: 6 as const,
+        step: 4 as const,
+        cefr: "🟠B2",
+        kcp: "Lv.6",
+        goal: t("educationPage.cefrB2Goal2"),
+      },
+      {
+        level: 7 as const,
         step: 5 as const,
         cefr: "🟣B2",
-        kcp: "Lv.7 / Lv.8",
-        goals: [
-          t("educationPage.cefrB2AdvGoal1"),
-          t("educationPage.cefrB2AdvGoal2"),
-        ],
+        kcp: "Lv.7",
+        goal: t("educationPage.cefrB2AdvGoal1"),
+      },
+      {
+        level: 8 as const,
+        step: 5 as const,
+        cefr: "🟣B2",
+        kcp: "Lv.8",
+        goal: t("educationPage.cefrB2AdvGoal2"),
       },
     ],
     [t]
   )
 
   const activeCefrRow = useMemo(() => {
-    return cefrRows.find((row) => row.step === activeCefrStep) ?? cefrRows[0]
-  }, [activeCefrStep, cefrRows])
-
-  const cefrGoalLevelLabels = useMemo(
-    () => parseKcpLevelLabels(activeCefrRow.kcp),
-    [activeCefrRow.kcp]
-  )
+    return cefrRows.find((row) => row.level === activeKcpLevel) ?? cefrRows[0]
+  }, [activeKcpLevel, cefrRows])
 
   const classContentItems = useMemo(
     () =>
@@ -662,22 +680,12 @@ export function EducationSection() {
                 <div className="grid grid-cols-4 sm:grid-cols-8 gap-2 mb-5">
                   {Array.from({ length: 8 }).map((_, idx) => {
                     const level = idx + 1
-                    const step =
-                      level <= 1
-                        ? 1
-                        : level <= 2
-                          ? 2
-                          : level <= 4
-                            ? 3
-                            : level <= 6
-                              ? 4
-                              : 5
-                    const isActive = step === activeCefrStep
+                    const isActive = level === activeKcpLevel
                     return (
                       <button
                         key={level}
                         type="button"
-                        onClick={() => setActiveCefrStep(step as 1 | 2 | 3 | 4 | 5)}
+                        onClick={() => setActiveKcpLevel(level as 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8)}
                         className={[
                           "rounded-xl border px-2 py-3 text-center text-xs font-semibold transition",
                           isActive
@@ -706,14 +714,12 @@ export function EducationSection() {
                   </div>
                   <div className="rounded-2xl border border-gray-200 bg-white p-4">
                     <div className="space-y-4 text-sm text-gray-700 leading-relaxed">
-                      {activeCefrRow.goals.map((goal, idx) => (
-                        <div key={idx}>
-                          <div className="text-sm font-bold text-gray-900 mb-1.5">
-                            {cefrGoalLevelLabels[idx] ?? activeCefrRow.kcp}
-                          </div>
-                          <p>{goal}</p>
+                      <div>
+                        <div className="text-sm font-bold text-gray-900 mb-1.5">
+                          {activeCefrRow.kcp}
                         </div>
-                      ))}
+                        <p>{activeCefrRow.goal}</p>
+                      </div>
                     </div>
                   </div>
                 </div>

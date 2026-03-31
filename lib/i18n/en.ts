@@ -668,7 +668,8 @@ const en = {
     ],
     specialClassTitle: "Japanese Plus",
     specialClassIntro:
-      "In addition to regular Japanese language classes, you can take exam preparation courses and individual guidance tailored to your path after graduating from KCP.\nWe provide practice and instruction for the subjects, interviews, and practical skills required for each track—university admission, graduate school, art school admission, employment, and more.",
+      "In addition to regular Japanese language classes, you can take exam preparation courses and individual guidance tailored to your path after graduating from KCP.\nWe provide practice and instruction for the subjects, interviews, and practical skills required for each track—university admission, graduate school, art school admission, employment, and more."
+      + "\n* Available subjects and guidance may vary depending on your level.",
     jpReinforcementTitle: "【Japanese Reinforcement Class】",
     jpReinforcementLevel: "*For Level 1 & 2 students",
     jpReinforcementDesc: "Strengthening fundamentals by skill: kanji, listening, and reading from zero Japanese. Building the foundation needed for subsequent Japanese Plus classes.",

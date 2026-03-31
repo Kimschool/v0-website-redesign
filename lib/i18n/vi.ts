@@ -686,7 +686,8 @@ const vi = {
     ],
     specialClassTitle: "Japanese Plus",
     specialClassIntro:
-      "Ngoài các tiết học tiếng Nhật thông thường, học viên có thể học các môn luyện thi và nhận hướng dẫn cá nhân phù hợp với lộ trình sau khi tốt nghiệp KCP.\nChúng tôi hướng dẫn luyện các môn thi, phỏng vấn và kỹ năng thực hành cần thiết cho từng hướng—thi đại học, sau đại học, trường nghệ thuật, tìm việc, v.v.",
+      "Ngoài các tiết học tiếng Nhật thông thường, học viên có thể học các môn luyện thi và nhận hướng dẫn cá nhân phù hợp với lộ trình sau khi tốt nghiệp KCP.\nChúng tôi hướng dẫn luyện các môn thi, phỏng vấn và kỹ năng thực hành cần thiết cho từng hướng—thi đại học, sau đại học, trường nghệ thuật, tìm việc, v.v."
+      + "\n* Các môn học và nội dung hướng dẫn có thể thay đổi tùy theo trình độ.",
     jpReinforcementTitle: "【Lớp củng cố tiếng Nhật】",
     jpReinforcementLevel: "*Dành cho cấp độ 1 & 2",
     jpReinforcementDesc: "Củng cố nền tảng theo kỹ năng: Kanji, nghe và đọc từ tiếng Nhật bằng không. Xây dựng nền tảng cho các lớp Japanese Plus tiếp theo.",
