@@ -217,8 +217,14 @@ export function ImageFlipbookViewer({
     const targetW = logicalSpreadW * layoutFudge
     const targetH = bookHeight * layoutFudge
 
-    const raw = Math.min(availW / targetW, availH / targetH)
-    const s = Math.max(0.55, Math.min(raw * 0.98, 3))
+    /**
+     * 모바일(1페이지)에서는 "가로 꽉 차게"를 우선하고,
+     * 세로는 넘치면 스크롤로 보이게 한다(너무 작아지지 않게).
+     */
+    const raw = usePortraitLayout
+      ? availW / targetW
+      : Math.min(availW / targetW, availH / targetH)
+    const s = Math.max(0.6, Math.min(raw * 0.98, 3))
     setFullscreenScale(2.5)
   }, [isFullscreen, usePortraitLayout, pageCssWidth, bookHeight])
 
@@ -351,7 +357,10 @@ export function ImageFlipbookViewer({
         className={cn(
           "rounded-xl border border-gray-200 bg-neutral-800 py-8 px-4",
           isFullscreen
-            ? "flex min-h-0 min-w-0 flex-1 items-center justify-center overflow-hidden border-neutral-700 bg-neutral-900 py-3 sm:py-4"
+            ? cn(
+                "flex min-h-0 min-w-0 flex-1 items-center justify-center border-neutral-700 bg-neutral-900 py-3 sm:py-4",
+                usePortraitLayout ? "overflow-y-auto overflow-x-hidden" : "overflow-hidden"
+              )
             : "overflow-x-auto"
         )}
       >
@@ -378,7 +387,7 @@ export function ImageFlipbookViewer({
             startZIndex={0}
             autoSize={true}
             maxShadowOpacity={0.4}
-            showCover={false}
+            showCover={true}
             mobileScrollSupport={true}
             clickEventForward={true}
             useMouseEvents={true}
