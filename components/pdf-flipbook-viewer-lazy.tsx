@@ -1,21 +1,19 @@
 "use client"
 
 import dynamic from "next/dynamic"
-import type { SamplePdfFlipbookViewerProps } from "@/components/sample-pdf-flipbook-viewer"
+import type { ImageFlipbookViewerProps } from "@/components/image-flipbook-viewer"
 
-/** react-pageflip / pdfjs はクライアントのみ */
-export const PdfFlipbookViewerLazy = dynamic<SamplePdfFlipbookViewerProps>(
+/** react-pageflip はクライアントのみ */
+export const PdfFlipbookViewerLazy = dynamic<ImageFlipbookViewerProps>(
   () =>
-    import("@/components/sample-pdf-flipbook-viewer").then(
-      (m) => m.SamplePdfFlipbookViewer
-    ),
+    import("@/components/image-flipbook-viewer").then((m) => m.ImageFlipbookViewer),
   {
     ssr: false,
     loading: () => (
       <div
         className="min-h-[280px] animate-pulse rounded-xl bg-muted/50"
         aria-busy="true"
-        aria-label="PDF flipbook"
+        aria-label="Flipbook"
       />
     ),
   }

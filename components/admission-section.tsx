@@ -25,6 +25,10 @@ type PamphletLanguage = {
   pdfPath: string
 }
 
+/** Flipbook（画像）配置先。言語別に `${base}/{lang}/manifest.json` を想定 */
+const PAMPHLET_FLIPBOOK_MANIFEST_BASE_URL =
+  "http://weavus.main.jp/doc/flipbooks/pamphlet"
+
 export function AdmissionSection() {
   const { t } = useTranslation()
   const sectionRef = useRef<HTMLElement>(null)
@@ -630,9 +634,10 @@ export function AdmissionSection() {
                   <div className="min-h-[420px] max-h-[75vh] overflow-y-auto overflow-x-hidden p-3 md:p-4 bg-neutral-900/5">
                     <PdfFlipbookViewerLazy
                       key={selectedPamphletLanguageKey}
-                      pdfUrl={`/api/admission/pamphlet-pdf?lang=${selectedPamphletLanguageKey}`}
+                      manifestUrl={`/api/admission/flipbook-manifest?lang=${selectedPamphletLanguageKey}`}
                       pageCssWidth={420}
                       showFooterHint={false}
+                      manifestBaseUrlOverride={`${PAMPHLET_FLIPBOOK_MANIFEST_BASE_URL}/${selectedPamphletLanguageKey}`}
                     />
                   </div>
                 </div>
