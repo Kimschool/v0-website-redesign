@@ -4,8 +4,8 @@ import { useState } from "react"
 import { Play } from "lucide-react"
 import { cn } from "@/lib/utils"
 
-export const KCP_SCHOOL_SONG_YOUTUBE_ID = "G-QzCEaU1qg"
-export const KCP_CHEERING_SONG_YOUTUBE_ID = "8OOBqp5AZHA"
+export const KCP_SCHOOL_SONG_YOUTUBE_ID = "EvPu_-KFGO8"
+export const KCP_CHEERING_SONG_YOUTUBE_ID = "H0yjMXTobUU"
 
 /** クリック後に iframe を載せる（YouTube URL は HTML の video タグでは再生できない） */
 export function YouTubeEmbed({

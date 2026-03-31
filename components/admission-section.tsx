@@ -16,7 +16,7 @@ type ApplicationDocumentLanguage = {
   originalFileLabel: string
 }
 
-type PamphletLanguageKey = "ja" | "zh"
+type PamphletLanguageKey = "ja" | "zh" | "ko"
 
 type PamphletLanguage = {
   key: PamphletLanguageKey
@@ -106,12 +106,17 @@ export function AdmissionSection() {
       {
         key: "ja",
         label: "日本語",
-        pdfPath: "/documents/templete/KCPパンフレット確定版.pdf",
+        pdfPath: "http://weavus.main.jp/temp/KCPパンフレット_JP.pdf",
       },
       {
         key: "zh",
         label: "中文",
-        pdfPath: "/documents/templete/KCP宣传册.pdf",
+        pdfPath: "http://weavus.main.jp/temp/KCPパンフレット_CN.pdf",
+      },
+      {
+        key: "ko",
+        label: "한국어",
+        pdfPath: "http://weavus.main.jp/temp/KCPパンフレット_KR.pdf",
       },
     ],
     []

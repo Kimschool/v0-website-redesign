@@ -61,7 +61,7 @@ export function SchoolLifePageContent() {
     { name: t("schoolLifePage.clubItems.1.name"), description: t("schoolLifePage.clubItems.1.description"), image: `/images/original_from_customer/${encodeURIComponent('クラブ活動')}/${encodeURIComponent('琴クラブ')}.jpg` },
     { name: t("schoolLifePage.clubItems.2.name"), description: t("schoolLifePage.clubItems.2.description"), image: `/images/original_from_customer/${encodeURIComponent('クラブ活動')}/${encodeURIComponent('新聞部')}.jpg` },
     { name: t("schoolLifePage.clubItems.3.name"), description: t("schoolLifePage.clubItems.3.description"), image: `/images/original_from_customer/${encodeURIComponent('クラブ活動')}/${encodeURIComponent('マンガ・アニメクラブ')}.jpg` },
-    { name: t("schoolLifePage.clubItems.4.name"), description: t("schoolLifePage.clubItems.4.description"), image: `/images/original_from_customer/${encodeURIComponent('クラブ活動')}/${encodeURIComponent('茶道クラブ')}.JPG` },
+    { name: t("schoolLifePage.clubItems.4.name"), description: t("schoolLifePage.clubItems.4.description"), image: `/images/original_from_customer/${encodeURIComponent('クラブ活動')}/${encodeURIComponent('茶道クラブ')}.JPG`, imageStyle: { filter: "brightness(1.3)" } as const },
     { name: t("schoolLifePage.clubItems.5.name"), description: t("schoolLifePage.clubItems.5.description"), image: `/images/original_from_customer/${encodeURIComponent('クラブ活動')}/${encodeURIComponent('読書クラブ')}.jpg` },
   ]
 
@@ -276,6 +276,7 @@ export function SchoolLifePageContent() {
                     alt={club.name}
                     fill
                     className="object-cover transition-transform duration-400 ease-out group-hover:scale-105"
+                    style={"imageStyle" in club ? club.imageStyle : undefined}
                   />
                 </div>
 
