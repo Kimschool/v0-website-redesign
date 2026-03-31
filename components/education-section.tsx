@@ -1191,11 +1191,8 @@ export function EducationSection() {
                         {uni}
                       </div>
                     ))}
-                    {/* 空きマス側に「等」を配置（最後の大学名にくっつけない） */}
-                    <div className="rounded-lg bg-gray-50 border px-3 py-2 text-sm text-gray-800 md:col-start-3 md:col-span-1">
-                      等
-                    </div>
                   </div>
+                  <p className="text-gray-400 italic text-sm mt-2">等</p>
                   <div className="mt-4 bg-yellow-50 p-4 rounded-xl border border-yellow-200">
                     <p className="text-sm text-gray-700">{t("educationPage.recommendationNote")}</p>
                   </div>
