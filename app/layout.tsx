@@ -16,17 +16,38 @@ const notoSerifJP = Noto_Serif_JP({
   variable: '--font-serif',
 })
 
-// 中国語（簡体）向け。i18n が zh のときに CSS 変数を差し替える
+// 中国語（簡体）向け。i18n が zh のとき body 上で --font-sans/--font-serif を差し替え
 const notoSansSC = Noto_Sans_SC({
-  subsets: ['latin'],
+  // CJK 글리프가 subsets 필터링으로 누락되면 일부 문자만 다른 폰트로 fallback되어 “깨져 보임”.
+  // 따라서 중국어 폰트는 subsets를 지정하지 않아 전체 글리프가 적용되도록 한다.
   weight: ['300', '400', '500', '600', '700'],
   variable: '--font-sans-zh',
+  display: 'swap',
+  adjustFontFallback: true,
+  fallback: [
+    'PingFang SC',
+    'Hiragino Sans GB',
+    'Microsoft YaHei',
+    'Source Han Sans SC',
+    'system-ui',
+    'sans-serif',
+  ],
 })
 
 const notoSerifSC = Noto_Serif_SC({
-  subsets: ['latin'],
+  // 위와 동일한 이유로 subsets를 지정하지 않는다.
   weight: ['400', '500', '600', '700'],
   variable: '--font-serif-zh',
+  display: 'swap',
+  adjustFontFallback: true,
+  fallback: [
+    'Songti SC',
+    'STSong',
+    'Noto Serif SC',
+    'Source Han Serif SC',
+    'Times New Roman',
+    'serif',
+  ],
 })
 
 export const metadata: Metadata = {

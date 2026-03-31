@@ -102,6 +102,7 @@ export function ImageFlipbookViewer({
   const [fullscreenScale, setFullscreenScale] = useState(1)
   const [usePortraitLayout, setUsePortraitLayout] = useState(false)
   const [isFullscreenSupported, setIsFullscreenSupported] = useState(true)
+  const [isCoarsePointer, setIsCoarsePointer] = useState(false)
 
   const [status, setStatus] = useState<"idle" | "loading" | "ready" | "error">(
     "idle"
@@ -117,6 +118,15 @@ export function ImageFlipbookViewer({
     syncPortrait()
     mq.addEventListener("change", syncPortrait)
     return () => mq.removeEventListener("change", syncPortrait)
+  }, [])
+
+  useEffect(() => {
+    if (typeof window === "undefined") return
+    const mq = window.matchMedia("(pointer: coarse)")
+    const sync = () => setIsCoarsePointer(mq.matches)
+    sync()
+    mq.addEventListener("change", sync)
+    return () => mq.removeEventListener("change", sync)
   }, [])
 
   useEffect(() => {
@@ -225,7 +235,12 @@ export function ImageFlipbookViewer({
     const availW = Math.max(100, sr.width - pad * 2)
     const availH = Math.max(100, sr.height - pad * 2)
 
-    const layoutFudge = 1.2
+    /**
+     * 터치 디바이스(대부분 태블릿/폰)에서는 "가로를 더 크게" 보이게 하는 편이 UX가 좋고,
+     * 높이가 넘치더라도 스크롤로 보게 하면 된다.
+     * spread 모드에서 layoutFudge 를 낮추면 raw가 커져(대략 2 근처) 화면을 더 꽉 채운다.
+     */
+    const layoutFudge = isCoarsePointer && !usePortraitLayout ? 0.4 : 0.8
     const logicalSpreadW = usePortraitLayout ? pageCssWidth : pageCssWidth * 2
     const targetW = logicalSpreadW * layoutFudge
     const targetH = bookHeight * layoutFudge
@@ -238,8 +253,8 @@ export function ImageFlipbookViewer({
       ? availW / targetW
       : Math.min(availW / targetW, availH / targetH)
     const s = Math.max(0.6, Math.min(raw * 0.98, 3))
-    setFullscreenScale(2.5)
-  }, [isFullscreen, usePortraitLayout, pageCssWidth, bookHeight])
+    setFullscreenScale(s)
+  }, [isFullscreen, usePortraitLayout, pageCssWidth, bookHeight, isCoarsePointer])
 
   useLayoutEffect(() => {
     if (!isFullscreen) {
@@ -372,7 +387,9 @@ export function ImageFlipbookViewer({
           isFullscreen
             ? cn(
                 "flex min-h-0 min-w-0 flex-1 items-center justify-center border-neutral-700 bg-neutral-900 py-3 sm:py-4",
-                usePortraitLayout ? "overflow-y-auto overflow-x-hidden" : "overflow-hidden"
+                usePortraitLayout || isCoarsePointer
+                  ? "overflow-y-auto overflow-x-hidden"
+                  : "overflow-hidden"
               )
             : "overflow-x-auto"
         )}
