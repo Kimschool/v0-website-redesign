@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next'
-import { Noto_Sans_JP, Noto_Sans_SC, Noto_Serif_JP, Noto_Serif_SC } from 'next/font/google'
+import { Noto_Sans_JP, Noto_Serif_JP } from 'next/font/google'
+import localFont from 'next/font/local'
 import { Analytics } from '@vercel/analytics/next'
 import { I18nProvider } from '@/components/i18n-provider'
 import './globals.css'
@@ -16,14 +17,18 @@ const notoSerifJP = Noto_Serif_JP({
   variable: '--font-serif',
 })
 
-// 中国語（簡体）向け。i18n が zh のとき body 上で --font-sans/--font-serif を差し替え
-const notoSansSC = Noto_Sans_SC({
-  // CJK 글리프가 subsets 필터링으로 누락되면 일부 문자만 다른 폰트로 fallback되어 “깨져 보임”.
-  // 따라서 중국어 폰트는 subsets를 지정하지 않아 전체 글리프가 적용되도록 한다.
-  weight: ['300', '400', '500', '600', '700'],
+// 中国語（簡体）向け。self-host 폰트로 글리프/굵기 혼재를 고정 제거
+// 다운로드: node scripts/download-noto-sc-ttf.mjs
+const notoSansSC = localFont({
+  src: [
+    { path: '../public/fonts/NotoSansSC-300.ttf', weight: '300', style: 'normal' },
+    { path: '../public/fonts/NotoSansSC-400.ttf', weight: '400', style: 'normal' },
+    { path: '../public/fonts/NotoSansSC-500.ttf', weight: '500', style: 'normal' },
+    { path: '../public/fonts/NotoSansSC-600.ttf', weight: '600', style: 'normal' },
+    { path: '../public/fonts/NotoSansSC-700.ttf', weight: '700', style: 'normal' },
+  ],
   variable: '--font-sans-zh',
   display: 'swap',
-  adjustFontFallback: true,
   fallback: [
     'PingFang SC',
     'Hiragino Sans GB',
@@ -34,20 +39,16 @@ const notoSansSC = Noto_Sans_SC({
   ],
 })
 
-const notoSerifSC = Noto_Serif_SC({
-  // 위와 동일한 이유로 subsets를 지정하지 않는다.
-  weight: ['400', '500', '600', '700'],
+const notoSerifSC = localFont({
+  src: [
+    { path: '../public/fonts/NotoSerifSC-400.ttf', weight: '400', style: 'normal' },
+    { path: '../public/fonts/NotoSerifSC-500.ttf', weight: '500', style: 'normal' },
+    { path: '../public/fonts/NotoSerifSC-600.ttf', weight: '600', style: 'normal' },
+    { path: '../public/fonts/NotoSerifSC-700.ttf', weight: '700', style: 'normal' },
+  ],
   variable: '--font-serif-zh',
   display: 'swap',
-  adjustFontFallback: true,
-  fallback: [
-    'Songti SC',
-    'STSong',
-    'Noto Serif SC',
-    'Source Han Serif SC',
-    'Times New Roman',
-    'serif',
-  ],
+  fallback: ['Songti SC', 'STSong', 'Noto Serif SC', 'Source Han Serif SC', 'Times New Roman', 'serif'],
 })
 
 export const metadata: Metadata = {
