@@ -35,7 +35,7 @@ const KCP_OSM_VIEW_URL = `https://www.openstreetmap.org/?mlat=${KCP_LAT}&mlon=${
 
 /** 中国語 UI 用：百度地図（中国本土で開けるリンク） */
 const KCP_BAIDU_MAP_URL =
-  "https://map.baidu.com/search/%E5%AD%A6%E6%A0%A1%E6%B3%95%E4%BA%BAkcp%E5%AD%A6%E5%9B%AD%20kcp%E5%9C%B0%E7%90%83%E5%B8%82%E6%B0%91%E6%97%A5%E8%AF%AD%E5%AD%A6%E6%A0%A1/@15552946.371003646,4232999.896335445,19z?querytype=s&da_src=shareurl&wd=%E5%AD%A6%E6%A0%A1%E6%B3%95%E4%BA%BAKCP%E5%AD%A6%E5%9B%AD%20KCP%E5%9C%B0%E7%90%83%E5%B8%82%E6%B0%91%E6%97%A5%E8%AF%AD%E5%AD%A6%E6%A0%A1&c=26041&src=0&pn=0&sug=0&l=19&b=(15552787.033853773,4232913.539814976;15553057.491579957,4233062.119719292)&from=webmap&biz_forward=%7B%22scaler%22:2,%22styles%22:%22pl%22%7D&device_ratio=2"
+  "https://map.baidu.com/mobile/webapp/search/search/qt=s&da_src=shareurl&wd=%E5%AD%A6%E6%A0%A1%E6%B3%95%E4%BA%BAKCP%E5%AD%A6%E5%9B%AD%20KCP%E5%9C%B0%E7%90%83%E5%B8%82%E6%B0%91%E6%97%A5%E8%AF%AD%E5%AD%A6%E6%A0%A1&c=26041&src=0&pn=0&sug=0&l=19&b=(15552787.033853773%2C4232913.539814976%3B15553057.491579957%2C4233062.119719292)&from=webmap&biz_forward=%7B%22scaler%22%3A2%2C%22styles%22%3A%22pl%22%7D&device_ratio=2&=undefined/vt=map"
 
 /** `kcp-baidu-map.png` の実寸（低解像度を全幅に引き伸ばさないため。画像差し替え時は合わせて更新） */
 const KCP_BAIDU_MAP_IMG_WIDTH = 1024
