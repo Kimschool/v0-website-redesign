@@ -365,7 +365,7 @@ const ja = {
     contactHours: "営業時間",
     contactHoursValue: "月～金 9:00～18:00 JST",
     contactCta: "お問い合わせページへ移動",
-    contactButton: "お問い合わせへ",
+    contactButton: "こちら",
     documentsTitle: "入学願書・パンフレット",
     applicationTitle: "入学願書",
     applicationDesc: "以下の言語での入学願書をダウンロードできます。",
@@ -661,7 +661,7 @@ const ja = {
     specialClassTitle: "日本語プラス",
     specialClassIntro:
       "通常の日本語クラス授業に加えて、KCPを卒業した後の進路に合わせた試験対策科目や個別指導が受けられます。\n大学進学、大学院進学、美術系学校への進学、就職など、それぞれの進路に必要な試験科目や面接・実技の練習指導を行っています。"
-      + "\n※レベルに応じて、受講可能な科目・指導内容が変わる場合があります。",
+      + "\nレベルによって、受けられる科目や指導は異なります。",
     jpReinforcementTitle: "【日本語強化クラス】",
     jpReinforcementLevel: "※レベル1・2対象",
     jpReinforcementDesc: "日本語ゼロから「漢字/聴解/読解」スキル別に基礎を強化。これに続く日本語プラスの授業が受けられるだけの日本語の基礎力をつける。",
