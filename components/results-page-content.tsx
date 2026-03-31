@@ -189,7 +189,7 @@ const alumniData = [
     id: "chin",
     name: "陳　子栄さん / 中国出身",
     school: "進学先：東京大学 理科二類",
-    image: "/images/alumni/チンシエイさん.jpg",
+    image: "/images/alumni/チンシエイさん.JPG",
     /** 사진이 반쪽만 보이는 이슈가 있어 강제 좌측 크롭을 해제하고 중앙 기준으로 맞춥니다. */
     imageCropLeftWide: false,
     imagePosition: "center",
