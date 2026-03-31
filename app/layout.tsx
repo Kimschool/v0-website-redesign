@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import { Noto_Sans_JP, Noto_Serif_JP } from 'next/font/google'
+import { Noto_Sans_JP, Noto_Sans_SC, Noto_Serif_JP, Noto_Serif_SC } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { I18nProvider } from '@/components/i18n-provider'
 import './globals.css'
@@ -14,6 +14,19 @@ const notoSerifJP = Noto_Serif_JP({
   subsets: ['latin'],
   weight: ['400', '500', '600', '700'],
   variable: '--font-serif',
+})
+
+// 中国語（簡体）向け。i18n が zh のときに CSS 変数を差し替える
+const notoSansSC = Noto_Sans_SC({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700'],
+  variable: '--font-sans-zh',
+})
+
+const notoSerifSC = Noto_Serif_SC({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-serif-zh',
 })
 
 export const metadata: Metadata = {
@@ -46,7 +59,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja">
-      <body className={`${notoSansJP.variable} ${notoSerifJP.variable} font-sans antialiased`}>
+      <body
+        className={`${notoSansJP.variable} ${notoSerifJP.variable} ${notoSansSC.variable} ${notoSerifSC.variable} font-sans antialiased`}
+      >
         <I18nProvider>{children}</I18nProvider>
         <Analytics />
       </body>

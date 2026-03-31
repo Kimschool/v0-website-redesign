@@ -14,7 +14,9 @@ const songYoutubeIds = [KCP_SCHOOL_SONG_YOUTUBE_ID, KCP_CHEERING_SONG_YOUTUBE_ID
 export function SongsSection() {
   const sectionRef = useRef<HTMLElement>(null)
   const [isVisible, setIsVisible] = useState(false)
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
+
+  const isZh = i18n.resolvedLanguage === "zh"
 
   const songs = t("songs.items", { returnObjects: true }) as { title: string; subtitle: string }[]
 
@@ -46,7 +48,7 @@ export function SongsSection() {
           {/* Section badge */}
           <div className="inline-flex items-center gap-2 bg-primary/10 text-primary text-sm font-semibold px-4 py-2 rounded-full mb-6">
             <Music className="w-4 h-4" />
-            SONGS
+            {isZh ? "歌曲" : "SONGS"}
           </div>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground leading-tight font-serif">
             {t("songs.title")}

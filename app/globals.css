@@ -8,6 +8,12 @@ html {
   overflow-y: scroll;
 }
 
+/* i18n(react-i18next) が zh のとき、中国語用フォントへ差し替え */
+html[data-lang^='zh'] {
+  --font-sans: var(--font-sans-zh);
+  --font-serif: var(--font-serif-zh);
+}
+
 body {
   overflow-y: auto;
 }

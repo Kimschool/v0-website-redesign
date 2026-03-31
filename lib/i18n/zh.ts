@@ -15,6 +15,30 @@ const zh = {
     expandList: "展开列表（最新3条）",
     collapseList: "收起",
   },
+  newsPage: {
+    title: "通知",
+    description: "刊登来自学校的最新信息。",
+    layoutPicker: "列表的版式示例（请选择采用方案）",
+    layout1: "A · 卡片列表",
+    layout2: "B · 时间轴",
+    layout3: "C · 标题＋列表",
+    readMore: "阅读文章",
+    backToList: "返回通知列表",
+    articles: {
+      accreditation: {
+        title: "KCP地球市民日语学校获认证为「认证日语教育机构」！",
+        excerpt:
+          "被文部科学省认证为“认证日语教育机构”。教育项目的质量满足公共标准的证明。",
+        imageAlt: "认证日语教育机构（留学）认证标记",
+      },
+      schedule2026: {
+        title: "2026年长假日程",
+        excerpt:
+          "刊登2026年度的春假、黄金周、暑假、盂兰盆节、冬假等长假日程。",
+        imageAlt: "长假日程的形象",
+      },
+    },
+  },
   languageSelector: "语言选择",
   mobileMenuOpen: "打开菜单",
   mobileMenuClose: "关闭菜单",
@@ -129,6 +153,46 @@ const zh = {
       { title: "升学实绩", subtitle: "Achievements", description: "众多东大、早稻田、庆应等名校升学实绩。" },
     ],
     cta: "了解更多",
+  },
+  // Education points (home page — 3 columns)
+  educationPointsSection: {
+    label: "教育",
+    title: "教育内容",
+    subtitle: "为达成目标提供充实的课程与贴心支持",
+    point1: "要点 1",
+    point2: "要点 2",
+    point3: "要点 3",
+    courseIntroTitle: "课程介绍",
+    courseIntroBody:
+      "在KCP，我们为每位学生根据自身目标提供多样化的课程选择。你可以为大学升学、研究生升学、专门学校升学、就业等各个方向学习最合适的课程内容。",
+    lessonContentTitle: "授课内容",
+    lessonContentBody:
+      "通过经验丰富的教师团队提供高质量的课堂。除了EJU对策和JLPT对策外，我们也重视培养实用的沟通能力，为你的学习目标提供有效支持。",
+    resultsTitle: "升学实绩",
+    resultsBody:
+      "KCP的毕业生升入国公立大学、难关私立大学，以及艺术系/音乐系大学等，在国内多所具有代表性的大学和研究生院取得了实绩。",
+    viewDetails: "查看详情",
+    viewMoreResults: "查看更多升学实绩",
+    representativeNote: "以上为部分代表性合格去向。",
+    altCourseImage: "课程介绍",
+    altLessonImage: "授课内容",
+    highlights: [
+      {
+        category: "国公立大学/研究生院",
+        subtitle: "主要合格去向",
+        schools: ["东京大学", "京都大学", "大阪大学", "一桥大学", "东京工业大学"],
+      },
+      {
+        category: "私立大学/研究生院",
+        subtitle: "主要合格去向",
+        schools: ["早稻田大学", "庆应义塾大学", "上智大学", "明治大学", "青山学院大学"],
+      },
+      {
+        category: "艺术系・音乐系",
+        subtitle: "大学/研究生院 主要合格去向",
+        schools: ["东京艺术大学", "多摩美术大学", "武藏野美术大学", "京都市立艺术大学", "爱知县立艺术大学"],
+      },
+    ],
   },
 
   // School Life (top page)
@@ -249,10 +313,18 @@ const zh = {
     philosophy1: "在KCP，通过日语教育广泛掌握知识的同时，",
     philosophy2: "通过世界各国的各种文化·活动，致力于促进人的成长。",
     philosophy3: "共同学习，共同生活——这是KCP的教育理念。",
+    philosophyTagline: "共同学习，共同生活",
+    kcpKnowledgeWord: "Knowledge",
+    kcpKnowledgeSub: "知识",
+    kcpCoexistenceWord: "Coexistence",
+    kcpCoexistenceSub: "共生",
+    kcpPeaceWord: "Peace",
+    kcpPeaceSub: "和平",
     principalTitle: "校长致辞",
     schoolFoundation: "学校法人KCP学园",
     schoolName: "KCP地球市民日语学校",
     principalName: "校长 金原 宏",
+    studentGalleryAlt: "KCP的学生",
     principalMessage1: "对日本文化的深入理解，如果要在日本寻求发展的舞台，是不可或缺的。同时，在掌握高级日语方面也是必须的。此外，了解日本文化也是重新认识本国文化之美的契机。",
     principalMessage2: "KCP的K代表Knowledge，即「知识」。可以说是关于高级日语和日本文化的知识。C代表Coexistence，即「共生」。意味着在掌握高级日语、了解日本文化的基础上，与日本人和世界各国人民携手共进。P代表Peace，即「和平」，如果能做到这些，就能为建设和平社会做出贡献，这样的人才是真正的地球公民。",
     principalMessage3: "要在现代社会生存下去，不用说，需要各种各样的知识。但更重要的是，基于这些知识，与世界各地的人们共同生活、共生，并建设和平社会的精神也是必要的。",
@@ -275,6 +347,7 @@ const zh = {
     supportMessage1: "KCP个性丰富、经验丰富的资深教师·事务职员们——入学的各位同学能够度过充实的留学生活、实现梦想，是我们的心愿也是喜悦。",
     supportMessage2: "全体职员协作配合，时而温柔时而严格，进行着眼于未来的指导，面对每一位学生进行贴心的支援。学习上有担心的时候、生活上遇到困难的时候，我们随时在您身边提供帮助。即使用日语表达困难，我们也有精通英语·中文·韩语·越南语的各国负责人员，所以不用担心。",
     staffPhoto: "KCP地球市民日语学校教职员",
+    principalBlog: "校长博客",
   },
 
   // Admission Page
@@ -290,17 +363,27 @@ const zh = {
       "完成入学手续，参加分级测试与说明会后赴日。",
     ],
     contactTitle: "联系我们",
+    contactBadge: "咨询我们",
     contactDescription: "如果您对入学有任何疑问或需要咨询，请随时联系我们。",
     contactEmail: "邮箱",
     contactHours: "营业时间",
     contactHoursValue: "周一至周五 9:00-18:00 JST",
     contactCta: "前往联系页面",
+    contactButton: "这里",
     documentsTitle: "入学申请书·宣传册",
     applicationTitle: "入学申请书",
     applicationDesc: "您可以下载以下语言的入学申请书。",
     applicationLangs: "对应语言：",
     applicationLangsValue: "English·中文简体·中文繁体·한국어·Tiếng Việt",
     applicationBtn: "下载申请书",
+    docOpenInNewTab: "在新标签页打开",
+    docSelectedLanguage: "选择语言：",
+    docOriginalFormat: "原本格式：",
+    docDownloadOriginalTemplate: "下载原本模板",
+    docApplicationPdfHint:
+      "PDF用于预览。填写/提交请下载原本文件（Excel/Word）后继续办理。",
+    docDownloadPdf: "下载PDF",
+    docPamphletHint: "请先预览PDF，如有需要请下载。",
     pamphletTitle: "宣传册",
     pamphletDesc: "关于KCP的详细信息和课程内容，请查看宣传册。",
     pamphletFormat: "文件格式：",
@@ -355,6 +438,14 @@ const zh = {
       { label: "教员数", value: "47名" },
       { label: "学生数", value: "760名（定员）" },
     ],
+    regulationsTitle: "学则",
+    regulationsLinkLabel: "关于学则",
+    selfEvalTitle: "自我检查·评价结果",
+    selfEvalLinks: [
+      "令和7年10月29日版",
+      "令和6年10月28日版",
+      "令和6年度课程修了者的日语能力习得情况等",
+    ],
     disclosureTitle: "公开信息一览",
     disclosureCategories: [
       {
@@ -384,6 +475,7 @@ const zh = {
   // Contact Page
   contactPage: {
     bannerTitle: "联系我们",
+    bannerAlt: "联系我们",
     intro: "希望开具证明书的毕业生·修了生请使用以下申请表。其他咨询请联系附近的事务所或致电。",
     testEmailLabel: "⚠ 测试用收件邮箱地址（开发·测试专用）",
     testEmailPlaceholder: "test@example.com",
@@ -426,11 +518,23 @@ const zh = {
       withdrawal: "退学证明书",
       other: "其他",
     },
+    formSections: {
+      personal: "申请者信息",
+      certificate: "证书信息",
+      additional: "备注・其他",
+    },
+    certificateFormAudienceLabel: "面向毕业生·修了生对象",
+    certificateFormTitle: "证书发行申请表",
+    certificateFormIntroLine1: "居住在偏远地区、难以前来学校申请证书的人士请",
+    certificateFormIntroLine2: "先从以下表格进行申请。",
+    certificateFormProcessingNote: "证书通常需要3个工作日。急事请告知我们。",
+    requiredFieldsNote: "＊标有星号的项目为必填项。",
     submitBtn: "提交申请",
     submittingBtn: "提交中...",
     contactInfo: {
       orgName: "学校法人Weavus",
       schoolName: "KCP地球市民日语学校",
+      schoolNameLabel: "学校名",
       telLabel: "电话",
       telValue: "+81-3-6825-3388",
       emailLabel: "邮箱",
@@ -462,6 +566,7 @@ const zh = {
         details: [
           { label: "地址", value: "天津市东丽区嘉春园17号楼1704" },
           { label: "电话", value: "+86-15802246626" },
+          { label: "邮箱", value: "1163052333@qq.com", isEmail: true },
         ],
       },
       {
@@ -469,6 +574,7 @@ const zh = {
         details: [
           { label: "地址", value: "台中市北区興進路256号5F-5" },
           { label: "电话", value: "+886-4-22345622" },
+          { label: "邮箱", value: "taiwan@kcp.ac.jp", isEmail: true },
         ],
       },
       {
@@ -476,6 +582,7 @@ const zh = {
         details: [
           { label: "地址", value: "서울시 종로구 종로 19 (종로1가 24) 르메이에르종로타운 B동 1832호" },
           { label: "电话", value: "+822-735-4422" },
+          { label: "邮箱", value: "kcp@kcpkorea.com", isEmail: true },
         ],
       },
       {
@@ -485,6 +592,7 @@ const zh = {
           { label: "地址", value: "No.41-01, Jalan Setia 3/5, Taman Setia Indah, 81100 Johor Bahru, Johor, Malaysia" },
           { label: "电话", value: "+6012-751 6025" },
           { label: "邮箱", value: "information@bmj.com.my", isEmail: true },
+          { label: "Facebook", value: "www.facebook.com/www.bmj.com.my", isLink: true },
         ],
       },
     ],
@@ -707,6 +815,18 @@ const zh = {
     alumni8Award2: "后藤新平·新渡户稻造纪念 第26届全国高中生·留学生作文大赛 2024 留学生部鼓励奖",
     alumni9Name: "李 黛玉 / 来自中国",
     alumni9School: "升学去向：东京艺术大学大学院 映像研究科动画专攻",
+    prepCoursePillLabels: ["2年课程", "1年6个月课程"],
+    advancedCoursePillLabels: ["2年课程", "1年9个月课程", "1年6个月课程", "1年3个月课程"],
+    coursePillsEyebrow: "课程",
+    prepCourseImageAlt: "升学准备教育课程",
+    advancedCourseImageAlt: "升学高度日语课程",
+    specialClassNavHeading: "板块",
+    careerPathSupportNavTitle: "升学路径支持",
+    resultsAccordionBadgePartnerSchools: "18所",
+    resultsAccordionBadgeNationalPublic: "国公立",
+    resultsAccordionBadgePrivate: "私立",
+    resultsAccordionBadgeArtMusic: "艺术・音乐",
+    scheduleNext: "下一页",
   },
 
   // School Life Page

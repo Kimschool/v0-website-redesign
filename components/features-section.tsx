@@ -11,7 +11,9 @@ export function FeaturesSection() {
   const trackRef = useRef<HTMLDivElement>(null)
   const [isVisible, setIsVisible] = useState(false)
   const resumeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
+
+  const isZh = i18n.resolvedLanguage === "zh"
 
   const featureItems = [
     { src: `/images/original_from_customer/${encodeURIComponent('8つの窓')}/01_EJU.jpg`, text: t("features.featureTexts.0"), objectPosition: "center bottom", objectFit: "cover" as const },
@@ -89,7 +91,7 @@ export function FeaturesSection() {
           {/* Section badge */}
           <div className="inline-flex items-center gap-2 bg-primary/10 text-primary text-sm font-semibold px-4 py-2 rounded-full mb-6">
             <span className="w-1.5 h-1.5 bg-primary rounded-full" />
-            FEATURES
+            {isZh ? "特色" : "FEATURES"}
           </div>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground leading-tight font-serif">
             {t("features.title")}

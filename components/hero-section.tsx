@@ -61,9 +61,11 @@ function TypewriterText({ text, delay = 0, hideCursor = false }: { text: string;
 }
 
 export function HeroSection() {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
   const [isLoaded, setIsLoaded] = useState(false)
   const [secondLineStarted, setSecondLineStarted] = useState(false)
+
+  const isZh = i18n.resolvedLanguage === "zh"
 
   useEffect(() => {
     setIsLoaded(true)
@@ -129,9 +131,11 @@ export function HeroSection() {
       <button 
         onClick={scrollToContent}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/70 hover:text-white transition-colors cursor-pointer group"
-        aria-label="Scroll down"
+        aria-label={isZh ? "向下滚动" : "Scroll down"}
       >
-        <span className="text-xs font-medium tracking-widest uppercase">Scroll</span>
+        <span className="text-xs font-medium tracking-widest uppercase">
+          {isZh ? "向下滚动" : "Scroll"}
+        </span>
         <ChevronDown className="w-5 h-5 animate-scroll-indicator" />
       </button>
 

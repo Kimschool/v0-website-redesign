@@ -33,7 +33,28 @@ const cards = [
 export function SchoolLifeSection() {
   const sectionRef = useRef<HTMLElement>(null)
   const [isVisible, setIsVisible] = useState(false)
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
+
+  // 메인페이지(홈)에서 중국어(zh)일 때만 카드 텍스트가 일본어로 보이지 않도록 처리
+  const isZh = i18n.resolvedLanguage === "zh"
+  const zhCardsByHref: Record<string, { title: string; description: string }> = {
+    "/school-life#schedule": {
+      title: "年度日程",
+      description: "包含四季多样的活动以及丰富的校内活动。",
+    },
+    "/school-life#clubs": {
+      title: "社团活动",
+      description: "与伙伴一起成长的课外活动。",
+    },
+    "/school-life#facilities": {
+      title: "设施介绍",
+      description: "最新设施与舒适的学习环境。",
+    },
+  }
+
+  const zhSubtitle =
+    "不只是学习，也能加深与伙伴之间的羁绊，度过充实的校园生活。"
+  const cardCtaText = isZh ? "查看详情" : "詳細を見る"
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -64,13 +85,13 @@ export function SchoolLifeSection() {
           {/* Section badge */}
           <div className="inline-flex items-center gap-2 bg-primary/10 text-primary text-sm font-semibold px-4 py-2 rounded-full mb-6">
             <span className="w-1.5 h-1.5 bg-primary rounded-full" />
-            SCHOOL LIFE
+            {isZh ? "校园生活" : "SCHOOL LIFE"}
           </div>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground leading-tight font-serif">
             {t("schoolLife.title1")}{t("schoolLife.title2")}
           </h2>
           <p className="mt-6 text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
-            学びだけでなく、仲間との絆を深める充実した学校生活
+            {isZh ? zhSubtitle : "学びだけでなく、仲間との絆を深める充実した学校生活"}
           </p>
         </div>
 
@@ -78,6 +99,9 @@ export function SchoolLifeSection() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-12">
           {cards.map((card, index) => {
             const Icon = card.icon
+            const zh = zhCardsByHref[card.href]
+            const cardTitle = isZh ? zh?.title ?? card.titleKey : card.titleKey
+            const cardDescription = isZh ? zh?.description ?? card.description : card.description
             return (
               <Link
                 key={card.titleKey}
@@ -90,7 +114,7 @@ export function SchoolLifeSection() {
                 <div className="px-6 pt-6 pb-4">
                   <div className="flex items-start justify-between gap-4">
                     <h3 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors font-serif leading-snug">
-                      {card.titleKey}
+                      {cardTitle}
                     </h3>
                     {/* Icon badge */}
                     <div className="w-11 h-11 shrink-0 bg-white border border-gray-200 rounded-xl flex items-center justify-center shadow-sm transform transition-all duration-300 group-hover:scale-105 group-hover:rotate-2">
@@ -103,7 +127,7 @@ export function SchoolLifeSection() {
                 <div className="aspect-[4/3] relative overflow-hidden mx-6 rounded-2xl">
                   <Image
                     src={card.image}
-                    alt={card.titleKey}
+                    alt={cardTitle}
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-110"
                   />
@@ -112,10 +136,10 @@ export function SchoolLifeSection() {
                 {/* Description + CTA (bottom text box) */}
                 <div className="p-6 pt-5">
                   <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
-                    {card.description}
+                    {cardDescription}
                   </p>
                   <div className="flex items-center gap-2 text-primary font-semibold text-sm">
-                    <span>詳細を見る</span>
+                    <span>{cardCtaText}</span>
                     <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                   </div>
                 </div>

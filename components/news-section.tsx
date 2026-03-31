@@ -21,13 +21,21 @@ const newsItems = [
 ]
 
 export function NewsSection() {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
   const sectionRef = useRef<HTMLElement>(null)
   const [isVisible, setIsVisible] = useState(false)
   const [expanded, setExpanded] = useState(false)
   const [activeIndex, setActiveIndex] = useState(0)
   const [isTransitioning, setIsTransitioning] = useState(false)
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null)
+
+  // 일부 메인페이지 뉴스 타이틀이 컴포넌트에 하드코딩되어 있어, 중국어(zh)일 때만 중국어로 보여주도록 처리
+  const newsTitleZhByHref: Record<string, string> = {
+    "/news/accreditation": "认证日本语教育机构已获认证",
+    "/news/schedule-2026": "已公布2026年度日程表",
+  }
+
+  const isZh = i18n.resolvedLanguage === "zh"
 
   const displayNews = useMemo(
     () => [...newsItems].sort((a, b) => b.date.localeCompare(a.date)).slice(0, 3),
@@ -101,7 +109,7 @@ export function NewsSection() {
                         </time>
                         {item.isNew && (
                           <span className="text-[10px] font-bold text-white bg-accent px-2 py-0.5 rounded-full badge-pulse">
-                            NEW
+                            {isZh ? "新" : "NEW"}
                           </span>
                         )}
                       </div>
@@ -109,7 +117,9 @@ export function NewsSection() {
                         href={item.href}
                         className="group flex min-w-0 flex-1 items-center gap-2 text-sm md:text-base text-foreground hover:text-primary transition-colors font-medium"
                       >
-                        <span className="truncate">{item.title}</span>
+                        <span className="truncate">
+                          {isZh ? newsTitleZhByHref[item.href] ?? item.title : item.title}
+                        </span>
                         <ArrowRight className="w-4 h-4 shrink-0 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
                       </Link>
                     </div>
@@ -179,11 +189,11 @@ export function NewsSection() {
                       </time>
                       {item.isNew && (
                         <span className="text-[10px] font-bold text-white bg-accent px-2 py-0.5 rounded-full">
-                          NEW
+                          {isZh ? "新" : "NEW"}
                         </span>
                       )}
                       <span className="min-w-0 flex-1 text-sm font-medium text-foreground group-hover:text-primary md:text-base">
-                        {item.title}
+                        {isZh ? newsTitleZhByHref[item.href] ?? item.title : item.title}
                       </span>
                       <ArrowRight className="h-4 w-4 shrink-0 text-muted-foreground transition group-hover:translate-x-0.5 group-hover:text-primary" />
                     </Link>
