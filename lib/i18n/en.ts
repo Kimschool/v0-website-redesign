@@ -502,6 +502,8 @@ const en = {
       withdrawal: "Withdrawal certificate",
       other: "Other",
     },
+    certificateTypeMultiHint: "You may apply for multiple certificate types. Select all that apply.",
+    certificateTypeRequired: "Please select at least one certificate type.",
     submitBtn: "Submit",
     submittingBtn: "Submitting...",
     contactInfo: {

@@ -4,6 +4,28 @@ import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
 import { useTranslation } from "react-i18next"
 
+type OverseasOfficeDetail = {
+  label: string
+  value: string
+  isEmail?: boolean
+  isLink?: boolean
+}
+
+type OverseasOffice = {
+  name: string
+  details: OverseasOfficeDetail[]
+}
+
+const CERTIFICATE_TYPE_KEYS = ["attendance", "graduation", "withdrawal", "other"] as const
+type CertificateTypeKey = (typeof CERTIFICATE_TYPE_KEYS)[number]
+
+const initialCertificateTypes: Record<CertificateTypeKey, boolean> = {
+  attendance: false,
+  graduation: false,
+  withdrawal: false,
+  other: false,
+}
+
 export function ContactSection() {
   const sectionRef = useRef<HTMLElement>(null)
   const [isVisible, setIsVisible] = useState(false)
@@ -17,7 +39,7 @@ export function ContactSection() {
     address: "",
     phone: "",
     email: "",
-    certificateType: "",
+    certificateTypes: { ...initialCertificateTypes },
     purpose: "",
     submissionPlace: "",
     receiveMethod: "",
@@ -26,6 +48,8 @@ export function ContactSection() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<{ type: "success" | "error"; message: string } | null>(null)
   const { t } = useTranslation()
+  const formspreeEndpoint =
+    process.env.NEXT_PUBLIC_FORMSPREE_ENDPOINT || "https://www.kcp.ac.jp/mail/send.php"
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -71,19 +95,42 @@ export function ContactSection() {
     }))
   }
 
+  const handleCertificateTypeToggle = (key: CertificateTypeKey, checked: boolean) => {
+    setFormData((prev) => ({
+      ...prev,
+      certificateTypes: { ...prev.certificateTypes, [key]: checked },
+    }))
+  }
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setIsSubmitting(true)
     setSubmitStatus(null)
+    const selectedCerts = CERTIFICATE_TYPE_KEYS.filter((k) => formData.certificateTypes[k])
+    if (selectedCerts.length === 0) {
+      setSubmitStatus({ type: "error", message: t("contactPage.certificateTypeRequired") })
+      setIsSubmitting(false)
+      return
+    }
     try {
-      const res = await fetch("/api/contact", {
+      const res = await fetch(formspreeEndpoint, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...formData }),
+        headers: { Accept: "application/json" },
+        body: (() => {
+          const fd = new FormData()
+          for (const [k, v] of Object.entries(formData)) {
+            if (k === "certificateTypes") continue
+            fd.append(k, v as string)
+          }
+          for (const key of selectedCerts) {
+            fd.append("certificateType[]", key)
+          }
+          return fd
+        })(),
       })
-      const data = await res.json()
+      const data = await res.json().catch(() => ({}))
       if (!res.ok) {
-        throw new Error(data.error || t("contactPage.submitError"))
+        throw new Error((data as any)?.error || t("contactPage.submitError"))
       }
       setSubmitStatus({ type: "success", message: t("contactPage.submitSuccess") })
       setFormData({
@@ -96,7 +143,7 @@ export function ContactSection() {
         address: "",
         phone: "",
         email: "",
-        certificateType: "",
+        certificateTypes: { ...initialCertificateTypes },
         purpose: "",
         submissionPlace: "",
         receiveMethod: "",
@@ -109,7 +156,7 @@ export function ContactSection() {
     }
   }
 
-  const overseasOffices = [
+  const overseasOffices: OverseasOffice[] = [
     {
       name: t("contactPage.offices.0.name"),
       details: [
@@ -405,25 +452,31 @@ export function ContactSection() {
               </div>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* Certificate Type */}
+              {/* Certificate types (multi-select) */}
               <div className="md:col-span-2">
-                <label htmlFor="certificateType" className="block text-sm font-medium text-gray-700 mb-2.5">
-                  {t("contactPage.formLabels.certificateType")} <span className="text-[#0085b2] font-bold">*</span>
-                </label>
-                <select
-                  id="certificateType"
-                  name="certificateType"
-                  value={formData.certificateType}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3.5 bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-[#0085b2] focus:shadow-lg focus:shadow-[#0085b2]/10 transition-all duration-200"
-                >
-                  <option value="">{t("contactPage.certificateOptions.selectDefault")}</option>
-                  <option value="attendance">{t("contactPage.certificateOptions.attendance")}</option>
-                  <option value="graduation">{t("contactPage.certificateOptions.graduation")}</option>
-                  <option value="withdrawal">{t("contactPage.certificateOptions.withdrawal")}</option>
-                  <option value="other">{t("contactPage.certificateOptions.other")}</option>
-                </select>
+                <fieldset className="min-w-0 border-0 p-0 m-0">
+                  <legend className="block text-sm font-medium text-gray-700 mb-2.5 px-0 w-full">
+                    {t("contactPage.formLabels.certificateType")} <span className="text-[#0085b2] font-bold">*</span>
+                  </legend>
+                  <p className="text-xs text-gray-500 mb-3">{t("contactPage.certificateTypeMultiHint")}</p>
+                  <div className="space-y-3 rounded-lg border border-gray-200 bg-white px-4 py-4">
+                    {CERTIFICATE_TYPE_KEYS.map((key) => (
+                      <label
+                        key={key}
+                        className="flex cursor-pointer items-start gap-3 text-sm text-gray-800"
+                      >
+                        <input
+                          type="checkbox"
+                          name={`certificateType_${key}`}
+                          checked={formData.certificateTypes[key]}
+                          onChange={(e) => handleCertificateTypeToggle(key, e.target.checked)}
+                          className="mt-0.5 h-4 w-4 shrink-0 rounded border-gray-300 text-[#0085b2] focus:ring-[#0085b2]"
+                        />
+                        <span>{t(`contactPage.certificateOptions.${key}`)}</span>
+                      </label>
+                    ))}
+                  </div>
+                </fieldset>
               </div>
 
               {/* Purpose */}

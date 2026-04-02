@@ -507,6 +507,8 @@ const vi = {
       withdrawal: "Giấy chứng nhận thôi học",
       other: "Khác",
     },
+    certificateTypeMultiHint: "Có thể chọn nhiều loại chứng nhận — hãy đánh dấu tất cả loại cần xin.",
+    certificateTypeRequired: "Vui lòng chọn ít nhất một loại chứng nhận.",
     certificateFormAudienceLabel: "Dành cho cựu học viên đã tốt nghiệp / hoàn thành",
     certificateFormTitle: "Đơn xin cấp chứng nhận",
     certificateFormIntroLine1:

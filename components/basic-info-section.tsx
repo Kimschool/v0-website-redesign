@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/dialog"
 import { PdfCanvasViewerLazy } from "@/components/pdf-canvas-viewer-lazy"
 
-const GAKUSOKU_PDF_URL = "/api/basic-info/gakusoku"
+const GAKUSOKU_PDF_URL = "/documents/gakusoku.pdf"
 
 const SELF_EVAL_PDF_HREFS = [
   "https://weavus-group.com/kcp/wp-content/uploads/2025/11/evaluation20251029.pdf",

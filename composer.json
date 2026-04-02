@@ -1,0 +1,8 @@
+{
+  "name": "kcp/mail",
+  "description": "KCP contact form mailer",
+  "require": {
+    "phpmailer/phpmailer": "^6.10"
+  }
+}
+

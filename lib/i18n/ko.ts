@@ -495,6 +495,8 @@ const ko = {
       withdrawal: "퇴학 증명서",
       other: "기타",
     },
+    certificateTypeMultiHint: "서류를 여러 종류 동시에 신청할 수 있습니다. 해당하는 항목을 모두 선택해 주세요.",
+    certificateTypeRequired: "증명서 종류를 하나 이상 선택해 주세요.",
     certificateFormAudienceLabel: "졸업생·수료생 대상",
     certificateFormTitle: "증명서 발행 신청",
     certificateFormIntroLine1:

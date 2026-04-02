@@ -6,7 +6,7 @@ import { getDocument, GlobalWorkerOptions, version } from "pdfjs-dist"
 GlobalWorkerOptions.workerSrc = `/pdfjs/pdf.worker.min.mjs?v=${version}`
 
 type Props = {
-  /** 同一オリジンの PDF URL（例: /api/basic-info/gakusoku） */
+  /** 同一オリジンの PDF URL（例: /documents/gakusoku.pdf） */
   pdfUrl: string
 }
 

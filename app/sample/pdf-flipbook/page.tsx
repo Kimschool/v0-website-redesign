@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 }
 
-const DEMO_PDF_URL = "/api/basic-info/gakusoku"
+const DEMO_PDF_URL = "/documents/gakusoku.pdf"
 
 /**
  * デモ用: react-pageflip + PDF.js（各ページを画像化してめくり表示）

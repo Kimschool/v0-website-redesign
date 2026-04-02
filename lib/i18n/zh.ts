@@ -518,6 +518,8 @@ const zh = {
       withdrawal: "退学证明书",
       other: "其他",
     },
+    certificateTypeMultiHint: "可同时申请多种证明书，请勾选所有需要的种类。",
+    certificateTypeRequired: "请至少选择一种证明书。",
     formSections: {
       personal: "申请者信息",
       certificate: "证书信息",

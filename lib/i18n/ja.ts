@@ -496,6 +496,8 @@ const ja = {
       withdrawal: "退学証明書",
       other: "その他",
     },
+    certificateTypeMultiHint: "複数の証明書を同時に申請する場合は、該当する種類をすべて選択してください。",
+    certificateTypeRequired: "証明書の種類を1つ以上選択してください。",
     certificateFormAudienceLabel: "卒業生・修了生対象",
     certificateFormTitle: "証明書発行申請フォーム",
     certificateFormIntroLine1: "遠隔地にお住まいで、直接ご来校して証明書を申し込むのが難しい方は、",

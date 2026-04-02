@@ -49,8 +49,8 @@ export default function SamplePdfViewerPage() {
         </div>
 
         <section className="mt-10">
-          <h2 className="mb-3 text-lg font-semibold text-gray-900">表示エリア（/api/basic-info/gakusoku）</h2>
-          <PdfCanvasViewerLazy pdfUrl="/api/basic-info/gakusoku" />
+          <h2 className="mb-3 text-lg font-semibold text-gray-900">表示エリア（/documents/gakusoku.pdf）</h2>
+          <PdfCanvasViewerLazy pdfUrl="/documents/gakusoku.pdf" />
         </section>
 
         <p className="mt-10 text-xs text-gray-500">

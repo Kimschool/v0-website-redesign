@@ -507,6 +507,8 @@ const ru = {
       withdrawal: "Справка об отчислении",
       other: "Прочее",
     },
+    certificateTypeMultiHint: "Можно выбрать несколько видов справок — отметьте все нужные.",
+    certificateTypeRequired: "Выберите хотя бы один вид справки.",
     certificateFormAudienceLabel: "Для выпускников и завершивших программу",
     certificateFormTitle: "Заявление на выдачу справки",
     certificateFormIntroLine1:
