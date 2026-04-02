@@ -29,7 +29,7 @@ export function NewsSection() {
   const [isTransitioning, setIsTransitioning] = useState(false)
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null)
 
-  // 일부 메인페이지 뉴스 타이틀이 컴포넌트에 하드코딩되어 있어, 중국어(zh)일 때만 중국어로 보여주도록 처리
+  // Some home-page news titles are hardcoded in Japanese; map to Chinese when locale is zh.
   const newsTitleZhByHref: Record<string, string> = {
     "/news/accreditation": "认证日本语教育机构已获认证",
     "/news/schedule-2026": "已公布2026年度日程表",

@@ -53,7 +53,7 @@ function TypewriterText({ text, delay = 0, hideCursor = false }: { text: string;
         style={{
           verticalAlign: "baseline",
           marginBottom: "0.1em",
-          opacity: showCursor && !hideCursor ? 1 : 0,   // ← 보일 때만 색/애니메이션, 안 보일 땐 투명
+          opacity: showCursor && !hideCursor ? 1 : 0, // visible: show color/animation; hidden: transparent
         }}
       />
     </span>

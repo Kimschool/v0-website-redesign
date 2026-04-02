@@ -144,6 +144,9 @@ const resources = {
           { title: "校歌「今ここに」", subtitle: "School Song" },
           { title: "応援歌「そらとほしと」", subtitle: "Cheering Song" },
         ],
+        showVideo: "動画を再生",
+        alternateWatch: "Weibo／中国向けリンクで見る",
+        youtubeWatch: "YouTubeで見る",
       },
 
       // CTA
@@ -327,6 +330,9 @@ const resources = {
           { title: "School Song \"Here and Now\"", subtitle: "School Song" },
           { title: "Cheering Song \"Sky and Stars\"", subtitle: "Cheering Song" },
         ],
+        showVideo: "Play video",
+        alternateWatch: "Watch on Weibo / China link",
+        youtubeWatch: "Watch on YouTube",
       },
 
       // CTA
@@ -504,12 +510,15 @@ const resources = {
 
       // Songs
       songs: {
-        label: "���래",
+        label: "노래",
         title: "KCP 교가와 응원가",
         items: [
           { title: "교가 「지금 여기에」", subtitle: "School Song" },
           { title: "응원가 「하늘과 별과」", subtitle: "Cheering Song" },
         ],
+        showVideo: "영상 재생",
+        alternateWatch: "Weibo·중국 링크에서 보기",
+        youtubeWatch: "YouTube에서 보기",
       },
 
       // CTA
@@ -693,6 +702,9 @@ const resources = {
           { title: "校歌「此刻此地」", subtitle: "School Song" },
           { title: "应援歌「天空与星星」", subtitle: "Cheering Song" },
         ],
+        showVideo: "播放视频",
+        alternateWatch: "在微博／国内链接观看",
+        youtubeWatch: "在 YouTube 观看",
       },
 
       // CTA
@@ -876,6 +888,9 @@ const resources = {
           { title: "Гимн школы «Здесь и сейчас»", subtitle: "School Song" },
           { title: "Песня поддержки «Небо и звёзды»", subtitle: "Cheering Song" },
         ],
+        showVideo: "Воспроизвести видео",
+        alternateWatch: "Смотреть в Weibo / китайская ссылка",
+        youtubeWatch: "Смотреть на YouTube",
       },
 
       // CTA
@@ -1059,6 +1074,9 @@ const resources = {
           { title: "Bài ca trường \"Ở đây và bây giờ\"", subtitle: "School Song" },
           { title: "Bài hát cổ vũ \"Trời và sao\"", subtitle: "Cheering Song" },
         ],
+        showVideo: "Phát video",
+        alternateWatch: "Xem trên Weibo / liên kết Trung Quốc",
+        youtubeWatch: "Xem trên YouTube",
       },
 
       // CTA

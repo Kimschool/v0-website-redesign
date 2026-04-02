@@ -7,9 +7,9 @@ import { useTranslation } from "react-i18next"
 import { cn } from "@/lib/utils"
 
 type Manifest = {
-  /** 例: ["0001.webp", "0002.webp"] or ["https://.../0001.webp", ...] */
+  /** e.g. ["0001.webp", "0002.webp"] or absolute URLs */
   pages: string[]
-  /** 任意: 既知なら UI に表示（未指定でも動作） */
+  /** Optional title shown in the UI when known */
   title?: string
 }
 
@@ -42,17 +42,17 @@ async function exitFullscreenDoc(): Promise<void> {
 }
 
 export type ImageFlipbookViewerProps = {
-  /** manifest.json の URL。サーバー配置想定（例: https://.../ja/manifest.json） */
+  /** URL of manifest.json (e.g. https://.../ja/manifest.json) */
   manifestUrl: string
-  /** ページの論理幅（CSS px）。デフォルト 440 */
+  /** Logical page width in CSS px (default 440) */
   pageCssWidth?: number
-  /** 下部の操作ヒント（デフォルト true） */
+  /** Show footer usage hint (default true) */
   showFooterHint?: boolean
-  /** 全画面ボタン（デフォルト true） */
+  /** Show fullscreen toggle (default true) */
   showFullscreenButton?: boolean
   /**
-   * manifest 内が相対パスの場合の base URL。
-   * 例: manifestUrl が .../manifest.json なら、通常は同階層を自動採用するので未指定でOK。
+   * Base URL when manifest page paths are relative.
+   * If manifestUrl ends with .../manifest.json, the same directory is inferred when omitted.
    */
   manifestBaseUrlOverride?: string
 }
@@ -66,7 +66,7 @@ const FlipPage = forwardRef<HTMLDivElement, { src: string; alt: string }>(
         ref={ref}
         className="h-full w-full overflow-hidden bg-neutral-900 shadow-inner"
       >
-        {/* eslint-disable-next-line @next/next/no-img-element -- flipbook は外部 CDN の静的画像を使う */}
+        {/* eslint-disable-next-line @next/next/no-img-element -- flipbook uses static images (often CDN URLs) */}
         <img
           src={src}
           alt={alt}
@@ -236,9 +236,8 @@ export function ImageFlipbookViewer({
     const availH = Math.max(100, sr.height - pad * 2)
 
     /**
-     * 터치 디바이스(대부분 태블릿/폰)에서는 "가로를 더 크게" 보이게 하는 편이 UX가 좋고,
-     * 높이가 넘치더라도 스크롤로 보게 하면 된다.
-     * spread 모드에서 layoutFudge 를 낮추면 raw가 커져(대략 2 근처) 화면을 더 꽉 채운다.
+     * On touch devices (tablets/phones), favor a wider spread; overflow height can scroll.
+     * Lower layoutFudge in spread mode increases raw scale (~toward 2) to fill the screen more.
      */
     const layoutFudge = isCoarsePointer && !usePortraitLayout ? 0.4 : 0.7
     const logicalSpreadW = usePortraitLayout ? pageCssWidth : pageCssWidth * 2
@@ -246,8 +245,8 @@ export function ImageFlipbookViewer({
     const targetH = bookHeight * layoutFudge
 
     /**
-     * 모바일(1페이지)에서는 "가로 꽉 차게"를 우선하고,
-     * 세로는 넘치면 스크롤로 보이게 한다(너무 작아지지 않게).
+     * Single-page (mobile): prioritize filling width; allow vertical scroll if needed
+     * so the book does not shrink too much.
      */
     const raw = usePortraitLayout
       ? availW / targetW

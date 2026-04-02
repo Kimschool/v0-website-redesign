@@ -78,18 +78,15 @@ if (!file_exists($autoload)) {
 }
 require_once $autoload;
 
-// Fixed routing
-$to = 'test@kcpgakuen.sakura.ne.jp';
-//$cc = 'test@kcp.ac.jp','clilseoo2@gmail.com';
-
 // Basic input (reply-to only; never use user input as From)
 $name = isset($_POST['name']) ? trim($_POST['name']) : '';
 $email = isset($_POST['email']) ? trim($_POST['email']) : '';
 $name = str_replace(array("\r", "\n"), '', $name);
 $email = str_replace(array("\r", "\n"), '', $email);
-$replyTo = (filter_var($email, FILTER_VALIDATE_EMAIL) !== false) ? $email : 'info@kcp.ac.jp';
+$userEmail = (filter_var($email, FILTER_VALIDATE_EMAIL) !== false) ? $email : '';
 
-$subject = '【KCP】証明書発行申込み';
+$subjectPrefix = env_or_default('MAIL_SUBJECT_PREFIX', '【KCP】証明書発行申込み');
+$subject = $subjectPrefix;
 if ($name !== '') $subject .= ' - ' . $name;
 
 // Value mappings (dropdowns)
@@ -137,7 +134,20 @@ foreach ($labels as $key => $label) {
   // Map dropdown codes to Japanese
   if ($key === 'gender' && isset($genderMap[$v])) $v = $genderMap[$v];
   if ($key === 'receiveMethod' && isset($receiveMethodMap[$v])) $v = $receiveMethodMap[$v];
-  if ($key === 'certificateType' && isset($certificateTypeMap[$v])) $v = $certificateTypeMap[$v];
+  if ($key === 'certificateType') {
+    if (is_array($v)) {
+      $parts = array();
+      foreach ($v as $one) {
+        $one = trim((string)$one);
+        if ($one === '') continue;
+        $parts[] = isset($certificateTypeMap[$one]) ? $certificateTypeMap[$one] : $one;
+      }
+      $v = implode('、', $parts);
+      if ($v === '') continue;
+    } elseif (isset($certificateTypeMap[$v])) {
+      $v = $certificateTypeMap[$v];
+    }
+  }
 
   if (is_array($v)) $v = json_encode($v, JSON_UNESCAPED_UNICODE);
   $lines[] = $label . '：' . $v;
@@ -155,17 +165,7 @@ if ($ip !== '') $lines[] = 'IP：' . $ip;
 
 $body = implode("\n", $lines);
 
-// Gmail SMTP (Google Workspace) settings via env vars
-// Required:
-// - SMTP_USER: info@kcp.ac.jp
-// - SMTP_PASS: Google "App Password" (recommended)
-// Optional:
-// - SMTP_HOST (default smtp.gmail.com)
-// - SMTP_PORT (default 587)
-// - SMTP_SECURE (default tls) values: tls | ssl
-// - SMTP_FROM (default info@kcp.ac.jp)
-// - SMTP_FROM_NAME (default KCP Website)
-// - MAIL_TO (default fixed $to)
+// Gmail SMTP — from .env (same as send.php)
 $smtpHost = env_or_default('SMTP_HOST', 'smtp.gmail.com');
 $smtpPort = intval(env_or_default('SMTP_PORT', '587'));
 $smtpSecure = env_or_default('SMTP_SECURE', 'tls');
@@ -173,10 +173,15 @@ $smtpUser = env_or_default('SMTP_USER', '');
 $smtpPass = env_or_default('SMTP_PASS', '');
 $fromEmail = env_or_default('SMTP_FROM', 'info@kcp.ac.jp');
 $fromName = env_or_default('SMTP_FROM_NAME', 'KCP Website');
-$to = env_or_default('MAIL_TO', $to);
+$to = env_or_default('MAIL_TO', '');
+$replyFallback = env_or_default('MAIL_REPLY_FALLBACK', $fromEmail);
+$replyTo = ($userEmail !== '') ? $userEmail : $replyFallback;
 
+if ($to === '') {
+  json_out(500, array('ok' => false, 'error' => 'Missing MAIL_TO (set in .env)'));
+}
 if ($smtpUser === '' || $smtpPass === '') {
-  json_out(500, array('ok' => false, 'error' => 'Missing SMTP_USER/SMTP_PASS env vars'));
+  json_out(500, array('ok' => false, 'error' => 'Missing SMTP_USER/SMTP_PASS (set in .env)'));
 }
 
 try {

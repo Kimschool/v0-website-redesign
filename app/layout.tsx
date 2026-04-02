@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from 'next'
 import { Noto_Sans_JP, Noto_Serif_JP } from 'next/font/google'
-import localFont from 'next/font/local'
 import { Analytics } from '@vercel/analytics/next'
 import { I18nProvider } from '@/components/i18n-provider'
 import './globals.css'
@@ -15,40 +14,6 @@ const notoSerifJP = Noto_Serif_JP({
   subsets: ['latin'],
   weight: ['400', '500', '600', '700'],
   variable: '--font-serif',
-})
-
-// 中国語（簡体）向け。self-host 폰트로 글리프/굵기 혼재를 고정 제거
-// 다운로드: node scripts/download-noto-sc-ttf.mjs
-const notoSansSC = localFont({
-  src: [
-    { path: '../public/fonts/NotoSansSC-300.ttf', weight: '300', style: 'normal' },
-    { path: '../public/fonts/NotoSansSC-400.ttf', weight: '400', style: 'normal' },
-    { path: '../public/fonts/NotoSansSC-500.ttf', weight: '500', style: 'normal' },
-    { path: '../public/fonts/NotoSansSC-600.ttf', weight: '600', style: 'normal' },
-    { path: '../public/fonts/NotoSansSC-700.ttf', weight: '700', style: 'normal' },
-  ],
-  variable: '--font-sans-zh',
-  display: 'swap',
-  fallback: [
-    'PingFang SC',
-    'Hiragino Sans GB',
-    'Microsoft YaHei',
-    'Source Han Sans SC',
-    'system-ui',
-    'sans-serif',
-  ],
-})
-
-const notoSerifSC = localFont({
-  src: [
-    { path: '../public/fonts/NotoSerifSC-400.ttf', weight: '400', style: 'normal' },
-    { path: '../public/fonts/NotoSerifSC-500.ttf', weight: '500', style: 'normal' },
-    { path: '../public/fonts/NotoSerifSC-600.ttf', weight: '600', style: 'normal' },
-    { path: '../public/fonts/NotoSerifSC-700.ttf', weight: '700', style: 'normal' },
-  ],
-  variable: '--font-serif-zh',
-  display: 'swap',
-  fallback: ['Songti SC', 'STSong', 'Noto Serif SC', 'Source Han Serif SC', 'Times New Roman', 'serif'],
 })
 
 export const metadata: Metadata = {
@@ -82,7 +47,7 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body
-        className={`${notoSansJP.variable} ${notoSerifJP.variable} ${notoSansSC.variable} ${notoSerifSC.variable} font-sans antialiased`}
+        className={`${notoSansJP.variable} ${notoSerifJP.variable} font-sans antialiased`}
       >
         <I18nProvider>{children}</I18nProvider>
         <Analytics />

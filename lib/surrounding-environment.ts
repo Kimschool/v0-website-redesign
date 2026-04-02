@@ -1,4 +1,4 @@
-/** 学校生活ページ「周辺環境」と同じ写真セット（他ページのショーケースでも再利用） */
+/** Same photo set as School Life “surroundings”; reused by other showcase carousels */
 export const SURROUNDING_ENVIRONMENT_IMAGES = [
   "/images/original_from_customer/Shinjuku-gyoemmae-station-Exit1-1-scaled.jpg",
   "/images/original_from_customer/rich2s6257899_05-1.jpg",

@@ -232,6 +232,11 @@ const en = {
       { title: "School Song \"Here and Now\"", subtitle: "School Song" },
       { title: "Cheering Song \"Sky and Stars\"", subtitle: "Cheering Song" },
     ],
+    showVideo: "Play video",
+    hideVideo: "Hide player",
+    openInNewTab: "Open in new tab",
+    alternateWatch: "Watch on Weibo / China link",
+    youtubeWatch: "Watch on YouTube",
   },
 
   // CTA

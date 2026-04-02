@@ -35,7 +35,7 @@ export function SchoolLifeSection() {
   const [isVisible, setIsVisible] = useState(false)
   const { t, i18n } = useTranslation()
 
-  // 메인페이지(홈)에서 중국어(zh)일 때만 카드 텍스트가 일본어로 보이지 않도록 처리
+  // On the home page, when locale is zh, show localized card copy instead of hardcoded Japanese.
   const isZh = i18n.resolvedLanguage === "zh"
   const zhCardsByHref: Record<string, { title: string; description: string }> = {
     "/school-life#schedule": {

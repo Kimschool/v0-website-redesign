@@ -78,19 +78,15 @@ if (!file_exists($autoload)) {
 }
 require_once $autoload;
 
-// Fixed routing
-$to = 'test@kcpgakuen.sakura.ne.jp';
-//$cc = 'test@kcp.ac.jp','clilseoo2@gmail.com';
-
 // Basic input (reply-to only; never use user input as From)
 $name = isset($_POST['name']) ? trim($_POST['name']) : '';
 $email = isset($_POST['email']) ? trim($_POST['email']) : '';
 $name = str_replace(array("\r", "\n"), '', $name);
 $email = str_replace(array("\r", "\n"), '', $email);
 $userEmail = (filter_var($email, FILTER_VALIDATE_EMAIL) !== false) ? $email : '';
-$replyTo = ($userEmail !== '') ? $userEmail : 'info@kcp.ac.jp';
 
-$subject = '【KCP】証明書発行申込み';
+$subjectPrefix = env_or_default('MAIL_SUBJECT_PREFIX', '【KCP】証明書発行申込み');
+$subject = $subjectPrefix;
 if ($name !== '') $subject .= ' - ' . $name;
 
 // Value mappings (dropdowns)
@@ -229,17 +225,10 @@ $autoReplyHtml =
   . '</div>'
   . '</div>';
 
-// Gmail SMTP (Google Workspace) settings via env vars
-// Required:
-// - SMTP_USER: info@kcp.ac.jp
-// - SMTP_PASS: Google "App Password" (recommended)
-// Optional:
-// - SMTP_HOST (default smtp.gmail.com)
-// - SMTP_PORT (default 587)
-// - SMTP_SECURE (default tls) values: tls | ssl
-// - SMTP_FROM (default info@kcp.ac.jp)
-// - SMTP_FROM_NAME (default KCP Website)
-// - MAIL_TO (default fixed $to)
+// Gmail SMTP (Google Workspace) — all from .env (see .env.example)
+// Required: SMTP_USER, SMTP_PASS, MAIL_TO
+// Optional: SMTP_HOST, SMTP_PORT, SMTP_SECURE, SMTP_FROM, SMTP_FROM_NAME,
+//           MAIL_CC, MAIL_REPLY_FALLBACK, MAIL_SUBJECT_PREFIX, MAIL_AUTOREPLY_SUBJECT
 $smtpHost = env_or_default('SMTP_HOST', 'smtp.gmail.com');
 $smtpPort = intval(env_or_default('SMTP_PORT', '587'));
 $smtpSecure = env_or_default('SMTP_SECURE', 'tls');
@@ -247,10 +236,16 @@ $smtpUser = env_or_default('SMTP_USER', '');
 $smtpPass = env_or_default('SMTP_PASS', '');
 $fromEmail = env_or_default('SMTP_FROM', 'info@kcp.ac.jp');
 $fromName = env_or_default('SMTP_FROM_NAME', 'KCP Website');
-$to = env_or_default('MAIL_TO', $to);
+$to = env_or_default('MAIL_TO', '');
+$replyFallback = env_or_default('MAIL_REPLY_FALLBACK', $fromEmail);
+$replyTo = ($userEmail !== '') ? $userEmail : $replyFallback;
+$autoReplySubject = env_or_default('MAIL_AUTOREPLY_SUBJECT', '【KCP】申請ありがとうございます');
 
+if ($to === '') {
+  json_out(500, array('ok' => false, 'error' => 'Missing MAIL_TO (set in .env)'));
+}
 if ($smtpUser === '' || $smtpPass === '') {
-  json_out(500, array('ok' => false, 'error' => 'Missing SMTP_USER/SMTP_PASS env vars'));
+  json_out(500, array('ok' => false, 'error' => 'Missing SMTP_USER/SMTP_PASS (set in .env)'));
 }
 
 try {
@@ -313,7 +308,7 @@ try {
     $mail2->setFrom($fromEmail, $fromName);
     $mail2->addAddress($userEmail);
     $mail2->addReplyTo($fromEmail);
-    $mail2->Subject = '【KCP】申請ありがとうございます';
+    $mail2->Subject = $autoReplySubject;
     $mail2->isHTML(true);
     $mail2->Body = $autoReplyHtml;
     $mail2->AltBody = $autoReplyText;

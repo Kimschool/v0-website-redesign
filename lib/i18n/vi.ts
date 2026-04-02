@@ -232,6 +232,11 @@ const vi = {
       { title: "Bài ca trường \"Ở đây và bây giờ\"", subtitle: "School Song" },
       { title: "Bài hát cổ vũ \"Trời và sao\"", subtitle: "Cheering Song" },
     ],
+    showVideo: "Phát video",
+    hideVideo: "Thu gọn",
+    openInNewTab: "Mở tab mới",
+    alternateWatch: "Xem trên Weibo / liên kết Trung Quốc",
+    youtubeWatch: "Xem trên YouTube",
   },
 
   // CTA

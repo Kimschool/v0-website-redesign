@@ -3,7 +3,7 @@
 import dynamic from "next/dynamic"
 import type { ImageFlipbookViewerProps } from "@/components/image-flipbook-viewer"
 
-/** react-pageflip はクライアントのみ */
+/** react-pageflip is client-only */
 export const PdfFlipbookViewerLazy = dynamic<ImageFlipbookViewerProps>(
   () =>
     import("@/components/image-flipbook-viewer").then((m) => m.ImageFlipbookViewer),

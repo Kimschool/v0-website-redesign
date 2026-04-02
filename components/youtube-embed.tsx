@@ -7,17 +7,21 @@ import { cn } from "@/lib/utils"
 export const KCP_SCHOOL_SONG_YOUTUBE_ID = "EvPu_-KFGO8"
 export const KCP_CHEERING_SONG_YOUTUBE_ID = "H0yjMXTobUU"
 
-/** クリック後に iframe を載せる（YouTube URL は HTML の video タグでは再生できない） */
+/** Load the iframe only after click (YouTube URLs cannot play in a plain HTML video tag). */
 export function YouTubeEmbed({
   videoId,
   title,
   className,
+  playAriaLabel,
 }: {
   videoId: string
   title: string
   className?: string
+  /** Accessible label for the poster play button (defaults to Japanese) */
+  playAriaLabel?: string
 }) {
   const [active, setActive] = useState(false)
+  const label = playAriaLabel ?? `${title}を再生`
 
   return (
     <div
@@ -40,9 +44,9 @@ export function YouTubeEmbed({
           type="button"
           onClick={() => setActive(true)}
           className="group absolute inset-0 z-10 m-0 block h-full w-full cursor-pointer border-0 p-0 text-left outline-none ring-offset-2 focus-visible:ring-2 focus-visible:ring-primary"
-          aria-label={`${title}を再生`}
+          aria-label={label}
         >
-          {/* eslint-disable-next-line @next/next/no-img-element -- YouTube サムネ */}
+          {/* eslint-disable-next-line @next/next/no-img-element -- YouTube thumbnail URL */}
           <img
             src={`https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`}
             alt=""

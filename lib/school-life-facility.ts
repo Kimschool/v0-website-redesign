@@ -1,6 +1,6 @@
 const dir = encodeURIComponent("施設案内")
 
-/** 学校生活ページ「施設案内」と同一の画像パス（順序は facilityItems.0〜10 と対応） */
+/** Same image paths as School Life “facilities” (order matches facilityItems 0–10) */
 export const SCHOOL_LIFE_FACILITY_IMAGES = [
   `${encodeURIComponent("01_校舍全景")}.jpg`,
   `${encodeURIComponent("02_校庭")}.jpg`,

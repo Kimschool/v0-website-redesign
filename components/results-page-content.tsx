@@ -5,7 +5,7 @@ import Image from "next/image"
 import { useTranslation } from "react-i18next"
 import { PageBreadcrumb } from "@/components/page-breadcrumb"
 
-// 2024年度データ（大学 + 大学院の2階層）
+// FY2024 data (undergraduate + graduate tiers)
 const data2024 = {
   大学: {
     国公立: ["東北大学", "東京農工大学", "茨城大学", "山口大学"],
@@ -38,7 +38,7 @@ const data2024 = {
   }
 }
 
-// 2023年度データ
+// FY2023 data
 const data2023 = {
   国公立: [
     "東京工業大学", "一橋大学", "京都大学", "九州大学", "名古屋大学", "筑波大学",
@@ -57,7 +57,7 @@ const data2023 = {
   ]
 }
 
-// 2022-2019年度データ
+// FY2019–2022 data
 const pastYearsData: Record<string, { 国公立: string[]; 私立: string[] }> = {
   "2022": {
     国公立: [
@@ -143,14 +143,14 @@ const pastYearsData: Record<string, { 国公立: string[]; 私立: string[] }> =
   }
 }
 
-// 卒業生データ
+// Alumni spotlight data
 const alumniData = [
   {
     id: "chin",
     name: "陳　子栄さん / 中国出身",
     school: "進学先：東京大学 理科二類",
     image: "/images/alumni/チンシエイさん.JPG",
-    /** 사진이 반쪽만 보이는 이슈가 있어 강제 좌측 크롭을 해제하고 중앙 기준으로 맞춥니다. */
+    /** Disable forced left crop; center the image (fixes half-face crop). */
     imageCropLeftWide: false,
     imagePosition: "center",
     highlightLines: ["2025年EJU日本語最高点"],
@@ -190,9 +190,9 @@ const alumniData = [
     name: "Patrick Grainger さん / アメリカ出身",
     job: "現  職： 東京防災救急協会",
     image: "/images/alumni/パトリックさん.png",
-    /** 사진이 잘려 보이는 이슈가 있어 강제 좌측 크롭을 해제하고 중앙 기준으로 꽉 차게 표시합니다. */
+    /** Disable forced left crop; center and fill (fixes unwanted cropping). */
     imageCropLeftWide: false,
-    // object-cover로 인해 상단이 살짝 잘리는 편이라 얼굴이 위로 더 보이도록 y값을 조정합니다.
+    // Nudge vertical position: object-cover was clipping the top of the face slightly.
     imagePosition: "center 35%",
     featured: true,
     paragraphs: [
@@ -390,7 +390,7 @@ function YearResultsAlignedLayout() {
   )
 }
 
-// 卒業生カード（クリックで展開）
+// Alumni card (click to expand)
 function AlumniCard({ alumni, compact }: { alumni: typeof alumniData[number]; compact: boolean }) {
   const [expanded, setExpanded] = useState(false)
   const { t } = useTranslation()
@@ -605,7 +605,7 @@ export function ResultsPageContent() {
 
       <div className="py-20 px-4 md:px-8 lg:px-16">
         <div className="max-w-5xl mx-auto">
-          {/* 進学実績一覧 */}
+          {/* Placement results list */}
           <div className="mb-16">
             <h2 className="font-serif text-3xl md:text-4xl font-bold text-gray-900 mb-8 flex items-center gap-3">
               <span className="inline-block w-1.5 h-8 rounded-full bg-[#0085b2]" />
@@ -617,7 +617,7 @@ export function ResultsPageContent() {
 
           <div className="w-full h-px bg-gray-300 mb-16" />
 
-          {/* 卒業生の声 */}
+          {/* Graduate voices */}
           <div>
             <h2 className="font-serif text-3xl md:text-4xl font-bold text-gray-900 mb-12 flex items-center gap-3">
               <span className="inline-block w-1.5 h-8 rounded-full bg-[#0085b2]" />

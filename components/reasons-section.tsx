@@ -6,9 +6,9 @@ import { useTranslation } from "react-i18next"
 
 const reasonIcons = [Sparkles, Users, Briefcase]
 const reasonImages = [
-  "https://weavus-group.com/kcp/wp-content/uploads/2025/11/EJU.jpg",
-  "https://weavus-group.com/kcp/wp-content/uploads/2025/07/31e0362326d434d6dbc1d2390aa01eff.jpg",
-  "https://weavus-group.com/kcp/wp-content/uploads/2025/11/c6d0b891872831f84c0c747a5da2a261.jpg",
+  "/images/weavus/EJU.jpg",
+  "/images/weavus/31e0362326d434d6dbc1d2390aa01eff.jpg",
+  "/images/weavus/c6d0b891872831f84c0c747a5da2a261.jpg",
 ]
 
 export function ReasonsSection() {

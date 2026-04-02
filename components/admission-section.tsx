@@ -25,7 +25,7 @@ type PamphletLanguage = {
   pdfPath: string
 }
 
-/** Flipbook（画像）配置先。言語別に `${base}/{lang}/manifest.json` を想定 */
+/** Flipbook image assets live under `${base}/{lang}/manifest.json` per language. */
 const PAMPHLET_FLIPBOOK_MANIFEST_BASE_URL = "/flipbooks/pamphlet"
 
 export function AdmissionSection() {

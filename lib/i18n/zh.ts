@@ -219,6 +219,11 @@ const zh = {
       { title: "校歌「此刻此地」", subtitle: "School Song" },
       { title: "应援歌「天空与星星」", subtitle: "Cheering Song" },
     ],
+    showVideo: "播放视频",
+    hideVideo: "收起",
+    openInNewTab: "在新标签页打开",
+    alternateWatch: "在微博／国内链接观看",
+    youtubeWatch: "在 YouTube 观看",
   },
 
   // CTA

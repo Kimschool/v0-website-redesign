@@ -77,7 +77,7 @@ export function AchievementSection() {
                   strokeWidth="28"
                   opacity="0.08"
                 />
-                {/* 進学 50% - green */}
+                {/* Further study 50% - green */}
                 <circle
                   cx="100"
                   cy="100"
@@ -89,7 +89,7 @@ export function AchievementSection() {
                   strokeDashoffset="0"
                   className="drop-shadow-lg"
                 />
-                {/* その他 40% - warm gold */}
+                {/* Other 40% - warm gold */}
                 <circle
                   cx="100"
                   cy="100"
@@ -101,7 +101,7 @@ export function AchievementSection() {
                   strokeDashoffset="-219.91"
                   className="drop-shadow-lg"
                 />
-                {/* 就職 10% - coral */}
+                {/* Employment 10% - coral */}
                 <circle
                   cx="100"
                   cy="100"

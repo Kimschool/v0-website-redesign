@@ -6,16 +6,16 @@ import { useTranslation } from "react-i18next"
 
 type Phase = "typing1a" | "typing1b" | "typing2" | "page2" | "fadeout"
 
-// ===== 여기서 패턴을 선택하세요 =====
-// "pattern1" - 원형 웨이브 애니메이션 (물결처럼 퍼지는 원들)
-// "pattern2" - 스플릿 슬라이드 (화면이 좌우로 갈라지며 로고 등장)
-// "pattern3" - 모자이크 그리드 (그리드가 순차적으로 나타났다 사라짐)
+// ===== Choose loading pattern here =====
+// "pattern1" - Circular wave animation (expanding rings)
+// "pattern2" - Split slide (left/right panels reveal the logo)
+// "pattern3" - Mosaic grid (tiles appear then clear)
 const LOADING_PATTERN: "pattern1" | "pattern2" | "pattern3" = "pattern1"
 // ===================================
 
 const CHAR_INTERVAL = 150
 
-// Pattern 1: 원형 웨이브 애니메이션
+// Pattern 1: circular wave animation
 function Pattern1({ phase, imageVisible }: { phase: Phase; imageVisible: boolean }) {
   const { t } = useTranslation()
   const LINE1_A = t("loading.line1a")
@@ -78,9 +78,9 @@ function Pattern1({ phase, imageVisible }: { phase: Phase; imageVisible: boolean
 
   return (
     <>
-      {/* Page 2: 원형 웨이브와 로고 */}
+      {/* Page 2: circular waves + logo */}
       <div className="absolute inset-0 bg-[#0085b2] flex items-center justify-center z-0 overflow-hidden">
-        {/* 웨이브 원들 */}
+        {/* Expanding ring decorations */}
         <div className="absolute inset-0 flex items-center justify-center">
           {[...Array(4)].map((_, i) => (
             <div
@@ -96,7 +96,7 @@ function Pattern1({ phase, imageVisible }: { phase: Phase; imageVisible: boolean
             />
           ))}
         </div>
-        {/* 로고（認定マーク＋KCP など合成画像・1.5倍） */}
+        {/* Logo (composite mark + KCP, ~1.5x display size) */}
         <div
           className="relative w-[420px] h-[420px] md:w-[600px] md:h-[600px] z-10"
           style={{
@@ -115,7 +115,7 @@ function Pattern1({ phase, imageVisible }: { phase: Phase; imageVisible: boolean
         </div>
       </div>
 
-      {/* Page 1: 타이핑 애니메이션 + 물결 배경 */}
+      {/* Page 1: typing animation + soft background */}
       <div
         className="absolute inset-0 bg-gradient-to-br from-white via-blue-50 to-white flex items-center justify-center z-10 overflow-hidden"
         style={{
@@ -124,7 +124,7 @@ function Pattern1({ phase, imageVisible }: { phase: Phase; imageVisible: boolean
           pointerEvents: isPage1 ? "auto" : "none",
         }}
       >
-        {/* 움직이는 배경 원들 */}
+        {/* Pulsing background circles */}
         <div className="absolute inset-0">
           <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-[#0085b2]/5 rounded-full animate-pulse" />
           <div className="absolute bottom-1/4 right-1/4 w-48 h-48 bg-[#0085b2]/5 rounded-full animate-pulse delay-300" />
@@ -158,7 +158,7 @@ function Pattern1({ phase, imageVisible }: { phase: Phase; imageVisible: boolean
   )
 }
 
-// Pattern 2: 스플릿 슬라이드 애니메이션
+// Pattern 2: split-slide animation
 function Pattern2({ phase, imageVisible }: { phase: Phase; imageVisible: boolean }) {
   const { t } = useTranslation()
   const LINE1_A = t("loading.line1a")
@@ -209,9 +209,9 @@ function Pattern2({ phase, imageVisible }: { phase: Phase; imageVisible: boolean
 
   return (
     <>
-      {/* Page 2: 로고와 선 장식 */}
+      {/* Page 2: logo + horizontal lines */}
       <div className="absolute inset-0 bg-[#0085b2] flex items-center justify-center z-0 overflow-hidden">
-        {/* 수평 라인 장식 */}
+        {/* Horizontal accent lines */}
         <div
           className="absolute left-0 right-0 h-[1px] bg-white/30"
           style={{
@@ -228,7 +228,7 @@ function Pattern2({ phase, imageVisible }: { phase: Phase; imageVisible: boolean
             transition: "transform 800ms ease-out 200ms",
           }}
         />
-        {/* 로고（1.5倍） */}
+        {/* Logo (~1.5x) */}
         <div
           className="relative w-[420px] h-[420px] md:w-[600px] md:h-[600px] z-10"
           style={{
@@ -247,14 +247,14 @@ function Pattern2({ phase, imageVisible }: { phase: Phase; imageVisible: boolean
         </div>
       </div>
 
-      {/* Page 1: 스플릿 슬라이드 */}
+      {/* Page 1: split panels slide away */}
       <div
         className="absolute inset-0 z-10 overflow-hidden"
         style={{
           pointerEvents: isPage1 ? "auto" : "none",
         }}
       >
-        {/* 왼쪽 패널 */}
+        {/* Left panel */}
         <div
           className="absolute top-0 left-0 w-1/2 h-full bg-white"
           style={{
@@ -262,7 +262,7 @@ function Pattern2({ phase, imageVisible }: { phase: Phase; imageVisible: boolean
             transition: "transform 600ms cubic-bezier(.83,0,.17,1)",
           }}
         />
-        {/* 오른쪽 패널 */}
+        {/* Right panel */}
         <div
           className="absolute top-0 right-0 w-1/2 h-full bg-white"
           style={{
@@ -270,7 +270,7 @@ function Pattern2({ phase, imageVisible }: { phase: Phase; imageVisible: boolean
             transition: "transform 600ms cubic-bezier(.83,0,.17,1)",
           }}
         />
-        {/* 텍스트 */}
+        {/* Typed headline */}
         <div
           className="absolute inset-0 flex items-center justify-center z-20"
           style={{
@@ -308,7 +308,7 @@ function Pattern2({ phase, imageVisible }: { phase: Phase; imageVisible: boolean
   )
 }
 
-// Pattern 3: 모자이크 그리드 애니메이션
+// Pattern 3: mosaic grid animation
 function Pattern3({ phase, imageVisible }: { phase: Phase; imageVisible: boolean }) {
   const { t } = useTranslation()
   const LINE1_A = t("loading.line1a")
@@ -357,18 +357,18 @@ function Pattern3({ phase, imageVisible }: { phase: Phase; imageVisible: boolean
 
   const isPage1 = phase === "typing1a" || phase === "typing1b" || phase === "typing2"
 
-  // 그리드 타일 생성 (4x4 = 16개)
+  // Build a 4x4 (16) tile grid
   const tiles = [...Array(16)].map((_, i) => ({
     row: Math.floor(i / 4),
     col: i % 4,
-    delay: (Math.floor(i / 4) + (i % 4)) * 50, // 대각선으로 순차 애니메이션
+    delay: (Math.floor(i / 4) + (i % 4)) * 50, // stagger along diagonals
   }))
 
   return (
     <>
-      {/* Page 2: 로고와 점 패턴 */}
+      {/* Page 2: logo + dot pattern */}
       <div className="absolute inset-0 bg-[#0085b2] flex items-center justify-center z-0 overflow-hidden">
-        {/* 점 패턴 배경 */}
+        {/* Dotted background */}
         <div className="absolute inset-0 opacity-10">
           <div
             className="w-full h-full"
@@ -378,7 +378,7 @@ function Pattern3({ phase, imageVisible }: { phase: Phase; imageVisible: boolean
             }}
           />
         </div>
-        {/* 로고（1.5倍） */}
+        {/* Logo (~1.5x) */}
         <div
           className="relative w-[420px] h-[420px] md:w-[600px] md:h-[600px] z-10"
           style={{
@@ -397,14 +397,14 @@ function Pattern3({ phase, imageVisible }: { phase: Phase; imageVisible: boolean
         </div>
       </div>
 
-      {/* Page 1: 모자이크 그리드 */}
+      {/* Page 1: mosaic grid */}
       <div
         className="absolute inset-0 z-10 overflow-hidden"
         style={{
           pointerEvents: isPage1 ? "auto" : "none",
         }}
       >
-        {/* 그리드 타일들 */}
+        {/* Grid tiles */}
         <div className="absolute inset-0 grid grid-cols-4 grid-rows-4">
           {tiles.map((tile, i) => (
             <div
@@ -418,7 +418,7 @@ function Pattern3({ phase, imageVisible }: { phase: Phase; imageVisible: boolean
             />
           ))}
         </div>
-        {/* 텍스트 */}
+        {/* Typed headline */}
         <div
           className="absolute inset-0 flex items-center justify-center z-20"
           style={{
@@ -475,38 +475,38 @@ export function LoadingScreen() {
 
     document.body.style.overflow = "hidden"
 
-    // 타이밍 시퀀스
+    // Animation timing sequence
     const line1aTime = LINE1_A.length * CHAR_INTERVAL
     const line1bTime = LINE1_B.length * CHAR_INTERVAL
     const line2Time = LINE2.length * CHAR_INTERVAL
 
-    // typing1a 완료 후 -> typing1b
+    // After typing1a -> typing1b
     const timer1 = setTimeout(() => {
       setPhase("typing1b")
     }, line1aTime + 200)
 
-    // typing1b 완료 후 -> typing2
+    // After typing1b -> typing2
     const timer2 = setTimeout(() => {
       setPhase("typing2")
     }, line1aTime + 200 + line1bTime + 200)
 
-    // typing2 완료 후 -> page2
+    // After typing2 -> page2
     const timer3 = setTimeout(() => {
       setPhase("page2")
     }, line1aTime + 200 + line1bTime + 200 + line2Time + 600)
 
-    // page2 시작 후 이미지 표시
+    // Reveal logo shortly after page2
     const timer4 = setTimeout(() => {
       setImageVisible(true)
     }, line1aTime + 200 + line1bTime + 200 + line2Time + 800)
 
-    // fadeout 시작
+    // Start fade-out
     const timer5 = setTimeout(() => {
       setPhase("fadeout")
       sessionStorage.setItem("kcp-loading-shown", "true")
     }, line1aTime + 200 + line1bTime + 200 + line2Time + 800 + 1200)
 
-    // DOM에서 제거
+    // Unmount overlay
     const timer6 = setTimeout(() => {
       setIsVisible(false)
       setShouldRender(false)

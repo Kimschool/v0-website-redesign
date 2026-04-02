@@ -39,8 +39,8 @@ function Download-TtfByWeight($Css, $FontPrefix, $Weights) {
 $root = Resolve-Path (Join-Path $PSScriptRoot "..")
 $outDir = Join-Path $root "public\\fonts"
 
-# NOTE: 이 환경에서는 Google Fonts CSS 응답에 woff2가 아닌 ttf만 내려옵니다.
-# 따라서 필요한 굵기만 지정해 ttf를 weight별로 다운로드합니다.
+# NOTE: In this environment the Google Fonts CSS response serves TTF only (no woff2).
+# We request specific weights and download one TTF per weight.
 $sansWeights = @(300, 400, 500, 600, 700)
 $serifWeights = @(400, 500, 600, 700)
 

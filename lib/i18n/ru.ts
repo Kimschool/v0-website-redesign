@@ -232,6 +232,11 @@ const ru = {
       { title: "Гимн школы «Здесь и сейчас»", subtitle: "School Song" },
       { title: "Песня поддержки «Небо и звёзды»", subtitle: "Cheering Song" },
     ],
+    showVideo: "Воспроизвести видео",
+    hideVideo: "Свернуть",
+    openInNewTab: "Открыть в новой вкладке",
+    alternateWatch: "Смотреть в Weibo / китайская ссылка",
+    youtubeWatch: "Смотреть на YouTube",
   },
 
   // CTA

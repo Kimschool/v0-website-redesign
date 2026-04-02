@@ -6,14 +6,14 @@ import { getDocument, GlobalWorkerOptions, version } from "pdfjs-dist"
 GlobalWorkerOptions.workerSrc = `/pdfjs/pdf.worker.min.mjs?v=${version}`
 
 type Props = {
-  /** 同一オリジンの PDF URL（例: /documents/gakusoku.pdf） */
+  /** Same-origin PDF URL (e.g. /documents/gakusoku.pdf) */
   pdfUrl: string
 }
 
 /**
- * PDF.js で各ページを canvas に描画するデモ。
- * ブラウザの「PDFを開く」タブより、右クリック「名前を付けて保存」しづらいが、
- * 印刷・スクリーンショット・DevTools・画面録画では防げない。
+ * Demo: render each PDF page to a canvas with PDF.js.
+ * Slightly harder to "Save as" than opening the PDF in a new tab, but not copy-proof
+ * (print, screenshots, DevTools, screen recording still apply).
  */
 export function SamplePdfCanvasViewer({ pdfUrl }: Props) {
   const hostRef = useRef<HTMLDivElement>(null)

@@ -2,7 +2,7 @@
 
 import dynamic from "next/dynamic"
 
-/** pdfjs が Node SSR で評価されると Promise.withResolvers 等で失敗するため、クライアントのみ読み込む */
+/** Load pdfjs on the client only; evaluating it during Node SSR can throw (e.g. Promise.withResolvers) */
 export const PdfCanvasViewerLazy = dynamic(
   () =>
     import("@/components/sample-pdf-canvas-viewer").then((m) => m.SamplePdfCanvasViewer),

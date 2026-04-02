@@ -16,12 +16,12 @@ import { cn } from "@/lib/utils"
 
 GlobalWorkerOptions.workerSrc = `/pdfjs/pdf.worker.min.mjs?v=${version}`
 
-/** 1ページあたりの論理幅（CSS px）。大きすぎると初回レンダーが重い */
+/** Logical page width in CSS px; very large values slow first paint */
 const DEFAULT_PAGE_CSS_WIDTH = 440
 
 /**
- * 表示は pageCssWidth のままだが、PDF→画像はこの倍率で広いビットマップにする。
- * 全画面の transform: scale(〜3) 後も潰れにくくする（メモリ・初回時間は増える）。
+ * Keep on-screen size at pageCssWidth but rasterize PDF pages at this supersample factor.
+ * Reduces blur after fullscreen scale (~3x) at the cost of memory and first-render time.
  */
 const PDF_RASTER_SUPERSAMPLE_DESKTOP = 3
 const PDF_RASTER_SUPERSAMPLE_MOBILE = 1.85
@@ -58,11 +58,11 @@ async function exitFullscreenDoc(): Promise<void> {
 
 export type SamplePdfFlipbookViewerProps = {
   pdfUrl: string
-  /** モーダルなど狭いレイアウト用（未指定時 440） */
+  /** Narrow layouts (e.g. modal); default 440 */
   pageCssWidth?: number
-  /** 下部の操作ヒント（未指定時 true） */
+  /** Footer usage hint; default true */
   showFooterHint?: boolean
-  /** 全画面ボタン（未指定時 true） */
+  /** Fullscreen toggle; default true */
   showFullscreenButton?: boolean
 }
 
@@ -85,7 +85,7 @@ const FlipPage = forwardRef<
       ref={ref}
       className="h-full w-full overflow-hidden bg-neutral-900 shadow-inner"
     >
-      {/* eslint-disable-next-line @next/next/no-img-element -- PDFページは canvas から生成した data URL */}
+      {/* eslint-disable-next-line @next/next/no-img-element -- page images are data URLs from canvas */}
       <img
         src={src}
         alt={alt}
@@ -110,7 +110,7 @@ export function SamplePdfFlipbookViewer({
   const bookStageRef = useRef<HTMLDivElement | null>(null)
   const [isFullscreen, setIsFullscreen] = useState(false)
   const [fullscreenScale, setFullscreenScale] = useState(1)
-  /** 狭い画面のみ 1 ページ（縦）。それ以外は見開き 2 ページ */
+  /** Single portrait page on small screens; two-page spread otherwise */
   const [usePortraitLayout, setUsePortraitLayout] = useState(false)
   const [status, setStatus] = useState<"idle" | "loading" | "ready" | "error">(
     "idle"
@@ -242,11 +242,11 @@ export function SamplePdfFlipbookViewer({
         await enterFullscreen(el)
       }
     } catch {
-      // ブラウザが全画面を拒否した場合など
+      // e.g. browser denied fullscreen
     }
   }, [])
 
-  /** 見開き幅は概算（実 DOM が取れない・変な値のときにも合わせる） */
+  /** Approximate spread width when DOM metrics are missing or unreliable */
   const recomputeFullscreenScale = useCallback(() => {
     const stage = bookStageRef.current
     if (!isFullscreen || !stage) return

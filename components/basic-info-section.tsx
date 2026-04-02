@@ -16,9 +16,9 @@ import { PdfCanvasViewerLazy } from "@/components/pdf-canvas-viewer-lazy"
 const GAKUSOKU_PDF_URL = "/documents/gakusoku.pdf"
 
 const SELF_EVAL_PDF_HREFS = [
-  "https://weavus-group.com/kcp/wp-content/uploads/2025/11/evaluation20251029.pdf",
-  "https://weavus-group.com/kcp/wp-content/uploads/2025/11/evaluation20241028.pdf",
-  "https://weavus-group.com/kcp/wp-content/uploads/2025/11/kateishuryo-japanese20250526.pdf",
+  "/images/weavus/evaluation20251029.pdf",
+  "/images/weavus/evaluation20241028.pdf",
+  "/images/weavus/kateishuryo-japanese20250526.pdf",
 ] as const
 
 type InfoItem = { label: string; value: string; href?: string }
@@ -94,7 +94,7 @@ export function BasicInfoSection() {
           {t("basicInfoPage.subtitle")}
         </p>
 
-        {/* 基本情報 */}
+        {/* Basic info */}
         <div className={`mb-14 md:mb-20 ${isVisible ? "animate-fade-in-up animation-delay-100" : "opacity-0"}`}>
           <h2 className="text-2xl md:text-3xl font-bold text-[#0085b2] mb-8 md:mb-10">
             {t("basicInfoPage.basicInfoTitle")}
@@ -121,7 +121,7 @@ export function BasicInfoSection() {
 
         <hr className="border-gray-200 mb-14 md:mb-20" />
 
-        {/* 学則 */}
+        {/* School regulations */}
         <div className={`mb-14 md:mb-20 ${isVisible ? "animate-fade-in-up animation-delay-200" : "opacity-0"}`}>
           <h2 className="text-2xl md:text-3xl font-bold text-[#0085b2] mb-6 md:mb-8">
             {t("basicInfoPage.regulationsTitle")}
@@ -160,7 +160,7 @@ export function BasicInfoSection() {
 
         <hr className="border-gray-200 mb-14 md:mb-20" />
 
-        {/* 自己点検・評価の結果 */}
+        {/* Self-check & evaluation results */}
         <div className={`${isVisible ? "animate-fade-in-up animation-delay-300" : "opacity-0"}`}>
           <h2 className="text-2xl md:text-3xl font-bold text-[#0085b2] mb-6 md:mb-8">
             {t("basicInfoPage.selfEvalTitle")}

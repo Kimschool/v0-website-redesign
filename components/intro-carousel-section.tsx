@@ -8,13 +8,13 @@ import { ChevronLeft, ChevronRight } from "lucide-react"
 
 /** Slide order maps to features.featureTexts indices (same meaning as former hardcoded captions) */
 const CAROUSEL_SLIDES = [
-  { image: "https://weavus-group.com/kcp/wp-content/uploads/2025/11/EJU.jpg", featureTextIndex: 0 },
-  { image: "https://weavus-group.com/kcp/wp-content/uploads/2025/07/31e0362326d434d6dbc1d2390aa01eff.jpg", featureTextIndex: 2 },
-  { image: "https://weavus-group.com/kcp/wp-content/uploads/2025/11/2aaf315dd8c8254983b5ed098691efcd-rotated.jpg", featureTextIndex: 4 },
-  { image: "https://weavus-group.com/kcp/wp-content/uploads/2025/11/1f9820d2152d8e9bcc962b8600ef019d.jpg", featureTextIndex: 1 },
-  { image: "https://weavus-group.com/kcp/wp-content/uploads/2025/11/c6d0b891872831f84c0c747a5da2a261.jpg", featureTextIndex: 6 },
-  { image: "https://weavus-group.com/kcp/wp-content/uploads/2025/07/f3680d56ae6dfb979b5be7961e73155c.jpg", featureTextIndex: 5 },
-  { image: "https://weavus-group.com/kcp/wp-content/uploads/2025/07/1c279b72c09a930d753cc9f263d78c88.jpg", featureTextIndex: 3 },
+  { image: "/images/weavus/EJU.jpg", featureTextIndex: 0 },
+  { image: "/images/weavus/31e0362326d434d6dbc1d2390aa01eff.jpg", featureTextIndex: 2 },
+  { image: "/images/weavus/2aaf315dd8c8254983b5ed098691efcd-rotated.jpg", featureTextIndex: 4 },
+  { image: "/images/weavus/1f9820d2152d8e9bcc962b8600ef019d.jpg", featureTextIndex: 1 },
+  { image: "/images/weavus/c6d0b891872831f84c0c747a5da2a261.jpg", featureTextIndex: 6 },
+  { image: "/images/weavus/f3680d56ae6dfb979b5be7961e73155c.jpg", featureTextIndex: 5 },
+  { image: "/images/weavus/1c279b72c09a930d753cc9f263d78c88.jpg", featureTextIndex: 3 },
 ] as const
 
 export function IntroCarouselSection() {

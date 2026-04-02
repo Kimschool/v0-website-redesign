@@ -134,7 +134,7 @@ export function AboutSection() {
     <section ref={sectionRef} id="about" className="bg-background">
       {/* Page Banner - aligned with other sections */}
       <div className="relative h-[350px] md:h-[400px] w-full overflow-hidden">
-        {/* 写真の左70%のみ表示（右30%の別建物をカット）— 幅100/0.7で左寄せし親でクリップ */}
+        {/* Show left ~70% of photo (crop right building); w-[100/0.7]% left-aligned, parent clips */}
         <div className="absolute inset-0 overflow-hidden" aria-hidden>
           <div className="absolute inset-y-0 left-0 h-full w-[142.857%] min-w-0">
             <Image
@@ -157,7 +157,7 @@ export function AboutSection() {
         </div>
       </div>
 
-      {/* Philosophy — tagline, KCP letters, intro copy (타이틀: Noto Serif JP / 컬러: #1d3557 · #0088b3 · #d1d5db) */}
+      {/* Philosophy — tagline, KCP letters, intro (titles: Noto Serif JP; colors: #1d3557 · #0088b3 · #d1d5db) */}
       <div className="relative bg-white">
         <div className="container mx-auto px-4 md:px-6 py-24 md:py-16">
           <div className={`max-w-5xl mx-auto text-center ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>

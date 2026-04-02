@@ -8,31 +8,6 @@ html {
   overflow-y: scroll;
 }
 
-/* i18n(react-i18next) が zh のとき、中国語用フォントへ差し替え
- * --font-sans-zh / --font-serif-zh は next/font が body に付与するため、
- * html ではなく body 上で上書きしないと var() が解決されない */
-html[data-lang^='zh'] body {
-  --font-sans: var(--font-sans-zh);
-  --font-serif: var(--font-serif-zh);
-  /* 굵기 합성으로 인한 “얇/두꺼움 혼재”를 줄이기 */
-  font-synthesis: none;
-  /* 가능한 경우 간체자 로컬 폼 우선 */
-  font-variant-east-asian: simplified;
-  /* 폰트 로딩/대체 중에도 자간/획 두께가 요동치지 않게 */
-  text-rendering: geometricPrecision;
-}
-
-/* zh에서 타이틀(명조)의 굵기를 일관되게 고정(얇/두꺼움 혼재 방지) */
-html[data-lang^='zh'] body h1.font-serif,
-html[data-lang^='zh'] body h2.font-serif,
-html[data-lang^='zh'] body h3.font-serif,
-html[data-lang^='zh'] body h4.font-serif,
-html[data-lang^='zh'] body .font-serif.font-bold,
-html[data-lang^='zh'] body .font-serif.font-extrabold,
-html[data-lang^='zh'] body .font-serif.font-black {
-  font-weight: 600;
-}
-
 body {
   overflow-y: auto;
 }

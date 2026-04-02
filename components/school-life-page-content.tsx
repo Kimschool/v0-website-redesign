@@ -15,29 +15,29 @@ import {
 import { getFacilitySlides } from "@/lib/school-life-facility"
 import { FacilityShowcaseHero } from "@/components/school-life-facility-carousel-showcases"
 
-/** ヘッダー・トップカードからの /school-life#... スクロール先 */
+/** Section ids targeted by /school-life#... links from the header and top cards */
 const SCHOOL_LIFE_SECTION_HASH_IDS = new Set(["access", "schedule", "clubs", "facilities"])
 
-/** 学校所在地 — Google 埋め込み（非中国語） */
+/** Campus location — Google Maps embed (non-Chinese UI) */
 const KCP_GOOGLE_MAPS_EMBED_SRC =
   "https://www.google.com/maps?q=東京都新宿区新宿1-29-12&z=18&output=embed"
 
-/** 新宿校舎 WGS84（OpenStreetMap embed / リンク用） */
+/** Shinjuku campus WGS84 (OpenStreetMap embed / map link) */
 const KCP_LAT = 35.68932
 const KCP_LNG = 139.71245
 
-/** 中国語 UI 用：百度・高德の埋め込みを避け、OSM 埋め込み（キー不要・ブラウザでそのまま表示） */
+/** Chinese UI: avoid Baidu/Gaode embeds; use OSM iframe (no API key, works in-browser) */
 const KCP_OSM_EMBED_SRC = `https://www.openstreetmap.org/export/embed.html?bbox=${encodeURIComponent(
   `${KCP_LNG - 0.01},${KCP_LAT - 0.008},${KCP_LNG + 0.01},${KCP_LAT + 0.008}`
 )}&layer=mapnik&marker=${encodeURIComponent(`${KCP_LAT},${KCP_LNG}`)}`
 
 const KCP_OSM_VIEW_URL = `https://www.openstreetmap.org/?mlat=${KCP_LAT}&mlon=${KCP_LNG}#map=18/${KCP_LAT}/${KCP_LNG}`
 
-/** 中国語 UI 用：百度地図（中国本土で開けるリンク） */
+/** Chinese UI: Baidu Maps link (opens reliably inside mainland China) */
 const KCP_BAIDU_MAP_URL =
   "https://map.baidu.com/mobile/webapp/search/search/qt=s&da_src=shareurl&wd=%E5%AD%A6%E6%A0%A1%E6%B3%95%E4%BA%BAKCP%E5%AD%A6%E5%9B%AD%20KCP%E5%9C%B0%E7%90%83%E5%B8%82%E6%B0%91%E6%97%A5%E8%AF%AD%E5%AD%A6%E6%A0%A1&c=26041&src=0&pn=0&sug=0&l=19&b=(15552787.033853773%2C4232913.539814976%3B15553057.491579957%2C4233062.119719292)&from=webmap&biz_forward=%7B%22scaler%22%3A2%2C%22styles%22%3A%22pl%22%7D&device_ratio=2&=undefined/vt=map"
 
-/** `kcp-baidu-map.png` の実寸（低解像度を全幅に引き伸ばさないため。画像差し替え時は合わせて更新） */
+/** Intrinsic size of `kcp-baidu-map.png` (avoid upscaling low-res); update if the asset changes */
 const KCP_BAIDU_MAP_IMG_WIDTH = 1024
 const KCP_BAIDU_MAP_IMG_HEIGHT = 560
 
@@ -313,7 +313,7 @@ export function SchoolLifePageContent() {
         {/* Divider */}
         <div className="w-full h-px bg-gray-300 mb-16" />
 
-        {/* Access Section — ヘッダー CTA /school-life#access */}
+        {/* Access — header CTA targets /school-life#access */}
         <div id="access" className="mb-20 scroll-mt-24 md:scroll-mt-28">
           <h2 className="font-serif text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
             {t("schoolLifePage.accessTitle")}
@@ -324,7 +324,7 @@ export function SchoolLifePageContent() {
             <strong>{t("schoolLifePage.accessDesc2")}</strong>
           </p>
 
-          {/* Map — 中国語: 画像 + Baidu で開く（中国本土での表示対策）／その他: Google */}
+          {/* Map — zh: static image + Baidu link (mainland); others: Google embed */}
           <div className="mb-8">
             {isZh ? (
               <>

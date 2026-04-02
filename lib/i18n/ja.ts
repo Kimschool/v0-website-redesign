@@ -221,6 +221,11 @@ const ja = {
       { title: "校歌「今ここに」", subtitle: "School Song" },
       { title: "応援歌「そらとほしと」", subtitle: "Cheering Song" },
     ],
+    showVideo: "動画を再生",
+    hideVideo: "閉じる",
+    openInNewTab: "新しいタブで開く",
+    alternateWatch: "Weibo／中国向けリンクで見る",
+    youtubeWatch: "YouTubeで見る",
   },
 
   // CTA

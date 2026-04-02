@@ -27,7 +27,7 @@ type TimetableTone =
   | "prepElective"
   | "neutral"
 
-/** 項目一覧：全角「（」または半角「(」の直前で改行し、括弧以降を2行目にする */
+/** Nav titles: break before full-width 「（」 or half-width "(" and put the parenthetical on the second line */
 function splitClassContentNavTitle(title: string): { main: string; paren?: string } {
   const iWide = title.indexOf("（")
   const iAscii = title.indexOf("(")
@@ -41,12 +41,12 @@ function splitClassContentNavTitle(title: string): { main: string; paren?: strin
   return { main, paren }
 }
 
-/** 「Lv.3 / Lv.4」形式の kcp 文言を、到達目標の各行に対応するラベル配列に分解する */
+/** Split "Lv.3 / Lv.4"-style kcp strings into per-row goal labels */
 function parseKcpLevelLabels(kcp: string): string[] {
   return kcp.split(/\s*\/\s*/).map((s) => s.trim()).filter(Boolean)
 }
 
-/** 合格スケジュール：上から下へ実力が深まるイメージで水色が段階的に濃くなる */
+/** Admission schedule header bands: progressively deeper sky tones top to bottom */
 const admissionScheduleHeaderBands = [
   "bg-sky-50",
   "bg-sky-100",
@@ -445,7 +445,7 @@ export function EducationSection() {
             <div className="elegant-divider mt-8" />
           </div>
 
-          {/* 教育理念・教育方針 */}
+          {/* Philosophy & policy */}
           <div className="mb-16">
             <h2 className="font-serif text-3xl md:text-4xl font-bold text-gray-900 mb-8 flex items-center gap-3">
               <span className="inline-block w-1.5 h-8 rounded-full bg-[#0085b2]" />
@@ -463,14 +463,14 @@ export function EducationSection() {
 
           <div className="w-full h-px bg-gray-300 mb-16" />
 
-          {/* コース紹介 */}
+          {/* Course introduction */}
           <div className="mb-16" id="course1">
             <h2 className="font-serif text-3xl md:text-4xl font-bold text-gray-900 mb-8 flex items-center gap-3">
               <span className="inline-block w-1.5 h-8 rounded-full bg-[#0085b2]" />
               {t("educationPage.courseIntroTitle")}
             </h2>
 
-            {/* Tabs — セグメント型で「タブ」と分かるUI */}
+            {/* Tabs — segmented control so tabs read clearly as tabs */}
             <div className="mb-8">
               <div
                 role="tablist"
@@ -729,7 +729,7 @@ export function EducationSection() {
 
           <div className="w-full h-px bg-gray-300 mb-16" />
 
-          {/* 授業内容 */}
+          {/* Class content */}
           <div className="mb-16" id="course2">
             <h2 className="font-serif text-3xl md:text-4xl font-bold text-gray-900 mb-8 flex items-center gap-3">
               <span className="inline-block w-1.5 h-8 rounded-full bg-[#0085b2]" />
@@ -741,7 +741,7 @@ export function EducationSection() {
                 <div className="shrink-0 bg-gray-50 px-4 py-3 text-sm font-semibold text-gray-900 border-b border-gray-100">
                   項目一覧
                 </div>
-                {/* 約3件分の高さまで表示し、以降はスクロール */}
+                {/* ~3 rows visible, then scroll */}
                 <div className="max-h-[13.5rem] sm:max-h-[15rem] overflow-y-auto overscroll-y-contain divide-y divide-gray-100 [scrollbar-gutter:stable]">
                   {classContentItems.map((item) => {
                     const isActive = item.id === activeClassContentId
@@ -795,7 +795,7 @@ export function EducationSection() {
 
           <div className="w-full h-px bg-gray-300 mb-16" />
 
-          {/* 特別クラス・進路サポート */}
+          {/* Special classes & career support */}
           <div className="mb-16">
             <h2 className="font-serif text-3xl md:text-4xl font-bold text-gray-900 mb-8 flex items-center gap-3">
               <span className="inline-block w-1.5 h-8 rounded-full bg-[#0085b2]" />
@@ -864,7 +864,7 @@ export function EducationSection() {
 
           <div className="w-full h-px bg-gray-300 mb-16" />
 
-          {/* 時間割例 */}
+          {/* Sample timetables */}
           <div className="mb-16">
             <h2 className="font-serif text-3xl md:text-4xl font-bold text-gray-900 mb-8 flex items-center gap-3">
               <span className="inline-block w-1.5 h-8 rounded-full bg-[#0085b2]" />
@@ -873,7 +873,7 @@ export function EducationSection() {
 
             <p className="text-gray-700 mb-4 font-semibold">{t("educationPage.timetableNote")}</p>
 
-            {/* 初級クラス */}
+            {/* Beginner class */}
             <div className="mb-8">
               {/* Desktop table */}
               <div className="hidden md:block overflow-x-auto">
@@ -946,7 +946,7 @@ export function EducationSection() {
               </div>
             </div>
 
-            {/* 中級クラス */}
+            {/* Intermediate class */}
             <div className="mb-8">
               {/* Desktop table */}
               <div className="hidden md:block overflow-x-auto">
@@ -1022,7 +1022,7 @@ export function EducationSection() {
 
           <div className="w-full h-px bg-gray-300 mb-16" />
 
-          {/* 合格までのスケジュール */}
+          {/* Timeline to admission */}
           <div className="mb-16">
             <h2 className="font-serif text-3xl md:text-4xl font-bold text-gray-900 mb-8 flex items-center gap-3">
               <span className="inline-block w-1.5 h-8 rounded-full bg-[#0085b2]" />
@@ -1267,7 +1267,7 @@ export function EducationSection() {
             </div>
           </div>
 
-          {/* 進学実績・卒業生の声へのリンク */}
+          {/* Links: placement results & graduate voices */}
           <div className="mt-12 mb-16 text-center">
             <Link
               href="/education/results"

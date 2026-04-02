@@ -220,6 +220,11 @@ const ko = {
       { title: "교가 「지금 여기에」", subtitle: "School Song" },
       { title: "응원가 「하늘과 별과」", subtitle: "Cheering Song" },
     ],
+    showVideo: "영상 재생",
+    hideVideo: "닫기",
+    openInNewTab: "새 탭에서 열기",
+    alternateWatch: "Weibo·중국 링크에서 보기",
+    youtubeWatch: "YouTube에서 보기",
   },
 
   // CTA

@@ -30,7 +30,7 @@ export function Header() {
   const currentLanguage =
     languageOptions.find((language) => language.code === i18n.resolvedLanguage) ?? languageOptions[0]
 
-  /** NEWS系ページは常に明るい背景のため、未スクロールでもヘッダーを「固体」表示にする */
+  /** NEWS pages use a light hero background, so keep the header solid even before scroll. */
   const lightTopPage = pathname?.startsWith("/news") ?? false
   const solidNav = scrolled || lightTopPage
 
