@@ -1,0 +1,12 @@
+# さくら Apache: admin で index.php が優先されるようにする
+# （index.html などと同居する場合の保険）
+DirectoryIndex index.php index.html
+
+# .env を直接取得されないようにする（Apache 2.2 / 2.4）
+<FilesMatch "^\.env$">
+  Order allow,deny
+  Deny from all
+</FilesMatch>
+
+# PHP がサブディレクトリで無効になるプランでは、サーバマニュアルに従い
+# AddHandler 等を追加してください。

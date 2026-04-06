@@ -4,21 +4,12 @@ import { useEffect, useRef, useState, useCallback, useMemo } from "react"
 import Link from "next/link"
 import { useTranslation } from "react-i18next"
 import { Bell, ArrowRight, ChevronDown, ChevronUp } from "lucide-react"
-
-const newsItems = [
-  {
-    date: "2026.01.06",
-    title: "認定日本語教育機関に認定されました",
-    href: "/news/accreditation",
-    isNew: true,
-  },
-  {
-    date: "2025.12.25",
-    title: "2026年度予定表を公開しました",
-    href: "/news/schedule-2026",
-    isNew: false,
-  },
-]
+import {
+  fetchNewsFeedFromApi,
+  getNewsApiUrl,
+  getStaticNewsFeedItems,
+  type NewsFeedItem,
+} from "@/lib/news-feed"
 
 export function NewsSection() {
   const { t, i18n } = useTranslation()
@@ -28,19 +19,32 @@ export function NewsSection() {
   const [activeIndex, setActiveIndex] = useState(0)
   const [isTransitioning, setIsTransitioning] = useState(false)
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null)
+  const [feedItems, setFeedItems] = useState<NewsFeedItem[] | null>(null)
 
   // Some home-page news titles are hardcoded in Japanese; map to Chinese when locale is zh.
   const newsTitleZhByHref: Record<string, string> = {
-    "/news/accreditation": "认证日本语教育机构已获认证",
-    "/news/schedule-2026": "已公布2026年度日程表",
+    "/news/accreditation": "KCP地球市民日语学校获认定为「认定日语教育机构」！",
+    "/news/schedule-2026": "2026年长期休假日程",
   }
 
   const isZh = i18n.resolvedLanguage === "zh"
 
-  const displayNews = useMemo(
-    () => [...newsItems].sort((a, b) => b.date.localeCompare(a.date)).slice(0, 3),
-    []
-  )
+  useEffect(() => {
+    if (!getNewsApiUrl()) {
+      setFeedItems(getStaticNewsFeedItems())
+      return
+    }
+    const ac = new AbortController()
+    fetchNewsFeedFromApi(ac.signal).then((api) => {
+      setFeedItems(api ?? getStaticNewsFeedItems())
+    })
+    return () => ac.abort()
+  }, [])
+
+  const displayNews = useMemo(() => {
+    const base = feedItems ?? getStaticNewsFeedItems()
+    return [...base].sort((a, b) => b.date.localeCompare(a.date)).slice(0, 3)
+  }, [feedItems])
 
   const startAutoplay = useCallback(() => {
     if (intervalRef.current) clearInterval(intervalRef.current)
@@ -94,7 +98,7 @@ export function NewsSection() {
                 <div className="flex-1 min-w-0 overflow-hidden h-[44px] relative">
                   {displayNews.map((item, index) => (
                     <div
-                      key={item.href + item.date}
+                      key={item.id + item.href + item.date}
                       className={`absolute inset-0 flex items-center gap-3 sm:gap-4 transition-all duration-300 ease-in-out ${
                         index === activeIndex
                           ? isTransitioning
@@ -179,7 +183,7 @@ export function NewsSection() {
             >
               <ul className="space-y-2">
                 {displayNews.map((item) => (
-                  <li key={item.href + item.date}>
+                  <li key={item.id + item.href + item.date}>
                     <Link
                       href={item.href}
                       className="group flex flex-wrap items-center gap-3 rounded-xl border border-border/60 bg-background/90 px-4 py-3 transition hover:border-primary/35 hover:bg-primary/[0.06] hover:shadow-sm"

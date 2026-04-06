@@ -1,0 +1,5 @@
+# アップロードされたファイルの実行を防ぐ（さくら Apache 2.2 / 2.4）
+<FilesMatch "\.(php|phtml|phar|php5)$">
+  Order allow,deny
+  Deny from all
+</FilesMatch>
