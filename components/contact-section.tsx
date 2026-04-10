@@ -3,6 +3,10 @@
 import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
 import { useTranslation } from "react-i18next"
+import {
+  lookupJapanAddressByPostalCode,
+  normalizeJapanPostalDigits,
+} from "@/lib/jp-postal-lookup"
 
 type OverseasOfficeDetail = {
   label: string
@@ -36,6 +40,7 @@ export function ContactSection() {
     nationality: "",
     birthDate: "",
     studentId: "",
+    postalCode: "",
     address: "",
     phone: "",
     email: "",
@@ -47,6 +52,7 @@ export function ContactSection() {
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<{ type: "success" | "error"; message: string } | null>(null)
+  const [postalLookupStatus, setPostalLookupStatus] = useState<"idle" | "loading" | "notfound" | "error">("idle")
   const { t } = useTranslation()
   const formspreeEndpoint =
     process.env.NEXT_PUBLIC_FORMSPREE_ENDPOINT || "https://www.kcp.ac.jp/mail/send.php"
@@ -89,10 +95,35 @@ export function ContactSection() {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
+    if (name === "postalCode") {
+      setPostalLookupStatus("idle")
+    }
     setFormData((prev) => ({
       ...prev,
       [name]: value,
     }))
+  }
+
+  const postalDigitsOk = normalizeJapanPostalDigits(formData.postalCode).length === 7
+
+  const handleLookupAddressFromPostal = async () => {
+    if (!postalDigitsOk) return
+    setPostalLookupStatus("loading")
+    try {
+      const result = await lookupJapanAddressByPostalCode(formData.postalCode)
+      if (!result) {
+        setPostalLookupStatus("notfound")
+        return
+      }
+      setFormData((prev) => ({
+        ...prev,
+        postalCode: result.formattedPostal,
+        address: result.addressLine,
+      }))
+      setPostalLookupStatus("idle")
+    } catch {
+      setPostalLookupStatus("error")
+    }
   }
 
   const handleCertificateTypeToggle = (key: CertificateTypeKey, checked: boolean) => {
@@ -133,6 +164,7 @@ export function ContactSection() {
         throw new Error((data as any)?.error || t("contactPage.submitError"))
       }
       setSubmitStatus({ type: "success", message: t("contactPage.submitSuccess") })
+      setPostalLookupStatus("idle")
       setFormData({
         name: "",
         nameKanji: "",
@@ -140,6 +172,7 @@ export function ContactSection() {
         nationality: "",
         birthDate: "",
         studentId: "",
+        postalCode: "",
         address: "",
         phone: "",
         email: "",
@@ -385,6 +418,47 @@ export function ContactSection() {
                   onChange={handleChange}
                   className="w-full px-4 py-3.5 bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-[#0085b2] focus:shadow-lg focus:shadow-[#0085b2]/10 transition-all duration-200"
                 />
+              </div>
+
+              {/* Postal code (before address) — ZipCloud API で住所検索 */}
+              <div className="md:col-span-2">
+                <label htmlFor="postalCode" className="block text-sm font-medium text-gray-700 mb-2.5">
+                  {t("contactPage.formLabels.postalCode")}
+                </label>
+                <p className="text-xs text-gray-500 mb-2">{t("contactPage.postalLookupHint")}</p>
+                <div className="flex flex-col gap-2 sm:flex-row sm:items-stretch">
+                  <input
+                    type="text"
+                    id="postalCode"
+                    name="postalCode"
+                    inputMode="numeric"
+                    autoComplete="postal-code"
+                    value={formData.postalCode}
+                    onChange={handleChange}
+                    placeholder={t("contactPage.postalCodePlaceholder")}
+                    className="w-full min-w-0 flex-1 px-4 py-3.5 bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-[#0085b2] focus:shadow-lg focus:shadow-[#0085b2]/10 transition-all duration-200"
+                  />
+                  <button
+                    type="button"
+                    onClick={handleLookupAddressFromPostal}
+                    disabled={!postalDigitsOk || postalLookupStatus === "loading"}
+                    className="shrink-0 rounded-lg border border-[#0085b2] bg-white px-5 py-3.5 text-sm font-semibold text-[#0085b2] transition hover:bg-[#0085b2]/5 disabled:cursor-not-allowed disabled:opacity-50"
+                  >
+                    {postalLookupStatus === "loading"
+                      ? t("contactPage.postalLookupLoading")
+                      : t("contactPage.lookupAddressButton")}
+                  </button>
+                </div>
+                {postalLookupStatus === "notfound" && (
+                  <p className="mt-2 text-sm text-amber-700" role="status">
+                    {t("contactPage.postalLookupNotFound")}
+                  </p>
+                )}
+                {postalLookupStatus === "error" && (
+                  <p className="mt-2 text-sm text-red-600" role="status">
+                    {t("contactPage.postalLookupError")}
+                  </p>
+                )}
               </div>
 
               {/* Current Address */}

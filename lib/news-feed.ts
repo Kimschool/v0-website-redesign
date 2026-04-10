@@ -40,9 +40,20 @@ export function getStaticNewsFeedItems(): NewsFeedItem[] {
   }))
 }
 
+/**
+ * お知らせ JSON の URL。
+ * - NEXT_PUBLIC_NEWS_API_URL があれば最優先（プレビュー・別ドメイン用）
+ * - 未設定時はブラウザ上のみ `同一オリジン/news/api/posts.php`（本番で API URL 変更のたびに再ビルド不要）
+ */
 export function getNewsApiUrl(): string | null {
-  const u = process.env.NEXT_PUBLIC_NEWS_API_URL?.trim()
-  return u || null
+  const fromEnv = process.env.NEXT_PUBLIC_NEWS_API_URL?.trim()
+  if (fromEnv) {
+    return fromEnv
+  }
+  if (typeof window !== "undefined") {
+    return `${window.location.origin}/news/api/posts.php`
+  }
+  return null
 }
 
 /** クライアント・サーバー両方で利用可 */

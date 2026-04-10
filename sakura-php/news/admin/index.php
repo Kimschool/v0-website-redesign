@@ -267,6 +267,7 @@ $csrf = news_csrf_token();
     <h1>お知らせ一覧・登録</h1>
     <div>
       <a class="btn secondary" href="../list.php" target="_blank" rel="noopener">公開一覧</a>
+      <a class="btn secondary" href="../api/posts.php" target="_blank" rel="noopener">JSON（Next用）</a>
       <a class="btn secondary" href="?logout=1">ログアウト</a>
     </div>
   </div>
@@ -425,7 +426,7 @@ $csrf = news_csrf_token();
     <?php } else { foreach ($list as $row) {
         $lm = isset($row['link_mode']) ? $row['link_mode'] : 'external';
         $modeLabel = $lm === 'page' ? '本文' : 'リンク';
-        $listHref = news_post_list_href($row);
+        $listHref = news_post_href_for_site($row);
     ?>
       <tr>
         <td><?= h($row['display_date']) ?></td>
@@ -448,7 +449,7 @@ $csrf = news_csrf_token();
   </table>
 
   <p style="margin-top:1.5rem;font-size:.8rem;color:#71717a;">
-    公開一覧: <code>../list.php</code> ・ 本文ページ: <code>../article.php?id=</code>
+    公開一覧: <code>../list.php</code> ・ 本文: <code>../article.php?id=</code> ・ Next 連携: <code>NEXT_PUBLIC_NEWS_API_URL</code> → <code>../api/posts.php</code>
   </p>
 </div>
 </body>

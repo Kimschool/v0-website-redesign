@@ -52,7 +52,7 @@ header('Content-Type: text/html; charset=UTF-8');
   <?php } else { ?>
   <ul>
     <?php foreach ($list as $row) {
-        $href = news_post_list_href($row);
+        $href = news_post_href_for_site($row);
         $isNew = (int) $row['is_new'];
         $ex = isset($row['excerpt']) ? trim((string) $row['excerpt']) : '';
     ?>

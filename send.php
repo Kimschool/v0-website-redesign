@@ -83,6 +83,9 @@ $name = isset($_POST['name']) ? trim($_POST['name']) : '';
 $email = isset($_POST['email']) ? trim($_POST['email']) : '';
 $name = str_replace(array("\r", "\n"), '', $name);
 $email = str_replace(array("\r", "\n"), '', $email);
+if (isset($_POST['postalCode'])) {
+  $_POST['postalCode'] = str_replace(array("\r", "\n"), '', trim((string) $_POST['postalCode']));
+}
 $userEmail = (filter_var($email, FILTER_VALIDATE_EMAIL) !== false) ? $email : '';
 
 $subjectPrefix = env_or_default('MAIL_SUBJECT_PREFIX', '【KCP】証明書発行申込み');
@@ -115,6 +118,7 @@ $labels = array(
   'nationality' => '国籍',
   'birthDate' => '生年月日',
   'studentId' => '学籍番号',
+  'postalCode' => '郵便番号',
   'address' => '現住所',
   'phone' => '電話番号',
   'email' => 'メールアドレス',

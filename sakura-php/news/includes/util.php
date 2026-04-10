@@ -38,6 +38,19 @@ function news_post_list_href($row)
     return 'article.php?id=' . (int) $row['id'];
 }
 
+/**
+ * サイト直下からの絶対パス（先頭 /）。Next.js のトップや /news からリンクする・JSON API 用。
+ * 相対の article.php は /news/article.php に直す。
+ */
+function news_post_href_for_site($row)
+{
+    $path = news_post_list_href($row);
+    if ($path !== '' && isset($path[0]) && $path[0] === '/') {
+        return $path;
+    }
+    return '/news/' . $path;
+}
+
 function news_gallery_path_lines($gallery_paths)
 {
     if (!is_string($gallery_paths) || $gallery_paths === '') {
