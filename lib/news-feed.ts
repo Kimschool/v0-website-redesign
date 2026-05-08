@@ -41,6 +41,20 @@ export function getStaticNewsFeedItems(): NewsFeedItem[] {
 }
 
 /**
+ * Static + API の併合。同じ href は static を優先（多言語 i18n を保持するため）。
+ * 日付（YYYY.MM.DD）降順でソート。
+ */
+export function mergeNewsFeed(
+  staticItems: NewsFeedItem[],
+  apiItems: NewsFeedItem[] | null
+): NewsFeedItem[] {
+  const api = apiItems ?? []
+  const staticHrefs = new Set(staticItems.map((s) => s.href))
+  const apiDeduped = api.filter((item) => !staticHrefs.has(item.href))
+  return [...staticItems, ...apiDeduped].sort((a, b) => b.date.localeCompare(a.date))
+}
+
+/**
  * お知らせ JSON の URL。
  * - NEXT_PUBLIC_NEWS_API_URL があれば最優先（プレビュー・別ドメイン用）
  * - 未設定時はブラウザ上のみ `同一オリジン/news/api/posts.php`（本番で API URL 変更のたびに再ビルド不要）
@@ -51,7 +65,7 @@ export function getNewsApiUrl(): string | null {
     return fromEnv
   }
   if (typeof window !== "undefined") {
-    return `${window.location.origin}/news/api/posts.php`
+    return `${window.location.origin}/sakura-php/news/api/posts.php`
   }
   return null
 }
