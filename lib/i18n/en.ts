@@ -1,6 +1,6 @@
 const en = {
   // Header
-  logoTop: "KCP Educational Foundation",
+  logoTop: "Education Corporation KCP GAKUEN",
   logoBottom: "KCP International Japanese Language School",
   nav: {
     about: "About KCP",
