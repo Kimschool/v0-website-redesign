@@ -423,7 +423,7 @@ export function ContactSection() {
               {/* Postal code (before address) — ZipCloud API で住所検索 */}
               <div className="md:col-span-2">
                 <label htmlFor="postalCode" className="block text-sm font-medium text-gray-700 mb-2.5">
-                  {t("contactPage.formLabels.postalCode")}
+                  {t("contactPage.formLabels.postalCode")} <span className="text-[#0085b2] font-bold">*</span>
                 </label>
                 <p className="text-xs text-gray-500 mb-2">{t("contactPage.postalLookupHint")}</p>
                 <div className="flex flex-col gap-2 sm:flex-row sm:items-stretch">
@@ -435,6 +435,7 @@ export function ContactSection() {
                     autoComplete="postal-code"
                     value={formData.postalCode}
                     onChange={handleChange}
+                    required
                     placeholder={t("contactPage.postalCodePlaceholder")}
                     className="w-full min-w-0 flex-1 px-4 py-3.5 bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-[#0085b2] focus:shadow-lg focus:shadow-[#0085b2]/10 transition-all duration-200"
                   />
