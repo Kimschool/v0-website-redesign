@@ -1,6 +1,6 @@
 const en = {
   // Header
-  logoTop: "Education Corporation KCP GAKUEN",
+  logoTop: "Educational Corporation KCP GAKUEN",
   logoBottom: "KCP International Japanese Language School",
   nav: {
     about: "About KCP",
@@ -283,7 +283,7 @@ const en = {
     backHome: "Back to home",
     title: "Privacy Policy",
     lastUpdated: "(Last updated: March 2026)",
-    lead: "Education Corporation KCP GAKUEN, KCP International Japanese Language School (\"the School\") recognizes the importance of personal information provided by website visitors, prospective students, enrolled students, and others (\"you\"). We comply with the Act on the Protection of Personal Information of Japan and related laws and guidelines, and handle personal information appropriately. This policy describes how we handle information obtained through our website (\"the Site\").",
+    lead: "Educational Corporation KCP GAKUEN, KCP International Japanese Language School (\"the School\") recognizes the importance of personal information provided by website visitors, prospective students, enrolled students, and others (\"you\"). We comply with the Act on the Protection of Personal Information of Japan and related laws and guidelines, and handle personal information appropriately. This policy describes how we handle information obtained through our website (\"the Site\").",
     sections: [
       {
         title: "1. Information we collect",
@@ -334,7 +334,7 @@ const en = {
     philosophy2: "and promote personal growth through various cultures and activities around the world.",
     philosophy3: "Learning together, living together — these are the educational ideals of KCP.",
     principalTitle: "Message from the Principal",
-    schoolFoundation: "Education Corporation KCP GAKUEN",
+    schoolFoundation: "Educational Corporation KCP GAKUEN",
     schoolName: "KCP International Japanese Language School",
     principalName: "Principal Hiroshi Kanahara",
     principalBlog: "Principal's Blog",
@@ -349,7 +349,7 @@ const en = {
       { year: "1991", title: "Sister school Japan Fuji Kyosei Japanese Language School begins operation (Akabane Campus)", description: "" },
       { year: "1993", title: "Relocated to Shinjuku Campus", description: "" },
       { year: "2001", title: "KCP Japanese Teacher Training Course launched", description: "" },
-      { year: "2006", title: "Education Corporation KCP GAKUEN approved", description: "" },
+      { year: "2006", title: "Educational Corporation KCP GAKUEN approved", description: "" },
       { year: "2007", title: "KCP International Japanese Language School established (name change)", description: "Designated as Preparatory Education Course for University Admission by the Minister of Education" },
       { year: "2008", title: "Sister school renamed from Japan Fuji Kyosei to KCP Kyosei Japanese Language School", description: "" },
       { year: "2014", title: "New building completed; KCP International and sister school KCP Kyosei merged", description: "" },
@@ -445,7 +445,7 @@ const en = {
       { label: "Address", value: "〒160-0022 1-29-12 Shinjuku, Shinjuku-ku, Tokyo" },
       { label: "Phone", value: "03-3356-2359" },
       { label: "FAX", value: "03-3356-0257" },
-      { label: "Founder", value: "Education Corporation KCP GAKUEN" },
+      { label: "Founder", value: "Educational Corporation KCP GAKUEN" },
       { label: "Representative", value: "Takasuke Kinoshita" },
       { label: "Principal", value: "Hiroshi Kanahara" },
       { label: "Number of teachers", value: "47" },
@@ -519,7 +519,7 @@ const en = {
     submitBtn: "Submit",
     submittingBtn: "Submitting...",
     contactInfo: {
-      orgName: "Education Corporation KCP GAKUEN",
+      orgName: "Educational Corporation KCP GAKUEN",
       schoolNameLabel: "School name",
       schoolName: "KCP International Japanese Language School",
       telLabel: "Phone",
@@ -899,7 +899,7 @@ const en = {
     accessDesc2: "Nearby are not only convenience stores and restaurants, but also Shinjuku Gyoen and the Shinjuku entertainment district, allowing you to enjoy city life.",
     mapIframeTitle: "KCP Japanese Language School — location",
     mapOpenOsmHint: "View larger map on OpenStreetMap",
-    schoolAddress: "Education Corporation KCP GAKUEN, KCP International Japanese Language School",
+    schoolAddress: "Educational Corporation KCP GAKUEN, KCP International Japanese Language School",
     schoolAddressDetail: "〒160-0022 1-29-12 Shinjuku, Shinjuku-ku, Tokyo",
     schoolContact: "Contact: 03-3356-2359 / Email: ",
     stationTitle: "Nearest Stations",
