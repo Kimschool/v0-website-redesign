@@ -22,4 +22,4 @@ Thumbs.db
 sakura-php/news/config.php
 sakura-php/news/.env
 sakura-php/news/uploads/*
-!sakura-php/news/uploads/.htaccess
+!sakura-php/news/uploads/.htaccess.htaccess
