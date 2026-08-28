@@ -388,6 +388,7 @@ const en = {
     applicationLangs: "Available Languages:",
     applicationLangsValue: "English, Simplified Chinese, Traditional Chinese, Korean, Vietnamese",
     applicationBtn: "Download Application",
+    tuitionBtn: "About Tuition Fees",
     pamphletTitle: "Pamphlet",
     pamphletDesc: "For detailed information about KCP and course contents, please see our pamphlet.",
     pamphletFormat: "File Format:",
@@ -587,7 +588,7 @@ const en = {
       },
       {
         question: "Can I enroll even if I'm a complete beginner in Japanese?",
-        answer: "For student visa applications, a minimum of 150 hours of Japanese study (A1 or N5 level or above) is required. For January enrollment, A2 or N4 level is required with 300 hours of study.",
+        answer: "To apply for a student visa, you are in principle required to have Japanese proficiency equivalent to A1 or above on the Reference Framework for Japanese Language Education. Before enrollment, we verify your Japanese proficiency through a pass or certification on an approved Japanese language test. Approved tests include **the JLPT (N5 or above) and the JFT-Basic (A1 or above)**, as well as BJT, J.TEST, NAT-TEST, STBJ, TOPJ, J-cert, JLCT, PJC Bridge, JPT and other tests designated by the Immigration Services Agency of Japan.\nPlease note that applicants for the January term need Japanese proficiency equivalent to A2 or above (equivalent to passing JLPT N4) and approximately 300 hours of Japanese study.\nIf you are only now beginning to study Japanese, please plan your studies to meet the requirements for your intended enrollment term. For details on application requirements and the Japanese proficiency needed, please contact the overseas office in your region.",
       },
       {
         question: "How is class placement determined?",

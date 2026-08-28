@@ -388,6 +388,7 @@ const vi = {
     applicationLangs: "Ngôn ngữ có sẵn:",
     applicationLangsValue: "English·中文简体·中文繁体·한국어·Tiếng Việt",
     applicationBtn: "Tải đơn nhập học",
+    tuitionBtn: "Về học phí",
     pamphletTitle: "Tài liệu giới thiệu",
     pamphletDesc: "Để biết thông tin chi tiết về KCP và nội dung khóa học, vui lòng xem tài liệu giới thiệu.",
     pamphletFormat: "Định dạng file:",
@@ -605,7 +606,7 @@ const vi = {
       },
       {
         question: "Có thể nhập học khi chưa biết tiếng Nhật không?",
-        answer: "Để xin visa du học, cần tối thiểu 150 giờ học tiếng Nhật (trình độ A1 hoặc N5 trở lên). Đối với nhập học tháng 1, cần trình độ A2 hoặc N4 với 300 giờ học.",
+        answer: "Khi xin visa du học, về nguyên tắc bạn cần có năng lực tiếng Nhật tương đương bậc A1 trở lên theo「Khung tham chiếu Giáo dục tiếng Nhật」. Trước khi nhập học, chúng tôi sẽ xác nhận năng lực tiếng Nhật của bạn thông qua kết quả đỗ hoặc chứng nhận của các kỳ thi tiếng Nhật được công nhận. Các kỳ thi được công nhận bao gồm **JLPT (N5 trở lên) và JFT-Basic (A1 trở lên)**, ngoài ra còn có BJT, J.TEST, NAT-TEST, STBJ, TOPJ, J-cert, JLCT, PJC Bridge, JPT và các kỳ thi khác do Cục Quản lý Xuất nhập cảnh và Lưu trú Nhật Bản quy định.\nNgoài ra, người nộp đơn nhập học kỳ tháng 1 cần có năng lực tiếng Nhật tương đương A2 trở lên (tương đương đỗ JLPT N4) và khoảng 300 giờ học tiếng Nhật.\nNếu bạn mới bắt đầu học tiếng Nhật, vui lòng lên kế hoạch học tập phù hợp với kỳ nhập học mong muốn. Về điều kiện nộp hồ sơ chi tiết và năng lực tiếng Nhật cần thiết, vui lòng liên hệ văn phòng đại diện tại khu vực bạn đang sinh sống.",
       },
       {
         question: "Việc xếp lớp được thực hiện như thế nào?",

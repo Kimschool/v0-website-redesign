@@ -6,6 +6,16 @@ import Link from "next/link"
 import { ArrowRight, MessageCircle, X } from "lucide-react"
 import { useTranslation } from "react-i18next"
 import { PdfFlipbookViewerLazy } from "@/components/pdf-flipbook-viewer-lazy"
+import { PdfCanvasViewerLazy } from "@/components/pdf-canvas-viewer-lazy"
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog"
+
+/** View-only tuition PDF; rendered to canvas so it cannot be downloaded. */
+const TUITION_PDF_URL = "/documents/tuition-fees.pdf"
 
 type ApplicationDocumentLanguageKey = "en-ja" | "zh" | "ko" | "vi" | "zh-tw"
 
@@ -35,6 +45,7 @@ export function AdmissionSection() {
   const [isApplicationModalOpen, setIsApplicationModalOpen] = useState(false)
   const [selectedApplicationLanguageKey, setSelectedApplicationLanguageKey] =
     useState<ApplicationDocumentLanguageKey>("en-ja")
+  const [isTuitionModalOpen, setIsTuitionModalOpen] = useState(false)
   const [isPamphletModalOpen, setIsPamphletModalOpen] = useState(false)
   const [selectedPamphletLanguageKey, setSelectedPamphletLanguageKey] =
     useState<PamphletLanguageKey>("ja")
@@ -288,16 +299,24 @@ export function AdmissionSection() {
                   <br />
                   {t("admissionPage.applicationLangsValue")}
                 </p>
-                <div className="mt-5 flex flex-wrap items-center justify-between gap-3">
+                <div className="mt-auto pt-5 space-y-3">
                   <span className="inline-flex items-center rounded-full bg-[#0085b2]/5 text-[#0085b2] px-3 py-1 text-xs font-semibold">
                     PDF / Form
                   </span>
                   <button
                     type="button"
                     onClick={() => setIsApplicationModalOpen(true)}
-                    className="inline-flex items-center justify-center gap-2 rounded-full bg-[#0085b2] hover:bg-[#006794] text-white text-sm font-semibold px-6 py-2.5 transition-colors shadow-md shadow-[#0085b2]/30"
+                    className="w-full inline-flex items-center justify-center gap-2 rounded-full bg-[#0085b2] hover:bg-[#006794] text-white text-sm font-semibold px-6 py-2.5 transition-colors shadow-md shadow-[#0085b2]/30"
                   >
                     {t("admissionPage.applicationBtn")}
+                    <ArrowRight className="w-4 h-4" />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setIsTuitionModalOpen(true)}
+                    className="w-full inline-flex items-center justify-center gap-2 rounded-full border border-[#0085b2] bg-white hover:bg-[#0085b2]/5 text-[#0085b2] text-sm font-semibold px-6 py-2.5 transition-colors"
+                  >
+                    {t("admissionPage.tuitionBtn")}
                     <ArrowRight className="w-4 h-4" />
                   </button>
                 </div>
@@ -316,14 +335,14 @@ export function AdmissionSection() {
                   <br />
                   {t("admissionPage.pamphletFormatValue")}
                 </p>
-                <div className="mt-5 flex flex-wrap items-center justify-between gap-3">
+                <div className="mt-auto pt-5 space-y-3">
                   <span className="inline-flex items-center rounded-full bg-emerald-500/5 text-emerald-600 px-3 py-1 text-xs font-semibold">
                     PDF / Brochure
                   </span>
                   <button
                     type="button"
                     onClick={() => setIsPamphletModalOpen(true)}
-                    className="inline-flex items-center justify-center gap-2 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white text-sm font-semibold px-6 py-2.5 transition-colors shadow-md shadow-emerald-500/30"
+                    className="w-full inline-flex items-center justify-center gap-2 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white text-sm font-semibold px-6 py-2.5 transition-colors shadow-md shadow-emerald-500/30"
                   >
                     {t("admissionPage.pamphletBtn")}
                     <ArrowRight className="w-4 h-4" />
@@ -331,6 +350,23 @@ export function AdmissionSection() {
                 </div>
               </div>
             </div>
+
+            {/* Tuition PDF - view only (canvas render, no download) */}
+            <Dialog open={isTuitionModalOpen} onOpenChange={setIsTuitionModalOpen}>
+              <DialogContent
+                className="flex max-h-[min(90vh,900px)] w-[calc(100%-1.5rem)] max-w-4xl flex-col gap-0 overflow-hidden p-0 sm:max-w-4xl"
+                showCloseButton
+              >
+                <DialogHeader className="shrink-0 border-b border-border px-5 py-4 pr-12 text-left">
+                  <DialogTitle className="text-base font-semibold text-foreground">
+                    {t("admissionPage.tuitionBtn")}
+                  </DialogTitle>
+                </DialogHeader>
+                <div className="min-h-0 flex-1 overflow-y-auto px-3 py-4 md:px-4">
+                  {isTuitionModalOpen ? <PdfCanvasViewerLazy pdfUrl={TUITION_PDF_URL} /> : null}
+                </div>
+              </DialogContent>
+            </Dialog>
           </div>
 
           <div className="w-full h-px bg-gray-300 mb-16" />

@@ -381,6 +381,7 @@ const zh = {
     applicationLangs: "对应语言：",
     applicationLangsValue: "English·中文简体·中文繁体·한국어·Tiếng Việt",
     applicationBtn: "下载申请书",
+    tuitionBtn: "关于学费",
     docOpenInNewTab: "在新标签页打开",
     docSelectedLanguage: "选择语言：",
     docOriginalFormat: "原本格式：",
@@ -618,7 +619,7 @@ const zh = {
       },
       {
         question: "完全没学过日语也能入学吗？",
-        answer: "申请留学签证需要最少150小时的日语学习（A1或N5程度以上）。希望1月入学的需要A2或N4合格水平，需要300小时的学习经历。",
+        answer: "申请留学签证时，原则上需要具备「日语教育参照框架」中相当于A1以上的日语能力。入学前，我们将通过相关日语考试的合格·认定等方式确认您的日语能力。相关考试除**JLPT（N5以上）和JFT-Basic（A1以上）**外，还包括BJT、J.TEST、NAT-TEST、STBJ、TOPJ、J-cert、JLCT、PJC Bridge、JPT等出入国在留管理厅指定的考试。\n此外，申请1月期入学的学生，需要具备相当于A2以上（相当于JLPT N4合格）的日语能力，以及约300小时的日语学习经历。\n今后才开始学习日语的同学，请配合入学时期推进必要的学习。有关详细的申请条件及所需日语能力，请咨询您所在地区的海外事务所。",
       },
       {
         question: "班级怎么分？",

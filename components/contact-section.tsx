@@ -20,6 +20,13 @@ type OverseasOffice = {
   details: OverseasOfficeDetail[]
 }
 
+/** Render `**bold**` segments in a translated string as <strong>. */
+function renderBold(text: string) {
+  return text.split(/\*\*(.+?)\*\*/g).map((part, idx) =>
+    idx % 2 === 1 ? <strong key={idx} className="font-semibold text-gray-900">{part}</strong> : part
+  )
+}
+
 const CERTIFICATE_TYPE_KEYS = ["attendance", "graduation", "withdrawal", "other"] as const
 type CertificateTypeKey = (typeof CERTIFICATE_TYPE_KEYS)[number]
 
@@ -711,7 +718,11 @@ export function ContactSection() {
 
                 <div className="flex gap-4 px-6 py-5 bg-white border-t border-gray-100">
                   <span className="flex-shrink-0 w-8 h-8 rounded-full bg-[#006794] text-white flex items-center justify-center font-bold text-sm">A</span>
-                  <p className="flex-1 text-gray-700 leading-relaxed text-sm">{item.answer}</p>
+                  <div className="flex-1 text-gray-700 leading-relaxed text-sm space-y-2">
+                    {item.answer.split("\n").map((para, pIdx) => (
+                      <p key={pIdx}>{renderBold(para)}</p>
+                    ))}
+                  </div>
                 </div>
               </details>
             ))}
