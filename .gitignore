@@ -23,3 +23,7 @@ sakura-php/news/config.php
 sakura-php/news/.env
 sakura-php/news/uploads/*
 !sakura-php/news/uploads/.htaccess.htaccess
+
+# TypeScript / Next.js build artifacts (auto-generated)
+*.tsbuildinfo
+next-env.d.ts
