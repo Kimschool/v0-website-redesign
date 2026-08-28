@@ -5,6 +5,44 @@ import Image from "next/image"
 import { useTranslation } from "react-i18next"
 import { PageBreadcrumb } from "@/components/page-breadcrumb"
 
+// FY2025 data (undergraduate + graduate tiers)
+const data2025 = {
+  大学: {
+    国公立: [
+      "東京大学", "電気通信大学", "京都工芸繊維大学", "東京都立大学", "東京学芸大学",
+      "宇都宮大学", "大阪教育大学", "都留文科大学", "鳥取大学"
+    ],
+    私立: [
+      "東京理科大学", "立教大学", "明治大学", "中央大学", "法政大学", "立命館大学", "日本大学",
+      "國學院大學", "専修大学", "近畿大学", "龍谷大学", "明治学院大学", "武蔵野大学",
+      "関西外国語大学", "帝京大学", "大東文化大学", "拓殖大学", "亜細亜大学", "駒沢女子大学",
+      "桜美林大学", "創価大学", "帝京平成大学", "文化学園大学", "山梨学院大学", "駿河台大学",
+      "嘉悦大学", "東洋学園大学", "東海大学", "聖学院大学", "城西大学", "平成国際大学",
+      "日本経済大学", "長崎国際大学", "長崎外国語大学", "デジタルハリウッド大学", "日本工業大学",
+      "埼玉工業大学", "足利大学", "ものつくり大学", "愛知工科大学", "八戸工業大学",
+      "北海道医療大学", "酪農学園大学", "長崎総合科学大学", "第一工科大学"
+    ],
+    音楽美術: [
+      "武蔵野美術大学", "多摩美術大学", "女子美術大学", "京都芸術大学", "京都精華大学",
+      "成安造形大学", "横浜美術大学", "倉敷芸術科学大学", "国立音楽大学", "洗足学園音楽大学",
+      "昭和音楽大学"
+    ]
+  },
+  大学院: {
+    国公立: [
+      "東京大学", "京都大学", "広島大学", "千葉大学", "東京海洋大学",
+      "東京都立大学", "横浜市立大学", "長崎大学"
+    ],
+    私立: [
+      "早稲田大学", "明治大学", "立命館大学", "日本大学", "東洋大学",
+      "駒沢大学", "国士舘大学", "東京経済大学", "日本経済大学", "同志社女子大学"
+    ],
+    音楽美術: [
+      "東京藝術大学", "武蔵野美術大学", "武蔵野音楽大学", "昭和音楽大学"
+    ]
+  }
+}
+
 // FY2024 data (undergraduate + graduate tiers)
 const data2024 = {
   大学: {
@@ -323,33 +361,36 @@ function UniGrid({ universities }: { universities: string[] }) {
 
 function YearResultsAlignedLayout() {
   const { t } = useTranslation()
-  const yearOrder = ["2024", "2023", "2022", "2021", "2020", "2019"] as const
+  const yearOrder = ["2025", "2024", "2023", "2022", "2021", "2020", "2019"] as const
+
+  // Years whose data is split into 大学 / 大学院 tiers; older years use the flat layout.
+  const tieredData: Record<string, typeof data2024> = { "2025": data2025, "2024": data2024 }
 
   return (
     <div className="space-y-4">
       {yearOrder.map((year) => (
-        <details key={year} open={year === "2024"} className="group rounded-2xl border border-gray-200 bg-white shadow-sm overflow-hidden">
+        <details key={year} open={year === "2025"} className="group rounded-2xl border border-gray-200 bg-white shadow-sm overflow-hidden">
           <summary className="list-none cursor-pointer px-6 py-4 bg-gray-50 border-b border-gray-200 flex items-center justify-between gap-3">
             <span className="text-lg font-bold text-gray-900">{t("educationPage.resultTitle", { year })}</span>
             <span className="shrink-0 text-gray-400 transition-transform duration-300 group-open:rotate-180">▼</span>
           </summary>
           <div className="p-6">
-            {year === "2024" ? (
+            {tieredData[year] ? (
               <div className="space-y-4">
                 <div className="rounded-2xl border border-gray-200 bg-gray-50 p-4">
                   <p className="text-sm font-bold text-gray-900 mb-3">{t("educationPage.universityHeader")}</p>
                   <div className="space-y-3">
                     <div>
                       <p className="text-sm font-semibold text-gray-800 mb-2">{t("educationPage.publicUniTitle")}</p>
-                      <UniGrid universities={data2024.大学.国公立} />
+                      <UniGrid universities={tieredData[year].大学.国公立} />
                     </div>
                     <div>
                       <p className="text-sm font-semibold text-gray-800 mb-2">{t("educationPage.privateUniTitle")}</p>
-                      <UniGrid universities={data2024.大学.私立} />
+                      <UniGrid universities={tieredData[year].大学.私立} />
                     </div>
                     <div>
                       <p className="text-sm font-semibold text-gray-800 mb-2">{t("educationPage.artMusicUniTitle")}</p>
-                      <UniGrid universities={data2024.大学.音楽美術} />
+                      <UniGrid universities={tieredData[year].大学.音楽美術} />
                     </div>
                   </div>
                 </div>
@@ -358,15 +399,15 @@ function YearResultsAlignedLayout() {
                   <div className="space-y-3">
                     <div>
                       <p className="text-sm font-semibold text-gray-800 mb-2">{t("educationPage.publicGradTitle")}</p>
-                      <UniGrid universities={data2024.大学院.国公立} />
+                      <UniGrid universities={tieredData[year].大学院.国公立} />
                     </div>
                     <div>
                       <p className="text-sm font-semibold text-gray-800 mb-2">{t("educationPage.privateGradTitle")}</p>
-                      <UniGrid universities={data2024.大学院.私立} />
+                      <UniGrid universities={tieredData[year].大学院.私立} />
                     </div>
                     <div>
                       <p className="text-sm font-semibold text-gray-800 mb-2">{t("educationPage.artMusicGradTitle")}</p>
-                      <UniGrid universities={data2024.大学院.音楽美術} />
+                      <UniGrid universities={tieredData[year].大学院.音楽美術} />
                     </div>
                   </div>
                 </div>
