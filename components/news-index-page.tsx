@@ -9,7 +9,12 @@ import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { ScrollToTop } from "@/components/scroll-to-top"
 import { NEWS_INDEX_ITEMS, type NewsIndexItem } from "@/lib/news-articles"
-import { fetchNewsFeedFromApi, getNewsApiUrl, type NewsFeedItem } from "@/lib/news-feed"
+import {
+  fetchNewsFeedFromApi,
+  getNewsApiUrl,
+  mergeNewsFeed,
+  type NewsFeedItem,
+} from "@/lib/news-feed"
 
 type NewsCardEntry = {
   key: string
@@ -102,8 +107,35 @@ export function NewsIndexPageClient() {
   }, [])
 
   const entries: NewsCardEntry[] = useMemo(() => {
-    if (apiFeed && apiFeed.length > 0) {
-      return apiFeed.map((item) => ({
+    // Merge, don't replace: hardcoded articles stay visible once posts are
+    // registered in the admin. On an href collision the static entry wins so
+    // its translated title/excerpt is kept.
+    const staticFeed: NewsFeedItem[] = NEWS_INDEX_ITEMS.map((item) => ({
+      id: item.id,
+      title: "",
+      excerpt: "",
+      href: item.href,
+      date: item.date,
+      isNew: false,
+      imageSrc: item.imageSrc ?? null,
+    }))
+    const staticByHref = new Map(NEWS_INDEX_ITEMS.map((item) => [item.href, item]))
+
+    return mergeNewsFeed(staticFeed, apiFeed ?? null).map((item) => {
+      const staticItem = staticByHref.get(item.href)
+      if (staticItem) {
+        const tx = ArticleTexts(staticItem, t)
+        return {
+          key: staticItem.id,
+          href: staticItem.href,
+          date: staticItem.date,
+          imageSrc: staticItem.imageSrc,
+          title: tx.title,
+          excerpt: tx.excerpt,
+          imageAlt: tx.imageAlt,
+        }
+      }
+      return {
         key: item.id,
         href: item.href,
         date: item.date,
@@ -111,18 +143,6 @@ export function NewsIndexPageClient() {
         title: item.title,
         excerpt: item.excerpt || "",
         imageAlt: item.title,
-      }))
-    }
-    return NEWS_INDEX_ITEMS.map((item) => {
-      const tx = ArticleTexts(item, t)
-      return {
-        key: item.id,
-        href: item.href,
-        date: item.date,
-        imageSrc: item.imageSrc,
-        title: tx.title,
-        excerpt: tx.excerpt,
-        imageAlt: tx.imageAlt,
       }
     })
   }, [apiFeed, t])

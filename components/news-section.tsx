@@ -8,6 +8,7 @@ import {
   fetchNewsFeedFromApi,
   getNewsApiUrl,
   getStaticNewsFeedItems,
+  mergeNewsFeed,
   type NewsFeedItem,
 } from "@/lib/news-feed"
 
@@ -36,7 +37,9 @@ export function NewsSection() {
     }
     const ac = new AbortController()
     fetchNewsFeedFromApi(ac.signal).then((api) => {
-      setFeedItems(api ?? getStaticNewsFeedItems())
+      // Merge, don't replace: API posts are appended to the hardcoded articles
+      // (same href keeps the static entry so its i18n copy survives).
+      setFeedItems(mergeNewsFeed(getStaticNewsFeedItems(), api))
     })
     return () => ac.abort()
   }, [])
