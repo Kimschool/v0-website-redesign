@@ -37,8 +37,8 @@ export function NewsSection() {
     }
     const ac = new AbortController()
     fetchNewsFeedFromApi(ac.signal).then((api) => {
-      // Merge, don't replace: API posts are appended to the hardcoded articles
-      // (same href keeps the static entry so its i18n copy survives).
+      // DB (admin) is the source of truth; the hardcoded articles only fill in
+      // for hrefs the API does not return (migration-003 not run, or API down).
       setFeedItems(mergeNewsFeed(getStaticNewsFeedItems(), api))
     })
     return () => ac.abort()

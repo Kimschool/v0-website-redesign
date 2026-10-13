@@ -40,8 +40,19 @@ export function getStaticNewsFeedItems(): NewsFeedItem[] {
   }))
 }
 
+/** 末尾スラッシュの差を無視して href を比較するための正規化 */
+export function normalizeNewsHref(href: string): string {
+  return href.replace(/\/+$/, "") || "/"
+}
+
 /**
- * Static + API の併合。同じ href は static を優先（多言語 i18n を保持するため）。
+ * Static + API の併合。同じ href は **API を優先**。
+ *
+ * お知らせは DB（管理画面）が正本。ハードコードの記事は
+ * migration-003 で DB に取り込み済みなので、通常は API 側だけが残る。
+ * static を残しているのは、migration 未実行や API 不達のときに
+ * 一覧が空になるのを防ぐための保険。
+ *
  * 日付（YYYY.MM.DD）降順でソート。
  */
 export function mergeNewsFeed(
@@ -49,9 +60,11 @@ export function mergeNewsFeed(
   apiItems: NewsFeedItem[] | null
 ): NewsFeedItem[] {
   const api = apiItems ?? []
-  const staticHrefs = new Set(staticItems.map((s) => s.href))
-  const apiDeduped = api.filter((item) => !staticHrefs.has(item.href))
-  return [...staticItems, ...apiDeduped].sort((a, b) => b.date.localeCompare(a.date))
+  const apiHrefs = new Set(api.map((item) => normalizeNewsHref(item.href)))
+  const staticOnly = staticItems.filter(
+    (item) => !apiHrefs.has(normalizeNewsHref(item.href))
+  )
+  return [...api, ...staticOnly].sort((a, b) => b.date.localeCompare(a.date))
 }
 
 /**

@@ -12,7 +12,7 @@ import { NEWS_INDEX_ITEMS, type NewsIndexItem } from "@/lib/news-articles"
 import {
   fetchNewsFeedFromApi,
   getNewsApiUrl,
-  mergeNewsFeed,
+  normalizeNewsHref,
   type NewsFeedItem,
 } from "@/lib/news-feed"
 
@@ -107,44 +107,39 @@ export function NewsIndexPageClient() {
   }, [])
 
   const entries: NewsCardEntry[] = useMemo(() => {
-    // Merge, don't replace: hardcoded articles stay visible once posts are
-    // registered in the admin. On an href collision the static entry wins so
-    // its translated title/excerpt is kept.
-    const staticFeed: NewsFeedItem[] = NEWS_INDEX_ITEMS.map((item) => ({
-      id: item.id,
-      title: "",
-      excerpt: "",
+    // DB (admin) is the source of truth; see migration-003. The hardcoded
+    // articles only fill in when the API has no row for that href — i.e. the
+    // migration has not run yet, or the API is unreachable.
+    const api = apiFeed ?? []
+    const apiEntries: NewsCardEntry[] = api.map((item) => ({
+      key: item.id,
       href: item.href,
       date: item.date,
-      isNew: false,
-      imageSrc: item.imageSrc ?? null,
+      imageSrc: item.imageSrc,
+      title: item.title,
+      excerpt: item.excerpt || "",
+      imageAlt: item.title,
     }))
-    const staticByHref = new Map(NEWS_INDEX_ITEMS.map((item) => [item.href, item]))
 
-    return mergeNewsFeed(staticFeed, apiFeed ?? null).map((item) => {
-      const staticItem = staticByHref.get(item.href)
-      if (staticItem) {
-        const tx = ArticleTexts(staticItem, t)
-        return {
-          key: staticItem.id,
-          href: staticItem.href,
-          date: staticItem.date,
-          imageSrc: staticItem.imageSrc,
-          title: tx.title,
-          excerpt: tx.excerpt,
-          imageAlt: tx.imageAlt,
-        }
-      }
+    const apiHrefs = new Set(api.map((item) => normalizeNewsHref(item.href)))
+    const staticEntries: NewsCardEntry[] = NEWS_INDEX_ITEMS.filter(
+      (item) => !apiHrefs.has(normalizeNewsHref(item.href))
+    ).map((item) => {
+      const tx = ArticleTexts(item, t)
       return {
         key: item.id,
         href: item.href,
         date: item.date,
         imageSrc: item.imageSrc,
-        title: item.title,
-        excerpt: item.excerpt || "",
-        imageAlt: item.title,
+        title: tx.title,
+        excerpt: tx.excerpt,
+        imageAlt: tx.imageAlt,
       }
     })
+
+    return [...apiEntries, ...staticEntries].sort((a, b) =>
+      b.date.localeCompare(a.date)
+    )
   }, [apiFeed, t])
 
   return (
