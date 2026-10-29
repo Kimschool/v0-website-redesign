@@ -448,6 +448,7 @@ const zh = {
     regulationsLinkLabel: "关于学则",
     selfEvalTitle: "自我检查·评价结果",
     selfEvalLinks: [
+      "令和8年10月30日版",
       "令和7年10月29日版",
       "令和6年10月28日版",
       "令和6年度课程修了者的日语能力习得情况等",

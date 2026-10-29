@@ -456,6 +456,7 @@ const vi = {
     regulationsLinkLabel: "Về nội quy trường (PDF)",
     selfEvalTitle: "Kết quả tự kiểm tra và đánh giá",
     selfEvalLinks: [
+      "Bản ngày 30 tháng 10 năm Reiwa 8",
       "Bản ngày 29 tháng 10 năm Reiwa 7",
       "Bản ngày 28 tháng 10 năm Reiwa 6",
       "Trình độ tiếng Nhật của người hoàn thành khóa học năm Reiwa 6 (PDF)",

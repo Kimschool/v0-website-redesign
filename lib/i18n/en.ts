@@ -456,6 +456,7 @@ const en = {
     regulationsLinkLabel: "School regulations (PDF)",
     selfEvalTitle: "Self-check and evaluation results",
     selfEvalLinks: [
+      "Edition of October 30, 2026 (Reiwa 8)",
       "Edition of October 29, 2025 (Reiwa 7)",
       "Edition of October 28, 2024 (Reiwa 6)",
       "Japanese proficiency of program completers, FY Reiwa 6 (PDF)",

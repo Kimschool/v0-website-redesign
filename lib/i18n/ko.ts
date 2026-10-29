@@ -444,6 +444,7 @@ const ko = {
     regulationsLinkLabel: "학칙에 대하여（PDF）",
     selfEvalTitle: "자기점검·평가 결과",
     selfEvalLinks: [
+      "레이와 8년 10월 30일판",
       "레이와 7년 10월 29일판",
       "레이와 6년 10월 28일판",
       "레이와 6년도 과정 수료자의 일본어 능력 습득 상황 등（PDF）",

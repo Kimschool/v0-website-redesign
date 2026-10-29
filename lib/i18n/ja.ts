@@ -445,6 +445,7 @@ const ja = {
     regulationsLinkLabel: "学則について",
     selfEvalTitle: "自己点検・評価の結果",
     selfEvalLinks: [
+      "令和8年10月30日版",
       "令和7年10月29日版",
       "令和6年10月28日版",
       "令和6年度課程修了者の日本語能力習得状況等",

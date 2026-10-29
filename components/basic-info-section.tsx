@@ -15,7 +15,9 @@ import { PdfCanvasViewerLazy } from "@/components/pdf-canvas-viewer-lazy"
 
 const GAKUSOKU_PDF_URL = "/documents/gakusoku.pdf"
 
+/** Index-matched with the `basicInfoPage.selfEvalLinks` label array; newest first. */
 const SELF_EVAL_PDF_HREFS = [
+  "/images/weavus/evaluation20261030.pdf",
   "/images/weavus/evaluation20251029.pdf",
   "/images/weavus/evaluation20241028.pdf",
   "/images/weavus/kateishuryo-japanese20250526.pdf",
